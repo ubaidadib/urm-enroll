@@ -16,7 +16,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { m, AnimatePresence } from "motion/react";
-import { Instagram, ExternalLink, ChevronDown } from "lucide-react";
+import { Instagram, ExternalLink, ChevronDown, Play } from "lucide-react";
 
 declare global {
   interface Window {
