@@ -109,7 +109,7 @@ export function CookieBanner() {
             </div>
 
             {/* Granular consent toggles */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-5 ps-13">
+            <div className="flex flex-col sm:flex-row gap-4 mb-5 ps-[3.25rem]">
               <label className="flex items-center gap-2 cursor-pointer text-sm text-text-secondary">
                 <input
                   type="checkbox"
