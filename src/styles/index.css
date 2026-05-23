@@ -2,6 +2,14 @@
 @import './theme.css';
 @import './glass.css';
 
+/* ── Instagram reel marquee ───────────────────────────────────────────── */
+@keyframes urmMarquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(var(--urm-strip-w, -5304px)); }
+}
+.urm-marquee { animation: urmMarquee var(--urm-duration, 108s) linear infinite; }
+.urm-marquee-paused { animation-play-state: paused; }
+
 /* ── Accessibility: Skip link ──────────────────────────────────────────── */
 .skip-link {
   position: absolute;
