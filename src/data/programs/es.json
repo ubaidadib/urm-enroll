@@ -1,0 +1,50 @@
+[
+  {
+    "id": "es_bachelor_business",
+    "countryCode": "ES",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of International Business", "ar": "بكالوريوس أعمال دولية", "de": "Bachelor Internationales Business" },
+    "description": { "en": "Business programs in Barcelona and Madrid with English-track options.", "ar": "برامج أعمال في برشلونة ومدريد مع مسارات باللغة الإنجليزية.", "de": "Business-Programme in Barcelona und Madrid mit englischsprachigen Tracks." },
+    "language": ["English", "Spanish"],
+    "duration": "3–4 years",
+    "tuition": { "amount": "1 500–5 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "es_bachelor_medicine",
+    "countryCode": "ES",
+    "type": "bachelor",
+    "field": "medicine",
+    "title": { "en": "Medicine (MD)", "ar": "الطب البشري", "de": "Medizin" },
+    "description": { "en": "English-taught medicine at accredited Spanish universities.", "ar": "طب باللغة الإنجليزية في جامعات إسبانية معتمدة.", "de": "Englischsprachiges Medizinstudium an akkreditierten spanischen Universitäten." },
+    "language": ["English", "Spanish"],
+    "duration": "6 years",
+    "tuition": { "amount": "5 000–12 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "es_master_business",
+    "countryCode": "ES",
+    "type": "master",
+    "field": "business",
+    "title": { "en": "Master in Management", "ar": "ماجستير إدارة", "de": "Master in Management" },
+    "description": { "en": "Top-ranked management master's with startup ecosystem access.", "ar": "ماجستير إدارة مصنف عالمياً مع وصول لمنظومة الشركات الناشئة.", "de": "Spitzenplatzierter Management-Master mit Zugang zum Startup-Ökosystem." },
+    "language": ["English"],
+    "duration": "1–2 years",
+    "tuition": { "amount": "3 000–8 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "es_language_spanish",
+    "countryCode": "ES",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "Spanish Language Program", "ar": "برنامج اللغة الإسبانية", "de": "Spanisch-Sprachprogramm" },
+    "description": { "en": "Immersive Spanish courses for university preparation.", "ar": "دورات إسبانية مكثفة للإعداد الجامعي.", "de": "Immersive Spanischkurse zur Universitätsvorbereitung." },
+    "language": ["Spanish"],
+    "duration": "3–6 months",
+    "tuition": { "amount": "600–2 000", "currency": "EUR", "period": "course" },
+    "featured": false
+  }
+]

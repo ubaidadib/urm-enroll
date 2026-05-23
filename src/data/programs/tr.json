@@ -1,0 +1,50 @@
+[
+  {
+    "id": "tr_bachelor_medicine",
+    "countryCode": "TR",
+    "type": "bachelor",
+    "field": "medicine",
+    "title": { "en": "Medicine (MD)", "ar": "الطب البشري", "de": "Medizin" },
+    "description": { "en": "English-taught medicine at accredited Turkish universities.", "ar": "طب باللغة الإنجليزية في جامعات تركية معتمدة.", "de": "Englischsprachiges Medizinstudium an akkreditierten türkischen Universitäten." },
+    "language": ["English", "Turkish"],
+    "duration": "6 years",
+    "tuition": { "amount": "5 000–20 000", "currency": "USD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "tr_bachelor_engineering",
+    "countryCode": "TR",
+    "type": "bachelor",
+    "field": "engineering",
+    "title": { "en": "Bachelor of Engineering", "ar": "بكالوريوس هندسة", "de": "Bachelor Ingenieurwesen" },
+    "description": { "en": "Engineering programs at top-ranked Turkish technical universities.", "ar": "برامج هندسة في جامعات تركية تقنية مصنفة عالمياً.", "de": "Ingenieurprogramme an führenden türkischen Technischen Universitäten." },
+    "language": ["English", "Turkish"],
+    "duration": "4 years",
+    "tuition": { "amount": "2 000–12 000", "currency": "USD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "tr_bachelor_business",
+    "countryCode": "TR",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business Administration", "ar": "بكالوريوس إدارة أعمال", "de": "Bachelor Betriebswirtschaft" },
+    "description": { "en": "BBA programs bridging Europe and Asia in Istanbul.", "ar": "برامج إدارة أعمال تربط أوروبا وآسيا في إسطنبول.", "de": "BBA-Programme an der Schnittstelle zwischen Europa und Asien in Istanbul." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "3 000–15 000", "currency": "USD", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "tr_language_turkish",
+    "countryCode": "TR",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "Turkish Language Program (TÖMER)", "ar": "برنامج اللغة التركية (تومر)", "de": "Türkisch-Sprachprogramm (TÖMER)" },
+    "description": { "en": "TÖMER-certified Turkish language preparation at university centres.", "ar": "تحضير لغة تركية معتمد من تومر في مراكز جامعية.", "de": "TÖMER-zertifizierte Türkischvorbereitung an Universitätszentren." },
+    "language": ["Turkish"],
+    "duration": "6–12 months",
+    "tuition": { "amount": "1 000–3 000", "currency": "USD", "period": "course" },
+    "featured": false
+  }
+]

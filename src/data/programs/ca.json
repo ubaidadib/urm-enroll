@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ca_bachelor_business",
+    "countryCode": "CA",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Commerce", "ar": "بكالوريوس تجارة", "de": "Bachelor Handel" },
+    "description": { "en": "Commerce programs at top-ranked Canadian universities.", "ar": "برامج تجارة في جامعات كندية مصنفة عالمياً.", "de": "Handelsstudiengänge an erstklassigen kanadischen Universitäten." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "20 000–35 000", "currency": "CAD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "ca_bachelor_engineering",
+    "countryCode": "CA",
+    "type": "bachelor",
+    "field": "engineering",
+    "title": { "en": "Bachelor of Engineering", "ar": "بكالوريوس هندسة", "de": "Bachelor Ingenieurwesen" },
+    "description": { "en": "Accredited engineering programs with co-op work terms.", "ar": "برامج هندسة معتمدة مع فترات تدريب تعاوني.", "de": "Akkreditierte Ingenieurstudiengänge mit kooperativen Praxissemestern." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "22 000–40 000", "currency": "CAD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "ca_master_cs",
+    "countryCode": "CA",
+    "type": "master",
+    "field": "computer-science",
+    "title": { "en": "Master of Computer Science", "ar": "ماجستير علوم حاسوب", "de": "Master Informatik" },
+    "description": { "en": "Research-intensive CS master's with pathways to PR.", "ar": "ماجستير علوم حاسوب مكثف بحثياً مع مسارات للإقامة الدائمة.", "de": "Forschungsintensiver Informatik-Master mit Wegen zur Daueraufenthaltserlaubnis." },
+    "language": ["English"],
+    "duration": "2 years",
+    "tuition": { "amount": "15 000–30 000", "currency": "CAD", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "ca_language_english",
+    "countryCode": "CA",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "English Academic Pathway", "ar": "مسار اللغة الإنجليزية الأكاديمي", "de": "Englisch-Studienvorbereitung" },
+    "description": { "en": "University pathway English programs with conditional admission.", "ar": "برامج إنجليزية تحضيرية للجامعة مع قبول مشروط.", "de": "Universitätsvorbereitende Englischprogramme mit bedingter Zulassung." },
+    "language": ["English"],
+    "duration": "4–12 months",
+    "tuition": { "amount": "8 000–15 000", "currency": "CAD", "period": "course" },
+    "featured": false
+  }
+]

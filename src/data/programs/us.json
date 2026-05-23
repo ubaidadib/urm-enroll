@@ -1,0 +1,50 @@
+[
+  {
+    "id": "us_bachelor_business",
+    "countryCode": "US",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business Administration", "ar": "بكالوريوس إدارة أعمال", "de": "Bachelor Betriebswirtschaft" },
+    "description": { "en": "BBA at AACSB-accredited US universities with OPT eligibility.", "ar": "بكالوريوس إدارة أعمال في جامعات أمريكية معتمدة من AACSB مع أهلية للتدريب العملي.", "de": "BBA an AACSB-akkreditierten US-Universitäten mit OPT-Berechtigung." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "15 000–35 000", "currency": "USD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "us_bachelor_cs",
+    "countryCode": "US",
+    "type": "bachelor",
+    "field": "computer-science",
+    "title": { "en": "Bachelor of Computer Science", "ar": "بكالوريوس علوم حاسوب", "de": "Bachelor Informatik" },
+    "description": { "en": "CS programs with STEM OPT extension and tech industry access.", "ar": "برامج علوم الحاسوب مع تمديد تدريب STEM وإمكانية الوصول لصناعة التقنية.", "de": "Informatik-Programme mit STEM-OPT-Verlängerung und Zugang zur Tech-Branche." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "18 000–40 000", "currency": "USD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "us_master_business",
+    "countryCode": "US",
+    "type": "master",
+    "field": "business",
+    "title": { "en": "MBA", "ar": "ماجستير إدارة الأعمال", "de": "MBA" },
+    "description": { "en": "MBA programs with industry networking and CPT/OPT work authorization.", "ar": "برامج ماجستير إدارة أعمال مع شبكات مهنية وتصاريح عمل CPT/OPT.", "de": "MBA-Programme mit Branchennetzwerk und CPT/OPT-Arbeitsgenehmigung." },
+    "language": ["English"],
+    "duration": "1.5–2 years",
+    "tuition": { "amount": "20 000–50 000", "currency": "USD", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "us_language_english",
+    "countryCode": "US",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "Intensive English Program", "ar": "برنامج إنجليزي مكثف", "de": "Intensiv-Englischprogramm" },
+    "description": { "en": "SEVP-certified ESL programs with conditional university admission.", "ar": "برامج لغة إنجليزية معتمدة من SEVP مع قبول جامعي مشروط.", "de": "SEVP-zertifizierte ESL-Programme mit bedingter Universitätszulassung." },
+    "language": ["English"],
+    "duration": "3–12 months",
+    "tuition": { "amount": "5 000–15 000", "currency": "USD", "period": "course" },
+    "featured": false
+  }
+]

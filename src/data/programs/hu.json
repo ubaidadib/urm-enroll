@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hu_bachelor_medicine",
+    "countryCode": "HU",
+    "type": "bachelor",
+    "field": "medicine",
+    "title": { "en": "Medicine (MD)", "ar": "الطب البشري", "de": "Medizin" },
+    "description": { "en": "Internationally recognised English-taught medicine in Budapest and Pécs.", "ar": "طب معترف به دولياً باللغة الإنجليزية في بودابست وبيتش.", "de": "International anerkanntes englischsprachiges Medizinstudium in Budapest und Pécs." },
+    "language": ["English"],
+    "duration": "6 years",
+    "tuition": { "amount": "10 000–18 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "hu_bachelor_business",
+    "countryCode": "HU",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business", "ar": "بكالوريوس أعمال", "de": "Bachelor Business" },
+    "description": { "en": "English-taught business programs in central Europe's startup capital.", "ar": "برامج أعمال باللغة الإنجليزية في عاصمة الشركات الناشئة بوسط أوروبا.", "de": "Englischsprachige Business-Programme in der Startup-Hauptstadt Mitteleuropas." },
+    "language": ["English"],
+    "duration": "3.5 years",
+    "tuition": { "amount": "3 000–7 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "hu_master_engineering",
+    "countryCode": "HU",
+    "type": "master",
+    "field": "engineering",
+    "title": { "en": "Master of Engineering", "ar": "ماجستير هندسة", "de": "Master Ingenieurwesen" },
+    "description": { "en": "Engineering master's with Stipendium Hungaricum scholarship eligibility.", "ar": "ماجستير هندسة مع أهلية لمنحة Stipendium Hungaricum.", "de": "Ingenieur-Master mit Stipendium-Hungaricum-Förderberechtigung." },
+    "language": ["English"],
+    "duration": "2 years",
+    "tuition": { "amount": "4 000–8 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "hu_language_hungarian",
+    "countryCode": "HU",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "Hungarian Preparatory Year", "ar": "سنة تحضيرية هنغارية", "de": "Ungarisches Vorbereitungsjahr" },
+    "description": { "en": "Foundation year for students pursuing Hungarian-taught programmes.", "ar": "سنة تأسيسية للطلاب الراغبين بالدراسة باللغة الهنغارية.", "de": "Grundlagenjahr für Studierende im ungarischsprachigen Studium." },
+    "language": ["Hungarian"],
+    "duration": "10 months",
+    "tuition": { "amount": "2 000–4 000", "currency": "EUR", "period": "course" },
+    "featured": false
+  }
+]

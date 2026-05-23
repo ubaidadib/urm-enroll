@@ -1,0 +1,86 @@
+[
+  {
+    "id": "de_bachelor_business",
+    "countryCode": "DE",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business Administration", "ar": "بكالوريوس إدارة الأعمال", "de": "Bachelor Betriebswirtschaftslehre" },
+    "description": { "en": "Foundation in management, finance, and international business.", "ar": "أساسيات الإدارة والتمويل والأعمال الدولية.", "de": "Grundlagen in Management, Finanzen und internationalem Geschäft." },
+    "language": ["English", "German"],
+    "duration": "3–4 years",
+    "tuition": { "amount": "0–500", "currency": "EUR", "period": "semester" },
+    "featured": true
+  },
+  {
+    "id": "de_bachelor_engineering",
+    "countryCode": "DE",
+    "type": "bachelor",
+    "field": "engineering",
+    "title": { "en": "Bachelor of Engineering", "ar": "بكالوريوس هندسة", "de": "Bachelor Ingenieurwesen" },
+    "description": { "en": "Mechanical, electrical, or industrial engineering at top German universities.", "ar": "هندسة ميكانيكية أو كهربائية أو صناعية في أفضل الجامعات الألمانية.", "de": "Maschinenbau, Elektrotechnik oder Wirtschaftsingenieurwesen an deutschen Spitzenuniversitäten." },
+    "language": ["German", "English"],
+    "duration": "3–4 years",
+    "tuition": { "amount": "0–500", "currency": "EUR", "period": "semester" },
+    "featured": true
+  },
+  {
+    "id": "de_bachelor_cs",
+    "countryCode": "DE",
+    "type": "bachelor",
+    "field": "computer-science",
+    "title": { "en": "Bachelor of Computer Science", "ar": "بكالوريوس علوم الحاسوب", "de": "Bachelor Informatik" },
+    "description": { "en": "Software engineering, AI, and data science in Germany's tech ecosystem.", "ar": "هندسة البرمجيات والذكاء الاصطناعي وعلوم البيانات في منظومة التقنية الألمانية.", "de": "Softwareentwicklung, KI und Data Science im deutschen Tech-Ökosystem." },
+    "language": ["English", "German"],
+    "duration": "3 years",
+    "tuition": { "amount": "0–500", "currency": "EUR", "period": "semester" },
+    "featured": false
+  },
+  {
+    "id": "de_master_business",
+    "countryCode": "DE",
+    "type": "master",
+    "field": "business",
+    "title": { "en": "Master of Business Administration (MBA)", "ar": "ماجستير إدارة الأعمال", "de": "Master of Business Administration (MBA)" },
+    "description": { "en": "Advanced management with international focus and industry placements.", "ar": "إدارة متقدمة بتركيز دولي وتدريب مهني.", "de": "Fortgeschrittenes Management mit internationalem Fokus und Praxisphasen." },
+    "language": ["English"],
+    "duration": "1.5–2 years",
+    "tuition": { "amount": "0–1 500", "currency": "EUR", "period": "semester" },
+    "featured": true
+  },
+  {
+    "id": "de_master_engineering",
+    "countryCode": "DE",
+    "type": "master",
+    "field": "engineering",
+    "title": { "en": "Master of Engineering", "ar": "ماجستير هندسة", "de": "Master Ingenieurwesen" },
+    "description": { "en": "Specialised engineering research and industry-linked thesis projects.", "ar": "بحث هندسي متخصص ومشاريع تخرج مرتبطة بالصناعة.", "de": "Spezialisierte Ingenieurforschung und industriegebundene Abschlussarbeiten." },
+    "language": ["English", "German"],
+    "duration": "2 years",
+    "tuition": { "amount": "0–500", "currency": "EUR", "period": "semester" },
+    "featured": false
+  },
+  {
+    "id": "de_nursing",
+    "countryCode": "DE",
+    "type": "nursing",
+    "field": "healthcare",
+    "title": { "en": "Nursing Recognition Pathway", "ar": "مسار اعتراف التمريض", "de": "Pflegeanerkennung" },
+    "description": { "en": "Credential recognition, language training, and employer placement in German hospitals.", "ar": "اعتراف بالمؤهلات وتدريب لغوي وتوظيف في المستشفيات الألمانية.", "de": "Anerkennungsverfahren, Sprachtraining und Vermittlung an deutsche Kliniken." },
+    "language": ["German"],
+    "duration": "6–12 months",
+    "tuition": { "amount": "Employer-sponsored", "currency": "EUR", "period": "program" },
+    "featured": true
+  },
+  {
+    "id": "de_language_german",
+    "countryCode": "DE",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "Intensive German Language Program", "ar": "برنامج اللغة الألمانية المكثف", "de": "Intensiver Deutschkurs" },
+    "description": { "en": "A1–C1 preparation for university admission or professional recognition.", "ar": "إعداد A1–C1 للقبول الجامعي أو الاعتراف المهني.", "de": "A1–C1-Vorbereitung für Hochschulzulassung oder berufliche Anerkennung." },
+    "language": ["German"],
+    "duration": "3–12 months",
+    "tuition": { "amount": "500–2 000", "currency": "EUR", "period": "course" },
+    "featured": false
+  }
+]

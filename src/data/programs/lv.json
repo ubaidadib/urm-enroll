@@ -1,0 +1,38 @@
+[
+  {
+    "id": "lv_bachelor_business",
+    "countryCode": "LV",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business Administration", "ar": "بكالوريوس إدارة أعمال", "de": "Bachelor Betriebswirtschaft" },
+    "description": { "en": "Affordable English-taught BBA in Riga's growing economy.", "ar": "بكالوريوس إدارة أعمال إنجليزي بأسعار معقولة في اقتصاد ريغا المتنامي.", "de": "Erschwinglicher englischsprachiger BBA in Rigas wachsender Wirtschaft." },
+    "language": ["English"],
+    "duration": "3–4 years",
+    "tuition": { "amount": "2 000–4 500", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "lv_bachelor_cs",
+    "countryCode": "LV",
+    "type": "bachelor",
+    "field": "computer-science",
+    "title": { "en": "Bachelor of Computer Science", "ar": "بكالوريوس علوم حاسوب", "de": "Bachelor Informatik" },
+    "description": { "en": "CS programmes in Latvia's EU-integrated tech sector.", "ar": "برامج علوم حاسوب في قطاع التكنولوجيا المتكامل مع الاتحاد الأوروبي في لاتفيا.", "de": "Informatik-Programme in Lettlands EU-integriertem Tech-Sektor." },
+    "language": ["English"],
+    "duration": "3 years",
+    "tuition": { "amount": "2 500–5 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "lv_master_business",
+    "countryCode": "LV",
+    "type": "master",
+    "field": "business",
+    "title": { "en": "MBA", "ar": "ماجستير إدارة الأعمال", "de": "MBA" },
+    "description": { "en": "Affordable MBA with Erasmus+ partnership opportunities.", "ar": "ماجستير إدارة أعمال بأسعار معقولة مع فرص شراكة إيراسموس+.", "de": "Erschwinglicher MBA mit Erasmus+-Partnerschaftsmöglichkeiten." },
+    "language": ["English"],
+    "duration": "1.5–2 years",
+    "tuition": { "amount": "3 000–6 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  }
+]

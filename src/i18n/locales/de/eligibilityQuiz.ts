@@ -1,0 +1,293 @@
+export const eligibilityQuiz = {
+  meta: {
+    pageTitle: "Chancenkarte Eignungsquiz | URM Enroll Deutschland",
+    description: "Erhalten Sie in 6 Minuten einen realistischen Chancenkarte-Score. 18 Fragen. Kostenlos.",
+  },
+  intro: {
+    badge: "Chancenkarte-Check",
+    title: "Berechnen Sie Ihren Chancenkarte-Score.",
+    subtitle: "Achtzehn Fragen. Sechs Minuten. Ein realistisches Urteil — kein Verkaufsgespräch.",
+    bullets: [
+      "Spiegelt die offiziellen Chancenkarte-Punktekriterien",
+      "Persönliche Lückenanalyse am Ende",
+      "Vollständiger Score nach Kontaktangabe",
+    ],
+    cta: "Quiz starten",
+    estimatedTime: "≈ 6 Minuten",
+  },
+  progress: {
+    step: "Schritt",
+    of: "von",
+    questionsCompleted: "Fragen beantwortet",
+    percent: "%",
+  },
+  nav: {
+    next: "Weiter",
+    back: "Zurück",
+    submit: "Mein Ergebnis anzeigen",
+    skip: "Keine Angabe",
+  },
+  stepNames: {
+    personal: "Über Sie",
+    education: "Bildung",
+    experience: "Berufserfahrung",
+    languages: "Sprachen",
+    financial: "Finanzielle Bereitschaft",
+    germanyConnection: "Deutschland-Bezug",
+  },
+  stepIntros: {
+    personal: "Ein paar Basisangaben zu Ihrem Profil.",
+    education: "Wie und wo Sie sich qualifiziert haben.",
+    experience: "Was Sie getan haben — und wie lange.",
+    languages: "Ihr Stand in Deutsch und Englisch.",
+    financial: "Praktische Fragen, die die Botschaft stellt.",
+    germanyConnection: "Jede Verbindung zu Deutschland zählt.",
+  },
+  questions: {
+    nationality: {
+      label: "Welche Staatsangehörigkeit haben Sie?",
+      help: "Wir bestimmen daraus Ihren Visumsweg und die zuständige Botschaft.",
+      placeholder: "z.B. Libanesisch",
+    },
+    residence: {
+      label: "In welchem Land leben Sie aktuell?",
+      help: "Bestimmt das deutsche Konsulat für den Antrag.",
+      placeholder: "z.B. Libanon",
+    },
+    age: {
+      label: "Wie alt sind Sie?",
+      help: "Bewerber unter 35 erhalten die höchsten Punkte.",
+      options: {
+        under_25: "Unter 25",
+        "25_34": "25 – 34",
+        "35_39": "35 – 39",
+        "40_44": "40 – 44",
+        "45_plus": "45 oder älter",
+      },
+    },
+    maritalStatus: {
+      label: "Familienstand?",
+      help: "Wenn Ihr Ehepartner ebenfalls qualifiziert ist, steigt Ihr Score.",
+      options: {
+        single: "Ledig",
+        married: "Verheiratet",
+        married_qualified_spouse: "Verheiratet — Ehepartner ebenfalls Chancenkarte-qualifiziert",
+      },
+    },
+    degreeType: {
+      label: "Höchster abgeschlossener Abschluss?",
+      help: "Nur tatsächlich abgeschlossene Qualifikationen zählen.",
+      options: {
+        phd: "Promotion / Doktortitel",
+        master: "Master",
+        bachelor: "Bachelor",
+        diploma: "Diplom / Technikerabschluss",
+        secondary: "Nur Schulabschluss",
+      },
+    },
+    universityRecognised: {
+      label: "Ist Ihre Hochschule auf Anabin gelistet?",
+      help: "Anabin ist die offizielle Datenbank anerkannter ausländischer Qualifikationen.",
+      options: {
+        anabin_recognised: "Ja, H+ (anerkannt)",
+        uncertain: "Unsicher",
+        not_recognised: "Nein",
+      },
+    },
+    vocationalTraining: {
+      label: "Abgeschlossene Berufsausbildung?",
+      help: "Formelle Ausbildung oder Lehre.",
+      options: {
+        yes_two_years_plus: "Ja — mindestens 2 Jahre",
+        yes_less_than_two: "Ja — unter 2 Jahren",
+        no: "Nein",
+      },
+    },
+    graduationYear: {
+      label: "Wann haben Sie abgeschlossen?",
+      help: "Aktuelle Abschlüsse können leicht höher punkten.",
+      options: {
+        within_5_years: "In den letzten 5 Jahren",
+        "5_to_10_years": "Vor 5 – 10 Jahren",
+        over_10_years: "Vor über 10 Jahren",
+      },
+    },
+    profession: {
+      label: "Aktueller oder letzter Beruf?",
+      help: "Freitext — seien Sie konkret (z.B. 'Intensivpfleger', nicht 'Gesundheit').",
+      placeholder: "z.B. Senior Frontend-Entwickler",
+    },
+    yearsExperience: {
+      label: "Jahre qualifizierter Berufserfahrung?",
+      help: "Nur Tätigkeit nach Qualifikation zählt.",
+      options: {
+        less_than_2: "Weniger als 2 Jahre",
+        "2_to_4": "2 – 4 Jahre",
+        "5_or_more": "5 Jahre oder mehr",
+      },
+    },
+    employmentStatus: {
+      label: "Aktueller Beschäftigungsstatus?",
+      options: {
+        employed_full_time: "Vollzeit angestellt",
+        employed_part_time: "Teilzeit angestellt",
+        self_employed: "Selbständig",
+        unemployed: "Derzeit arbeitslos",
+      },
+    },
+    germanLevel: {
+      label: "Aktuelles Deutsch-Niveau (Goethe-Äquivalent)?",
+      help: "Selbsteinschätzung okay — wir verifizieren später mit Test.",
+      options: {
+        c1_or_higher: "C1 oder höher",
+        b2: "B2",
+        b1: "B1",
+        a2: "A2",
+        a1: "A1",
+        none: "Noch kein Deutsch",
+      },
+    },
+    englishLevel: {
+      label: "Aktuelles Englisch-Niveau?",
+      options: {
+        c1_or_higher: "C1 oder höher",
+        b2: "B2",
+        b1: "B1",
+        below_b1: "Unter B1",
+      },
+    },
+    languageCertification: {
+      label: "Anerkanntes Sprachzertifikat?",
+      help: "Goethe, telc, TestDaF für Deutsch — IELTS, TOEFL, Cambridge für Englisch.",
+      options: {
+        certified: "Ja, aktuell und zertifiziert",
+        in_progress: "In Vorbereitung — Prüfung gebucht",
+        none: "Noch kein Zertifikat",
+      },
+    },
+    blockedAccount: {
+      label: "Können Sie ein Sperrkonto (≈ 11.904 €) finanzieren?",
+      help: "Erforderlicher Lebenshaltungsnachweis. URM unterstützt bei der Eröffnung ohne Anreise.",
+      options: {
+        yes_ready: "Ja, Mittel verfügbar",
+        partially: "Teilweise — brauche einige Monate",
+        no: "Nein",
+      },
+    },
+    sponsorAvailable: {
+      label: "Haben Sie einen Bürgen in Deutschland?",
+      help: "Optional — eine in Deutschland ansässige Person mit Verpflichtungserklärung.",
+      options: { yes: "Ja", no: "Nein" },
+    },
+    previousStay: {
+      label: "Haben Sie früher in Deutschland gelebt?",
+      options: {
+        yes_six_months_plus: "Ja — 6 Monate oder länger",
+        yes_under_six_months: "Ja — kurzer Aufenthalt",
+        no: "Nie",
+      },
+    },
+    relativesInGermany: {
+      label: "Haben Sie Verwandte in Deutschland?",
+      options: {
+        yes_close: "Ja — Ehepartner / Eltern / Kinder",
+        yes_extended: "Ja — entferntere Verwandte",
+        no: "Nein",
+      },
+    },
+    previousApplication: {
+      label: "Haben Sie früher ein deutsches Visum beantragt?",
+      options: {
+        yes_approved: "Ja — bewilligt",
+        yes_rejected: "Ja — abgelehnt",
+        no: "Nein, dies wäre der erste Antrag",
+      },
+    },
+  },
+  gate: {
+    badge: "Fast geschafft",
+    title: "Wohin senden wir Ihr detailliertes Ergebnis?",
+    description:
+      "Ihre vollständige Chancenkarte-Auswertung, Lückenanalyse und nächsten Schritte. Kein Spam — eine E-Mail, danach nur wenn Sie einen Termin buchen.",
+    fields: {
+      fullName: "Vollständiger Name",
+      email: "E-Mail",
+      whatsapp: "WhatsApp-Nummer",
+      profession: "Aktueller Beruf",
+      country: "Land Ihres Wohnsitzes",
+    },
+    placeholders: {
+      fullName: "Max Mustermann",
+      email: "max@beispiel.de",
+      whatsapp: "+961 70 000 000",
+      profession: "Senior Pflegefachkraft",
+      country: "Libanon",
+    },
+    consent:
+      "Mit dem Fortfahren stimmen Sie zu, dass URM Enroll Sie zu Migrationsdienstleistungen kontaktiert. DSGVO-konform.",
+    submit: "Ergebnis anzeigen",
+    submitting: "Wird berechnet…",
+    error: {
+      required: "Dieses Feld ist erforderlich",
+      invalidEmail: "Bitte gültige E-Mail angeben",
+      submit: "Das Formular konnte nicht gesendet werden. Bitte erneut versuchen.",
+      turnstile: "Bitte Sicherheitsprüfung abschließen.",
+    },
+  },
+  result: {
+    badge: "Ihr Chancenkarte-Ergebnis",
+    titleHighlyEligible: "Sie sind hoch qualifiziert.",
+    titlePotentiallyEligible: "Sie sind grundsätzlich qualifiziert — mit kleinen Lücken.",
+    titleNeedsImprovement: "Noch nicht — aber ein klarer Plan bringt Sie dorthin.",
+    subtitleHighlyEligible:
+      "Ihr Profil übertrifft die Chancenkarte-Schwelle deutlich. Wir empfehlen die Antragstellung.",
+    subtitlePotentiallyEligible:
+      "Sie erreichen das Minimum. Gezielte Verbesserungen in ein bis zwei Bereichen erhöhen die Bewilligungschancen spürbar.",
+    subtitleNeedsImprovement:
+      "Ihr Score liegt aktuell unter 6 Punkten. Die gute Nachricht: dies ist der besser planbare Migrationsweg in Europa.",
+    score: "Ihr Score",
+    pointsLabel: "Punkte",
+    outOf: "von",
+    thresholdMet: "Über 6-Punkte-Minimum",
+    thresholdMissed: "Unter 6-Punkte-Minimum",
+    confidenceLabel: "Eignungssicherheit",
+    confidence: {
+      high: "Hohe Sicherheit",
+      medium: "Mittlere Sicherheit",
+      low: "Aufbau erforderlich",
+    },
+    confidenceNote: {
+      high: "Ihr aktuelles Profil passt sehr gut zu den Chancenkarte-Anforderungen.",
+      medium: "Sie sind nah dran. Ein oder zwei gezielte Verbesserungen erhöhen die Bewilligungschancen deutlich.",
+      low: "Vor einer Antragstellung sind gezielte Verbesserungen nötig, um Ihre Erfolgschancen zu maximieren.",
+    },
+    categoryBreakdown: "Aufschlüsselung",
+    missingTitle: "Erkannte Lücken",
+    actionsTitle: "Empfohlene nächste Schritte",
+    actions: {
+      improve_german: "Deutsch auf B1 ausbauen (wir empfehlen Partner-Schulen)",
+      certify_language: "Anerkanntes Sprachzertifikat ablegen (Goethe / telc)",
+      verify_anabin: "Hochschule und Abschluss bei Anabin prüfen",
+      open_blocked_account: "Sperrkonto bei reguliertem Anbieter eröffnen",
+      gain_experience: "Bis zu 24 Monate qualifizierter Berufserfahrung aufbauen",
+      book_consultation: "25-Minuten-Strategiegespräch mit Deutschland-Berater buchen",
+      prepare_documents: "Visumstaugliches Dokumentenpaket vorbereiten",
+    },
+    requirements: {
+      germanLevel: "Deutsch unter B1",
+      englishLevel: "Englisch unter B1",
+      blockedAccount: "Sperrkonto-Mittel noch nicht verfügbar",
+      universityRecognised: "Anerkennungsstatus unklar",
+      yearsExperience: "Unter 2 Jahre qualifizierte Erfahrung",
+    },
+    ctaHelper: "Empfohlene Reihenfolge",
+    cta: {
+      primary: "Strategiegespräch buchen",
+      secondary: "Ergebnis als PDF herunterladen",
+      retake: "Quiz wiederholen",
+      whatsapp: "WhatsApp-Chat",
+    },
+    sharedCopy:
+      "Ihr Ergebnis wurde an unseren Deutschland-Desk gesendet. Wir melden uns innerhalb eines Werktages.",
+  },
+} as const;

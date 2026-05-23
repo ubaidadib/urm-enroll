@@ -1,0 +1,50 @@
+[
+  {
+    "id": "it_bachelor_business",
+    "countryCode": "IT",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business & Economics", "ar": "بكالوريوس أعمال واقتصاد", "de": "Bachelor Wirtschaft & Ökonomie" },
+    "description": { "en": "Study at Italy's top-ranked business schools with English-taught options.", "ar": "الدراسة في أفضل كليات الأعمال الإيطالية مع خيارات باللغة الإنجليزية.", "de": "Studium an Italiens Spitzen-Business-Schools mit englischsprachigen Angeboten." },
+    "language": ["English", "Italian"],
+    "duration": "3 years",
+    "tuition": { "amount": "1 000–4 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "it_bachelor_design",
+    "countryCode": "IT",
+    "type": "bachelor",
+    "field": "design",
+    "title": { "en": "Bachelor of Design & Architecture", "ar": "بكالوريوس تصميم وعمارة", "de": "Bachelor Design & Architektur" },
+    "description": { "en": "Fashion, industrial, and architectural design in Milan and Florence.", "ar": "تصميم الأزياء والصناعة والعمارة في ميلانو وفلورنسا.", "de": "Mode-, Industrie- und Architekturdesign in Mailand und Florenz." },
+    "language": ["English", "Italian"],
+    "duration": "3 years",
+    "tuition": { "amount": "2 000–6 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "it_master_engineering",
+    "countryCode": "IT",
+    "type": "master",
+    "field": "engineering",
+    "title": { "en": "Master of Engineering", "ar": "ماجستير هندسة", "de": "Master Ingenieurwesen" },
+    "description": { "en": "Advanced engineering at Politecnico di Milano and top Italian universities.", "ar": "هندسة متقدمة في بوليتكنيكو دي ميلانو وأفضل الجامعات الإيطالية.", "de": "Fortgeschrittene Ingenieurwissenschaften am Politecnico di Milano und Italiens Spitzenunis." },
+    "language": ["English"],
+    "duration": "2 years",
+    "tuition": { "amount": "1 500–4 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "it_language_italian",
+    "countryCode": "IT",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "Italian Language Program", "ar": "برنامج اللغة الإيطالية", "de": "Italienisch-Sprachprogramm" },
+    "description": { "en": "Intensive Italian from beginner to advanced for university admission.", "ar": "لغة إيطالية مكثفة من المبتدئ إلى المتقدم للقبول الجامعي.", "de": "Intensives Italienisch von Anfänger bis Fortgeschritten für die Hochschulzulassung." },
+    "language": ["Italian"],
+    "duration": "3–9 months",
+    "tuition": { "amount": "800–2 500", "currency": "EUR", "period": "course" },
+    "featured": false
+  }
+]

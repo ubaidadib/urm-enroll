@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mt_bachelor_business",
+    "countryCode": "MT",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Commerce", "ar": "بكالوريوس تجارة", "de": "Bachelor Handel und Wirtschaft" },
+    "description": { "en": "English-taught commerce programs at the University of Malta.", "ar": "برامج تجارة باللغة الإنجليزية في جامعة مالطا.", "de": "Englischsprachige Handelsstudiengänge an der Universität Malta." },
+    "language": ["English"],
+    "duration": "3 years",
+    "tuition": { "amount": "1 000–5 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "mt_bachelor_it",
+    "countryCode": "MT",
+    "type": "bachelor",
+    "field": "computer-science",
+    "title": { "en": "Bachelor of IT", "ar": "بكالوريوس تقنية معلومات", "de": "Bachelor Informationstechnologie" },
+    "description": { "en": "IT programs in Malta's growing tech and iGaming hub.", "ar": "برامج تكنولوجيا المعلومات في مركز مالطا التقني المتنامي.", "de": "IT-Programme in Maltas wachsendem Tech- und iGaming-Hub." },
+    "language": ["English"],
+    "duration": "3 years",
+    "tuition": { "amount": "1 200–4 500", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "mt_language_english",
+    "countryCode": "MT",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "English Language Program", "ar": "برنامج اللغة الإنجليزية", "de": "Englisch-Sprachprogramm" },
+    "description": { "en": "EFL courses in Malta's Mediterranean setting.", "ar": "دورات إنجليزية في بيئة مالطا المتوسطية.", "de": "EFL-Kurse in Maltas mediterraner Umgebung." },
+    "language": ["English"],
+    "duration": "2–6 months",
+    "tuition": { "amount": "500–2 000", "currency": "EUR", "period": "course" },
+    "featured": false
+  }
+]

@@ -1,0 +1,311 @@
+/* Premium Luxury Glass and Lighting System */
+
+:root {
+  /* Glass: Premium frosted aesthetic with warm undertones */
+  --glass-bg: rgba(255, 255, 255, 0.54);
+  --glass-bg-medium: rgba(255, 255, 255, 0.62);
+  --glass-bg-strong: rgba(255, 255, 255, 0.76);
+  --glass-bg-light: rgba(255, 255, 255, 0.46);
+
+  --glass-blur: 10px;
+  --glass-blur-medium: 14px;
+  --glass-blur-strong: 20px;
+
+  /* Elegant borders with gold subtle hints */
+  --glass-border: rgba(79, 107, 138, 0.14);
+  --glass-border-medium: rgba(79, 107, 138, 0.18);
+  --glass-border-strong: rgba(212, 175, 55, 0.16);
+
+  /* Refined shadows - cinematic depth */
+  --glass-shadow: 0 8px 28px rgba(11, 21, 48, 0.08);
+  --glass-shadow-medium: 0 12px 40px rgba(11, 21, 48, 0.1);
+  --glass-shadow-elevated: 0 18px 52px rgba(11, 21, 48, 0.14);
+
+  --glass-shadow-hover: 0 16px 44px rgba(11, 21, 48, 0.14);
+  --glass-shadow-medium-hover: 0 20px 56px rgba(11, 21, 48, 0.18);
+
+  /* Premium glows - warm, subtle luxury */
+  --glow-primary: rgba(212, 175, 55, 0.14);
+  --glow-secondary: rgba(79, 107, 138, 0.1);
+  --glow-tertiary: rgba(30, 51, 90, 0.08);
+
+  --glass-transition:
+    background-color 0.28s ease,
+    box-shadow 0.32s ease,
+    border-color 0.28s ease,
+    transform 0.28s ease;
+}
+
+:root[data-theme="dark"],
+.dark {
+  /* Dark: Deep luxury with warm gold undertones */
+  --glass-bg: rgba(15, 28, 52, 0.44);
+  --glass-bg-medium: rgba(18, 32, 58, 0.56);
+  --glass-bg-strong: rgba(22, 38, 68, 0.7);
+  --glass-bg-light: rgba(18, 32, 58, 0.36);
+
+  --glass-border: rgba(145, 177, 210, 0.18);
+  --glass-border-medium: rgba(145, 177, 210, 0.24);
+  --glass-border-strong: rgba(238, 196, 96, 0.2);
+
+  /* Dark mode cinematic shadows */
+  --glass-shadow: 0 10px 32px rgba(2, 4, 12, 0.36);
+  --glass-shadow-medium: 0 14px 44px rgba(2, 4, 12, 0.48);
+  --glass-shadow-elevated: 0 20px 56px rgba(2, 4, 12, 0.56);
+
+  --glass-shadow-hover: 0 16px 48px rgba(2, 4, 12, 0.52);
+  --glass-shadow-medium-hover: 0 24px 64px rgba(2, 4, 12, 0.64);
+
+  /* Dark luxury glows */
+  --glow-primary: rgba(238, 196, 96, 0.16);
+  --glow-secondary: rgba(145, 177, 210, 0.12);
+  --glow-tertiary: rgba(95, 143, 185, 0.1);
+}
+
+@layer components {
+  /* Premium Card - Clean, elevated, luxurious */
+  .glass-card {
+    background: linear-gradient(145deg, var(--glass-bg-medium), var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur-medium));
+    -webkit-backdrop-filter: blur(var(--glass-blur-medium));
+    border: 1px solid var(--glass-border-medium);
+    box-shadow: var(--glass-shadow-medium);
+    border-radius: var(--radius-xl);
+    transition: var(--glass-transition);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--glass-shadow-medium-hover);
+    border-color: var(--glass-border-strong);
+    transform: translateY(-2px);
+  }
+
+  /* Premium Card Medium - Elevated emphasis */
+  .glass-card-medium {
+    background: linear-gradient(140deg, var(--glass-bg-strong), var(--glass-bg-medium));
+    backdrop-filter: blur(var(--glass-blur-strong));
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+    border: 1px solid var(--glass-border-strong);
+    box-shadow: var(--glass-shadow-elevated);
+    border-radius: var(--radius-xl);
+    transition: var(--glass-transition);
+  }
+
+  .glass-card-medium:hover {
+    box-shadow: var(--glass-shadow-medium-hover);
+    border-color: rgba(212, 175, 55, 0.24);
+  }
+
+  /* Premium Card Light - Minimal, soft */
+  .glass-card-light {
+    background: linear-gradient(135deg, var(--glass-bg-light), var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius-xl);
+    transition: var(--glass-transition);
+  }
+
+  .glass-card-light:hover {
+    box-shadow: var(--glass-shadow-hover);
+    border-color: var(--glass-border-medium);
+    transform: translateY(-1px);
+  }
+
+  /* Premium Navigation Glass */
+  .glass-nav {
+    background: linear-gradient(145deg, var(--glass-bg-medium), var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur-strong));
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: var(--glass-transition);
+  }
+
+  /* Backdrop overlay - Premium blur */
+  .glass-backdrop {
+    background: rgba(11, 21, 48, 0.52);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Premium Modal - Elevated and cinematic */
+  .glass-modal {
+    background: linear-gradient(145deg, var(--glass-bg-strong), var(--glass-bg-medium));
+    backdrop-filter: blur(var(--glass-blur-strong));
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+    border: 1px solid var(--glass-border-strong);
+    box-shadow: var(--glass-shadow-elevated);
+    border-radius: var(--radius-xl);
+  }
+
+  /* Ambient lighting - Subtle luxury glow */
+  .ambient-glow {
+    position: fixed;
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(95px);
+    opacity: 0.6;
+  }
+
+  .ambient-glow-primary { background: var(--glow-primary); }
+  .ambient-glow-secondary { background: var(--glow-secondary); }
+  .ambient-glow-tertiary { background: var(--glow-tertiary); }
+
+  /* Minimal Premium Surface */
+  .minimal-surface {
+    background: rgb(var(--bg-surface));
+    border: 1px solid rgb(var(--border-default) / 0.6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--surface-shadow);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .minimal-surface:hover {
+    border-color: rgb(var(--accent-tech) / 0.8);
+  }
+
+  /* Premium Input Field */
+  .minimal-input,
+  .input-field {
+    width: 100%;
+    background: rgb(var(--bg-surface));
+    border: 1.5px solid rgb(var(--border-default) / 0.5);
+    border-radius: var(--radius-md);
+    padding: 0.78rem 1rem;
+    font-size: var(--text-sm);
+    color: rgb(var(--text-primary));
+    transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
+  }
+
+  .dark .input-field {
+    background: rgb(var(--bg-secondary));
+  }
+
+  .minimal-input::placeholder,
+  .input-field::placeholder {
+    color: rgb(var(--text-muted));
+  }
+
+  .minimal-input:hover,
+  .input-field:hover {
+    border-color: rgb(var(--accent-tech) / 0.7);
+  }
+
+  .minimal-input:focus,
+  .input-field:focus {
+    outline: none;
+    border-color: rgb(var(--accent-primary));
+    box-shadow: 0 0 0 4px rgb(var(--accent-primary) / 0.12);
+  }
+
+  .input-field.error {
+    border-color: rgb(var(--error));
+    box-shadow: 0 0 0 4px rgb(var(--error) / 0.12);
+  }
+
+  .input-compact { padding: 0.55rem 0.78rem; font-size: 0.86rem; border-radius: var(--radius-sm); }
+  .input-default { padding: 0.78rem 1rem; font-size: 0.96rem; border-radius: var(--radius-md); }
+  .input-prominent { padding: 1rem 1.18rem; font-size: 1.02rem; border-radius: var(--radius-lg); }
+
+  /* Premium Card Components */
+  .card-compact,
+  .card-default,
+  .card-prominent {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, rgba(var(--bg-surface), 0.94), rgba(var(--bg-secondary), 0.8));
+    border: 1px solid rgb(var(--border-default) / 0.5);
+    box-shadow: var(--surface-shadow);
+    transition: transform 0.26s var(--ease-entrance), box-shadow 0.26s var(--ease-entrance), border-color 0.2s ease;
+  }
+
+  .card-compact { padding: 0.8rem; gap: 0.72rem; border-radius: var(--radius-xl); }
+  .card-default { padding: 1.26rem; gap: 1rem; border-radius: var(--radius-2xl); }
+  .card-prominent { padding: 1.8rem; gap: 1.4rem; border-radius: var(--radius-3xl); }
+
+  .card-compact:hover,
+  .card-default:hover,
+  .card-prominent:hover {
+    transform: translateY(-4px);
+    border-color: rgb(var(--accent-primary) / 0.4);
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  /* Premium Button System */
+  .btn-primary,
+  .btn-secondary,
+  .btn-ghost {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 0.93rem;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s var(--ease-primary), box-shadow 0.26s var(--ease-primary), border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+
+  /* Primary Button - Navy with Gold accents */
+  .btn-primary {
+    color: rgb(255 255 255);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: linear-gradient(135deg, rgb(var(--brand-navy-900)), rgb(var(--brand-navy-700)));
+    box-shadow: 0 12px 32px rgb(11, 21, 48 / 0.24), inset 0 1px 0 rgba(212, 175, 55, 0.2);
+    padding: 0.82rem 1.6rem;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px) scale(1.01);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 16px 40px rgb(11, 21, 48 / 0.32), inset 0 1px 0 rgba(212, 175, 55, 0.3);
+  }
+
+  .dark .btn-primary {
+    box-shadow: 0 14px 36px rgba(2, 4, 12, 0.4), inset 0 1px 0 rgba(212, 175, 55, 0.16);
+  }
+
+  .dark .btn-primary:hover {
+    box-shadow: 0 18px 44px rgba(2, 4, 12, 0.52), inset 0 1px 0 rgba(212, 175, 55, 0.24);
+  }
+
+  /* Secondary Button - Glass with Steel Blue */
+  .btn-secondary {
+    color: rgb(var(--text-primary));
+    border: 1px solid var(--glass-border-medium);
+    background: linear-gradient(145deg, var(--glass-bg), var(--glass-bg-light));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: var(--glass-shadow);
+    padding: 0.8rem 1.6rem;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    border-color: var(--glass-border-strong);
+    box-shadow: var(--glass-shadow-hover);
+  }
+
+  /* Ghost Button - Minimal */
+  .btn-ghost {
+    color: rgb(var(--text-secondary));
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 0.7rem 1rem;
+  }
+
+  .btn-ghost:hover {
+    color: rgb(var(--text-primary));
+    background: rgb(var(--accent-primary) / 0.08);
+    border-color: rgb(var(--accent-primary) / 0.3);
+  }
+
+  .btn-compact { padding: 0.56rem 1rem; font-size: 0.84rem; border-radius: var(--radius-md); }
+  .btn-default { padding: 0.82rem 1.45rem; font-size: 0.92rem; border-radius: var(--radius-xl); }
+  .btn-prominent { padding: 0.96rem 1.95rem; font-size: 1rem; border-radius: var(--radius-2xl); }
+}

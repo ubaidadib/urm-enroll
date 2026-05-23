@@ -1,0 +1,66 @@
+{
+  "name": "urm-enroll",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/generate-sitemap.mjs && vite build && node scripts/prerender-static.mjs",
+    "dev": "vite",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/**/*.test.js",
+    "db:migrate": "node scripts/migrate.mjs",
+    "sync:env:check": "node scripts/validate-sync-env.mjs",
+    "sync:dry-run": "node scripts/sync-dry-run.mjs",
+    "sync:backfill": "node scripts/sync-backfill.mjs",
+    "sync:trigger": "node scripts/sync-trigger.mjs",
+    "sync:trigger:dry": "node scripts/sync-trigger.mjs --dry-run",
+    "sync:trigger:full": "node scripts/sync-trigger.mjs --full-backfill",
+    "integration:check:env": "node scripts/integration-check-env.mjs",
+    "integration:check:nexus": "node scripts/integration-check-nexus.mjs",
+    "integration:sync:run": "node scripts/integration-sync-run.mjs",
+    "integration:check:mirror": "node scripts/integration-check-mirror.mjs",
+    "sync:parity": "node scripts/sync-parity-check.mjs 20",
+    "sync:status": "node scripts/sync-status.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "check:translations": "node scripts/check-translations.js",
+    "check:page-style": "node scripts/check-page-style-consistency.mjs",
+    "security:audit": "bash scripts/security-audit.sh",
+    "check:ui-tokens": "node scripts/ui-token-guard.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.106.1",
+    "i18next": "^26.0.10",
+    "lucide-react": "0.487.0",
+    "motion": "^12.38.0",
+    "nodemailer": "8.0.7",
+    "pg": "^8.21.0",
+    "pino": "^10.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-i18next": "^17.0.7",
+    "react-router-dom": "6.30.3",
+    "sanitize-html": "^2.17.3",
+    "ws": "^8.21.0",
+    "zod": "3.23.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.0",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "@vitejs/plugin-react": "4.7.0",
+    "puppeteer": "24.43.0",
+    "rollup-plugin-visualizer": "6.0.11",
+    "tailwindcss": "^4.3.0",
+    "typescript": "5.7.3",
+    "vite": "6.4.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "6.4.1"
+    }
+  },
+  "overrides": {
+    "basic-ftp": "^5.2.3"
+  }
+}

@@ -1,0 +1,22 @@
+@import './tailwind.css';
+@import './theme.css';
+@import './glass.css';
+
+/* ── Accessibility: Skip link ──────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--brand-navy-900, #0b1530);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+  top: 0;
+}

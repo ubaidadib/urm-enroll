@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ge_bachelor_medicine",
+    "countryCode": "GE",
+    "type": "bachelor",
+    "field": "medicine",
+    "title": { "en": "Medicine (MD)", "ar": "الطب البشري", "de": "Medizin" },
+    "description": { "en": "WHO-listed English-taught medicine with very affordable tuition.", "ar": "طب باللغة الإنجليزية مدرج في منظمة الصحة العالمية بأقساط ميسورة جداً.", "de": "WHO-gelistetes englischsprachiges Medizinstudium mit sehr günstigen Studiengebühren." },
+    "language": ["English"],
+    "duration": "6 years",
+    "tuition": { "amount": "3 000–8 000", "currency": "USD", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "ge_bachelor_business",
+    "countryCode": "GE",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business Administration", "ar": "بكالوريوس إدارة أعمال", "de": "Bachelor Betriebswirtschaft" },
+    "description": { "en": "Affordable English-taught BBA programs in Tbilisi.", "ar": "برامج إدارة أعمال إنجليزية بأسعار معقولة في تبليسي.", "de": "Erschwingliche englischsprachige BBA-Programme in Tiflis." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "2 000–5 000", "currency": "USD", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "ge_language_english",
+    "countryCode": "GE",
+    "type": "language",
+    "field": "languages",
+    "title": { "en": "English Foundation Year", "ar": "سنة تأسيسية إنجليزية", "de": "Englisches Grundlagenjahr" },
+    "description": { "en": "English preparation year at Georgian universities.", "ar": "سنة تحضيرية إنجليزية في الجامعات الجورجية.", "de": "Englisches Vorbereitungsjahr an georgischen Universitäten." },
+    "language": ["English"],
+    "duration": "6–12 months",
+    "tuition": { "amount": "1 500–3 000", "currency": "USD", "period": "course" },
+    "featured": false
+  }
+]

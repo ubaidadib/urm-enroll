@@ -1,0 +1,38 @@
+[
+  {
+    "id": "cy_bachelor_business",
+    "countryCode": "CY",
+    "type": "bachelor",
+    "field": "business",
+    "title": { "en": "Bachelor of Business Administration", "ar": "بكالوريوس إدارة أعمال", "de": "Bachelor Betriebswirtschaft" },
+    "description": { "en": "English-taught BBA programs at leading Cypriot universities.", "ar": "برامج بكالوريوس إدارة أعمال باللغة الإنجليزية في جامعات قبرصية رائدة.", "de": "Englischsprachige BBA-Programme an führenden zypriotischen Universitäten." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "3 000–8 000", "currency": "EUR", "period": "year" },
+    "featured": true
+  },
+  {
+    "id": "cy_bachelor_hospitality",
+    "countryCode": "CY",
+    "type": "bachelor",
+    "field": "hospitality",
+    "title": { "en": "Bachelor of Hospitality Management", "ar": "بكالوريوس إدارة الضيافة", "de": "Bachelor Hotelmanagement" },
+    "description": { "en": "Hospitality training in Cyprus's tourism-driven economy.", "ar": "تدريب ضيافة في اقتصاد قبرص القائم على السياحة.", "de": "Hospitality-Ausbildung in Zyperns tourismusgeprägter Wirtschaft." },
+    "language": ["English"],
+    "duration": "4 years",
+    "tuition": { "amount": "3 500–7 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  },
+  {
+    "id": "cy_master_business",
+    "countryCode": "CY",
+    "type": "master",
+    "field": "business",
+    "title": { "en": "MBA", "ar": "ماجستير إدارة الأعمال", "de": "MBA" },
+    "description": { "en": "Affordable MBA programs with EU recognition.", "ar": "برامج ماجستير إدارة أعمال بأسعار معقولة ومعترف بها في الاتحاد الأوروبي.", "de": "Erschwingliche MBA-Programme mit EU-Anerkennung." },
+    "language": ["English"],
+    "duration": "1.5–2 years",
+    "tuition": { "amount": "5 000–10 000", "currency": "EUR", "period": "year" },
+    "featured": false
+  }
+]
