@@ -15,8 +15,8 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { m } from "motion/react";
-import { Instagram, ExternalLink, Play } from "lucide-react";
+import { m, AnimatePresence } from "motion/react";
+import { Instagram, ExternalLink, ChevronDown } from "lucide-react";
 
 declare global {
   interface Window {
@@ -28,12 +28,28 @@ declare global {
   }
 }
 
-/** ← UPDATE: add real reel shortcodes from @urmenroll here */
-const REELS: Array<{ shortcode: string; label?: string }> = [
-  // { shortcode: "REPLACE_WITH_REAL_SHORTCODE", label: "Study in Germany 🎓" },
-  // { shortcode: "REPLACE_WITH_REAL_SHORTCODE", label: "Student Life in Europe" },
-  // { shortcode: "REPLACE_WITH_REAL_SHORTCODE", label: "Visa Tips for Students" },
+/** Real reels from @urmenroll — newest first */
+const REELS: Array<{ shortcode: string }> = [
+  { shortcode: "DXt2eC2jcYx" },
+  { shortcode: "DXG0xCijYIg" },
+  { shortcode: "DW_HzA4jcJu" },
+  { shortcode: "DWo1dcsDZ_J" },
+  { shortcode: "DVeATyBjc3Y" },
+  { shortcode: "DUi8PqxDZKg" },
+  { shortcode: "DRDETEwDaDZ" },
+  { shortcode: "DTu2iOTj9ez" },
+  { shortcode: "DP1ClV8De12" },
+  { shortcode: "DPs16MGjavY" },
+  { shortcode: "DMGVBJEMkbo" },
+  { shortcode: "DJB6OEYNBoD" },
+  { shortcode: "DIO33B_sfbN" },
+  { shortcode: "DHLW47esQVA" },
+  { shortcode: "C_7Gq5XKAtK" },
+  { shortcode: "C0vkmlHIXVH" },
+  { shortcode: "Cz5zHyusmub" },
 ];
+
+const INITIAL_VISIBLE = 6; // first two rows visible; rest revealed on demand
 
 const INSTAGRAM_URL = "https://www.instagram.com/urmenroll";
 const HANDLE = "@urmenroll";
@@ -114,13 +130,13 @@ function EmptyState() {
 }
 
 export function InstagramReelsSection() {
-  const hasReels = REELS.length > 0;
+  const [showAll, setShowAll] = useState(false);
+  const visibleReels = showAll ? REELS : REELS.slice(0, INITIAL_VISIBLE);
+  const remaining = REELS.length - INITIAL_VISIBLE;
 
-  // Load Instagram embed.js once
+  // Load Instagram embed.js once — re-process whenever visible reels change
   useEffect(() => {
-    if (!hasReels) return;
     if (document.querySelector('script[src*="instagram.com/embed.js"]')) {
-      // Already loaded — just re-process
       window.instgrm?.Embeds.process();
       return;
     }
@@ -129,14 +145,17 @@ export function InstagramReelsSection() {
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
-    return () => {
-      // Do not remove — embed.js should persist for other instances
-    };
-  }, [hasReels]);
+  }, []);
+
+  // Re-process embeds when more reels are revealed
+  useEffect(() => {
+    const timer = setTimeout(() => window.instgrm?.Embeds.process(), 400);
+    return () => clearTimeout(timer);
+  }, [showAll]);
 
   return (
     <section className="relative overflow-hidden bg-white dark:bg-slate-950 py-20 md:py-24">
-      {/* Background */}
+      {/* Background glows */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-rose-500/6 blur-[120px]" />
         <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-pink-500/5 blur-[100px]" />
@@ -154,7 +173,7 @@ export function InstagramReelsSection() {
           <div>
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
               <Instagram className="h-3.5 w-3.5 text-rose-500" />
-              Real Stories
+              Real Stories · {REELS.length} Reels
             </div>
             <h2 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white md:text-4xl lg:text-5xl">
               Life at{" "}
@@ -163,7 +182,7 @@ export function InstagramReelsSection() {
               </span>
             </h2>
             <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-500 dark:text-slate-400">
-              Follow our students&apos; journeys — from application to graduation. Real stories, real results.
+              Follow our students' journeys — from application to graduation. Real stories, real results.
             </p>
           </div>
 
@@ -179,22 +198,52 @@ export function InstagramReelsSection() {
           </a>
         </m.div>
 
-        {/* Reels grid */}
-        <div className={`grid gap-6 ${hasReels ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"}`}>
-          {hasReels
-            ? REELS.map(({ shortcode }) => (
-                <m.div
-                  key={shortcode}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <ReelEmbed shortcode={shortcode} />
-                </m.div>
-              ))
-            : <EmptyState />}
+        {/* Reels grid — 3 columns, initial 6 visible */}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {visibleReels.map(({ shortcode }, index) => (
+            <m.div
+              key={shortcode}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: (index % 3) * 0.07 }}
+            >
+              <ReelEmbed shortcode={shortcode} />
+            </m.div>
+          ))}
         </div>
+
+        {/* Show more / collapse */}
+        {!showAll && remaining > 0 && (
+          <AnimatePresence>
+            <m.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
+              className="mt-10 flex flex-col items-center gap-3"
+            >
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="inline-flex items-center gap-2.5 rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-7 py-3.5 text-sm font-bold text-slate-900 dark:text-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-rose-300 dark:hover:border-rose-700 hover:shadow-md active:scale-95"
+              >
+                <ChevronDown className="h-4 w-4 text-rose-500" />
+                Show {remaining} more reels
+              </button>
+              <p className="text-xs text-slate-400 dark:text-slate-600">
+                Or{" "}
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-rose-500 transition-colors"
+                >
+                  view all on Instagram
+                </a>
+              </p>
+            </m.div>
+          </AnimatePresence>
+        )}
       </div>
     </section>
   );
