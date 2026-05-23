@@ -1,30 +1,36 @@
 /**
- * InstagramReelsSection v4 — Auto-scrolling live reel marquee
+ * InstagramReelsSection — Horizontal reel shelf with real thumbnails
  *
- * Shows ALL 17 real @urmenroll reels as actual Instagram embeds in a
- * continuous, seamlessly looping horizontal strip.
+ * Design  : Restored v3 horizontal scroll shelf — the card layout the user
+ *           approved. Each portrait card fetches its real thumbnail from
+ *           Instagram's oEmbed API and uses it as the card background.
+ *           If the fetch fails (CORS, rate-limit) the card falls back to a
+ *           branded Instagram-palette gradient — so the UI never breaks.
  *
- * Key design decisions:
- *  • Embeds are real blockquotes processed by Instagram's embed.js —
- *    users see the actual reel thumbnail/video, not a placeholder.
- *  • No `data-instgrm-captioned` → captions are hidden; cleaner look.
- *  • Two copies of the reel list sit end-to-end; the CSS marquee animation
- *    translates by exactly one copy width so the loop is invisible.
- *  • Strip auto-scrolls at 50 px/s; pauses on hover/focus.
- *  • A transparent overlay sits above each embed so the click always
- *    opens our modal instead of navigating inside the iframe.
- *  • Modal loads the chosen reel on-demand with prev/next nav & keyboard.
+ * Thumbnails: fetched from https://api.instagram.com/oembed/ (public, no
+ *             auth needed for public @urmenroll posts). Results are cached
+ *             in a module-level Map so remounts don't re-fetch.
  *
- * ─── HOW TO ADD REELS ──────────────────────────────────────────────────
+ * Playback  : Click any card → focused modal with the actual Instagram embed
+ *             (no caption). Prev / next navigation + full keyboard support.
+ *
+ * ─── HOW TO ADD REELS ───────────────────────────────────────────────────
  * 1. Open the reel on Instagram and copy the URL.
  * 2. Extract the shortcode (the segment after /reel/).
  * 3. Prepend it to the REELS array below (newest first).
- * ─────────────────────────────────────────────────────────────────────
+ * ────────────────────────────────────────────────────────────────────────
  */
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { m, AnimatePresence } from "motion/react";
-import { Instagram, ExternalLink, X, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import {
+  Instagram,
+  ExternalLink,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+} from "lucide-react";
 
 declare global {
   interface Window {
@@ -32,7 +38,7 @@ declare global {
   }
 }
 
-// ─── Reels — newest first ────────────────────────────────────────────────────
+// ─── Reels ───────────────────────────────────────────────────────────────────
 const REELS: Array<{ shortcode: string }> = [
   { shortcode: "DXt2eC2jcYx" },
   { shortcode: "DXG0xCijYIg" },
@@ -54,19 +60,152 @@ const REELS: Array<{ shortcode: string }> = [
 ];
 
 const INSTAGRAM_URL = "https://www.instagram.com/urmenroll";
-const HANDLE = "@urmenroll";
+const HANDLE        = "@urmenroll";
 
-// ─── Marquee geometry ────────────────────────────────────────────────────────
-// Each card slot = card width + right margin (controls the gap between cards).
-const CARD_W   = 300;   // px — slightly below Instagram's 326px min: embed expands to fill
-const CARD_GAP = 12;    // px
-const PITCH    = CARD_W + CARD_GAP;                  // space each card occupies in the strip
-const STRIP_W  = REELS.length * PITCH;               // width of one full set (5304 px for 17 reels)
-const SPEED    = 50;                                 // px / s
-const DURATION = Math.round(STRIP_W / SPEED);        // ≈ 106 s — full loop time
+// Gradient fallback palette (Instagram brand colours, cycled per card)
+const GRADIENTS: [string, string, string][] = [
+  ["#f43f5e", "#ec4899", "#a855f7"],
+  ["#fb923c", "#f43f5e", "#ec4899"],
+  ["#a855f7", "#ec4899", "#f43f5e"],
+  ["#f97316", "#fb923c", "#f43f5e"],
+  ["#e11d48", "#f43f5e", "#fb923c"],
+  ["#c026d3", "#a855f7", "#ec4899"],
+];
 
-// The track contains two copies of REELS so the loop seam is invisible.
-const TRACK_REELS = [...REELS, ...REELS];
+// ─── Module-level thumbnail cache (persists across remounts) ─────────────────
+// Value: URL string if fetched successfully, null if fetch failed.
+const thumbCache = new Map<string, string | null>();
+
+async function loadThumbnail(shortcode: string): Promise<string | null> {
+  if (thumbCache.has(shortcode)) return thumbCache.get(shortcode) ?? null;
+
+  try {
+    const url = `https://api.instagram.com/oembed/?url=${encodeURIComponent(
+      `https://www.instagram.com/reel/${shortcode}/`,
+    )}&maxwidth=480`;
+    const res  = await fetch(url, { signal: AbortSignal.timeout(6000) });
+    if (!res.ok) { thumbCache.set(shortcode, null); return null; }
+    const data = await res.json() as { thumbnail_url?: string };
+    const thumb = data.thumbnail_url ?? null;
+    thumbCache.set(shortcode, thumb);
+    return thumb;
+  } catch {
+    thumbCache.set(shortcode, null);
+    return null;
+  }
+}
+
+// ─── ReelCard ─────────────────────────────────────────────────────────────────
+function ReelCard({
+  shortcode,
+  index,
+  isActive,
+  onClick,
+}: {
+  shortcode: string;
+  index: number;
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  const [thumb, setThumb] = useState<string | null>(thumbCache.get(shortcode) ?? null);
+  const [thumbErr, setThumbErr] = useState(false);
+
+  // Try to fetch the real thumbnail; falls back to gradient on any error
+  useEffect(() => {
+    if (thumbCache.has(shortcode)) { setThumb(thumbCache.get(shortcode) ?? null); return; }
+    let cancelled = false;
+    loadThumbnail(shortcode).then((url) => { if (!cancelled) setThumb(url); });
+    return () => { cancelled = true; };
+  }, [shortcode]);
+
+  const gradient: [string, string, string] =
+    GRADIENTS[index % GRADIENTS.length] ?? ["#f43f5e", "#ec4899", "#a855f7"];
+  const [g0, g1, g2] = gradient;
+  const showThumb = thumb && !thumbErr;
+
+  return (
+    <m.button
+      type="button"
+      aria-label={`Watch reel ${index + 1} from ${HANDLE}`}
+      onClick={onClick}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.38, delay: (index % 3) * 0.06 }}
+      whileHover={{ y: -6 }}
+      className={`group relative w-full overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+        isActive ? "ring-2 ring-white/40" : ""
+      }`}
+      style={{ aspectRatio: "9 / 16", scrollSnapAlign: "start" }}
+    >
+      {/* ── Background: real thumbnail or gradient fallback ── */}
+      {showThumb ? (
+        <img
+          src={thumb}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+          onError={() => setThumbErr(true)}
+        />
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(158deg, ${g0} 0%, ${g1} 52%, ${g2} 100%)` }}
+        />
+      )}
+
+      {/* Dot-grid texture (keeps branding whether thumb or gradient) */}
+      <div
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)",
+          backgroundSize: "16px 16px",
+        }}
+      />
+
+      {/* Vignette — heavier when using photo so overlays stay legible */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/30 transition-opacity duration-300 ${
+          showThumb ? "opacity-100" : "opacity-80"
+        }`}
+      />
+
+      {/* Top-left Instagram badge */}
+      <div className="absolute left-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-lg bg-black/40 backdrop-blur-sm">
+        <Instagram className="h-3.5 w-3.5 text-white/90" />
+      </div>
+
+      {/* Centre play ring */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-white/30 bg-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-white/50 group-hover:bg-white/25">
+          <Play className="h-5 w-5 translate-x-0.5 fill-white text-white" />
+        </div>
+      </div>
+
+      {/* "Watch" label — fades in above play ring on hover */}
+      <div
+        className="absolute inset-x-0 flex justify-center"
+        style={{ top: "calc(50% - 42px)" }}
+      >
+        <span className="translate-y-2 rounded-full border border-white/20 bg-black/40 px-2.5 py-0.5 text-[10px] font-semibold text-white/90 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          Watch
+        </span>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="absolute inset-x-0 bottom-0 px-3 pb-3 pt-6">
+        <div className="flex items-center justify-between">
+          <span className="text-[10px] font-semibold text-white/75">{HANDLE}</span>
+          <span className="font-mono text-[9px] text-white/35">#{index + 1}</span>
+        </div>
+      </div>
+
+      {/* Hover ring shimmer */}
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/0 transition-all duration-300 group-hover:ring-white/25" />
+    </m.button>
+  );
+}
 
 // ─── ReelModal ────────────────────────────────────────────────────────────────
 function ReelModal({
@@ -82,15 +221,13 @@ function ReelModal({
   onPrev: () => void;
   onNext: () => void;
 }) {
-  const reel     = reels[activeIndex];
+  const reel      = reels[activeIndex];
   const shortcode = reel?.shortcode ?? "";
-  const total    = reels.length;
+  const total     = reels.length;
   const closeRef  = useRef<HTMLButtonElement>(null);
 
-  // Focus close button on open
   useEffect(() => { closeRef.current?.focus(); }, []);
 
-  // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape")     onClose();
@@ -101,16 +238,15 @@ function ReelModal({
     return () => window.removeEventListener("keydown", handler);
   }, [onClose, onPrev, onNext]);
 
-  // Re-process embed when shortcode changes
   useEffect(() => {
     const existing = document.querySelector('script[src*="instagram.com/embed.js"]');
     if (existing) {
       const t = setTimeout(() => window.instgrm?.Embeds.process(), 250);
       return () => clearTimeout(t);
     }
-    const script = document.createElement("script");
-    script.src = "https://www.instagram.com/embed.js";
-    script.async = true;
+    const script   = document.createElement("script");
+    script.src     = "https://www.instagram.com/embed.js";
+    script.async   = true;
     document.head.appendChild(script);
     return undefined;
   }, [shortcode]);
@@ -127,7 +263,6 @@ function ReelModal({
       aria-label={`Reel ${activeIndex + 1} of ${total} from ${HANDLE}`}
       onClick={onClose}
     >
-      {/* Scrim */}
       <div className="absolute inset-0 bg-black/85 backdrop-blur-xl" />
 
       <m.div
@@ -147,7 +282,9 @@ function ReelModal({
             <span className="text-xs font-semibold text-white/60">{HANDLE}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs tabular-nums text-white/35">{activeIndex + 1} / {total}</span>
+            <span className="text-xs tabular-nums text-white/30">
+              {activeIndex + 1} / {total}
+            </span>
             <button
               ref={closeRef}
               type="button"
@@ -160,7 +297,7 @@ function ReelModal({
           </div>
         </div>
 
-        {/* Embed — key forces re-mount on shortcode change */}
+        {/* Embed — key forces DOM re-mount on shortcode change; no caption */}
         <div className="overflow-hidden rounded-2xl bg-slate-900 shadow-[0_40px_100px_rgba(0,0,0,0.7)]">
           <blockquote
             key={shortcode}
@@ -210,9 +347,11 @@ function ReelModal({
 
 // ─── Section ──────────────────────────────────────────────────────────────────
 export function InstagramReelsSection() {
-  const [isPaused,    setIsPaused]    = useState(false);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [embedsReady, setEmbedsReady] = useState(false);
+  const [activeIndex,    setActiveIndex]    = useState<number | null>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [atStart,        setAtStart]        = useState(true);
+  const [atEnd,          setAtEnd]          = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleClose = useCallback(() => setActiveIndex(null), []);
   const handlePrev  = useCallback(
@@ -224,31 +363,22 @@ export function InstagramReelsSection() {
     [],
   );
 
-  // Load Instagram embed.js once; retry process() until instgrm is ready
-  useEffect(() => {
-    const tryProcess = () => {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process();
-        setEmbedsReady(true);
-        return true;
-      }
-      return false;
-    };
+  const handleScroll = useCallback(() => {
+    const el  = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    const pct = max > 0 ? el.scrollLeft / max : 0;
+    setScrollProgress(pct);
+    setAtStart(el.scrollLeft < 8);
+    setAtEnd(el.scrollLeft >= max - 8);
+  }, []);
 
-    if (document.querySelector('script[src*="instagram.com/embed.js"]')) {
-      tryProcess();
-      return;
-    }
-
-    const script  = document.createElement("script");
-    script.src    = "https://www.instagram.com/embed.js";
-    script.async  = true;
-    script.onload = () => tryProcess();
-    document.head.appendChild(script);
-
-    // Retry every 400 ms in case onload fires before instgrm is fully initialised
-    const interval = setInterval(() => { if (tryProcess()) clearInterval(interval); }, 400);
-    return () => clearInterval(interval);
+  const scrollBy = useCallback((dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const card = el.firstElementChild as HTMLElement | null;
+    const cardW = card ? card.getBoundingClientRect().width + 12 : 222;
+    el.scrollBy({ left: dir === "right" ? cardW * 3 : -cardW * 3, behavior: "smooth" });
   }, []);
 
   // Body scroll lock while modal is open
@@ -257,26 +387,21 @@ export function InstagramReelsSection() {
     return () => { document.body.style.overflow = ""; };
   }, [activeIndex]);
 
-  // CSS custom properties drive the keyframe & timing (see index.css @keyframes urmMarquee)
-  const trackStyle: React.CSSProperties = {
-    ["--urm-strip-w"  as string]: `-${STRIP_W}px`,
-    ["--urm-duration" as string]: `${DURATION}s`,
-    width: `${TRACK_REELS.length * PITCH}px`,
-  };
+  useEffect(() => { handleScroll(); }, [handleScroll]);
 
   return (
     <section
       id="reels"
       className="relative overflow-hidden bg-slate-950 py-16 md:py-20"
     >
-      {/* ── Ambient glows ── */}
+      {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-rose-500/8 blur-[150px]" />
-        <div className="absolute bottom-0 left-0 h-[350px] w-[350px] rounded-full bg-pink-600/6 blur-[120px]" />
+        <div className="absolute -top-40 right-0 h-[480px] w-[480px] rounded-full bg-rose-500/8 blur-[140px]" />
+        <div className="absolute bottom-0 left-8 h-[350px] w-[350px] rounded-full bg-pink-600/6 blur-[120px]" />
         <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-500/4 blur-[160px]" />
       </div>
 
-      <div className="relative">
+      <div className="relative mx-auto max-w-7xl">
         {/* ── Header ── */}
         <m.div
           initial={{ opacity: 0, y: 14 }}
@@ -297,107 +422,89 @@ export function InstagramReelsSection() {
               </span>
             </h2>
             <p className="mt-2 max-w-lg text-sm leading-relaxed text-white/40">
-              Real student journeys — from application to graduation.{" "}
-              <span className="text-white/25">Hover to pause · Click to watch</span>
+              Swipe through real student journeys — from application to graduation.
             </p>
           </div>
 
-          <div className="flex shrink-0 items-center gap-3 self-start sm:self-auto">
-            {/* Pause / resume toggle — visible on desktop */}
-            <button
-              type="button"
-              aria-label={isPaused ? "Resume autoplay" : "Pause autoplay"}
-              onClick={() => setIsPaused((p) => !p)}
-              className="hidden sm:flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/50 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
-            >
-              {isPaused
-                ? <Play  className="h-3.5 w-3.5 fill-current translate-x-0.5" />
-                : <Pause className="h-3.5 w-3.5" />}
-            </button>
-
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-rose-500/40 hover:bg-white/10"
-            >
-              <Instagram className="h-4 w-4 text-rose-400" />
-              {HANDLE}
-              <ExternalLink className="h-3 w-3 text-white/30" />
-            </a>
-          </div>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-2 self-start rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-rose-500/40 hover:bg-white/10 sm:self-auto"
+          >
+            <Instagram className="h-4 w-4 text-rose-400" />
+            {HANDLE}
+            <ExternalLink className="h-3 w-3 text-white/30" />
+          </a>
         </m.div>
 
-        {/* ── Marquee strip ── */}
-        <div
-          className="relative overflow-hidden"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onFocus={()    => setIsPaused(true)}
-          onBlur={()     => setIsPaused(false)}
-        >
-          {/* Edge gradient fades */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-20 w-16 bg-gradient-to-r from-slate-950 to-transparent md:w-24" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-16 bg-gradient-to-l from-slate-950 to-transparent md:w-24" />
-
-          {/* Animated track */}
+        {/* ── Horizontal shelf ── */}
+        <div className="relative">
+          {/* Left edge fade */}
           <div
-            className={`flex urm-marquee${isPaused ? " urm-marquee-paused" : ""}`}
-            style={trackStyle}
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 transition-opacity duration-300 sm:w-20"
+            style={{ background: "linear-gradient(to right, rgb(2 6 23), transparent)", opacity: atStart ? 0 : 1 }}
+          />
+          {/* Right edge fade */}
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 transition-opacity duration-300 sm:w-20"
+            style={{ background: "linear-gradient(to left, rgb(2 6 23), transparent)", opacity: atEnd ? 0 : 1 }}
+          />
+
+          {/* Left arrow */}
+          <button
+            type="button"
+            aria-label="Scroll left"
+            onClick={() => scrollBy("left")}
+            disabled={atStart}
+            className="absolute left-2 top-1/2 z-20 hidden -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-900/80 text-white shadow-lg backdrop-blur-md transition-all hover:border-white/25 hover:bg-slate-800 disabled:pointer-events-none disabled:opacity-0 sm:flex"
           >
-            {TRACK_REELS.map(({ shortcode }, idx) => {
-              const reelIndex = idx % REELS.length;
-              return (
-                <div
-                  key={`${shortcode}-${idx}`}
-                  className="relative shrink-0 cursor-pointer"
-                  style={{ width: CARD_W, marginRight: CARD_GAP }}
-                  role="button"
-                  tabIndex={0}
-                  aria-label={`Open reel ${reelIndex + 1} from ${HANDLE}`}
-                  onClick={() => setActiveIndex(reelIndex)}
-                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setActiveIndex(reelIndex); }}
-                >
-                  {/* ── Real Instagram embed, no caption ── */}
-                  <blockquote
-                    className="instagram-media !m-0 overflow-hidden rounded-2xl"
-                    data-instgrm-permalink={`https://www.instagram.com/reel/${shortcode}/?utm_source=ig_embed&utm_campaign=loading`}
-                    data-instgrm-version="14"
-                    style={{ margin: 0, maxWidth: "100%", minWidth: "240px" }}
-                  />
+            <ChevronLeft className="h-5 w-5" />
+          </button>
 
-                  {/* Transparent overlay: captures click, prevents iframe nav */}
-                  <div
-                    className="absolute inset-0 z-10 rounded-2xl transition-all duration-200 hover:ring-2 hover:ring-white/20 hover:ring-offset-2 hover:ring-offset-slate-950"
-                    aria-hidden="true"
-                  />
+          {/* Right arrow */}
+          <button
+            type="button"
+            aria-label="Scroll right"
+            onClick={() => scrollBy("right")}
+            disabled={atEnd}
+            className="absolute right-2 top-1/2 z-20 hidden -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-900/80 text-white shadow-lg backdrop-blur-md transition-all hover:border-white/25 hover:bg-slate-800 disabled:pointer-events-none disabled:opacity-0 sm:flex"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
 
-                  {/* Loading skeleton shown before embed.js fires */}
-                  {!embedsReady && (
-                    <div className="absolute inset-0 z-5 flex flex-col items-center justify-center gap-3 rounded-2xl bg-slate-900">
-                      <div className="h-8 w-8 animate-spin rounded-full border-2 border-rose-500/30 border-t-rose-400" />
-                      <span className="text-xs text-white/30">Loading reel…</span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+          {/* Scroll track */}
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex gap-3 overflow-x-auto px-6 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollSnapType: "x mandatory" }}
+          >
+            {REELS.map(({ shortcode }, index) => (
+              <ReelCard
+                key={shortcode}
+                shortcode={shortcode}
+                index={index}
+                isActive={activeIndex === index}
+                onClick={() => setActiveIndex(index)}
+              />
+            ))}
+            {/* Trailing spacer keeps last card away from the edge fade */}
+            <div className="w-3 shrink-0" aria-hidden="true" />
           </div>
         </div>
 
-        {/* ── Footer hint ── */}
-        <div className="mt-5 flex items-center justify-center gap-3 px-6">
-          <div className="flex gap-1.5">
-            {REELS.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`Open reel ${i + 1}`}
-                onClick={() => setActiveIndex(i)}
-                className="h-1 w-1 rounded-full bg-white/20 transition-all hover:bg-rose-400 hover:w-3"
-              />
-            ))}
+        {/* ── Scroll progress bar ── */}
+        <div className="mt-5 flex flex-col items-center gap-2 px-6">
+          <div className="h-[3px] w-36 overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-rose-400 to-pink-400 transition-[width] duration-150 ease-out"
+              style={{ width: `${scrollProgress * 100}%` }}
+            />
           </div>
+          <p className="text-[11px] text-white/20">
+            Swipe or use arrows to explore all {REELS.length} reels
+          </p>
         </div>
       </div>
 
