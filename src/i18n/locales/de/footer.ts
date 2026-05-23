@@ -55,6 +55,7 @@ export const footer = {
     privacy: "Datenschutz",
     terms: "Nutzungsbedingungen",
     cookies: "Cookie-Richtlinie",
+    cookieSettings: "Cookie-Einstellungen",
     impressum: "Impressum",
     registration: "Registriert in England und Wales • Unternehmensnr. 16075139",
     registrationNote: "Registriert im November 2024",

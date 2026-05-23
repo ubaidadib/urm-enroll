@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { m, AnimatePresence } from "motion/react";
 import { Shield } from "lucide-react";
 import { useLanguage } from "@/i18n/language-context";
-import { setConsentState, type ConsentCategories } from "@/lib/analytics";
+import { getConsentState, setConsentState, type ConsentCategories } from "@/lib/analytics";
 
 const STORAGE_KEY = "urm-cookie-consent";
 const CONSENT_MAX_AGE_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+const OPEN_COOKIE_PREFERENCES_EVENT = "urm:open-cookie-preferences";
 
 function shouldShowBanner(): boolean {
   if (typeof window === "undefined") return false;
@@ -32,9 +33,24 @@ function shouldShowBanner(): boolean {
 
 export function CookieBanner() {
   const { t } = useLanguage();
+  const savedConsent = getConsentState();
   const [isVisible, setIsVisible] = useState(() => shouldShowBanner());
-  const [analyticsChecked, setAnalyticsChecked] = useState(true);
-  const [marketingChecked, setMarketingChecked] = useState(true);
+  const [analyticsChecked, setAnalyticsChecked] = useState(savedConsent.analytics);
+  const [marketingChecked, setMarketingChecked] = useState(savedConsent.marketing);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const openPreferences = () => {
+      const currentConsent = getConsentState();
+      setAnalyticsChecked(currentConsent.analytics);
+      setMarketingChecked(currentConsent.marketing);
+      setIsVisible(true);
+    };
+
+    window.addEventListener(OPEN_COOKIE_PREFERENCES_EVENT, openPreferences);
+    return () => window.removeEventListener(OPEN_COOKIE_PREFERENCES_EVENT, openPreferences);
+  }, []);
 
   const handleAcceptAll = () => {
     const consent: ConsentCategories = { analytics: true, marketing: true };

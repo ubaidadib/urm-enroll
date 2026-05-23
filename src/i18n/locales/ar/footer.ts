@@ -55,6 +55,7 @@ export const footer = {
     privacy: "سياسة الخصوصية",
     terms: "شروط الخدمة",
     cookies: "سياسة ملفات الارتباط",
+    cookieSettings: "إعدادات ملفات الارتباط",
     impressum: "البصمة القانونية",
     registration: "مسجلة في إنجلترا وويلز • رقم الشركة 16075139",
     registrationNote: "تاريخ التسجيل: نوفمبر 2024",

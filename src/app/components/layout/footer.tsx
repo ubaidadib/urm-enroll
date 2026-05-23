@@ -18,6 +18,11 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const openCookieSettings = () => {
+    if (typeof window === "undefined") return;
+    window.dispatchEvent(new Event("urm:open-cookie-preferences"));
+  };
+
   return (
     <footer className="relative w-full border-t border-border/50 overflow-hidden">
       <div className="absolute inset-0 premium-grid opacity-35 pointer-events-none" />
@@ -137,6 +142,14 @@ export function Footer() {
                       <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </Link>
                   ))}
+                  <button
+                    type="button"
+                    onClick={openCookieSettings}
+                    className="text-xs text-text-secondary hover:text-text-primary transition-colors inline-flex items-center gap-1 group"
+                  >
+                    {t<string>("footer.legal.cookieSettings")}
+                    <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </button>
                 </div>
               </div>
 
