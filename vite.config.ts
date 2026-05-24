@@ -543,7 +543,7 @@ export default defineConfig(({ mode }) => {
       createDevSecurityHeadersPlugin(),
       tailwindcss(),
       visualizer({
-        filename: 'bundle-report.json',
+        filename: 'dist/reports/bundle-report.json',
         template: 'raw-data',
         open: false,
         gzipSize: true,

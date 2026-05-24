@@ -1,26 +1,3 @@
-/**
- * InstagramReelsSection — Horizontal reel shelf with real thumbnails
- *
- * Design  : Restored v3 horizontal scroll shelf — the card layout the user
- *           approved. Each portrait card fetches its real thumbnail from
- *           Instagram's oEmbed API and uses it as the card background.
- *           If the fetch fails (CORS, rate-limit) the card falls back to a
- *           branded Instagram-palette gradient — so the UI never breaks.
- *
- * Thumbnails: fetched from https://api.instagram.com/oembed/ (public, no
- *             auth needed for public @urmenroll posts). Results are cached
- *             in a module-level Map so remounts don't re-fetch.
- *
- * Playback  : Click any card → focused modal with the actual Instagram embed
- *             (no caption). Prev / next navigation + full keyboard support.
- *
- * ─── HOW TO ADD REELS ───────────────────────────────────────────────────
- * 1. Open the reel on Instagram and copy the URL.
- * 2. Extract the shortcode (the segment after /reel/).
- * 3. Prepend it to the REELS array below (newest first).
- * ────────────────────────────────────────────────────────────────────────
- */
-
 import { useState, useEffect, useCallback, useRef } from "react";
 import { m, AnimatePresence } from "motion/react";
 import {
@@ -30,226 +7,188 @@ import {
   ChevronLeft,
   ChevronRight,
   Play,
+  RefreshCcw,
+  AlertCircle,
 } from "lucide-react";
 
-declare global {
-  interface Window {
-    instgrm?: { Embeds: { process: () => void } };
-  }
-}
-
-// ─── Reels ───────────────────────────────────────────────────────────────────
-const REELS: Array<{ shortcode: string }> = [
-  { shortcode: "DXt2eC2jcYx" },
-  { shortcode: "DXG0xCijYIg" },
-  { shortcode: "DW_HzA4jcJu" },
-  { shortcode: "DWo1dcsDZ_J" },
-  { shortcode: "DVeATyBjc3Y" },
-  { shortcode: "DUi8PqxDZKg" },
-  { shortcode: "DRDETEwDaDZ" },
-  { shortcode: "DTu2iOTj9ez" },
-  { shortcode: "DP1ClV8De12" },
-  { shortcode: "DPs16MGjavY" },
-  { shortcode: "DMGVBJEMkbo" },
-  { shortcode: "DJB6OEYNBoD" },
-  { shortcode: "DIO33B_sfbN" },
-  { shortcode: "DHLW47esQVA" },
-  { shortcode: "C_7Gq5XKAtK" },
-  { shortcode: "C0vkmlHIXVH" },
-  { shortcode: "Cz5zHyusmub" },
-];
+import { useInstagramContent } from "@/hooks/useInstagramContent";
+import type { InstagramFeedItem } from "@/types/instagram-feed";
 
 const INSTAGRAM_URL = "https://www.instagram.com/urmenroll";
-const HANDLE        = "@urmenroll";
+const HANDLE = "@urmenroll";
 
-// Gradient fallback palette (Instagram brand colours, cycled per card)
-const GRADIENTS: [string, string, string][] = [
-  ["#f43f5e", "#ec4899", "#a855f7"],
-  ["#fb923c", "#f43f5e", "#ec4899"],
-  ["#a855f7", "#ec4899", "#f43f5e"],
-  ["#f97316", "#fb923c", "#f43f5e"],
-  ["#e11d48", "#f43f5e", "#fb923c"],
-  ["#c026d3", "#a855f7", "#ec4899"],
+const PLACEHOLDER_GRADIENTS: [string, string, string][] = [
+  ["#f59e0b", "#ec4899", "#7c3aed"],
+  ["#fb7185", "#f97316", "#facc15"],
+  ["#38bdf8", "#8b5cf6", "#ec4899"],
+  ["#14b8a6", "#3b82f6", "#8b5cf6"],
+  ["#f97316", "#ef4444", "#a855f7"],
+  ["#0ea5e9", "#22c55e", "#eab308"],
 ];
 
-// ─── Module-level thumbnail cache (persists across remounts) ─────────────────
-// Value: URL string if fetched successfully, null if fetch failed.
-const thumbCache = new Map<string, string | null>();
-
-async function loadThumbnail(shortcode: string): Promise<string | null> {
-  if (thumbCache.has(shortcode)) return thumbCache.get(shortcode) ?? null;
+function formatPublishedAt(value: string | null) {
+  if (!value) {
+    return null;
+  }
 
   try {
-    const url = `https://api.instagram.com/oembed/?url=${encodeURIComponent(
-      `https://www.instagram.com/reel/${shortcode}/`,
-    )}&maxwidth=480`;
-    const res  = await fetch(url, { signal: AbortSignal.timeout(6000) });
-    if (!res.ok) { thumbCache.set(shortcode, null); return null; }
-    const data = await res.json() as { thumbnail_url?: string };
-    const thumb = data.thumbnail_url ?? null;
-    thumbCache.set(shortcode, thumb);
-    return thumb;
+    return new Intl.DateTimeFormat("en", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(value));
   } catch {
-    thumbCache.set(shortcode, null);
     return null;
   }
 }
 
-// ─── ReelCard ─────────────────────────────────────────────────────────────────
-function ReelCard({
-  shortcode,
+function getPlaceholderGradient(index: number) {
+  return (
+    PLACEHOLDER_GRADIENTS[index % PLACEHOLDER_GRADIENTS.length] ??
+    PLACEHOLDER_GRADIENTS[0] ??
+    ["#f59e0b", "#ec4899", "#7c3aed"]
+  );
+}
+
+function FeedCard({
+  item,
   index,
   isActive,
   onClick,
 }: {
-  shortcode: string;
+  item: InstagramFeedItem;
   index: number;
   isActive: boolean;
   onClick: () => void;
 }) {
-  const [thumb, setThumb] = useState<string | null>(thumbCache.get(shortcode) ?? null);
-  const [thumbErr, setThumbErr] = useState(false);
-
-  // Try to fetch the real thumbnail; falls back to gradient on any error
-  useEffect(() => {
-    if (thumbCache.has(shortcode)) { setThumb(thumbCache.get(shortcode) ?? null); return; }
-    let cancelled = false;
-    loadThumbnail(shortcode).then((url) => { if (!cancelled) setThumb(url); });
-    return () => { cancelled = true; };
-  }, [shortcode]);
-
-  const gradient: [string, string, string] =
-    GRADIENTS[index % GRADIENTS.length] ?? ["#f43f5e", "#ec4899", "#a855f7"];
-  const [g0, g1, g2] = gradient;
-  const showThumb = thumb && !thumbErr;
+  const [g0, g1, g2] = getPlaceholderGradient(index);
 
   return (
     <m.button
       type="button"
-      aria-label={`Watch reel ${index + 1} from ${HANDLE}`}
+      aria-label={`Open Instagram success story ${index + 1}`}
       onClick={onClick}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
-      transition={{ duration: 0.38, delay: (index % 3) * 0.06 }}
-      whileHover={{ y: -6 }}
-      className={`group relative w-full overflow-hidden rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
-        isActive ? "ring-2 ring-white/40" : ""
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.36, delay: (index % 4) * 0.04 }}
+      whileHover={{ y: -4 }}
+      className={`group relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.05] p-2 text-left backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--accent-primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--bg-primary))] sm:w-[224px] ${
+        isActive ? "border-white/25 shadow-[0_20px_60px_rgba(2,4,12,0.2)]" : ""
       }`}
-      style={{ aspectRatio: "9 / 16", scrollSnapAlign: "start" }}
+      style={{ scrollSnapAlign: "start" }}
     >
-      {/* ── Background: real thumbnail or gradient fallback ── */}
-      {showThumb ? (
-        <img
-          src={thumb}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover"
-          onError={() => setThumbErr(true)}
-        />
-      ) : (
-        <div
-          className="absolute inset-0"
-          style={{ background: `linear-gradient(158deg, ${g0} 0%, ${g1} 52%, ${g2} 100%)` }}
-        />
-      )}
+      <div className="relative overflow-hidden rounded-[1.35rem]" style={{ aspectRatio: "9 / 16" }}>
+        {item.thumbnailUrl ? (
+          <img
+            src={item.thumbnailUrl}
+            alt={item.altText}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{ background: `linear-gradient(160deg, ${g0} 0%, ${g1} 48%, ${g2} 100%)` }}
+          />
+        )}
 
-      {/* Dot-grid texture (keeps branding whether thumb or gradient) */}
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(255,255,255,1) 1px, transparent 1px)",
-          backgroundSize: "16px 16px",
-        }}
-      />
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(8,14,28,0.08)] via-transparent to-[rgba(8,14,28,0.74)]" />
 
-      {/* Vignette — heavier when using photo so overlays stay legible */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/30 transition-opacity duration-300 ${
-          showThumb ? "opacity-100" : "opacity-80"
-        }`}
-      />
+        <div className="absolute inset-x-0 top-0 p-3.5">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-[rgba(8,14,28,0.34)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/82 backdrop-blur-md">
+            <Instagram className="h-3.5 w-3.5 text-rose-300" />
+            Success story
+          </div>
+        </div>
 
-      {/* Top-left Instagram badge */}
-      <div className="absolute left-2.5 top-2.5 flex h-7 w-7 items-center justify-center rounded-lg bg-black/40 backdrop-blur-sm">
-        <Instagram className="h-3.5 w-3.5 text-white/90" />
-      </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-white/12 shadow-[0_16px_40px_rgba(2,4,12,0.24)] backdrop-blur-md transition-all duration-300 group-hover:scale-105 group-hover:border-white/30 group-hover:bg-white/18">
+            <Play className="h-4.5 w-4.5 translate-x-0.5 fill-white text-white" />
+          </div>
+        </div>
 
-      {/* Centre play ring */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full border border-white/30 bg-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:border-white/50 group-hover:bg-white/25">
-          <Play className="h-5 w-5 translate-x-0.5 fill-white text-white" />
+        <div className="absolute inset-x-0 bottom-0 p-3.5">
+          <div className="rounded-[1.15rem] border border-white/10 bg-[rgba(8,14,28,0.4)] p-3 backdrop-blur-md">
+            <p
+              className="line-clamp-2 text-base font-bold leading-tight text-white"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {item.excerpt}
+            </p>
+            {item.publishedAt && (
+              <p className="mt-2 text-xs uppercase tracking-[0.16em] text-white/56">
+                {formatPublishedAt(item.publishedAt)}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* "Watch" label — fades in above play ring on hover */}
-      <div
-        className="absolute inset-x-0 flex justify-center"
-        style={{ top: "calc(50% - 42px)" }}
-      >
-        <span className="translate-y-2 rounded-full border border-white/20 bg-black/40 px-2.5 py-0.5 text-[10px] font-semibold text-white/90 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          Watch
-        </span>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="absolute inset-x-0 bottom-0 px-3 pb-3 pt-6">
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] font-semibold text-white/75">{HANDLE}</span>
-          <span className="font-mono text-[9px] text-white/35">#{index + 1}</span>
-        </div>
-      </div>
-
-      {/* Hover ring shimmer */}
-      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/0 transition-all duration-300 group-hover:ring-white/25" />
+      <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-white/0 transition-all duration-300 group-hover:ring-white/18" />
     </m.button>
   );
 }
 
-// ─── ReelModal ────────────────────────────────────────────────────────────────
-function ReelModal({
-  reels,
+function LoadingCard({ index }: { index: number }) {
+  const [g0, g1, g2] = getPlaceholderGradient(index);
+
+  return (
+    <div
+      className="relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-2 sm:w-[224px]"
+      style={{ scrollSnapAlign: "start" }}
+    >
+      <div
+        className="relative animate-pulse overflow-hidden rounded-[1.35rem]"
+        style={{ aspectRatio: "9 / 16", background: `linear-gradient(160deg, ${g0} 0%, ${g1} 48%, ${g2} 100%)` }}
+      >
+        <div className="absolute inset-x-0 bottom-0 p-3.5">
+          <div className="rounded-[1.15rem] border border-white/10 bg-[rgba(8,14,28,0.28)] p-3 backdrop-blur-md">
+            <div className="h-4 w-28 rounded-full bg-white/20" />
+            <div className="mt-2 h-3 w-24 rounded-full bg-white/15" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FeedModal({
+  items,
   activeIndex,
   onClose,
   onPrev,
   onNext,
 }: {
-  reels: typeof REELS;
+  items: InstagramFeedItem[];
   activeIndex: number;
   onClose: () => void;
   onPrev: () => void;
   onNext: () => void;
 }) {
-  const reel      = reels[activeIndex];
-  const shortcode = reel?.shortcode ?? "";
-  const total     = reels.length;
-  const closeRef  = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => { closeRef.current?.focus(); }, []);
+  const item = items[activeIndex];
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape")     onClose();
-      if (e.key === "ArrowLeft")  onPrev();
-      if (e.key === "ArrowRight") onNext();
+    closeRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    const handler = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      if (event.key === "ArrowLeft") onPrev();
+      if (event.key === "ArrowRight") onNext();
     };
+
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [onClose, onPrev, onNext]);
 
-  useEffect(() => {
-    const existing = document.querySelector('script[src*="instagram.com/embed.js"]');
-    if (existing) {
-      const t = setTimeout(() => window.instgrm?.Embeds.process(), 250);
-      return () => clearTimeout(t);
-    }
-    const script   = document.createElement("script");
-    script.src     = "https://www.instagram.com/embed.js";
-    script.async   = true;
-    document.head.appendChild(script);
-    return undefined;
-  }, [shortcode]);
+  if (!item) {
+    return null;
+  }
+
+  const publishedAt = formatPublishedAt(item.publishedAt);
 
   return (
     <m.div
@@ -257,262 +196,360 @@ function ReelModal({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.18 }}
-      className="fixed inset-0 z-[120] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[120] flex items-center justify-center p-4 md:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label={`Reel ${activeIndex + 1} of ${total} from ${HANDLE}`}
+      aria-label={`Instagram success story ${activeIndex + 1} of ${items.length}`}
       onClick={onClose}
     >
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-xl" />
+      <div className="absolute inset-0 bg-[rgba(8,14,28,0.82)] backdrop-blur-xl" />
 
       <m.div
-        initial={{ scale: 0.9, opacity: 0, y: 16 }}
+        initial={{ scale: 0.92, opacity: 0, y: 18 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.9, opacity: 0, y: 16 }}
+        exit={{ scale: 0.92, opacity: 0, y: 18 }}
         transition={{ type: "spring", damping: 28, stiffness: 320 }}
-        className="relative z-10 w-full max-w-[360px]"
-        onClick={(e) => e.stopPropagation()}
+        className="glass-modal relative z-10 w-full max-w-[460px] overflow-hidden"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Top chrome */}
-        <div className="mb-3 flex items-center justify-between px-0.5">
-          <div className="flex items-center gap-2">
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-rose-500 to-pink-600">
-              <Instagram className="h-3.5 w-3.5 text-white" />
+        <div className="bg-[rgba(8,14,28,0.38)] p-4 md:p-5">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+                Instagram success story
+              </p>
+              <p className="mt-1 text-sm text-white/72">
+                {activeIndex + 1} of {items.length} from {HANDLE}
+              </p>
             </div>
-            <span className="text-xs font-semibold text-white/60">{HANDLE}</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs tabular-nums text-white/30">
-              {activeIndex + 1} / {total}
-            </span>
             <button
               ref={closeRef}
               type="button"
               aria-label="Close"
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
-        </div>
 
-        {/* Embed — key forces DOM re-mount on shortcode change; no caption */}
-        <div className="overflow-hidden rounded-2xl bg-slate-900 shadow-[0_40px_100px_rgba(0,0,0,0.7)]">
-          <blockquote
-            key={shortcode}
-            className="instagram-media !m-0 w-full"
-            data-instgrm-permalink={`https://www.instagram.com/reel/${shortcode}/?utm_source=ig_embed&utm_campaign=loading`}
-            data-instgrm-version="14"
-            style={{ margin: 0, maxWidth: "100%", minWidth: "240px" }}
-          />
-        </div>
-
-        {/* Bottom chrome */}
-        <div className="mt-3 flex items-center justify-between px-0.5">
-          <div className="flex gap-2">
-            <button
-              type="button"
-              aria-label="Previous reel"
-              onClick={onPrev}
-              disabled={activeIndex === 0}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 disabled:pointer-events-none disabled:opacity-25"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              aria-label="Next reel"
-              onClick={onNext}
-              disabled={activeIndex === total - 1}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 disabled:pointer-events-none disabled:opacity-25"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+          <div className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-[rgb(8,14,28)] shadow-[0_28px_80px_rgba(2,4,12,0.44)]">
+            {item.thumbnailUrl ? (
+              <img
+                src={item.thumbnailUrl}
+                alt={item.altText}
+                className="h-auto w-full object-cover"
+              />
+            ) : (
+              <div className="aspect-[9/16] bg-[linear-gradient(160deg,#f59e0b_0%,#ec4899_48%,#7c3aed_100%)]" />
+            )}
           </div>
-          <a
-            href={`https://www.instagram.com/reel/${shortcode}/`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-white/35 transition-colors hover:text-white"
-          >
-            <ExternalLink className="h-3 w-3" />
-            Open in Instagram
-          </a>
+
+          <div className="mt-4 rounded-[1.2rem] border border-white/10 bg-white/[0.06] p-4">
+            <p
+              className="text-lg font-bold leading-tight text-white"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              {item.excerpt}
+            </p>
+            {item.caption && item.caption !== item.excerpt && (
+              <p className="mt-2 text-sm leading-relaxed text-white/68">{item.caption}</p>
+            )}
+            {publishedAt && (
+              <p className="mt-3 text-xs uppercase tracking-[0.18em] text-white/48">{publishedAt}</p>
+            )}
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex gap-2">
+              <button
+                type="button"
+                aria-label="Previous story"
+                onClick={onPrev}
+                disabled={activeIndex === 0}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18 disabled:pointer-events-none disabled:opacity-30"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next story"
+                onClick={onNext}
+                disabled={activeIndex === items.length - 1}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18 disabled:pointer-events-none disabled:opacity-30"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            <a
+              href={item.permalink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/16"
+            >
+              Open in Instagram
+              <ExternalLink className="h-3.5 w-3.5 text-white/70" />
+            </a>
+          </div>
         </div>
       </m.div>
     </m.div>
   );
 }
 
-// ─── Section ──────────────────────────────────────────────────────────────────
 export function InstagramReelsSection() {
-  const [activeIndex,    setActiveIndex]    = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [atStart,        setAtStart]        = useState(true);
-  const [atEnd,          setAtEnd]          = useState(false);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const { data, error, isLoading, refetch } = useInstagramContent<InstagramFeedItem>({ limit: 18 });
+  const items = data ?? [];
+
   const handleClose = useCallback(() => setActiveIndex(null), []);
-  const handlePrev  = useCallback(
-    () => setActiveIndex((i) => (i !== null && i > 0 ? i - 1 : i)),
+  const handlePrev = useCallback(
+    () => setActiveIndex((index) => (index !== null && index > 0 ? index - 1 : index)),
     [],
   );
-  const handleNext  = useCallback(
-    () => setActiveIndex((i) => (i !== null && i < REELS.length - 1 ? i + 1 : i)),
-    [],
+  const handleNext = useCallback(
+    () => setActiveIndex((index) => (index !== null && index < items.length - 1 ? index + 1 : index)),
+    [items.length],
   );
 
   const handleScroll = useCallback(() => {
-    const el  = scrollRef.current;
-    if (!el) return;
-    const max = el.scrollWidth - el.clientWidth;
-    const pct = max > 0 ? el.scrollLeft / max : 0;
-    setScrollProgress(pct);
-    setAtStart(el.scrollLeft < 8);
-    setAtEnd(el.scrollLeft >= max - 8);
+    const element = scrollRef.current;
+    if (!element) return;
+
+    const maxScroll = element.scrollWidth - element.clientWidth;
+    const progress = maxScroll > 0 ? element.scrollLeft / maxScroll : 0;
+    setScrollProgress(progress);
+    setAtStart(element.scrollLeft < 8);
+    setAtEnd(element.scrollLeft >= maxScroll - 8);
   }, []);
 
-  const scrollBy = useCallback((dir: "left" | "right") => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const card = el.firstElementChild as HTMLElement | null;
-    const cardW = card ? card.getBoundingClientRect().width + 12 : 222;
-    el.scrollBy({ left: dir === "right" ? cardW * 3 : -cardW * 3, behavior: "smooth" });
+  const scrollBy = useCallback((direction: "left" | "right") => {
+    const element = scrollRef.current;
+    if (!element) return;
+
+    const card = element.querySelector("[data-feed-card]") as HTMLElement | null;
+    const cardWidth = card ? card.getBoundingClientRect().width + 16 : 244;
+    element.scrollBy({
+      left: direction === "right" ? cardWidth * 2 : -cardWidth * 2,
+      behavior: "smooth",
+    });
   }, []);
 
-  // Body scroll lock while modal is open
   useEffect(() => {
     document.body.style.overflow = activeIndex !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [activeIndex]);
 
-  useEffect(() => { handleScroll(); }, [handleScroll]);
+  useEffect(() => {
+    handleScroll();
+  }, [handleScroll, items.length, isLoading]);
+
+  useEffect(() => {
+    if (activeIndex !== null && activeIndex >= items.length) {
+      setActiveIndex(null);
+    }
+  }, [activeIndex, items.length]);
+
+  const showEmptyState = !isLoading && !error && items.length === 0;
+  const showErrorState = !isLoading && Boolean(error) && items.length === 0;
 
   return (
     <section
       id="reels"
-      className="relative overflow-hidden bg-slate-950 py-16 md:py-20"
+      className="relative overflow-hidden bg-[rgb(var(--bg-primary))] py-18 md:py-22"
     >
-      {/* Ambient glows */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute -top-40 right-0 h-[480px] w-[480px] rounded-full bg-rose-500/8 blur-[140px]" />
-        <div className="absolute bottom-0 left-8 h-[350px] w-[350px] rounded-full bg-pink-600/6 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-purple-500/4 blur-[160px]" />
+        <div className="absolute -top-20 left-[12%] h-64 w-64 rounded-full bg-[rgba(244,114,182,0.1)] blur-[120px]" />
+        <div className="absolute right-[10%] top-16 h-72 w-72 rounded-full bg-[rgba(56,189,248,0.08)] blur-[140px]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl">
-        {/* ── Header ── */}
-        <m.div
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.42 }}
-          className="mb-8 flex flex-col gap-4 px-6 sm:flex-row sm:items-end sm:justify-between"
-        >
-          <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/45">
-              <Instagram className="h-3 w-3 text-rose-400" />
-              Real Stories · {REELS.length} Reels
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+          <m.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45 }}
+          >
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--text-muted))]">
+              <Instagram className="h-3.5 w-3.5 text-rose-400" />
+              Instagram success stories
             </div>
-            <h2 className="text-3xl font-black tracking-tight text-white md:text-4xl lg:text-5xl">
-              Life at{" "}
-              <span className="bg-gradient-to-r from-rose-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-                URM ENROLL
-              </span>
+            <h2
+              className="max-w-3xl text-3xl font-bold tracking-tight text-[rgb(var(--text-primary))] md:text-4xl lg:text-5xl"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Real student wins, synced from our Instagram feed.
             </h2>
-            <p className="mt-2 max-w-lg text-sm leading-relaxed text-white/40">
-              Swipe through real student journeys — from application to graduation.
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[rgb(var(--text-muted))]">
+              The website now reads from a dedicated feed pipeline, so new success stories can appear here without manual shortcode updates.
             </p>
-          </div>
+          </m.div>
 
-          <a
+          <m.a
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.1 }}
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-2 self-start rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:border-rose-500/40 hover:bg-white/10 sm:self-auto"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.06] px-4 py-2.5 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.1]"
           >
-            <Instagram className="h-4 w-4 text-rose-400" />
-            {HANDLE}
-            <ExternalLink className="h-3 w-3 text-white/30" />
-          </a>
+            Visit {HANDLE}
+            <ExternalLink className="h-3.5 w-3.5 text-[rgb(var(--text-muted))]" />
+          </m.a>
+        </div>
+
+        <m.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.48, delay: 0.08 }}
+          className="glass-card relative mt-8 overflow-hidden p-4 sm:p-5"
+        >
+          <div className="relative mb-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <p className="text-sm leading-relaxed text-[rgb(var(--text-muted))] md:max-w-xl">
+                Browse the latest stories from our student community and open any post for the full Instagram view.
+              </p>
+            </div>
+
+            {!showErrorState && !showEmptyState && (
+              <div className="flex items-center gap-2 self-start md:self-auto">
+                <button
+                  type="button"
+                  aria-label="Scroll left"
+                  onClick={() => scrollBy("left")}
+                  disabled={atStart || isLoading || items.length === 0}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Scroll right"
+                  onClick={() => scrollBy("right")}
+                  disabled={atEnd || isLoading || items.length === 0}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+          </div>
+
+          {showErrorState ? (
+            <div className="rounded-[1.35rem] border border-[rgb(var(--error))]/20 bg-[rgb(var(--error))]/5 p-5 text-[rgb(var(--text-primary))]">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="mt-0.5 h-5 w-5 text-[rgb(var(--error))]" />
+                <div className="flex-1">
+                  <p className="font-semibold">Instagram stories are temporarily unavailable.</p>
+                  <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
+                    The feed could not be loaded right now. You can retry or open the Instagram page directly.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={() => void refetch()}
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
+                    >
+                      <RefreshCcw className="h-4 w-4" />
+                      Retry
+                    </button>
+                    <a
+                      href={INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
+                    >
+                      Open Instagram
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : showEmptyState ? (
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-5 text-[rgb(var(--text-primary))]">
+              <p className="font-semibold">No stories are available yet.</p>
+              <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
+                Once the feed sync runs and Instagram content is available, stories will appear here automatically.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="relative">
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 transition-opacity duration-300 sm:w-16"
+                  style={{
+                    background: "linear-gradient(to right, rgba(18, 32, 58, 0.88), transparent)",
+                    opacity: atStart || isLoading ? 0 : 1,
+                  }}
+                />
+                <div
+                  className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 transition-opacity duration-300 sm:w-16"
+                  style={{
+                    background: "linear-gradient(to left, rgba(18, 32, 58, 0.88), transparent)",
+                    opacity: atEnd || isLoading ? 0 : 1,
+                  }}
+                />
+
+                <div
+                  ref={scrollRef}
+                  onScroll={handleScroll}
+                  className="flex gap-4 overflow-x-auto px-1 py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  style={{ scrollSnapType: "x mandatory" }}
+                >
+                  {isLoading
+                    ? Array.from({ length: 5 }).map((_, index) => <LoadingCard key={index} index={index} />)
+                    : items.map((item, index) => (
+                        <div key={item.id} data-feed-card>
+                          <FeedCard
+                            item={item}
+                            index={index}
+                            isActive={activeIndex === index}
+                            onClick={() => setActiveIndex(index)}
+                          />
+                        </div>
+                      ))}
+                </div>
+              </div>
+
+              <div className="relative mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="h-1.5 w-36 overflow-hidden rounded-full bg-white/10 sm:w-44">
+                    <div
+                      className="h-full rounded-full bg-[linear-gradient(90deg,rgb(var(--accent-primary)),rgb(var(--accent-tech-hover)),rgb(var(--accent-tech)))] transition-[width] duration-150 ease-out"
+                      style={{ width: `${Math.max(scrollProgress * 100, isLoading ? 22 : 8)}%` }}
+                    />
+                  </div>
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-[rgb(var(--text-muted))]">
+                    {isLoading ? "Loading stories" : `${items.length} stories`}
+                  </span>
+                </div>
+
+                <p className="text-sm text-[rgb(var(--text-muted))]">
+                  Scroll or use the arrows to explore the synced feed.
+                </p>
+              </div>
+            </>
+          )}
         </m.div>
-
-        {/* ── Horizontal shelf ── */}
-        <div className="relative">
-          {/* Left edge fade */}
-          <div
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 transition-opacity duration-300 sm:w-20"
-            style={{ background: "linear-gradient(to right, rgb(2 6 23), transparent)", opacity: atStart ? 0 : 1 }}
-          />
-          {/* Right edge fade */}
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 transition-opacity duration-300 sm:w-20"
-            style={{ background: "linear-gradient(to left, rgb(2 6 23), transparent)", opacity: atEnd ? 0 : 1 }}
-          />
-
-          {/* Left arrow */}
-          <button
-            type="button"
-            aria-label="Scroll left"
-            onClick={() => scrollBy("left")}
-            disabled={atStart}
-            className="absolute left-2 top-1/2 z-20 hidden -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-900/80 text-white shadow-lg backdrop-blur-md transition-all hover:border-white/25 hover:bg-slate-800 disabled:pointer-events-none disabled:opacity-0 sm:flex"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
-
-          {/* Right arrow */}
-          <button
-            type="button"
-            aria-label="Scroll right"
-            onClick={() => scrollBy("right")}
-            disabled={atEnd}
-            className="absolute right-2 top-1/2 z-20 hidden -translate-y-1/2 h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-slate-900/80 text-white shadow-lg backdrop-blur-md transition-all hover:border-white/25 hover:bg-slate-800 disabled:pointer-events-none disabled:opacity-0 sm:flex"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-
-          {/* Scroll track */}
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="flex gap-3 overflow-x-auto px-6 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            style={{ scrollSnapType: "x mandatory" }}
-          >
-            {REELS.map(({ shortcode }, index) => (
-              <ReelCard
-                key={shortcode}
-                shortcode={shortcode}
-                index={index}
-                isActive={activeIndex === index}
-                onClick={() => setActiveIndex(index)}
-              />
-            ))}
-            {/* Trailing spacer keeps last card away from the edge fade */}
-            <div className="w-3 shrink-0" aria-hidden="true" />
-          </div>
-        </div>
-
-        {/* ── Scroll progress bar ── */}
-        <div className="mt-5 flex flex-col items-center gap-2 px-6">
-          <div className="h-[3px] w-36 overflow-hidden rounded-full bg-white/10">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-rose-400 to-pink-400 transition-[width] duration-150 ease-out"
-              style={{ width: `${scrollProgress * 100}%` }}
-            />
-          </div>
-          <p className="text-[11px] text-white/20">
-            Swipe or use arrows to explore all {REELS.length} reels
-          </p>
-        </div>
       </div>
 
-      {/* ── Modal ── */}
       <AnimatePresence>
-        {activeIndex !== null && (
-          <ReelModal
-            reels={REELS}
+        {activeIndex !== null && items.length > 0 && (
+          <FeedModal
+            items={items}
             activeIndex={activeIndex}
             onClose={handleClose}
             onPrev={handlePrev}
@@ -523,3 +560,5 @@ export function InstagramReelsSection() {
     </section>
   );
 }
+
+export default InstagramReelsSection;

@@ -56,17 +56,25 @@ const staticPrograms: Program[] = [
   ...lvPrograms,
 ] as Program[];
 
-const mirrorPrograms =
-  typeof window !== 'undefined' && Array.isArray(window.__URM_MIRROR_PROGRAMS__)
-    ? window.__URM_MIRROR_PROGRAMS__
-    : null;
+const resolveProgramsSnapshot = (): Program[] => {
+  const mirrorPrograms =
+    typeof window !== 'undefined' && Array.isArray(window.__URM_MIRROR_PROGRAMS__)
+      ? window.__URM_MIRROR_PROGRAMS__
+      : null;
 
-const allPrograms: Program[] =
-  mirrorPrograms && mirrorPrograms.length > 0
-    ? (mirrorPrograms as Program[])
-    : MIRROR_FALLBACK_ENABLED
-      ? staticPrograms
-      : [];
+  if (mirrorPrograms && mirrorPrograms.length > 0) {
+    return mirrorPrograms as Program[];
+  }
+
+  return MIRROR_FALLBACK_ENABLED ? staticPrograms : [];
+};
+
+let allPrograms: Program[] = resolveProgramsSnapshot();
+
+export function refreshProgramsSnapshot(): Program[] {
+  allPrograms = resolveProgramsSnapshot();
+  return allPrograms;
+}
 
 // ── Data Access Functions ───────────────────────────────────────────
 export function getAllPrograms(): Program[] {

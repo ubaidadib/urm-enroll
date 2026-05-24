@@ -1,5 +1,7 @@
 import type { University, Program as UniversityProgram } from "@/data/universities";
+import { refreshUniversitiesSnapshot } from "@/data/universities";
 import type { Program, ProgramType } from "@/lib/programs";
+import { refreshProgramsSnapshot } from "@/lib/programs";
 
 declare global {
   interface Window {
@@ -11,6 +13,8 @@ declare global {
 type CatalogResponse<T> = {
   data?: T[];
 };
+
+export const MIRROR_CATALOG_READY_EVENT = "urm:mirror-catalog-ready";
 
 const MODULE_SNIPPET_RE = /^\s*import\s+\{/;
 
@@ -217,6 +221,9 @@ export async function bootstrapMirrorCatalogCache(): Promise<void> {
 
     window.__URM_MIRROR_UNIVERSITIES__ = universities;
     window.__URM_MIRROR_PROGRAMS__ = programs;
+    refreshUniversitiesSnapshot();
+    refreshProgramsSnapshot();
+    window.dispatchEvent(new CustomEvent(MIRROR_CATALOG_READY_EVENT));
 
     if (!mirrorFallbackEnabled && universities.length === 0) {
       throw new Error("Mirror catalog loaded with zero universities and fallback is disabled");

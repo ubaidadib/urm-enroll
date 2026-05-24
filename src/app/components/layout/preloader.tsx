@@ -12,25 +12,37 @@ export function Preloader({ onComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(onComplete, 500);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 20);
+    const durationMs = 650;
+    const completeDelayMs = 120;
+    const startTime = performance.now();
+    let frameId = 0;
+    let completeTimer = 0;
 
-    return () => clearInterval(timer);
+    const tick = (now: number) => {
+      const progressRatio = Math.min((now - startTime) / durationMs, 1);
+      setProgress(Math.round(progressRatio * 100));
+
+      if (progressRatio < 1) {
+        frameId = window.requestAnimationFrame(tick);
+        return;
+      }
+
+      completeTimer = window.setTimeout(onComplete, completeDelayMs);
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(completeTimer);
+    };
   }, [onComplete]);
 
   return (
     <m.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.35 }}
       role="status"
       aria-live="polite"
       className="fixed inset-0 z-100 bg-linear-to-br from-bg-primary via-bg-secondary to-bg-tertiary flex items-center justify-center"

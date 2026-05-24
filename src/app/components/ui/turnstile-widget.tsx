@@ -116,5 +116,5 @@ export function TurnstileWidget({ siteKey, onTokenChange, resetKey }: TurnstileW
     window.turnstile.reset(widgetIdRef.current);
   }, [resetKey, onTokenChange]);
 
-  return <div ref={containerRef} className="min-h-[65px] w-[300px]" />;
+  return <div ref={containerRef} className="min-h-[65px] w-full max-w-[300px]" />;
 }

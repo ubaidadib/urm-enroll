@@ -1,31 +1,26 @@
 /**
- * Instagram Content Service
- * Handles fetching, caching, and error handling for Instagram media.
+ * Instagram Feed Client
+ * Frontend-only client for the internal Instagram feed API.
  */
 
-const INSTAGRAM_API_ENDPOINT = '/api/instagram';
+import type {
+  InstagramFeedItem,
+  InstagramFeedMeta,
+  InstagramFeedResponse,
+} from '@/types/instagram-feed';
+
+const INSTAGRAM_API_ENDPOINT = '/api/instagram-feed';
 const FRONTEND_CACHE_KEY = 'urm_instagram_content';
 const FRONTEND_CACHE_TTL = 15 * 60 * 1000; // 15 minutes
 const FETCH_TIMEOUT = 15000; // 15 seconds
 
-export interface InstagramContentItem {
-  id: string | number;
-  instagramUrl: string;
-  caption?: string;
-  mediaType?: string;
-  mediaUrl?: string;
-  timestamp?: string;
-  quote?: {
-    en: string;
-    de: string;
-    ar: string;
-  };
-}
+export type InstagramContentItem = InstagramFeedItem;
 
 let inFlightFetch: Promise<InstagramContentItem[]> | null = null;
 
 interface CachedInstagramData {
   data: InstagramContentItem[];
+  meta?: InstagramFeedMeta;
   expiresAt: number;
   timestamp: string;
 }
@@ -34,11 +29,6 @@ interface FetchOptions {
   limit?: number;
   forceRefresh?: boolean;
   timeout?: number;
-}
-
-interface InstagramApiSuccessResponse {
-  success: true;
-  data: InstagramContentItem[];
 }
 
 const MODULE_SNIPPET_RE = /^\s*import\s+\{/;
@@ -50,12 +40,13 @@ function isInstagramContentItem(value: unknown): value is InstagramContentItem {
 
   const record = value as Record<string, unknown>;
   return (
-    (typeof record.id === 'string' || typeof record.id === 'number') &&
-    typeof record.instagramUrl === 'string'
+    typeof record.id === 'string' &&
+    typeof record.shortcode === 'string' &&
+    typeof record.permalink === 'string'
   );
 }
 
-function isInstagramApiSuccessResponse(value: unknown): value is InstagramApiSuccessResponse {
+function isInstagramApiSuccessResponse(value: unknown): value is InstagramFeedResponse {
   if (!value || typeof value !== 'object') {
     return false;
   }
@@ -141,7 +132,7 @@ export async function fetchInstagramContent(
         throw new Error('Invalid Instagram API response format');
       }
 
-      saveInstagramCacheToStorage(result.data);
+      saveInstagramCacheToStorage(result.data, result.meta);
       return result.data;
     })();
 
@@ -193,10 +184,14 @@ function getInstagramCacheFromStorage(
 /**
  * Saves Instagram content to localStorage with TTL.
  */
-function saveInstagramCacheToStorage(data: InstagramContentItem[]): void {
+function saveInstagramCacheToStorage(
+  data: InstagramContentItem[],
+  meta?: InstagramFeedMeta,
+): void {
   try {
     const cacheData: CachedInstagramData = {
       data,
+      meta,
       expiresAt: Date.now() + FRONTEND_CACHE_TTL,
       timestamp: new Date().toISOString(),
     };

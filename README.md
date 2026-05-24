@@ -66,10 +66,10 @@ Every page, component, route, API, and middleware in this repo serves one of tho
 
 | Concern | Choice | Version |
 | --- | --- | --- |
-| Framework | React | 19 |
+| Framework | React | 18.3.1 |
 | Language | TypeScript | 5.7.3 |
 | Bundler | Vite | 6 |
-| Routing | React Router | v7 (`react-router-dom`) |
+| Routing | React Router | 6.30.3 (`react-router-dom`) |
 | Styling | Tailwind CSS | v4 (via `@tailwindcss/vite`) |
 | Motion | `motion` (Framer Motion v12 lineage) | ^12.38 |
 | Icons | `lucide-react` | 0.487 |
@@ -118,9 +118,12 @@ The OG image should be placed at `public/img/og-image.png` (1200×630 px recomme
 ├── api/                            # Vercel serverless endpoints
 │   ├── contact.js                  # Contact form (SMTP via nodemailer)
 │   ├── health.js                   # Liveness / readiness probe
-│   ├── instagram.js                # Cached Instagram media feed proxy
+│   ├── instagram-feed.js           # Public Instagram feed endpoint
+│   ├── instagram.js                # Backward-compatible alias to instagram-feed.js
 │   ├── lead.js                     # Lead capture pipeline (quiz + funnel)
 │   └── partner.js                  # Institutional / agent partnership intake
+│   └── internal/
+│       └── instagram-feed-refresh.js # Cron/on-demand Instagram cache refresh
 ├── config/
 │   └── env.validation.js           # Server-side env validation (zod)
 ├── docs/                           # Architecture / security / SEO / a11y docs
@@ -220,7 +223,7 @@ URM Enroll is structured as four concentric layers:
 ├──────────────────────────────────────────────────────────────┤
 │ 4. Integrations                                              │
 │    – Cloudflare Turnstile (bot defence)                      │
-│    – Instagram Graph API (cached media feed)                 │
+│    – Instagram Graph API (ingestion + stale-cache feed)      │
 │    – Calendly (embedded consultation booking)                │
 │    – Optional Vercel KV (durable per-email throttling)       │
 └──────────────────────────────────────────────────────────────┘
@@ -231,6 +234,7 @@ URM Enroll is structured as four concentric layers:
 - All client → server traffic for forms goes through `secureSubmitLead()` → `/api/lead`, which always carries a CSRF token, a Turnstile token, an `x-urm-client` header, `credentials: "omit"`, and `referrerPolicy: "no-referrer"`.
 - EN is the source of truth for translation shape; `TranslationKeys = Widen<typeof en>` forces DE and AR to match — this is enforced at compile time.
 - The full route table exists twice in `App.tsx`: once mounted on `/` (default-language detection) and once under `/:lang/*` (explicit locale prefix).
+- Initial React render must not wait for mirror-catalog network hydration; mirror catalog warmup runs after mount and refreshes the in-browser data snapshot when it completes.
 
 ---
 
@@ -711,8 +715,13 @@ All endpoints live in `api/` and are composed with `withSecurity()` from `middle
 | [`/api/lead`](api/lead.js) | POST | Lead capture (smart-lead-form + Chancenkarte quiz). | zod-validated, Turnstile, CSRF, origin, `maxBodyBytes 10KB`, 20/15min rate limit, per-email throttle 3/24h. Returns 204. |
 | [`/api/contact`](api/contact.js) | POST | Contact form. | Sends transactional email via SMTP/nodemailer. |
 | [`/api/partner`](api/partner.js) | POST | Partnership intake (institutions, agents). | Same hardening stack as `/api/lead`. |
-| [`/api/instagram`](api/instagram.js) | GET | Cached Instagram media feed via Instagram Graph API. | Lives behind `lib/instagram.js` cache layer. |
+| [`/api/instagram-feed`](api/instagram-feed.js) | GET | Public Instagram feed with normalized thumbnails and stale-cache fallback. | Backed by `lib/instagram-feed.js`; supports `?limit=1..30`. |
+| [`/api/instagram`](api/instagram.js) | GET | Backward-compatible alias for the public Instagram feed. | Re-exports `api/instagram-feed.js`. |
 | [`/api/health`](api/health.js) | GET | Liveness probe (build info + timestamp). | Used by uptime monitoring. |
+
+Internal-only refresh endpoint:
+
+- [`/api/internal/instagram-feed-refresh`](api/internal/instagram-feed-refresh.js) — secured cron/on-demand refresh route authorized by `CRON_SECRET` or `ENROLL_SYNC_WORKER_SECRET`.
 
 ### `withSecurity()` options reference
 
@@ -822,10 +831,21 @@ The full Germany / Chancenkarte route set is already wired into both files.
 
 ## Instagram Integration
 
-`api/instagram.js` proxies the Instagram Graph API and serves a normalised feed to the homepage Instagram section.
+`api/instagram-feed.js` is the public read endpoint for Instagram success stories shown on the home page. The frontend section is presentation-only and reads a normalized feed contract rather than calling Instagram directly.
 
-- Implementation: [`lib/instagram.js`](lib/instagram.js) (cache, fetch wrapper).
-- Client: [`src/hooks/useInstagramContent.ts`](src/hooks/useInstagramContent.ts), [`src/lib/instagram-content.ts`](src/lib/instagram-content.ts), [`src/app/sections/home-instagram-section.tsx`](src/app/sections/home-instagram-section.tsx).
+- Public endpoint: [`api/instagram-feed.js`](api/instagram-feed.js)
+- Backward-compatible alias: [`api/instagram.js`](api/instagram.js)
+- Ingestion/cache layer: [`lib/instagram-feed.js`](lib/instagram-feed.js)
+- Internal refresh route: [`api/internal/instagram-feed-refresh.js`](api/internal/instagram-feed-refresh.js)
+- Client: [`src/hooks/useInstagramContent.ts`](src/hooks/useInstagramContent.ts), [`src/lib/instagram-content.ts`](src/lib/instagram-content.ts), [`src/app/sections/instagram-reels-section.tsx`](src/app/sections/instagram-reels-section.tsx)
+- Image safety: thumbnails are rewritten through the same-origin proxy at [`api/media/image.js`](api/media/image.js)
+
+Behavioral guarantees:
+
+- The home page does not depend on Instagram embed.js or oEmbed requests to render reel cards.
+- The feed serves stale cached content on upstream Instagram failures.
+- The client can request a bounded item count via `limit`, but only renders already-normalized data.
+
 - Requires `INSTAGRAM_ACCESS_TOKEN` and `INSTAGRAM_BUSINESS_ACCOUNT_ID`.
 - Cache-aware: serves stale on upstream errors so the home page never blocks on Instagram.
 
@@ -891,6 +911,10 @@ npm run build
 ```bash
 npm run preview
 ```
+
+### Bundle analysis output
+
+The Vite visualizer writes raw bundle analysis to `dist/reports/bundle-report.json` during `vite build`. It is generated output and should not be committed from the repository root.
 
 ### Quality gates (run before any release)
 

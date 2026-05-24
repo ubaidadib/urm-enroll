@@ -11,6 +11,7 @@ import { ComparisonProvider } from "./context/comparison-context";
 import { FavoritesProvider } from "./context/favorites-context";
 import { AppShell } from "./components/layout/app-shell";
 import { FocusShell } from "./components/layout/focus-shell";
+import { MIRROR_CATALOG_READY_EVENT } from "@/lib/mirror-catalog";
 import { LegalPage } from "./pages/legal-page";
 import { LegalNotFound } from "./pages/not-found-page";
 import type { SupportedLanguage } from "../i18n/types";
@@ -92,6 +93,16 @@ function LocaleRoute() {
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [, setCatalogVersion] = useState(0);
+
+  useEffect(() => {
+    const handleCatalogReady = () => {
+      setCatalogVersion((version) => version + 1);
+    };
+
+    window.addEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+    return () => window.removeEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+  }, []);
 
   return (
     <ThemeProvider>

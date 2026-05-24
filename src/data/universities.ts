@@ -500,14 +500,22 @@ const resolveMirrorUniversities = (): University[] | null => {
   return cached;
 };
 
-const mirrorUniversities = resolveMirrorUniversities();
+const resolveUniversitiesSnapshot = (): University[] => {
+  const mirrorUniversities = resolveMirrorUniversities();
 
-export const UNIVERSITIES: University[] =
-  mirrorUniversities && mirrorUniversities.length > 0
-    ? mirrorUniversities
-    : MIRROR_FALLBACK_ENABLED
-      ? STATIC_UNIVERSITIES
-      : [];
+  if (mirrorUniversities && mirrorUniversities.length > 0) {
+    return mirrorUniversities;
+  }
+
+  return MIRROR_FALLBACK_ENABLED ? STATIC_UNIVERSITIES : [];
+};
+
+export let UNIVERSITIES: University[] = resolveUniversitiesSnapshot();
+
+export function refreshUniversitiesSnapshot(): University[] {
+  UNIVERSITIES = resolveUniversitiesSnapshot();
+  return UNIVERSITIES;
+}
 
 /**
  * Get a university by ID
