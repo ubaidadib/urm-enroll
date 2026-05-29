@@ -371,7 +371,7 @@ export function ProgramsPage() {
         path="/programs"
       />
 
-      <main className="relative min-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950">
+      <main className="dark relative min-h-screen overflow-hidden" style={{ background: "rgb(5,10,24)" }}>
         <div className="pointer-events-none fixed inset-0 overflow-hidden">
           <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-linear-to-br from-cyan-200/35 to-transparent blur-3xl dark:from-cyan-900/20" />
           <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr from-amber-200/30 to-transparent blur-3xl dark:from-amber-900/15" />

@@ -7,6 +7,7 @@ export const footer = {
   exploreTitle: "Entdecken",
   resourcesTitle: "Ressourcen",
   accreditationTitle: "Akkreditierung",
+  partnersTitle: "Für Partner",
   backToTop: "Nach oben",
   journeys: {
     studyTitle: "Studienweg",

@@ -243,7 +243,7 @@ export function DestinationsPage() {
   const selectedCountry = filtered.length === 1 ? filtered.at(0)?.code : undefined;
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500" dir={dir}>
+    <main className="dark min-h-screen transition-colors duration-500" dir={dir} style={{ background: "rgb(5,10,24)" }}>
       <SeoManager
         title={tx(
           "seo.sections.destinations.title",

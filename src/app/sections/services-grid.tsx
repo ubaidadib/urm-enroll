@@ -110,13 +110,13 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
   return (
     <section 
       dir={dir}
-      className="relative py-24 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+      className="relative py-24 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
     >
-      
-      {/* Ambient Glows — Synced with the design system */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full bg-blue-500/10 dark:bg-blue-500/5 blur-[160px]" />
-        <div className="absolute -bottom-48 -left-48 w-[700px] h-[700px] rounded-full bg-accent-tech/8 dark:bg-accent-tech/5 blur-[140px]" />
+        <div className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full blur-[160px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
+        <div className="absolute -bottom-48 -left-48 w-[700px] h-[700px] rounded-full blur-[140px] opacity-6" style={{ background: "rgb(212,175,55)" }} />
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 px-6">
@@ -126,16 +126,17 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
           {compact ? (
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-3">
-                <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight" style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}>
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: "rgb(248,250,252)", fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}>
                   {t<string>("services.homeTitle")}
                 </h2>
-                <p className="text-lg md:text-xl font-medium text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+                <p className="text-lg md:text-xl font-medium leading-relaxed max-w-2xl" style={{ color: "rgb(145,177,210)" }}>
                   {t<string>("services.homeSubtitle")}
                 </p>
               </div>
               <Link 
                 to="/services" 
-                className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl glass-card-light text-slate-900 dark:text-white text-sm font-bold hover:shadow-md transition-all active:scale-95 group"
+                className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all active:scale-95 group"
+                style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.2)", color: "rgb(212,175,55)" }}
               >
                 <span>{t<string>("services.viewAll")}</span>
                 <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
@@ -143,10 +144,10 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
             </div>
           ) : (
             <div className="space-y-3 max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: "rgb(248,250,252)" }}>
                 {t<string>("services.catalogTitle")}
               </h2>
-              <p className="text-lg md:text-xl font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-lg md:text-xl font-medium leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
                 {t<string>("services.catalogSubtitle")}
               </p>
             </div>
@@ -169,7 +170,10 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
               variants={itemVariants}
               whileHover={{ y: -6 }}
               onClick={() => SEO_EVENTS.PROGRAM_VIEWED(service.title)}
-              className={`group relative flex flex-col p-8 rounded-[2rem] glass-card-light overflow-hidden transition-all duration-300 ${service.glow}`}
+              className={`group relative flex flex-col p-8 rounded-[2rem] overflow-hidden transition-all duration-300 ${service.glow}`}
+              style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
             >
               {/* Card Header: Icon & Action */}
               <div className="flex items-start justify-between mb-8">
@@ -193,18 +197,18 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
               </div>
 
               {/* Title & Desc */}
-              <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-slate-100 mb-3 group-hover:text-accent-primary transition-colors duration-300">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300" style={{ color: "rgb(248,250,252)" }}>
                 {service.title}
               </h3>
               
-              <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+              <p className="text-sm leading-relaxed mb-8 flex-grow" style={{ color: "rgb(145,177,210)" }}>
                 {service.description}
               </p>
 
               {/* Feature List */}
-              <div className="mt-auto space-y-3 pt-6 border-t border-slate-100 dark:border-slate-800/80">
+              <div className="mt-auto space-y-3 pt-6 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
                 {service.features?.map((feature: string, i: number) => (
-                  <div key={i} className="flex items-center gap-3 text-xs font-semibold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
+                  <div key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider" style={{ color: "rgb(145,177,210)" }}>
                     <CheckCircle2 className={`w-4 h-4 shrink-0 ${service.iconColor}`} strokeWidth={2.5} />
                     <span>{feature}</span>
                   </div>
@@ -223,7 +227,8 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
           <div className="mt-12 flex justify-center md:hidden">
             <Link 
               to="/services" 
-              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95"
+              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95"
+              style={{ background: "rgb(212,175,55)", color: "rgb(8,14,28)" }}
             >
               <span>{t<string>("services.viewAll")}</span>
               <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />

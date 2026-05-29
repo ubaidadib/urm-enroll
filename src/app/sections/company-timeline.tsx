@@ -47,7 +47,8 @@ export function CompanyTimeline() {
   return (
     <section
       id="timeline"
-      className="py-32 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500"
+      className="py-32 relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
     >
       {/* --- Ambient Background (Matches Destinations Page) --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -64,10 +65,11 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-full mb-6"
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6"
+            style={{ background: "rgba(0,184,217,0.08)", border: "1px solid rgba(0,184,217,0.25)" }}
           >
-            <TrendingUp className="w-4 h-4 text-accent-tech" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+            <TrendingUp className="w-4 h-4" style={{ color: "rgb(0,184,217)" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(0,184,217)" }}>
               {t<string>('timeline.badge')}
             </span>
           </m.div>
@@ -76,7 +78,7 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}
           >
             {t<string>('timeline.title')}
           </m.h2>
@@ -85,7 +87,7 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "rgb(145,177,210)" }}
           >
             {t<string>('timeline.description')}
           </m.p>
@@ -94,7 +96,7 @@ export function CompanyTimeline() {
         {/* --- The Timeline --- */}
         <div className="relative">
           {/* Central Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-slate-300 dark:via-slate-700 to-transparent" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px" style={{ background: "linear-gradient(to bottom, transparent, rgba(212,175,55,0.3), transparent)" }} />
 
           <div className="space-y-16">
             {milestones.map((milestone, index) => {
@@ -115,17 +117,17 @@ export function CompanyTimeline() {
                 >
                   {/* Content Card */}
                   <div className={`flex-1 w-full md:w-auto ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-20 md:pl-0`}>
-                    <div className={`group relative inline-block p-8 rounded-[2rem] glass-card-light hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${index % 2 === 0 ? 'mr-0 md:mr-12' : 'ml-0 md:ml-12'}`}>
+                    <div className={`group relative inline-block p-8 rounded-[2rem] transition-all duration-300 hover:-translate-y-1 ${index % 2 === 0 ? 'mr-0 md:mr-12' : 'ml-0 md:ml-12'}`} style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.12)" }}>
                       {/* Decorative colored bar */}
                       <div className={`absolute top-10 bottom-10 w-1 rounded-full ${visual.bg.replace('/10', '')} ${index % 2 === 0 ? 'right-0 md:right-auto md:left-0' : 'left-0 md:left-auto md:right-0'}`} />
                       
-                      <div className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-2">
+                      <div className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}>
                         {milestone.year}
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                      <h3 className="text-2xl font-bold mb-2" style={{ color: "rgb(248,250,252)" }}>
                         {milestone.title}
                       </h3>
-                      <p className="text-slate-500 dark:text-slate-400 font-medium">
+                      <p className="font-medium" style={{ color: "rgb(145,177,210)" }}>
                         {milestone.description}
                       </p>
                     </div>
@@ -135,7 +137,7 @@ export function CompanyTimeline() {
                   <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
                     <div className="relative">
                       <div className={`absolute inset-0 rounded-full blur-md opacity-50 ${visual.bg.replace('/10', '/30')}`} />
-                      <div className={`w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-950 border-4 border-white dark:border-slate-800 shadow-lg flex items-center justify-center relative z-10 ${visual.border}`}>
+                      <div className={`w-16 h-16 rounded-full shadow-lg flex items-center justify-center relative z-10 ${visual.border}`} style={{ background: "rgb(5,10,24)", border: "4px solid rgba(212,175,55,0.3)" }}>
                         <Icon className={`w-6 h-6 ${visual.color}`} strokeWidth={2} />
                       </div>
                     </div>
@@ -155,7 +157,7 @@ export function CompanyTimeline() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-32 pt-16 border-t border-slate-200 dark:border-slate-800 text-center"
+          className="mt-32 pt-16 text-center" style={{ borderTop: "1px solid rgba(212,175,55,0.12)" }}
         >
           <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-10">
             {t<string>('timeline.mediaTitle')}
@@ -165,7 +167,7 @@ export function CompanyTimeline() {
             {MEDIA_LOGOS.map((media, index) => (
               <div key={index} className="flex items-center gap-3 group cursor-default">
                 <media.icon className="w-8 h-8 text-slate-400 group-hover:text-accent-primary transition-colors" />
-                <span className="text-lg font-bold text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
+                <span className="text-lg font-bold transition-colors" style={{ color: "rgb(105,133,166)" }}>
                   {media.name}
                 </span>
               </div>

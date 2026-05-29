@@ -8,43 +8,105 @@ const STEPS = [
     title: "Discover Programs",
     description: "Browse curated university programs that match your goals, budget, and destination preferences.",
     icon: FileSearch,
+    accentColor: "rgb(212,175,55)",
+    accentBg: "rgba(212,175,55,0.1)",
+    accentBorder: "rgba(212,175,55,0.25)",
   },
   {
     number: "02",
     title: "Shortlist Universities",
     description: "Compare admission criteria, tuition, and outcomes to build your best-fit shortlist.",
     icon: School,
+    accentColor: "rgb(0,184,217)",
+    accentBg: "rgba(0,184,217,0.1)",
+    accentBorder: "rgba(0,184,217,0.25)",
   },
   {
     number: "03",
     title: "Prepare Application",
     description: "Get guided support for documents, language proofs, and timeline planning.",
     icon: FileCheck2,
+    accentColor: "rgb(167,139,250)",
+    accentBg: "rgba(167,139,250,0.1)",
+    accentBorder: "rgba(167,139,250,0.25)",
   },
   {
     number: "04",
     title: "Start Your Journey",
     description: "Submit confidently and move from acceptance to relocation with ongoing assistance.",
     icon: PlaneTakeoff,
+    accentColor: "rgb(74,222,128)",
+    accentBg: "rgba(74,222,128,0.1)",
+    accentBorder: "rgba(74,222,128,0.25)",
   },
 ] as const;
 
 export function HomeHowItWorks() {
   return (
-    <section className="py-20 md:py-24 bg-bg-primary">
-      <div className="max-w-7xl mx-auto px-6">
+    <section
+      className="relative py-24 md:py-28 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+    >
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+        }}
+      />
+      {/* Glow */}
+      <div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-full blur-[160px] opacity-10 pointer-events-none"
+        style={{ width: 700, height: 300, background: "rgb(212,175,55)" }}
+      />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Header */}
         <m.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          transition={{ duration: 0.55 }}
+          className="text-center mb-16"
         >
-          <p className="text-sm tracking-[0.2em] uppercase text-text-muted mb-3">Simple Process</p>
-          <h2 className="text-3xl md:text-4xl font-black text-text-primary">How It Works</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
+            Simple Process
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "rgb(248,250,252)" }}>
+            How It Works
+          </h2>
         </m.div>
 
-        <div className="hidden lg:block relative mb-10">
-          <div className="absolute left-0 right-0 top-10 border-t-2 border-dashed border-border" />
+        {/* Desktop — horizontal timeline */}
+        <div className="hidden lg:block relative mb-12">
+          {/* Connector line */}
+          <div
+            className="absolute top-10 mx-auto pointer-events-none"
+            style={{
+              left: "12.5%",
+              right: "12.5%",
+              height: "1px",
+              background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 15%, rgba(212,175,55,0.3) 85%, transparent 100%)",
+            }}
+          />
+          {/* Animated gold fill */}
+          <m.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 1.4, ease: "easeOut" }}
+            className="absolute top-10 pointer-events-none"
+            style={{
+              left: "12.5%",
+              right: "12.5%",
+              height: "1px",
+              background: "linear-gradient(90deg, rgba(212,175,55,0.6) 0%, rgba(212,175,55,0.2) 100%)",
+              transformOrigin: "left",
+            }}
+          />
+
           <div className="grid grid-cols-4 gap-6">
             {STEPS.map((step, index) => {
               const Icon = step.icon;
@@ -54,24 +116,41 @@ export function HomeHowItWorks() {
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.08, duration: 0.45 }}
-                  className="relative"
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  className="relative text-center"
                 >
-                  <div className="w-20 h-20 rounded-full bg-accent-primary text-white mx-auto mb-5 flex items-center justify-center border-4 border-bg-primary z-10 relative">
-                    <Icon className="w-8 h-8" />
+                  {/* Icon circle */}
+                  <div
+                    className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center z-10 relative transition-all duration-300 hover:scale-105"
+                    style={{
+                      background: step.accentBg,
+                      border: `2px solid ${step.accentBorder}`,
+                      boxShadow: `0 0 0 6px rgba(5,10,24,1), 0 0 0 7px ${step.accentBorder}`,
+                    }}
+                  >
+                    <Icon className="w-8 h-8" style={{ color: step.accentColor }} />
                   </div>
-                  <div className="text-center">
-                    <p className="text-xs font-bold tracking-widest text-accent-primary mb-2">STEP {step.number}</p>
-                    <h3 className="text-xl font-bold text-text-primary mb-2">{step.title}</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed">{step.description}</p>
-                  </div>
+
+                  <p
+                    className="text-xs font-bold tracking-widest mb-2"
+                    style={{ color: step.accentColor }}
+                  >
+                    STEP {step.number}
+                  </p>
+                  <h3 className="text-lg font-bold mb-2" style={{ color: "rgb(248,250,252)" }}>
+                    {step.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgb(105,133,166)" }}>
+                    {step.description}
+                  </p>
                 </m.div>
               );
             })}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:hidden mb-10">
+        {/* Mobile — vertical cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:hidden mb-12">
           {STEPS.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -80,17 +159,34 @@ export function HomeHowItWorks() {
                 initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
-                className="rounded-2xl border border-border bg-bg-surface p-6"
+                transition={{ delay: index * 0.08, duration: 0.45 }}
               >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-accent-primary/10 text-accent-primary flex items-center justify-center shrink-0">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold tracking-widest text-accent-primary mb-1">STEP {step.number}</p>
-                    <h3 className="text-lg font-bold text-text-primary mb-1">{step.title}</h3>
-                    <p className="text-sm text-text-secondary">{step.description}</p>
+                <div
+                  className="rounded-2xl p-6 h-full transition-all duration-300"
+                  style={{
+                    background: "rgba(15,28,52,0.7)",
+                    border: `1.5px solid ${step.accentBorder}`,
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ background: step.accentBg, border: `1px solid ${step.accentBorder}` }}
+                    >
+                      <Icon className="w-6 h-6" style={{ color: step.accentColor }} />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold tracking-widest mb-1" style={{ color: step.accentColor }}>
+                        STEP {step.number}
+                      </p>
+                      <h3 className="text-base font-bold mb-1" style={{ color: "rgb(248,250,252)" }}>
+                        {step.title}
+                      </h3>
+                      <p className="text-sm leading-relaxed" style={{ color: "rgb(105,133,166)" }}>
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </m.div>
@@ -98,10 +194,22 @@ export function HomeHowItWorks() {
           })}
         </div>
 
+        {/* CTA */}
         <div className="text-center">
           <Link
             to="/programs"
-            className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-accent-primary text-white font-semibold hover:shadow-lg transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
+            style={{
+              background: "rgb(212,175,55)",
+              color: "rgb(8,14,28)",
+              boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(212,175,55,0.25)";
+            }}
           >
             Explore Programs
             <ArrowRight className="w-4 h-4" />

@@ -67,7 +67,7 @@ function InputField({
     <div>
       <label
         htmlFor={id}
-        className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2"
+        className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -81,10 +81,8 @@ function InputField({
         placeholder={placeholder}
         disabled={disabled}
         className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
-          bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-          hover:border-accent-tech/40 hover:shadow-sm
-          focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 focus:shadow-sm
-          text-slate-900 dark:text-white placeholder:text-slate-400"
+          text-white placeholder-[rgba(105,133,166,0.6)]"
+          style={{ background: "rgba(15,28,52,0.8)", border: "1.5px solid rgba(212,175,55,0.15)", color: "rgb(248,250,252)" }}
       />
     </div>
   );
@@ -116,7 +114,7 @@ function SelectField({
     <div className="relative">
       <label
         htmlFor={id}
-        className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2"
+        className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -364,7 +362,7 @@ export function ContactPage() {
   const trustBadges = (t("contact.trustBadges") as string[]) || [];
 
   return (
-    <main dir={dir} className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <main dir={dir} className="dark min-h-screen" style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}>
       <SeoManager
         path="/contact"
         breadcrumbs={[
@@ -376,13 +374,11 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 1: HERO                                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 px-6 border-b border-slate-200 dark:border-slate-800 overflow-hidden">
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-150 h-150 bg-emerald-500/5 rounded-full blur-[150px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 bg-accent-tech/5 rounded-full blur-[150px]" />
-          <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
-          </div>
+          <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(74,222,128)" }} />
+          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
+          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -400,10 +396,11 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full mb-8"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full mb-8"
+              style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)" }}
             >
-              <MessageCircle className="w-4 h-4 text-emerald-500" />
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-widest">
+              <MessageCircle className="w-4 h-4" style={{ color: "rgb(74,222,128)" }} />
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(74,222,128)" }}>
                 {t<string>("contact.badge")}
               </span>
             </m.div>
@@ -412,7 +409,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight"
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight" style={{ color: "rgb(248,250,252)" }}
             >
               {t<string>("contact.title")}
             </m.h1>
@@ -421,7 +418,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-xl text-slate-600 dark:text-slate-400 mb-6 leading-relaxed max-w-2xl"
+              className="text-xl mb-6 leading-relaxed max-w-2xl" style={{ color: "rgb(145,177,210)" }}
             >
               {t<string>("contact.description")}
             </m.p>
@@ -806,7 +803,7 @@ export function ContactPage() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2"
+                  className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
                 >
                   {t<string>("contact.form.message")}
                   <span className="text-red-500 ms-1">*</span>

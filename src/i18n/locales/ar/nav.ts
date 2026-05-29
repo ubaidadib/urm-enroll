@@ -22,6 +22,8 @@ export const header = {
     studyJourney: "مسار الدراسة",
     germanyJourney: "مسار ألمانيا",
     supportJourney: "الدعم",
+    agentPortal: "بوابة الوكلاء",
+    agentPortalTagline: "مركز التوظيف",
   },
   cta: "استفسار مؤسسي",
   languageSwitcherLabel: "اللغة",

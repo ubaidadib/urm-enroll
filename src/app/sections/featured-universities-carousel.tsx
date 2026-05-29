@@ -52,36 +52,42 @@ export function FeaturedUniversitiesCarousel() {
   }
 
   return (
-    <section className="relative py-20 md:py-24 overflow-hidden">
-      <div className="absolute inset-0 premium-grid opacity-45 pointer-events-none" />
-      <div className="absolute -top-20 -right-16 w-[24rem] h-[24rem] rounded-full bg-accent-primary/16 blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-10 w-[20rem] h-[20rem] rounded-full bg-accent-tech/16 blur-[100px] pointer-events-none" />
+    <section className="relative py-20 md:py-24 overflow-hidden" style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}>
+      <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+      <div className="absolute -top-20 -right-16 w-[24rem] h-[24rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(212,175,55,0.06)" }} />
+      <div className="absolute -bottom-20 -left-10 w-[20rem] h-[20rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(0,184,217,0.06)" }} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="mb-9 flex items-end justify-between gap-4">
           <div>
-            <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-text-muted mb-3 font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-accent-tech" />
+            <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase mb-3 font-semibold" style={{ color: "rgb(212,175,55)" }}>
+              <Sparkles className="w-3.5 h-3.5" />
               Top Picks
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">Featured Universities</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "rgb(248,250,252)" }}>Featured Universities</h2>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <Link to="/universities" className="text-sm text-accent-tech font-semibold hover:underline">
+            <Link to="/universities" className="text-sm font-semibold transition-opacity hover:opacity-70" style={{ color: "rgb(0,184,217)" }}>
               View All
             </Link>
             <div className="flex gap-2">
               <button
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-xl border border-border/65 bg-background-surface/85 text-text-primary hover:bg-background-hover transition-all flex items-center justify-center"
+                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
+                style={{ border: "1.5px solid rgba(212,175,55,0.2)", background: "rgba(15,28,52,0.7)", color: "rgb(212,224,239)" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.45)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.2)")}
                 aria-label="Previous featured universities"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-10 h-10 rounded-xl border border-border/65 bg-background-surface/85 text-text-primary hover:bg-background-hover transition-all flex items-center justify-center"
+                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
+                style={{ border: "1.5px solid rgba(212,175,55,0.2)", background: "rgba(15,28,52,0.7)", color: "rgb(212,224,239)" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.45)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.2)")}
                 aria-label="Next featured universities"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -138,7 +144,8 @@ export function FeaturedUniversitiesCarousel() {
                 setDirection(index > currentIndex ? 1 : -1);
                 setCurrentIndex(index);
               }}
-              className={`h-2.5 rounded-full transition-all ${currentIndex === index ? "w-9 bg-accent-tech" : "w-2.5 bg-border"}`}
+              className={`h-2 rounded-full transition-all ${currentIndex === index ? "w-8" : "w-2"}`}
+            style={{ background: currentIndex === index ? "rgb(212,175,55)" : "rgba(212,175,55,0.2)" }}
               aria-label={`Go to featured university ${index + 1}`}
             />
           ))}

@@ -7,6 +7,7 @@ export const footer = {
   exploreTitle: "استكشف",
   resourcesTitle: "الموارد",
   accreditationTitle: "الاعتمادات",
+  partnersTitle: "للشركاء",
   backToTop: "العودة للأعلى",
   journeys: {
     studyTitle: "مسار الدراسة",

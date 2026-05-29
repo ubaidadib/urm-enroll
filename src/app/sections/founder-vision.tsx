@@ -25,7 +25,8 @@ export function FounderVision() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative py-24 md:py-32 bg-slate-50 dark:bg-slate-950 overflow-hidden transition-colors duration-500"
+      className="relative py-24 md:py-32 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -43,10 +44,11 @@ export function FounderVision() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-full mb-8"
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8"
+            style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
           >
-            <Sparkles className="w-4 h-4 text-accent-tech" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+            <Sparkles className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
               {t<string>('founder.badge')}
             </span>
           </m.div>
@@ -55,7 +57,7 @@ export function FounderVision() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1]"
+            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1]" style={{ color: "rgb(248,250,252)" }}
           >
             {t<string>('founder.titleLine1')} <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-accent-tech">
@@ -94,22 +96,23 @@ export function FounderVision() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className={`absolute -bottom-8 ${dir === 'rtl' ? '-left-8' : '-right-8'} bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-700 rounded-3xl p-8 shadow-2xl max-w-xs`}
+                className={`absolute -bottom-8 ${dir === 'rtl' ? '-left-8' : '-right-8'} backdrop-blur-xl rounded-3xl p-8 shadow-2xl max-w-xs`}
+                style={{ background: "rgba(8,14,28,0.85)", border: "1.5px solid rgba(212,175,55,0.2)" }}
               >
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <div className="text-4xl font-black text-slate-900 dark:text-white mb-1">
+                    <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.direct')}
                     </div>
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgb(105,133,166)" }}>
                       {t<string>('founder.stats.directLabel')}
                     </div>
                   </div>
                   <div>
-                    <div className="text-4xl font-black text-slate-900 dark:text-white mb-1">
+                    <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.reach')}
                     </div>
-                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgb(105,133,166)" }}>
                       {t<string>('founder.stats.reachLabel')}
                     </div>
                   </div>

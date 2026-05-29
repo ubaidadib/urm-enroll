@@ -22,6 +22,8 @@ export const header = {
     studyJourney: "Studium",
     germanyJourney: "Deutschland",
     supportJourney: "Support",
+    agentPortal: "Agentenportal",
+    agentPortalTagline: "Rekrutierungszentrale",
   },
   cta: "Institutionelle Anfrage",
   languageSwitcherLabel: "Sprache",

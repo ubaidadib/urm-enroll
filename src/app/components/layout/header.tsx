@@ -11,6 +11,8 @@ import {
   BookCheck,
   Briefcase,
   ArrowUpRight,
+  LayoutDashboard,
+  ExternalLink,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { languageOptions, useLanguage } from "@/i18n/language-context";
@@ -42,6 +44,8 @@ const MOBILE_SECONDARY_ITEMS = [
   { href: "/services", labelKey: "header.nav.services" },
   { href: "/about", labelKey: "header.nav.about" },
 ];
+
+const AGENT_PORTAL_URL = "https://agents-portal.enrollurm.com/";
 
 type HeaderProps = {
   isCompact?: boolean;
@@ -94,6 +98,12 @@ export function Header({ isCompact = false }: HeaderProps) {
       href: "/about",
       label: t<string>("header.nav.about"),
       icon: <ArrowUpRight className="w-4 h-4" />,
+    },
+    {
+      href: "https://agents-portal.enrollurm.com/",
+      label: t<string>("header.nav.agentPortal"),
+      icon: <LayoutDashboard className="w-4 h-4" />,
+      external: true,
     },
   ];
 
@@ -189,6 +199,31 @@ export function Header({ isCompact = false }: HeaderProps) {
               onNavigate={(href) => navigate(href)}
               isActive={moreDropdownItems.some((item) => isNavActive(item.href))}
             />
+
+            <a
+              href="https://agents-portal.enrollurm.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t<string>("header.nav.agentPortal")}
+              className="ml-1 inline-flex items-center whitespace-nowrap gap-2 px-4 py-2.5 rounded-full text-[14px] font-semibold transition-all hover:-translate-y-[1px]"
+              style={{
+                background: "rgba(15,28,52,0.85)",
+                border: "1.5px solid rgba(212,175,55,0.35)",
+                color: "rgb(212,175,55)",
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.7)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(212,175,55,0.15)";
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.35)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+              }}
+            >
+              <LayoutDashboard className="w-3.5 h-3.5" />
+              {t<string>("header.nav.agentPortal")}
+              <ExternalLink className="w-3 h-3 opacity-60" />
+            </a>
 
             <Link
               to="/partnerships"
@@ -407,6 +442,23 @@ export function Header({ isCompact = false }: HeaderProps) {
                       </span>
                     )}
                   </Link>
+
+                  <a
+                    href={AGENT_PORTAL_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2"
+                    style={{
+                      background: "rgba(15,28,52,0.9)",
+                      border: "1.5px solid rgba(212,175,55,0.4)",
+                      color: "rgb(212,175,55)",
+                    }}
+                  >
+                    <LayoutDashboard className="w-4 h-4" />
+                    {t<string>("header.nav.agentPortal")}
+                    <ExternalLink className="w-3.5 h-3.5 opacity-70" />
+                  </a>
 
                   <Link
                     to="/partnerships"

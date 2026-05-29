@@ -31,7 +31,8 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative py-32 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+      className="relative py-32 px-6 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -54,18 +55,18 @@ export function CaseStudies() {
           transition={{ duration: 0.6 }}
           className={`mb-20 ${dir === "rtl" ? "text-right" : "text-left"}`}
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-full mb-6">
-            <ShieldCheck className="w-4 h-4 text-accent-tech" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6" style={{ background: "rgba(0,184,217,0.08)", border: "1px solid rgba(0,184,217,0.25)" }}>
+            <ShieldCheck className="w-4 h-4" style={{ color: "rgb(0,184,217)" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(0,184,217)" }}>
               {t<string>("caseStudies.badge")}
             </span>
           </div>
           
-          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}>
             {t<string>("caseStudies.title")}
           </h2>
           
-          <p className="text-xl text-slate-500 dark:text-slate-400 max-w-3xl leading-relaxed">
+          <p className="text-xl max-w-3xl leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
             {t<string>("caseStudies.description")}
           </p>
         </m.div>
@@ -88,7 +89,7 @@ export function CaseStudies() {
                 className="group relative h-full"
               >
                 {/* Main Card */}
-                <div className={`relative h-full flex flex-col p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 glass-card-light hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] hover:border-accent-tech/30 transition-all duration-500 overflow-hidden ${dir === "rtl" ? "text-right" : "text-left"}`}>
+                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden ${dir === "rtl" ? "text-right" : "text-left"}`} style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}>
                   
                   {/* Subtle Top-Right Arrow for external feel */}
                   <div className={`absolute top-8 ${dir === "rtl" ? "left-8" : "right-8"} opacity-20 group-hover:opacity-100 group-hover:text-accent-tech transition-all`}>
@@ -96,7 +97,7 @@ export function CaseStudies() {
                   </div>
 
                   {/* Icon Container */}
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 shadow-inner transition-transform duration-500 group-hover:scale-110`}>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-inner transition-transform duration-500 group-hover:scale-110" style={{ background: "rgba(5,10,24,0.8)", border: "1px solid rgba(212,175,55,0.15)" }}>
                     <Icon className={`w-7 h-7 ${visual.color}`} strokeWidth={1.5} />
                   </div>
 
@@ -108,18 +109,18 @@ export function CaseStudies() {
                         {t<string>("caseStudies.anonymized")}
                       </span>
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+                    <h3 className="text-2xl font-bold leading-tight" style={{ color: "rgb(248,250,252)" }}>
                       {study.title}
                     </h3>
                   </div>
 
                   {/* Body Text */}
-                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-10 flex-grow">
+                  <p className="text-sm leading-relaxed mb-10 flex-grow" style={{ color: "rgb(145,177,210)" }}>
                     {study.summary}
                   </p>
 
                   {/* Impact Footer (Heavy Contrast) */}
-                  <div className="mt-auto pt-8 border-t border-slate-100 dark:border-slate-800">
+                  <div className="mt-auto pt-8 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
                     <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
                       {t<string>("caseStudies.coreOutcome")}
                     </div>
@@ -142,7 +143,8 @@ export function CaseStudies() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-20 pt-10 border-t border-slate-100 dark:border-slate-800 flex flex-wrap justify-center gap-12 grayscale opacity-40 hover:opacity-100 transition-all duration-700"
+          className="mt-20 pt-10 flex flex-wrap justify-center gap-12 opacity-30 hover:opacity-80 transition-all duration-700"
+          style={{ borderTop: "1px solid rgba(212,175,55,0.12)" }}
         >
           <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
             <Briefcase className="w-4 h-4" /> {t<string>("caseStudies.trustVerified")}

@@ -97,7 +97,7 @@ export function ResourcesPage() {
   const base = language ? `/${language}` : "";
 
   return (
-    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <main className="dark min-h-screen transition-colors duration-500" style={{ background: "rgb(5,10,24)" }}>
       <SeoManager
         title={copy.title}
         description={copy.description}

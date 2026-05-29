@@ -1,369 +1,474 @@
 import { useEffect, useRef, useState } from "react";
-import { m, useReducedMotion } from "motion/react";
+import { m, useReducedMotion, useInView } from "motion/react";
 import { useLanguage } from "@/i18n/language-context";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Award, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useExperiment } from "@/hooks/useExperiment";
 import { trackExperimentView, trackPersonalizationApplied } from "@/utils/tracking";
 import { usePersonalization } from "@/hooks/usePersonalization";
 
-export function HeroSection() {
-  const MOTION = { fast: 0.24, medium: 0.4, slow: 0.6 } as const;
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const shouldReduceMotion = useReducedMotion();
-  const { t, dir } = useLanguage();
-  const { variant: heroVariant, isVariantB: isHeroB } = useExperiment("hero_headline");
-  const { resolveContent, isSlotPersonalized, segment, recordSignal } = usePersonalization();
-  const [fieldIndex, setFieldIndex] = useState(0);
-  const [enableEnhancedVisuals, setEnableEnhancedVisuals] = useState(false);
-  const rotatingFields = ["Engineering", "Medicine", "Business", "Arts & Design", "Science", "Law"];
+// ─── Types ──────────────────────────────────────────────────────────────────
+
+interface DestinationCard {
+  flag: string;
+  country: string;
+  programs: string;
+  rotation: number;
+  floatDelay: number;
+  floatDuration: number;
+  offset: { x: number; y: number };
+}
+
+interface StatItem {
+  value: number;
+  suffix: string;
+  labelKey: string;
+}
+
+// ─── Data ────────────────────────────────────────────────────────────────────
+
+const DESTINATIONS: DestinationCard[] = [
+  { flag: "🇩🇪", country: "Germany",   programs: "3,200+ programs", rotation: -2,  floatDelay: 0,   floatDuration: 3.4, offset: { x: 0,   y: 0   } },
+  { flag: "🇬🇧", country: "UK",        programs: "4,800+ programs", rotation:  3,  floatDelay: 0.6, floatDuration: 3.8, offset: { x: 10,  y: -15 } },
+  { flag: "🇹🇷", country: "Turkey",    programs: "1,100+ programs", rotation: -4,  floatDelay: 1.1, floatDuration: 4.0, offset: { x: -8,  y: 20  } },
+  { flag: "🇨🇦", country: "Canada",    programs: "2,400+ programs", rotation:  2,  floatDelay: 1.6, floatDuration: 3.6, offset: { x: 12,  y: 30  } },
+];
+
+const STATS: StatItem[] = [
+  { value: 500,  suffix: "+", labelKey: "hero.stats.students_label"     },
+  { value: 20,   suffix: "+", labelKey: "hero.stats.universities_label" },
+  { value: 10,   suffix: "+", labelKey: "hero.stats.countries_label"    },
+  { value: 5,    suffix: "+", labelKey: "hero.stats.years_label"        },
+];
+
+// ─── Sub-components ──────────────────────────────────────────────────────────
+
+function CountUp({ target, suffix, inView, shouldReduceMotion }: {
+  target: number;
+  suffix: string;
+  inView: boolean;
+  shouldReduceMotion: boolean | null;
+}) {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
-
-    const idle = window.requestIdleCallback
-      ? window.requestIdleCallback(() => setEnableEnhancedVisuals(true), { timeout: 800 })
-      : window.setTimeout(() => setEnableEnhancedVisuals(true), 300);
-
-    return () => {
-      if (typeof idle === "number") {
-        window.clearTimeout(idle);
-      } else if (window.cancelIdleCallback) {
-        window.cancelIdleCallback(idle);
-      }
+    if (!inView) return;
+    if (shouldReduceMotion) { setCount(target); return; }
+    const duration = 1400;
+    const startTime = performance.now();
+    let raf: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(target * eased));
+      if (progress < 1) raf = requestAnimationFrame(tick);
     };
-  }, [shouldReduceMotion]);
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, target, shouldReduceMotion]);
+
+  return <>{count}{suffix}</>;
+}
+
+function DestinationCardItem({ card, index, shouldReduceMotion }: {
+  card: DestinationCard;
+  index: number;
+  shouldReduceMotion: boolean | null;
+}) {
+  const floatAnimation = shouldReduceMotion
+    ? {}
+    : {
+        y: [0, -8, 0],
+        transition: {
+          duration: card.floatDuration,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+          delay: card.floatDelay,
+        },
+      };
+
+  return (
+    <m.div
+      initial={{ opacity: 0, x: 40, rotate: card.rotation }}
+      animate={{ opacity: 1, x: 0, rotate: card.rotation, ...floatAnimation }}
+      transition={{
+        opacity: { delay: 0.5 + index * 0.15, duration: 0.5 },
+        x: { delay: 0.5 + index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+      }}
+      style={{ transform: `translate(${card.offset.x}px, ${card.offset.y}px) rotate(${card.rotation}deg)` }}
+      className="bg-[rgba(15,28,52,0.85)] backdrop-blur-md border border-[rgba(212,175,55,0.2)] rounded-2xl p-4 shadow-xl shadow-black/30 hover:border-[rgba(212,175,55,0.4)] transition-colors duration-300"
+    >
+      <div className="flex items-center gap-3 mb-1">
+        <span className="text-2xl leading-none">{card.flag}</span>
+        <span className="text-white font-semibold text-sm">{card.country}</span>
+      </div>
+      <p className="text-[rgb(145,177,210)] text-xs">{card.programs}</p>
+    </m.div>
+  );
+}
+
+// ─── Main Component ──────────────────────────────────────────────────────────
+
+export function HeroSection() {
+  const shouldReduceMotion = useReducedMotion();
+  const { t, dir } = useLanguage();
+  const { variant: heroVariant } = useExperiment("hero_headline");
+  const { resolveContent, isSlotPersonalized, segment } = usePersonalization();
+
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statsInView = useInView(statsRef, { once: true, margin: "-60px" });
 
   useEffect(() => {
     trackExperimentView({ experiment: "hero_headline", variant: heroVariant, page: "home" });
   }, [heroVariant]);
 
   useEffect(() => {
-    recordSignal({ type: "page_view", page: "home" });
-  }, [recordSignal]);
-
-  useEffect(() => {
-    if (!isHeroB && isSlotPersonalized("hero.title")) {
+    if (isSlotPersonalized("hero.title")) {
       trackPersonalizationApplied({
         slot: "hero.title",
         segment,
         contentKey: resolveContent("hero.title"),
       });
     }
-  }, [isHeroB, isSlotPersonalized, segment, resolveContent]);
+  }, [isSlotPersonalized, segment, resolveContent]);
 
-  useEffect(() => {
-    if (shouldReduceMotion) return;
-    const timer = window.setInterval(() => {
-      setFieldIndex((prev) => (prev + 1) % rotatingFields.length);
-    }, 2200);
-    return () => window.clearInterval(timer);
-  }, [shouldReduceMotion, rotatingFields.length]);
+  const headline1: string = t("hero.headline_1");
+  const countryWord: string = t("hero.headline_country");
+  const headlineParts = headline1.split(countryWord);
 
-  /* ── Canvas globe ── */
-  useEffect(() => {
-    if (shouldReduceMotion || !enableEnhancedVisuals) return;
-    if (typeof window !== "undefined" && !window.matchMedia("(min-width: 1024px)").matches) return;
-
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let width = 0;
-    let height = 0;
-
-    const resizeCanvas = () => {
-      const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = rect.width;
-      height = rect.height;
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const centerX = () => width / 2;
-    const centerY = () => height / 2;
-    const radius = () => Math.min(width, height) * 0.32;
-
-    const particles: Array<{ x: number; y: number; vx: number; vy: number; alpha: number }> = [];
-    for (let i = 0; i < 20; i++) {
-      particles.push({
-        x: Math.random() * (canvas.width || 800),
-        y: Math.random() * (canvas.height || 600),
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
-        alpha: Math.random() * 0.5 + 0.15,
-      });
-    }
-
-    let animationFrame: number;
-    let rotation = 0;
-
-    const getCssRgb = (token: string) =>
-      getComputedStyle(document.documentElement).getPropertyValue(token).trim() || "212 175 55";
-
-    let techRgb = getCssRgb("--theme-accent-primary");
-    const updateTheme = () => { techRgb = getCssRgb("--theme-accent-primary"); };
-    window.addEventListener("urm-theme-change", updateTheme);
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-      rotation += 0.0008;
-
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > width) p.vx *= -1;
-        if (p.y < 0 || p.y > height) p.vy *= -1;
-        ctx.fillStyle = `rgba(${techRgb}, ${p.alpha * 0.2})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      ctx.save();
-      ctx.translate(centerX(), centerY());
-      ctx.rotate(rotation);
-
-      ctx.strokeStyle = `rgba(${techRgb}, 0.18)`;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.arc(0, 0, radius(), 0, Math.PI * 2);
-      ctx.stroke();
-
-      for (let i = 0; i < 6; i++) {
-        ctx.strokeStyle = `rgba(${techRgb}, 0.08)`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        const angle = (i / 6) * Math.PI * 2;
-        ctx.ellipse(0, 0, radius() * Math.abs(Math.cos(angle)), radius(), angle, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      ctx.restore();
-
-      const points = [
-        { x: centerX() - radius() * 0.5, y: centerY() - radius() * 0.3 },
-        { x: centerX() + radius() * 0.6, y: centerY() - radius() * 0.4 },
-        { x: centerX() + radius() * 0.3, y: centerY() + radius() * 0.5 },
-        { x: centerX() - radius() * 0.4, y: centerY() + radius() * 0.4 },
-      ];
-
-      const time = Date.now() / 1000;
-
-      points.forEach((point, i) => {
-        ctx.strokeStyle = `rgba(${techRgb}, 0.12)`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(centerX(), centerY());
-        ctx.lineTo(point.x, point.y);
-        ctx.stroke();
-
-        ctx.fillStyle = `rgba(${techRgb}, 0.8)`;
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, 3, 0, Math.PI * 2);
-        ctx.fill();
-
-        const pulse = Math.sin(time * 1.5 + i * 0.5) * 0.5 + 0.5;
-        ctx.strokeStyle = `rgba(${techRgb}, ${pulse * 0.25})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, 8 + pulse * 6, 0, Math.PI * 2);
-        ctx.stroke();
-      });
-
-      animationFrame = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      if (animationFrame) cancelAnimationFrame(animationFrame);
-      window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener("urm-theme-change", updateTheme);
-    };
-  }, [shouldReduceMotion, enableEnhancedVisuals]);
+  const tickerText: string = t("hero.trust_ticker");
+  const isRtl = dir === "rtl";
 
   return (
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative min-h-svh flex items-center justify-center overflow-hidden bg-linear-to-br from-bg-tertiary via-bg-secondary to-bg-tertiary pt-20"
+      className="relative flex flex-col overflow-hidden"
+      style={{ background: "linear-gradient(160deg, rgb(5,10,24) 0%, rgb(8,14,28) 40%, rgb(11,21,48) 100%)" }}
     >
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute top-1/4 left-1/4 w-150 h-150 bg-accent-primary/5 rounded-full blur-[120px] ${enableEnhancedVisuals ? "animate-pulse" : ""}`} />
-        <div className={`absolute bottom-1/4 right-1/4 w-125 h-125 bg-accent-primary/5 rounded-full blur-[120px] ${enableEnhancedVisuals ? "animate-pulse" : ""}`} style={{ animationDelay: '2s' }} />
-        <div className="absolute inset-0 opacity-[0.03]">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(var(--theme-grid),0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--theme-grid),0.1) 1px, transparent 1px)',
-            backgroundSize: '80px 80px',
-          }} />
+      {/* Radial glow blobs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div
+          className="absolute rounded-full blur-[120px] opacity-20"
+          style={{
+            width: 600,
+            height: 600,
+            top: "10%",
+            left: isRtl ? "auto" : "-10%",
+            right: isRtl ? "-10%" : "auto",
+            background: "radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute rounded-full blur-[160px] opacity-15"
+          style={{
+            width: 500,
+            height: 500,
+            bottom: "5%",
+            right: isRtl ? "auto" : "-5%",
+            left: isRtl ? "-5%" : "auto",
+            background: "radial-gradient(circle, rgba(79,107,138,0.4) 0%, transparent 70%)",
+          }}
+        />
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+      </div>
+
+      {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
+      <div
+        className="relative z-10 border-b"
+        style={{ borderColor: "rgba(212,175,55,0.2)", background: "rgba(8,14,28,0.6)" }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+          {/* ICEF Badge */}
+          <a
+            href="https://www.icef.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="ICEF IAS Accredited Agency #6507"
+            className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors duration-200 hover:border-[rgba(212,175,55,0.5)]"
+            style={{
+              borderColor: "rgba(212,175,55,0.3)",
+              background: "rgba(212,175,55,0.06)",
+            }}
+          >
+            <Award className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
+            <div className="leading-none">
+              <p className="text-white font-semibold text-xs">{t<string>("hero.icef_label")}</p>
+              <p className="text-xs mt-0.5" style={{ color: "rgb(145,177,210)" }}>#6507</p>
+            </div>
+            <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
+          </a>
+
+          {/* Divider */}
+          <div className="h-6 w-px flex-shrink-0" style={{ background: "rgba(212,175,55,0.2)" }} />
+
+          {/* Ticker */}
+          <div className="flex-1 overflow-hidden">
+            <m.div
+              aria-hidden="true"
+              className="flex gap-16 whitespace-nowrap"
+              animate={{ x: isRtl ? ["0%", "50%"] : ["0%", "-50%"] }}
+              transition={shouldReduceMotion ? {} : { duration: 22, repeat: Infinity, ease: "linear" }}
+            >
+              {[0, 1].map((i) => (
+                <span
+                  key={i}
+                  className="text-xs font-medium tracking-wide flex-shrink-0"
+                  style={{ color: "rgb(145,177,210)" }}
+                >
+                  {tickerText}
+                </span>
+              ))}
+            </m.div>
+            <span className="sr-only">{tickerText}</span>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
-        {/* Left Content */}
-        <m.div
-          initial={{ opacity: 0, x: dir === 'rtl' ? 50 : -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: MOTION.slow, ease: [0.16, 1, 0.3, 1] }}
-          className={dir === 'rtl' ? 'rtl-text-right' : ''}
-        >
-          {/* Badge */}
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
+      {/* ── 2. Main Hero Content ──────────────────────────────────────────── */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-20 grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-center">
+
+        {/* Left Column */}
+        <div className={isRtl ? "text-right" : "text-left"}>
+
+          {/* Eyebrow */}
+          <m.p
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: MOTION.medium }}
-            className="mb-6"
+            transition={{ delay: 0.1, duration: 0.4 }}
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5"
+            style={{ color: "rgb(0,184,217)" }}
           >
-            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-surface-glass/5 backdrop-blur-xl border border-border/40 rounded-full">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent-primary animate-pulse" />
-              <span className="text-text-primary text-sm font-medium tracking-wide">
-                {t('hero.badge')}
-              </span>
-            </div>
-          </m.div>
+            {t<string>("hero.eyebrow")}
+          </m.p>
 
           {/* Headline */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: MOTION.medium }}
+            transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <h1
               id="hero-title"
-              className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.15] text-text-primary mb-4 tracking-tight"
+              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5"
+              style={{ color: "rgb(248,250,252)" }}
             >
-              {isHeroB ? t('hero.titleLine1VariantB') : t(resolveContent('hero.title'))}
-                <span className="block mt-2 bg-linear-to-r from-accent-primary via-[#b48b1f] to-accent-primary bg-clip-text text-transparent">
-                {isHeroB ? t('hero.titleLine2VariantB') : t('hero.titleLine2')}
+              {/* Line 1 with gold country word */}
+              <span className="block">
+                {headlineParts[0]}
+                <span className="relative inline-block">
+                  <span style={{ color: "rgb(212,175,55)" }}>{countryWord}</span>
+                  {/* Animated underline */}
+                  <m.span
+                    aria-hidden="true"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+                    className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full"
+                    style={{
+                      background: "rgb(212,175,55)",
+                      transformOrigin: isRtl ? "right" : "left",
+                    }}
+                  />
+                </span>
+                {headlineParts[1] ?? ""}
+              </span>
+              {/* Line 2 */}
+              <span className="block mt-1" style={{ color: "rgb(212,224,239)" }}>
+                {t<string>("hero.headline_2")}
               </span>
             </h1>
           </m.div>
 
-          {/* Description */}
+          {/* Subheadline */}
           <m.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: MOTION.medium }}
-            className="text-base md:text-lg text-text-secondary mb-8 leading-relaxed max-w-xl"
+            transition={{ delay: 0.4, duration: 0.45 }}
+            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl"
+            style={{ color: "rgb(145,177,210)" }}
           >
-            {t(resolveContent('hero.description'))}
+            {t<string>("hero.subheadline")}
           </m.p>
-
-          <m.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: MOTION.medium }}
-            className="mb-8"
-          >
-            <p className="text-sm uppercase tracking-[0.18em] text-text-muted mb-2">Popular Fields</p>
-            <p className="text-xl md:text-2xl font-bold text-accent-primary">
-              {rotatingFields[fieldIndex]}
-            </p>
-          </m.div>
 
           {/* CTAs */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: MOTION.medium }}
-            className="flex flex-col sm:flex-row gap-3 mb-8"
+            transition={{ delay: 0.55, duration: 0.45 }}
+            className={`flex flex-col sm:flex-row gap-3 mb-7 ${isRtl ? "sm:flex-row-reverse" : ""}`}
           >
             <Link
               to="/universities"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-linear-to-r from-accent-primary to-accent-primary-strong text-white font-semibold rounded-xl text-base hover:shadow-xl hover:shadow-accent-primary/25 transition-all motion-medium transform hover:scale-[1.03]"
+              aria-label={t<string>("hero.new_cta_primary")}
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
+              style={{
+                background: "rgb(212,175,55)",
+                color: "rgb(8,14,28)",
+                boxShadow: "0 4px 24px rgba(212,175,55,0.25)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.45)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(212,175,55,0.25)";
+              }}
             >
-              <span>{t('hero.ctaPrimary')}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform motion-medium" />
+              <span>{t<string>("hero.new_cta_primary")}</span>
+              <ArrowRight
+                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200"
+                aria-hidden="true"
+              />
             </Link>
 
             <Link
-              to="/chancenkarte"
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-surface-glass/5 backdrop-blur-sm border border-border/50 text-text-primary font-semibold rounded-xl text-base hover:bg-surface-glass/10 hover:border-accent-primary/50 hover:shadow-lg hover:shadow-accent-primary/10 transition-all motion-medium"
+              to="/programs"
+              aria-label={t<string>("hero.new_cta_secondary")}
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02]"
+              style={{
+                border: "1.5px solid rgba(212,224,239,0.25)",
+                color: "rgb(212,224,239)",
+                background: "rgba(255,255,255,0.04)",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.09)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.04)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.25)";
+              }}
             >
-              {t('hero.ctaGermanyJourney')}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform motion-medium" />
+              <span>{t<string>("hero.new_cta_secondary")}</span>
+              <ArrowRight
+                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200"
+                aria-hidden="true"
+              />
             </Link>
           </m.div>
 
-          {/* Trust Line */}
+          {/* Social proof */}
           <m.div
-            initial={{ opacity: 0 }}
+            initial={shouldReduceMotion ? {} : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: MOTION.medium }}
-            className="flex items-center gap-2"
+            transition={{ delay: 0.75, duration: 0.5 }}
+            className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}
           >
-            <div className="h-px w-5 bg-border/60" />
-            <span className="text-xs text-text-muted font-light tracking-widest uppercase">
-              {t('hero.trustLine')}
+            <span className="text-base" aria-hidden="true">🎓</span>
+            <span className="text-sm" style={{ color: "rgb(105,133,166)" }}>
+              {t<string>("hero.social_proof")}
             </span>
           </m.div>
-        </m.div>
+        </div>
 
-        {/* Right — Globe Canvas (no floating cards) */}
+        {/* Right Column — Destination Cards */}
         <m.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: MOTION.slow, ease: [0.16, 1, 0.3, 1] }}
-          className="relative hidden lg:block"
+          initial={shouldReduceMotion ? {} : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.35, duration: 0.6 }}
+          className="hidden lg:block relative"
+          aria-hidden="true"
         >
-          <div className="relative">
-            <div className="absolute inset-0 bg-linear-to-br from-accent-primary/10 via-transparent to-brand-navy/10 rounded-3xl blur-3xl" />
-            <div className="relative rounded-3xl overflow-hidden border border-border/30 bg-linear-to-br from-surface-glass/5 to-transparent backdrop-blur-sm shadow-2xl shadow-accent-primary/10">
-              <canvas ref={canvasRef} className="w-full h-135" />
-            </div>
+          {/* Glow background */}
+          <div
+            className="absolute inset-0 rounded-3xl blur-3xl opacity-60 pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at center, rgba(79,107,138,0.25) 0%, rgba(11,21,48,0.4) 70%)",
+            }}
+          />
 
+          {/* Teal pulse ring */}
+          {!shouldReduceMotion && (
             <m.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: MOTION.medium }}
-              className="absolute -top-5 -left-5 px-4 py-3 rounded-2xl border border-border/60 bg-bg-surface/90 backdrop-blur shadow-lg"
-            >
-              <p className="text-xs uppercase tracking-[0.18em] text-text-muted">Network</p>
-              <p className="text-lg font-bold text-text-primary">50+ Universities</p>
-            </m.div>
+              animate={{ scale: [1, 1.06, 1], opacity: [0.15, 0.25, 0.15] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+              style={{
+                width: 320,
+                height: 320,
+                background: "radial-gradient(circle, rgba(0,184,217,0.2) 0%, transparent 70%)",
+              }}
+            />
+          )}
 
-            <m.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.85, duration: MOTION.medium }}
-              className="absolute -bottom-6 -right-6 px-4 py-3 rounded-2xl border border-border/60 bg-bg-surface/90 backdrop-blur shadow-lg"
-            >
-              <p className="text-xs uppercase tracking-[0.18em] text-text-muted">Opportunities</p>
-              <p className="text-lg font-bold text-text-primary">10,000+ Programs</p>
-            </m.div>
+          {/* Card grid */}
+          <div className="relative grid grid-cols-2 gap-4 p-6">
+            {DESTINATIONS.map((card, i) => (
+              <DestinationCardItem
+                key={card.country}
+                card={card}
+                index={i}
+                shouldReduceMotion={shouldReduceMotion}
+              />
+            ))}
           </div>
+
+          {/* Floating label */}
+          <m.div
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.4 }}
+            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-medium whitespace-nowrap"
+            style={{
+              background: "rgba(8,14,28,0.9)",
+              borderColor: "rgba(212,175,55,0.3)",
+              color: "rgb(212,175,55)",
+            }}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[rgb(0,184,217)] animate-pulse" />
+            10,000+ programs across 4 destinations
+          </m.div>
         </m.div>
       </div>
 
-      {/* Scroll Indicator */}
-      {!shouldReduceMotion && (
-        <m.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: MOTION.slow }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        >
+      {/* ── 3. Stats Bar ─────────────────────────────────────────────────── */}
+      <div
+        ref={statsRef}
+        className="relative z-10 border-t"
+        style={{ borderColor: "rgba(212,175,55,0.12)", background: "rgba(5,10,24,0.6)" }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-10">
           <m.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-3"
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
+            animate={statsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0"
           >
-            <span className="text-xs text-text-muted uppercase tracking-[0.2em] font-light">{t<string>('hero.explore')}</span>
-            <svg className="w-5 h-8 text-border/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+            {STATS.map((stat, i) => (
+              <div
+                key={stat.labelKey}
+                className={`flex flex-col items-center text-center px-4 ${
+                  i < STATS.length - 1 ? "md:border-r" : ""
+                }`}
+                style={{ borderColor: "rgba(212,175,55,0.15)" }}
+              >
+                <span
+                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1"
+                  style={{ color: "rgb(212,175,55)" }}
+                >
+                  <CountUp
+                    target={stat.value}
+                    suffix={stat.suffix}
+                    inView={statsInView}
+                    shouldReduceMotion={shouldReduceMotion}
+                  />
+                </span>
+                <span className="text-xs sm:text-sm font-medium" style={{ color: "rgb(105,133,166)" }}>
+                  {t<string>(stat.labelKey)}
+                </span>
+              </div>
+            ))}
           </m.div>
-        </m.div>
-      )}
+        </div>
+      </div>
     </section>
   );
 }

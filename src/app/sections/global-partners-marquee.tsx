@@ -7,24 +7,39 @@ export function GlobalPartnersMarquee() {
   const { t, dir } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
-  // Quadruple for seamless loop across wide viewports
   const items = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
 
   return (
     <section
-      className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-500 border-y border-slate-100 dark:border-slate-800"
+      className="relative py-20 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
       aria-label={t<string>("globalPartners.badge")}
     >
+      {/* Subtle gold glow top */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full blur-[100px] opacity-10 pointer-events-none"
+        style={{ width: 500, height: 200, background: "rgb(212,175,55)" }}
+      />
+      {/* Grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.025]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+        }}
+      />
+
       {/* Header */}
       <div className={`max-w-7xl mx-auto px-6 mb-14 text-center ${dir === "rtl" ? "rtl-text" : ""}`}>
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full mb-6"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+          style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.2)" }}
         >
-          <Handshake className="w-4 h-4 text-accent-tech" />
-          <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+          <Handshake className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
+          <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
             {t<string>("globalPartners.badge")}
           </span>
         </m.div>
@@ -34,7 +49,8 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight"
+          className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
+          style={{ color: "rgb(248,250,252)" }}
         >
           {t<string>("globalPartners.title")}
         </m.h2>
@@ -44,7 +60,8 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg max-w-2xl mx-auto leading-relaxed"
+          style={{ color: "rgb(145,177,210)" }}
         >
           {t<string>("globalPartners.description")}
         </m.p>
@@ -52,33 +69,39 @@ export function GlobalPartnersMarquee() {
 
       {/* Marquee */}
       <div className="relative">
-        {/* Edge fade masks */}
-        <div className="absolute inset-y-0 left-0 w-24 md:w-32 bg-linear-to-r from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-32 bg-gradient-to-l from-white dark:from-slate-900 to-transparent z-10 pointer-events-none" />
+        {/* Edge fades */}
+        <div
+          className="absolute inset-y-0 left-0 w-24 md:w-40 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to right, rgb(8,14,28), transparent)" }}
+        />
+        <div
+          className="absolute inset-y-0 right-0 w-24 md:w-40 z-10 pointer-events-none"
+          style={{ background: "linear-gradient(to left, rgb(8,14,28), transparent)" }}
+        />
 
         <div className="overflow-hidden">
           <m.div
             animate={
-              shouldReduceMotion
-                ? { x: 0 }
-                : { x: dir === "rtl" ? ["0%", "50%"] : ["0%", "-50%"] }
+              shouldReduceMotion ? { x: 0 } : { x: dir === "rtl" ? ["0%", "50%"] : ["0%", "-50%"] }
             }
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : { duration: 35, repeat: Infinity, ease: "linear" }
-            }
-            className={`flex gap-6 w-fit ${dir === "rtl" ? "flex-row-reverse" : ""}`}
+            transition={shouldReduceMotion ? undefined : { duration: 35, repeat: Infinity, ease: "linear" }}
+            className={`flex gap-4 w-fit ${dir === "rtl" ? "flex-row-reverse" : ""}`}
           >
             {items.map((partner, index) => (
               <div
                 key={index}
-                className="shrink-0 px-10 py-6 rounded-2xl glass-card-light flex flex-col items-center justify-center gap-2 min-w-[190px] hover:border-accent-tech/30 transition-colors duration-300"
+                className="shrink-0 px-8 py-5 rounded-2xl flex flex-col items-center justify-center gap-1.5 min-w-[180px] transition-all duration-300"
+                style={{
+                  background: "rgba(15,28,52,0.7)",
+                  border: "1.5px solid rgba(212,175,55,0.1)",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
               >
-                <span className="text-2xl font-black text-slate-800 dark:text-white tracking-tight">
+                <span className="text-xl font-bold tracking-tight" style={{ color: "rgb(248,250,252)" }}>
                   {partner.name}
                 </span>
-                <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider text-center leading-tight">
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-center leading-tight" style={{ color: "rgb(105,133,166)" }}>
                   {t<string>(`globalPartners.categories.${partner.category}`)}
                 </span>
               </div>

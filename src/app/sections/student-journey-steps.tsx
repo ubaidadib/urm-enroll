@@ -28,7 +28,8 @@ export function StudentJourneySteps() {
 
   return (
     <section
-      className="py-28 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-500"
+      className="py-28 relative overflow-hidden"
+      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
       aria-labelledby="journey-heading"
     >
       {/* Ambient background */}
@@ -44,10 +45,11 @@ export function StudentJourneySteps() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm rounded-full mb-6"
+            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6"
+            style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
           >
-            <Rocket className="w-4 h-4 text-accent-tech" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+            <Rocket className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
+            <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
               {t<string>("studentJourney.badge")}
             </span>
           </m.div>
@@ -58,7 +60,7 @@ export function StudentJourneySteps() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}
           >
             {t<string>("studentJourney.title")}
           </m.h2>
@@ -68,7 +70,7 @@ export function StudentJourneySteps() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "rgb(145,177,210)" }}
           >
             {t<string>("studentJourney.description")}
           </m.p>
@@ -88,10 +90,13 @@ export function StudentJourneySteps() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 + index * 0.08 }}
-                className="group relative p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 glass-card-light hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] transition-all duration-300"
+                className="group relative p-6 rounded-2xl transition-all duration-300"
+                style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
               >
                 {/* Step number */}
-                <div className={`absolute top-6 ${isRtl ? "left-6" : "right-6"} text-6xl font-black text-slate-100 dark:text-slate-800 select-none`}>
+                <div className={`absolute top-6 ${isRtl ? "left-6" : "right-6"} text-6xl font-black select-none`} style={{ color: "rgba(212,175,55,0.06)" }}>
                   {stepNumber}
                 </div>
 
@@ -101,10 +106,10 @@ export function StudentJourneySteps() {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+                <h3 className="text-xl font-bold mb-3 tracking-tight" style={{ color: "rgb(248,250,252)" }}>
                   {step.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
                   {step.description}
                 </p>
 
@@ -126,7 +131,8 @@ export function StudentJourneySteps() {
         >
           <Link
             to="/contact"
-            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
+            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
+            style={{ background: "rgb(212,175,55)", color: "rgb(8,14,28)", boxShadow: "0 4px 20px rgba(212,175,55,0.25)" }}
           >
             <span>{t<string>("studentJourney.cta")}</span>
             <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />

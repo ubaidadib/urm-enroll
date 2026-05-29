@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { m, AnimatePresence } from "motion/react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, ExternalLink } from "lucide-react";
 
 interface NavDropdownItem {
   href: string;
@@ -8,6 +8,7 @@ interface NavDropdownItem {
   icon?: React.ReactNode;
   description?: string;
   badge?: string;
+  external?: boolean;
 }
 
 interface NavDropdownProps {
@@ -55,20 +56,38 @@ export function NavDropdown({ title, items, onNavigate, isActive = false }: NavD
                 <a
                   key={item.href}
                   href={item.href}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noopener noreferrer" : undefined}
                   onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate?.(item.href);
+                    if (!item.external) {
+                      e.preventDefault();
+                      onNavigate?.(item.href);
+                    }
                     setIsOpen(false);
                   }}
-                  className="flex items-center gap-3 px-3.5 py-3 rounded-2xl hover:bg-background-hover transition-all group border border-transparent hover:border-border/55"
+                  className={`flex items-center gap-3 px-3.5 py-3 rounded-2xl transition-all group border ${
+                    item.external
+                      ? "border-[rgba(212,175,55,0.15)] hover:border-[rgba(212,175,55,0.35)] hover:bg-[rgba(212,175,55,0.05)]"
+                      : "border-transparent hover:bg-background-hover hover:border-border/55"
+                  }`}
                 >
                   {item.icon && (
-                    <div className="shrink-0 w-9 h-9 flex items-center justify-center rounded-2xl bg-background-hover text-text-secondary group-hover:text-text-primary transition-colors">
+                    <div
+                      className={`shrink-0 w-9 h-9 flex items-center justify-center rounded-2xl transition-colors ${
+                        item.external
+                          ? "bg-[rgba(212,175,55,0.1)] text-[rgb(212,175,55)]"
+                          : "bg-background-hover text-text-secondary group-hover:text-text-primary"
+                      }`}
+                    >
                       {item.icon}
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-text-primary transition-colors">
+                    <p
+                      className={`text-sm font-medium transition-colors ${
+                        item.external ? "text-[rgb(212,175,55)]" : "text-text-primary"
+                      }`}
+                    >
                       {item.label}
                     </p>
                     {item.description && (
@@ -77,7 +96,11 @@ export function NavDropdown({ title, items, onNavigate, isActive = false }: NavD
                       </p>
                     )}
                   </div>
-                  <ChevronRight className="w-4 h-4 text-text-muted opacity-70 transition-transform group-hover:translate-x-0.5" />
+                  {item.external ? (
+                    <ExternalLink className="w-3.5 h-3.5 text-[rgba(212,175,55,0.6)]" />
+                  ) : (
+                    <ChevronRight className="w-4 h-4 text-text-muted opacity-70 transition-transform group-hover:translate-x-0.5" />
+                  )}
                   {item.badge && (
                     <span className="text-xs px-2 py-1 rounded-full bg-accent-tech/12 text-accent-tech font-medium shrink-0">
                       {item.badge}

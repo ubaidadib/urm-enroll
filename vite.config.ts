@@ -100,39 +100,9 @@ function createDevApiBridgePlugin(): Plugin {
 
         try {
           if (method === 'GET' && url.pathname === '/api/catalog/courses') {
-            const { listCourses } = await import('./lib/nexus-sync/mirror-repository.js')
-
-            const result = await listCourses({
-              search: url.searchParams.get('search') || '',
-              universitySourceId: url.searchParams.get('universitySourceId') || '',
-              degreeLevel: url.searchParams.get('degreeLevel') || '',
-              field: url.searchParams.get('field') || '',
-              page: parsePositiveInt(url.searchParams.get('page'), 1, 100000),
-              pageSize: parsePositiveInt(url.searchParams.get('pageSize'), 100, 500),
-            })
-
-            return json(res, 200, {
-              data: result.rows.map((row: Record<string, any>) => ({
-                id: row.source_id,
-                universityId: row.university_source_id,
-                universityName: row.university_name,
-                title: row.title,
-                degreeLevel: row.degree_level,
-                field: row.field,
-                duration: row.duration,
-                language: row.language,
-                tuitionAmount: row.tuition_amount,
-                tuitionCurrency: row.tuition_currency,
-                description: row.description,
-                payload: row.payload_json,
-                sourceUpdatedAt: row.source_updated_at,
-                syncedAt: row.synced_at,
-              })),
-              page: result.page,
-              pageSize: result.pageSize,
-              total: result.total,
-              status: 'ok',
-            })
+            const { fetchCoursesFromSupabase } = await import('./lib/supabase-catalog.js')
+            const result = await fetchCoursesFromSupabase()
+            return json(res, 200, result)
           }
 
           if (method === 'GET' && url.pathname === '/api/catalog/universities') {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Instagram, ArrowUpRight, ShieldCheck, Globe } from "lucide-react";
+import { Facebook, Linkedin, Instagram, ArrowUpRight, ShieldCheck, Globe, LayoutDashboard, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/i18n/language-context";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -98,24 +98,79 @@ export function Footer() {
                   ]}
                 />
 
-                <div>
+                {/* Agent Platform — spans full width on mobile, own column on lg */}
+                <div className="sm:col-span-2 lg:col-span-1">
                   <h3 className="text-xs uppercase tracking-[0.17em] font-semibold text-text-muted mb-4">
-                    {t<string>("footer.accreditationTitle")}
+                    {t<string>("footer.partnersTitle")}
                   </h3>
-                  <div className="space-y-3">
+
+                  {/* Agent Portal CTA card */}
+                  <a
+                    href="https://agents-portal.enrollurm.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-start gap-3 rounded-2xl p-4 mb-4 transition-all duration-300"
+                    style={{
+                      background: "rgba(212,175,55,0.06)",
+                      border: "1.5px solid rgba(212,175,55,0.2)",
+                    }}
+                    onMouseEnter={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = "rgba(212,175,55,0.1)";
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)";
+                    }}
+                    onMouseLeave={e => {
+                      (e.currentTarget as HTMLAnchorElement).style.background = "rgba(212,175,55,0.06)";
+                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.2)";
+                    }}
+                  >
+                    <div
+                      className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center mt-0.5"
+                      style={{ background: "rgba(212,175,55,0.12)" }}
+                    >
+                      <LayoutDashboard className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <p className="text-sm font-semibold text-text-primary">
+                          {t<string>("header.nav.agentPortal")}
+                        </p>
+                        <ExternalLink className="w-3 h-3 text-text-muted" />
+                      </div>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {t<string>("header.nav.agentPortalTagline")}
+                      </p>
+                    </div>
+                  </a>
+
+                  <ul className="space-y-2.5">
+                    {[
+                      { href: "/partnerships", label: t<string>("footer.services") !== "" ? "Partner With Us" : "Partner With Us" },
+                      { href: "/about", label: "About URM" },
+                      { href: "/contact", label: "Contact Support" },
+                    ].map((link) => (
+                      <li key={link.href}>
+                        <Link to={link.href} className="group inline-flex items-center gap-2 text-sm text-text-secondary hover:text-text-primary transition-colors">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent-primary/60 group-hover:bg-accent-primary transition-colors" />
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Trust badges inside partner column */}
+                  <div className="mt-5 space-y-2">
                     <div className="rounded-xl border border-border/55 bg-background-primary/70 p-3 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-500/15 flex items-center justify-center">
-                        <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                      <div className="w-7 h-7 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0">
+                        <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                       </div>
                       <div>
                         <p className="text-xs font-semibold text-text-primary">{t<string>("footer.badges.gdpr.title")}</p>
                         <p className="text-[10px] text-text-muted">{t<string>("footer.badges.gdpr.note")}</p>
                       </div>
                     </div>
-
                     <div className="rounded-xl border border-border/55 bg-background-primary/70 p-3 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-cyan-500/15 flex items-center justify-center">
-                        <Globe className="w-4 h-4 text-cyan-500" />
+                      <div className="w-7 h-7 rounded-lg bg-cyan-500/15 flex items-center justify-center shrink-0">
+                        <Globe className="w-3.5 h-3.5 text-cyan-500" />
                       </div>
                       <div>
                         <p className="text-xs font-semibold text-text-primary">{t<string>("footer.badges.network.title")}</p>
