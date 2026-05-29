@@ -21,7 +21,12 @@ async function bootstrap() {
     </StrictMode>,
   );
 
-  void bootstrapMirrorCatalogCache();
+  bootstrapMirrorCatalogCache().catch((err) => {
+    console.warn(
+      "[mirror-catalog] Bootstrap failed, app will use static fallback:",
+      err instanceof Error ? err.message : String(err),
+    );
+  });
 }
 
 bootstrap();
