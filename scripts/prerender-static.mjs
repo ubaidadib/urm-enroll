@@ -3,6 +3,14 @@ import { createServer } from "node:http";
 import { extname, join, resolve } from "node:path";
 import puppeteer from "puppeteer";
 
+// Puppeteer requires Chrome system libraries (libnspr4.so, etc.) that are not
+// available in Vercel's build environment. Skip prerendering there — Vercel
+// serves the SPA index.html for all routes via cleanUrls + rewrites anyway.
+if (process.env.VERCEL) {
+  console.log("[prerender] Skipping prerender on Vercel (Puppeteer not supported in build environment)");
+  process.exit(0);
+}
+
 const distDir = resolve("dist");
 const fallbackHtml = readFileSync(join(distDir, "index.html"), "utf8");
 const host = "127.0.0.1";
