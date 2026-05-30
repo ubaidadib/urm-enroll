@@ -90,12 +90,10 @@ export function Preloader({ onComplete }: PreloaderProps) {
             {/* Subtle glass card — makes logo legible on any dark bg without a harsh white box */}
             <div className="relative rounded-2xl bg-white/[0.07] border border-white/[0.12] px-9 py-4 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_8px_32px_rgba(0,0,0,0.25)]">
               <img
-                src="/img/logo-horizontal-light.svg"
+                src="/img/logo-full-light.png"
                 alt="URM ENROLL"
-                className="h-12 w-auto"
+                className="h-24 w-auto"
                 draggable={false}
-                width={560}
-                height={170}
               />
             </div>
           </div>

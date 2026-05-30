@@ -161,18 +161,30 @@ export function Header({ isCompact = false }: HeaderProps) {
         style={{ height: isCompact ? 80 : isScrolled ? 88 : 100 }}
       >
         <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-9 h-full flex items-center justify-between gap-4 lg:gap-10">
-          <Link to="/" className="flex items-center shrink-0 group min-w-0" aria-label="URM ENROLL — Home">
-            {/* Horizontal SVG logo — crisp at any size, navy wordmark on a clean white pill */}
-            <div className="rounded-2xl bg-white px-3.5 py-2 shadow-sm border border-slate-200/70 group-hover:shadow-md transition-all duration-200">
-              <img
-                src="/img/logo-horizontal.svg"
-                alt="URM ENROLL"
-                className="h-8 w-auto"
-                draggable={false}
-                width={560}
-                height={170}
-              />
-            </div>
+          <Link to="/" className="flex items-center gap-3 shrink-0 group min-w-0" aria-label="URM ENROLL — Home">
+            {/* Real brand mark — theme-aware (navy on light, white on dark) */}
+            <img
+              src="/img/logo-mark.png"
+              alt=""
+              aria-hidden="true"
+              className="h-11 w-11 object-contain block dark:hidden"
+              draggable={false}
+            />
+            <img
+              src="/img/logo-mark-light.png"
+              alt=""
+              aria-hidden="true"
+              className="h-11 w-11 object-contain hidden dark:block"
+              draggable={false}
+            />
+            <span className="flex flex-col leading-none">
+              <span className="text-[19px] font-extrabold tracking-tight text-[#15233F] dark:text-white">
+                URM <span className="text-accent-primary">ENROLL</span>
+              </span>
+              <span className="mt-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-text-muted hidden sm:block">
+                Your Bridge to Global Education
+              </span>
+            </span>
           </Link>
 
           <nav className={`hidden xl:flex items-center gap-1.5 flex-1 justify-center min-w-0 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
