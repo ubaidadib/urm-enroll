@@ -160,43 +160,38 @@ export function Header({ isCompact = false }: HeaderProps) {
         }`}
         style={{ height: isCompact ? 80 : isScrolled ? 88 : 100 }}
       >
-        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-9 h-full flex items-center justify-between gap-4 lg:gap-10">
-          <Link to="/" className="flex items-center gap-3 shrink-0 group min-w-0" aria-label="URM ENROLL — Home">
+        <div className="max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-3 2xl:gap-6">
+          <Link to="/" className="flex items-center gap-2.5 shrink-0 group min-w-0" aria-label="URM ENROLL — Home">
             {/* Real brand mark — theme-aware (navy on light, white on dark) */}
             <img
               src="/img/logo-mark.png"
               alt=""
               aria-hidden="true"
-              className="h-11 w-11 object-contain block dark:hidden"
+              className="h-10 w-10 object-contain block dark:hidden"
               draggable={false}
             />
             <img
               src="/img/logo-mark-light.png"
               alt=""
               aria-hidden="true"
-              className="h-11 w-11 object-contain hidden dark:block"
+              className="h-10 w-10 object-contain hidden dark:block"
               draggable={false}
             />
-            <span className="flex flex-col leading-none">
-              <span className="text-[19px] font-extrabold tracking-tight text-[#15233F] dark:text-white">
-                URM <span className="text-accent-primary">ENROLL</span>
-              </span>
-              <span className="mt-1 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-text-muted hidden sm:block">
-                Your Bridge to Global Education
-              </span>
+            <span className="text-[18px] font-extrabold tracking-tight leading-none text-[#15233F] dark:text-white">
+              URM <span className="text-accent-primary">ENROLL</span>
             </span>
           </Link>
 
-          <nav className={`hidden xl:flex items-center gap-1.5 flex-1 justify-center min-w-0 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
+          <nav className={`hidden xl:flex items-center gap-0.5 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
             {DESKTOP_PRIMARY_ITEMS.map((item) => {
               const isActive = isNavActive(item.href);
               return (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`inline-flex items-center whitespace-nowrap rounded-full px-4 py-2.5 text-[14px] font-medium transition-all ${
+                  className={`inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 text-[13.5px] font-medium transition-all ${
                     isActive
-                      ? "bg-background-hover text-text-primary border border-border/65 shadow-[0_10px_24px_rgba(8,31,80,0.12)]"
+                      ? "bg-background-hover text-text-primary"
                       : "text-text-secondary hover:bg-background-hover hover:text-text-primary"
                   }`}
                 >
@@ -211,45 +206,40 @@ export function Header({ isCompact = false }: HeaderProps) {
               onNavigate={(href) => navigate(href)}
               isActive={moreDropdownItems.some((item) => isNavActive(item.href))}
             />
+          </nav>
 
+          <div className={`hidden xl:flex items-center gap-2.5 shrink-0 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
+            {/* Agent Portal — compact icon button (individuals); label shows on 2xl */}
             <a
               href="https://agents-portal.enrollurm.com/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t<string>("header.nav.agentPortal")}
-              className="ml-1 inline-flex items-center whitespace-nowrap gap-2 px-4 py-2.5 rounded-full text-[14px] font-semibold transition-all hover:-translate-y-[1px]"
-              style={{
-                background: "rgba(15,28,52,0.85)",
-                border: "1.5px solid rgba(212,175,55,0.35)",
-                color: "rgb(212,175,55)",
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.7)";
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 24px rgba(212,175,55,0.15)";
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.35)";
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
-              }}
+              title={t<string>("header.nav.agentPortal")}
+              className="inline-flex items-center whitespace-nowrap gap-2 px-3 py-2 rounded-full text-[13px] font-semibold transition-all hover:-translate-y-[1px]"
+              style={{ border: "1.5px solid rgba(212,175,55,0.4)", color: "rgb(212,175,55)" }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.75)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)"; }}
             >
-              <LayoutDashboard className="w-3.5 h-3.5" />
-              {t<string>("header.nav.agentPortal")}
-              <ExternalLink className="w-3 h-3 opacity-60" />
+              <LayoutDashboard className="w-4 h-4 shrink-0" />
+              <span className="hidden 2xl:inline">{t<string>("header.nav.agentPortal")}</span>
+              <ExternalLink className="w-3 h-3 opacity-60 hidden 2xl:inline" />
             </a>
 
             <Link
               to="/partnerships"
-              className="ml-1 inline-flex items-center whitespace-nowrap gap-2 px-4 py-2.5 rounded-full bg-linear-to-r from-accent-primary to-accent-tech text-ink text-[14px] font-semibold transition-all hover:-translate-y-[1px] hover:shadow-[0_16px_36px_rgba(30,113,184,0.34)]"
+              className="inline-flex items-center whitespace-nowrap gap-1.5 px-4 py-2 rounded-full bg-linear-to-r from-accent-primary to-accent-tech text-ink text-[13px] font-semibold transition-all hover:-translate-y-[1px] hover:shadow-[0_12px_28px_rgba(30,113,184,0.3)]"
             >
               {t<string>("header.cta")}
-              <Sparkles className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
             </Link>
-          </nav>
 
-          <div className={`hidden xl:flex items-center gap-2 shrink-0 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
+            {/* Divider */}
+            <span className="w-px h-6 bg-border/60 mx-0.5" />
+
             <Link
               to="/saved"
-              className="relative hidden xl:flex w-10 h-10 rounded-full border border-border/65 bg-background-surface/92 hover:bg-background-hover hover:border-border transition-all items-center justify-center"
+              className="relative hidden 2xl:flex w-10 h-10 rounded-full border border-border/65 bg-background-surface/92 hover:bg-background-hover hover:border-border transition-all items-center justify-center"
               aria-label={t<string>("header.nav.saved")}
               title={t<string>("header.nav.saved")}
             >
