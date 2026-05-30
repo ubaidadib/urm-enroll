@@ -23,7 +23,7 @@ export const header = {
     germanyJourney: "مسار ألمانيا",
     supportJourney: "الدعم",
     agentPortal: "بوابة الوكلاء",
-    agentPortalTagline: "مركز التوظيف",
+    agentPortalTagline: "للأفراد — اربح عمولات",
   },
   cta: "استفسار مؤسسي",
   languageSwitcherLabel: "اللغة",

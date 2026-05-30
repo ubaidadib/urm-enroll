@@ -23,7 +23,7 @@ export const header = {
     germanyJourney: "Germany Journey",
     supportJourney: "Support",
     agentPortal: "Agent Portal",
-    agentPortalTagline: "Recruitment command center",
+    agentPortalTagline: "For individuals — earn commissions",
   },
   cta: "Institutional Inquiry",
   languageSwitcherLabel: "Language",

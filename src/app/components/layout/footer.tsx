@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Linkedin, Instagram, ArrowUpRight, ShieldCheck, Globe, LayoutDashboard, ExternalLink } from "lucide-react";
+import { Facebook, Linkedin, Instagram, ArrowUpRight, ShieldCheck, Globe, ExternalLink, Building2, Wallet } from "lucide-react";
 import { useLanguage } from "@/i18n/language-context";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -102,47 +102,53 @@ export function Footer() {
                     {t<string>("footer.partnersTitle")}
                   </h3>
 
-                  {/* Agent Portal CTA card */}
+                  {/* Card 1 — Agents (individuals, earn commissions) */}
                   <a
                     href="https://agents-portal.enrollurm.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-start gap-3 rounded-2xl p-4 mb-4 transition-all duration-300"
-                    style={{
-                      background: "rgba(212,175,55,0.06)",
-                      border: "1.5px solid rgba(212,175,55,0.2)",
-                    }}
-                    onMouseEnter={e => {
-                      (e.currentTarget as HTMLAnchorElement).style.background = "rgba(212,175,55,0.1)";
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)";
-                    }}
-                    onMouseLeave={e => {
-                      (e.currentTarget as HTMLAnchorElement).style.background = "rgba(212,175,55,0.06)";
-                      (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.2)";
-                    }}
+                    className="group flex items-start gap-3 rounded-2xl p-4 mb-3 transition-all duration-300"
+                    style={{ background: "rgba(212,175,55,0.06)", border: "1.5px solid rgba(212,175,55,0.2)" }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.45)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.2)"; }}
                   >
-                    <div
-                      className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center mt-0.5"
-                      style={{ background: "rgba(212,175,55,0.12)" }}
-                    >
-                      <LayoutDashboard className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
+                    <div className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center mt-0.5" style={{ background: "rgba(212,175,55,0.12)" }}>
+                      <Wallet className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5 mb-0.5">
-                        <p className="text-sm font-semibold text-text-primary">
-                          {t<string>("header.nav.agentPortal")}
-                        </p>
+                        <p className="text-sm font-semibold text-text-primary">{t<string>("header.nav.agentPortal")}</p>
                         <ExternalLink className="w-3 h-3 text-text-muted" />
                       </div>
+                      <p className="text-[11px] uppercase tracking-wider font-semibold mb-1" style={{ color: "rgb(212,175,55)" }}>For Individuals</p>
                       <p className="text-xs text-text-secondary leading-relaxed">
-                        {t<string>("header.nav.agentPortalTagline")}
+                        Refer students and earn commissions — a flexible side income. No company required.
                       </p>
                     </div>
                   </a>
 
-                  <ul className="space-y-2.5">
+                  {/* Card 2 — Institutions (universities joining URM Nexus) */}
+                  <Link
+                    to="/partnerships"
+                    className="group flex items-start gap-3 rounded-2xl p-4 transition-all duration-300"
+                    style={{ background: "rgba(0,184,217,0.05)", border: "1.5px solid rgba(0,184,217,0.2)" }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(0,184,217,0.45)"; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(0,184,217,0.2)"; }}
+                  >
+                    <div className="shrink-0 w-9 h-9 rounded-xl flex items-center justify-center mt-0.5" style={{ background: "rgba(0,184,217,0.12)" }}>
+                      <Building2 className="w-4 h-4" style={{ color: "rgb(0,184,217)" }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-semibold text-text-primary mb-0.5">Partner With Us</p>
+                      <p className="text-[11px] uppercase tracking-wider font-semibold mb-1" style={{ color: "rgb(0,184,217)" }}>For Institutions</p>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        Universities &amp; schools — join the URM Nexus network and recruit globally.
+                      </p>
+                    </div>
+                  </Link>
+
+                  <ul className="space-y-2.5 mt-4">
                     {[
-                      { href: "/partnerships", label: t<string>("footer.services") !== "" ? "Partner With Us" : "Partner With Us" },
                       { href: "/about", label: "About URM" },
                       { href: "/contact", label: "Contact Support" },
                     ].map((link) => (

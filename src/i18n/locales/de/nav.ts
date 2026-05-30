@@ -23,7 +23,7 @@ export const header = {
     germanyJourney: "Deutschland",
     supportJourney: "Support",
     agentPortal: "Agentenportal",
-    agentPortalTagline: "Rekrutierungszentrale",
+    agentPortalTagline: "Für Privatpersonen — Provisionen verdienen",
   },
   cta: "Institutionelle Anfrage",
   languageSwitcherLabel: "Sprache",
