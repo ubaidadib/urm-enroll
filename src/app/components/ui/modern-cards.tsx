@@ -305,7 +305,12 @@ export function ProgramCardModern({
             : "from-amber-400 to-orange-400";
 
     return (
-      <article className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_2px_16px_rgba(8,21,48,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(8,21,48,0.14)] dark:border-brand-navy-700/40 dark:bg-slate-900 dark:shadow-[0_2px_16px_rgba(0,0,0,0.28)] dark:hover:shadow-[0_16px_40px_rgba(8,21,48,0.45)] ${isRtl ? "text-right" : "text-left"}`}>
+      <article
+        className={`group relative flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 ${isRtl ? "text-right" : "text-left"}`}
+        style={{ background: "rgba(15,28,52,0.72)", border: "1.5px solid rgba(212,175,55,0.18)", boxShadow: "0 4px 20px rgba(2,4,12,0.35)" }}
+        onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(212,175,55,0.42)"; e.currentTarget.style.boxShadow = "0 16px 44px rgba(2,4,12,0.5)"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(212,175,55,0.18)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(2,4,12,0.35)"; }}
+      >
         <div className={`h-1 w-full bg-linear-to-r ${accentBar}`} />
 
         <div className="flex flex-1 flex-col gap-4 p-5">
@@ -389,7 +394,7 @@ export function ProgramCardModern({
               {displayFees ? (
                 <>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Approx.</p>
-                  <p className="mt-0.5 truncate text-base font-bold text-accent-tech dark:text-accent-tech">{displayFees}</p>
+                  <p className="mt-0.5 truncate text-base font-bold text-accent-primary dark:text-accent-primary">{displayFees}</p>
                 </>
               ) : (
                 <>
@@ -402,7 +407,7 @@ export function ProgramCardModern({
             {programPath ? (
               <Link
                 to={programPath}
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-brand-navy-800 px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-accent-tech hover:shadow-[0_8px_20px_rgba(79,107,138,0.28)] dark:bg-brand-navy-700 dark:hover:bg-accent-tech"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-linear-to-r from-accent-primary to-accent-primary-strong px-4 py-2 text-[13px] font-semibold text-ink shadow-sm transition hover:shadow-[0_8px_20px_rgba(212,175,55,0.35)]"
               >
                 Explore
                 <ArrowRight className={`h-3.5 w-3.5 ${isRtl ? "rotate-180" : ""}`} />
@@ -411,7 +416,7 @@ export function ProgramCardModern({
               <button
                 type="button"
                 onClick={openProgram}
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-brand-navy-800 px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition hover:bg-accent-tech hover:shadow-[0_8px_20px_rgba(79,107,138,0.28)] dark:bg-brand-navy-700 dark:hover:bg-accent-tech"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-linear-to-r from-accent-primary to-accent-primary-strong px-4 py-2 text-[13px] font-semibold text-ink shadow-sm transition hover:shadow-[0_8px_20px_rgba(212,175,55,0.35)]"
               >
                 Explore
                 <ArrowRight className={`h-3.5 w-3.5 ${isRtl ? "rotate-180" : ""}`} />
@@ -630,7 +635,10 @@ export function UniversityCardModern({
 
   return (
     <article
-      className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-background-surface/85 backdrop-blur-lg transition-all hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "text-right" : "text-left"}`}
+      className={`group relative overflow-hidden rounded-2xl backdrop-blur-lg transition-all hover:-translate-y-1 ${isRtl ? "text-right" : "text-left"}`}
+      style={{ background: "rgba(15,28,52,0.72)", border: "1.5px solid rgba(212,175,55,0.18)", boxShadow: "0 4px 20px rgba(2,4,12,0.35)" }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(212,175,55,0.42)"; e.currentTarget.style.boxShadow = "0 16px 44px rgba(2,4,12,0.5)"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(212,175,55,0.18)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(2,4,12,0.35)"; }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <div className="absolute -right-8 top-12 h-28 w-28 rounded-full bg-accent-primary/18 blur-2xl" />
