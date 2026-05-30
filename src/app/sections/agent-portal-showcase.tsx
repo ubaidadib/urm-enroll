@@ -243,7 +243,7 @@ export function AgentPortalShowcase() {
                 </span>
               </div>
               <span className="text-[11px] font-bold text-slate-400">
-                nexus.urmenroll.com
+                agents-portal.enrollurm.com
               </span>
             </div>
 
