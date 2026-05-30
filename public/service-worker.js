@@ -147,9 +147,12 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .then((response) => {
           if (response.ok) {
+            // Clone synchronously before the body is consumed by navigation
+            const copy = response.clone();
             caches
               .open(SHELL_CACHE)
-              .then((c) => c.put(request, response.clone()));
+              .then((c) => c.put(request, copy))
+              .catch(() => {});
           }
           return response;
         })
