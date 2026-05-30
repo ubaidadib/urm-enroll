@@ -33,13 +33,13 @@ export function Footer() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 max-w-7xl mx-auto">
               <div className="lg:col-span-4 space-y-6">
                 <Link to="/" className="group flex items-center gap-3 w-fit" aria-label="URM ENROLL — Home">
-                  {/* Square icon mark — always visible on any background */}
-                  <div className="h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-border/40 shadow-sm group-hover:shadow-md transition-shadow duration-200">
+                  {/* Square icon mark — light variant for the dark footer */}
+                  <div className="h-12 w-12 shrink-0 flex items-center justify-center rounded-xl bg-white/[0.04] border border-white/10 shadow-sm group-hover:shadow-md transition-shadow duration-200">
                     <img
-                      src="/img/logo-favicon.png"
+                      src="/img/logo-mark-light.svg"
                       alt=""
                       aria-hidden="true"
-                      className="h-full w-full object-cover"
+                      className="h-9 w-9"
                       draggable={false}
                     />
                   </div>

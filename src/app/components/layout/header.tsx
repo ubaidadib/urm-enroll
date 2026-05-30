@@ -158,24 +158,24 @@ export function Header({ isCompact = false }: HeaderProps) {
             ? "glass-nav border-b border-border/70 shadow-[0_16px_36px_rgba(8,23,52,0.24)]"
             : "bg-bg-surface/62 backdrop-blur-xl border-b border-border/35"
         }`}
-        style={{ height: isCompact ? 76 : isScrolled ? 82 : 92 }}
+        style={{ height: isCompact ? 80 : isScrolled ? 88 : 100 }}
       >
-        <div className="max-w-[1500px] mx-auto px-4 sm:px-5 lg:px-7 h-full flex items-center justify-between gap-3 lg:gap-5">
+        <div className="max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-9 h-full flex items-center justify-between gap-4 lg:gap-10">
           <Link to="/" className="flex items-center shrink-0 group min-w-0" aria-label="URM ENROLL — Home">
-            {/* Full horizontal logo — light background pill ensures visibility on dark navs */}
-            <div className="rounded-xl bg-white dark:bg-white/95 px-3 py-1.5 shadow-sm border border-slate-200/60 dark:border-white/20 group-hover:shadow-md transition-all duration-200">
+            {/* Horizontal SVG logo — crisp at any size, navy wordmark on a clean white pill */}
+            <div className="rounded-2xl bg-white px-3.5 py-2 shadow-sm border border-slate-200/70 group-hover:shadow-md transition-all duration-200">
               <img
-                src="/img/logo-light.png"
+                src="/img/logo-horizontal.svg"
                 alt="URM ENROLL"
-                className="h-7 w-auto"
+                className="h-8 w-auto"
                 draggable={false}
-                width={263}
-                height={66}
+                width={560}
+                height={170}
               />
             </div>
           </Link>
 
-          <nav className={`hidden xl:flex items-center gap-1 flex-1 justify-center min-w-0 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
+          <nav className={`hidden xl:flex items-center gap-1.5 flex-1 justify-center min-w-0 ${dir === "rtl" ? "flex-row-reverse" : ""}`}>
             {DESKTOP_PRIMARY_ITEMS.map((item) => {
               const isActive = isNavActive(item.href);
               return (

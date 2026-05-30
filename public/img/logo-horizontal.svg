@@ -1,0 +1,21 @@
+<svg width="560" height="170" viewBox="0 0 560 170" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="URM ENROLL">
+  <!-- ── Icon mark ── -->
+  <g transform="translate(0,-8)">
+    <path d="M52 62 V112 A40 40 0 0 0 132 112 V62"
+          stroke="#15233F" stroke-width="27" stroke-linecap="round" fill="none"/>
+    <path d="M132 100 V112 A40 40 0 0 1 92 152"
+          stroke="#F4C21B" stroke-width="27" stroke-linecap="round" fill="none"/>
+    <circle cx="126" cy="84" r="16" fill="#F4C21B"/>
+    <path d="M117 78 Q101 65 87 72" stroke="#F4C21B" stroke-width="13" stroke-linecap="round" fill="none"/>
+    <path d="M126 48 L161 62 L126 76 L91 62 Z" fill="#15233F"/>
+    <circle cx="126" cy="62" r="4" fill="#F4C21B"/>
+    <path d="M158 63 V80" stroke="#15233F" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+    <circle cx="158" cy="83" r="4.5" fill="#F4C21B"/>
+  </g>
+  <!-- ── Wordmark ── -->
+  <text x="196" y="80" font-family="'Sora','Space Grotesk',-apple-system,'Segoe UI',sans-serif"
+        font-size="62" font-weight="800" letter-spacing="1" fill="#15233F">URM</text>
+  <text x="198" y="128" font-family="'Sora','Space Grotesk',-apple-system,'Segoe UI',sans-serif"
+        font-size="34" font-weight="700" letter-spacing="9" fill="#15233F">ENROLL</text>
+  <rect x="200" y="140" width="186" height="4" rx="2" fill="#F4C21B"/>
+</svg>

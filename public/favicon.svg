@@ -1,10 +1,17 @@
-<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="URM ENROLL">
-  <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#F2AE30" />
-      <stop offset="1" stop-color="#D99B1F" />
-    </linearGradient>
-  </defs>
-  <rect x="6" y="6" width="52" height="52" rx="12" fill="url(#gold)" />
-  <path d="M18 26h28v4H18zM22 34h20v4H22z" fill="#011C40" />
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="URM ENROLL">
+  <!-- Navy tile so the mark is always legible in browser tabs -->
+  <rect width="64" height="64" rx="14" fill="#15233F"/>
+  <!-- U mark (white + gold) scaled into the tile -->
+  <g transform="translate(32,33) scale(0.165) translate(-128,-128)">
+    <path d="M78 70 V132 A50 50 0 0 0 178 132 V70"
+          stroke="#F8FAFC" stroke-width="34" stroke-linecap="round" fill="none"/>
+    <path d="M178 116 V132 A50 50 0 0 1 128 182"
+          stroke="#F4C21B" stroke-width="34" stroke-linecap="round" fill="none"/>
+    <circle cx="170" cy="96" r="20" fill="#F4C21B"/>
+    <path d="M158 88 Q138 72 120 80" stroke="#F4C21B" stroke-width="16" stroke-linecap="round" fill="none"/>
+    <path d="M170 52 L214 70 L170 88 L126 70 Z" fill="#F8FAFC"/>
+    <circle cx="170" cy="70" r="5" fill="#F4C21B"/>
+    <path d="M210 71 V92" stroke="#F8FAFC" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <circle cx="210" cy="96" r="5.5" fill="#F4C21B"/>
+  </g>
 </svg>
