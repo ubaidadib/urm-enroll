@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, m } from "motion/react";
 import {
   ArrowRight, ShieldCheck, ClipboardCheck, Building2, Users, TrendingUp,
@@ -603,29 +604,30 @@ export function InstitutionalPartnershipPage() {
         </div>
       </div>
 
-      {/* ── Partnership Modal ── */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 glass-backdrop"
-            onClick={closeModal}
-          >
+      {/* ── Partnership Modal (portal escapes main z-10 stacking context) ── */}
+      {typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
             <m.div
-              ref={modalRef}
-              role="dialog"
-              aria-modal="true"
-              aria-label={t<string>("institutional.form.title")}
-              tabIndex={-1}
-              initial={{ scale: 0.96, opacity: 0, y: 16 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.96, opacity: 0, y: 16 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-5xl max-h-[90vh] glass-card-medium overflow-hidden flex flex-col lg:flex-row"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto px-4 sm:px-6 py-6 sm:py-8 glass-backdrop"
+              onClick={closeModal}
             >
+              <m.div
+                ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-label={t<string>("institutional.form.title")}
+                tabIndex={-1}
+                initial={{ scale: 0.96, opacity: 0, y: 16 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.96, opacity: 0, y: 16 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-5xl max-h-[min(90vh,calc(100dvh-3rem))] translate-y-2 sm:translate-y-3 glass-card-medium overflow-hidden flex flex-col lg:flex-row shrink-0"
+              >
               {/* Sidebar */}
               <div className="lg:w-[38%] bg-bg-secondary dark:bg-slate-950 text-text-primary dark:text-white p-9 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-transparent pointer-events-none" />
@@ -902,10 +904,12 @@ export function InstitutionalPartnershipPage() {
                   )}
                 </div>
               </div>
+              </m.div>
             </m.div>
-          </m.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body,
+      )}
     </div>
   );
 }
