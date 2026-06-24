@@ -72,7 +72,7 @@ function DeferredSection({ children }: { children: React.ReactNode }) {
     return <>{children}</>;
   }
 
-  return <div ref={placeholderRef} className="min-h-35 overflow-hidden" aria-hidden="true" />;
+  return <div ref={placeholderRef} className="min-h-px w-full overflow-hidden" aria-hidden="true" />;
 }
 
 export function HomePage() {
@@ -118,24 +118,22 @@ export function HomePage() {
 
       {/* 7. Instagram Reels — live embeds via Instagram embed.js (SEO-friendly) */}
       <DeferredSection>
-        <Suspense fallback={<div className="min-h-[480px]" aria-hidden="true" />}>
+        <Suspense fallback={<div className="min-h-px" aria-hidden="true" />}>
           <InstagramReelsSection />
         </Suspense>
       </DeferredSection>
 
       {/* 8. Partners Marquee */}
       <DeferredSection>
-        <Suspense fallback={<div className="min-h-[480px]" aria-hidden="true" />}>
+        <Suspense fallback={<div className="min-h-px" aria-hidden="true" />}>
           <GlobalPartnersMarquee />
         </Suspense>
       </DeferredSection>
 
-      {/* 9. Final CTA */}
-      <DeferredSection>
-        <Suspense fallback={<div className="min-h-25" aria-hidden="true" />}>
-          <HomeFinalCtaBanner />
-        </Suspense>
-      </DeferredSection>
+      {/* 9. Final CTA — always render (no deferred placeholder above footer) */}
+      <Suspense fallback={<div className="min-h-px" aria-hidden="true" />}>
+        <HomeFinalCtaBanner />
+      </Suspense>
 
     </div>
   );
