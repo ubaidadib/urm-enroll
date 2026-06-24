@@ -155,8 +155,8 @@ export function Header({ isCompact = false }: HeaderProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "glass-nav border-b border-border/70 shadow-[0_16px_36px_rgba(8,23,52,0.24)]"
-            : "bg-bg-surface/62 backdrop-blur-xl border-b border-border/35"
+            ? "glass-nav border-b border-border/70 shadow-[0_8px_24px_rgba(11,21,48,0.08)] dark:shadow-[0_16px_36px_rgba(8,23,52,0.24)]"
+            : "bg-bg-surface/72 backdrop-blur-xl border-b border-border/40"
         } ${
           isCompact
             ? "h-14 xl:h-[4.5rem]"
@@ -233,7 +233,7 @@ export function Header({ isCompact = false }: HeaderProps) {
 
             <Link
               to="/partnerships"
-              className="inline-flex items-center whitespace-nowrap gap-1.5 px-4 py-2 rounded-full bg-linear-to-r from-accent-primary to-accent-tech text-ink text-[13px] font-semibold transition-all hover:-translate-y-[1px] hover:shadow-[0_12px_28px_rgba(30,113,184,0.3)]"
+              className="btn-header-cta whitespace-nowrap gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold"
             >
               {t<string>("header.cta")}
               <Sparkles className="w-3.5 h-3.5 shrink-0" />
@@ -465,7 +465,7 @@ export function Header({ isCompact = false }: HeaderProps) {
                   <Link
                     to="/partnerships"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full py-3.5 bg-linear-to-r from-accent-primary to-accent-tech text-ink rounded-2xl font-bold shadow-[0_18px_30px_rgba(24,112,176,0.35)] flex items-center justify-center gap-2"
+                    className="btn-header-cta w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2"
                   >
                     {t<string>("header.cta")}
                     <ChevronRight className="w-5 h-5" />

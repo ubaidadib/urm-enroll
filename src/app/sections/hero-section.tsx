@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useExperiment } from "@/hooks/useExperiment";
 import { trackExperimentView, trackPersonalizationApplied } from "@/utils/tracking";
 import { usePersonalization } from "@/hooks/usePersonalization";
+import { useTheme } from "@/app/components/ui/theme-provider";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -96,7 +97,7 @@ function DestinationCardItem({ card, index, shouldReduceMotion }: {
         x: { delay: 0.5 + index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
       }}
       style={{ transform: `translate(${card.offset.x}px, ${card.offset.y}px) rotate(${card.rotation}deg)` }}
-      className="surface-glass rounded-2xl p-4 shadow-xl shadow-black/10 hover:border-accent-primary/40 transition-colors duration-300"
+      className="surface-glass hero-destination-card rounded-2xl p-4 hover:border-accent-primary/40 transition-colors duration-300"
     >
       <div className="flex items-center gap-3 mb-1">
         <span className="text-2xl leading-none">{card.flag}</span>
@@ -114,6 +115,7 @@ export function HeroSection() {
   const { t, dir } = useLanguage();
   const { variant: heroVariant } = useExperiment("hero_headline");
   const { resolveContent, isSlotPersonalized, segment } = usePersonalization();
+  const { resolvedTheme } = useTheme();
 
   const statsRef = useRef<HTMLDivElement>(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-60px" });
@@ -138,6 +140,7 @@ export function HeroSection() {
 
   const tickerText: string = t("hero.trust_ticker");
   const isRtl = dir === "rtl";
+  const pulseOpacity = resolvedTheme === "dark" ? [0.15, 0.25, 0.15] : [0.08, 0.14, 0.08];
 
   return (
     <section
@@ -146,38 +149,28 @@ export function HeroSection() {
       className="relative flex flex-col overflow-hidden section-gradient-hero"
     >
       {/* Radial glow blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div
-          className="absolute rounded-full blur-[120px] opacity-20"
+          className="absolute rounded-full hero-ambient-gold"
           style={{
-            width: 600,
-            height: 600,
+            width: 480,
+            height: 480,
             top: "10%",
-            left: isRtl ? "auto" : "-10%",
-            right: isRtl ? "-10%" : "auto",
-            background: "radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%)",
+            left: isRtl ? "auto" : "-8%",
+            right: isRtl ? "-8%" : "auto",
           }}
         />
         <div
-          className="absolute rounded-full blur-[160px] opacity-15"
+          className="absolute rounded-full hero-ambient-steel"
           style={{
-            width: 500,
-            height: 500,
+            width: 420,
+            height: 420,
             bottom: "5%",
-            right: isRtl ? "auto" : "-5%",
-            left: isRtl ? "-5%" : "auto",
-            background: "radial-gradient(circle, rgba(79,107,138,0.4) 0%, transparent 70%)",
+            right: isRtl ? "auto" : "-4%",
+            left: isRtl ? "-4%" : "auto",
           }}
         />
-        {/* Subtle grid */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
+        <div className="absolute inset-0 hero-grid-overlay" />
       </div>
 
       {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
@@ -340,24 +333,18 @@ export function HeroSection() {
           aria-hidden="true"
         >
           {/* Glow background */}
-          <div
-            className="absolute inset-0 rounded-3xl blur-3xl opacity-60 pointer-events-none"
-            style={{
-              background: "radial-gradient(ellipse at center, rgba(79,107,138,0.25) 0%, rgba(11,21,48,0.4) 70%)",
-            }}
-          />
+          <div className="absolute inset-0 rounded-3xl hero-cards-ambient pointer-events-none" />
 
-          {/* Teal pulse ring */}
+          {/* Subtle pulse ring */}
           {!shouldReduceMotion && (
             <m.div
-              animate={{ scale: [1, 1.06, 1], opacity: [0.15, 0.25, 0.15] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-              style={{
-                width: 320,
-                height: 320,
-                background: "radial-gradient(circle, rgba(0,184,217,0.2) 0%, transparent 70%)",
+              animate={{
+                scale: [1, 1.05, 1],
+                opacity: pulseOpacity,
               }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hero-pulse-ring"
+              style={{ width: 300, height: 300 }}
             />
           )}
 
