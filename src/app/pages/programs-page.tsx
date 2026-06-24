@@ -6,6 +6,7 @@ import { UNIVERSITIES } from "@/data/universities";
 import { ProgramCardModern } from "../components/ui/modern-cards";
 import { SeoManager } from "../seo/seo-manager";
 import { trackPageView } from "@/utils/tracking";
+import { MIRROR_CATALOG_READY_EVENT } from "@/lib/mirror-catalog";
 import {
   formatDisplayFees,
   formatIntakeDates,
@@ -195,9 +196,16 @@ export function ProgramsPage() {
     const parsed = Number.parseInt(searchParams.get("page") ?? "1", 10);
     return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
   });
+  const [catalogVersion, setCatalogVersion] = useState(0);
 
   useEffect(() => {
     trackPageView({ page: "programs-premium" });
+  }, []);
+
+  useEffect(() => {
+    const handleCatalogReady = () => setCatalogVersion((version) => version + 1);
+    window.addEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+    return () => window.removeEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
   }, []);
 
   const listings = useMemo<ProgramListing[]>(() => {
@@ -266,7 +274,7 @@ export function ProgramsPage() {
         };
       });
     });
-  }, []);
+  }, [catalogVersion]);
 
   const organizations = useMemo(
     () => [...new Set(listings.map((listing) => listing.organization).filter((value) => isMeaningfulText(value)))].sort((a, b) => a.localeCompare(b)),

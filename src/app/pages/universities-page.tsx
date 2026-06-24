@@ -20,6 +20,7 @@ import { FilterDrawer } from "../components/ui/filter-drawer";
 import { FilterPanel } from "../components/ui/filter-panel";
 import { DiscoveryBridgeSection, buildDiscoveryQuery } from "../components/ui/discovery-nav";
 import { UNIVERSITIES, type University } from "@/data/universities";
+import { MIRROR_CATALOG_READY_EVENT } from "@/lib/mirror-catalog";
 import { trackPageView } from "@/utils/tracking";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -371,8 +372,15 @@ export function UniversitiesPage() {
   );
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [catalogVersion, setCatalogVersion] = useState(0);
 
   useEffect(() => { trackPageView({ page: "universities" }); }, []);
+
+  useEffect(() => {
+    const handleCatalogReady = () => setCatalogVersion((version) => version + 1);
+    window.addEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+    return () => window.removeEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+  }, []);
 
   // URL → state sync
   useEffect(() => {
@@ -408,11 +416,11 @@ export function UniversitiesPage() {
 
   const countries = useMemo(
     () => [...new Set(UNIVERSITIES.map((u) => u.country).filter((country) => Boolean(country && country.trim().length > 0)))].sort(),
-    []
+    [catalogVersion]
   );
   const types = useMemo(
     () => [...new Set(UNIVERSITIES.map((u) => u.type).filter((type) => Boolean(type && type.trim().length > 0)))].sort(),
-    []
+    [catalogVersion]
   );
   const countryCodeByName = useMemo(() => {
     const mapping = new Map<string, string>();
@@ -423,7 +431,7 @@ export function UniversitiesPage() {
       }
     }
     return mapping;
-  }, []);
+  }, [catalogVersion]);
   const trendingCountries = useMemo(() => {
     const counts = new Map<string, number>();
     for (const university of UNIVERSITIES) {
@@ -436,8 +444,8 @@ export function UniversitiesPage() {
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .slice(0, 6)
       .map(([country]) => country);
-  }, []);
-  const citiesCount = useMemo(() => new Set(UNIVERSITIES.map((u) => `${u.city},${u.country}`)).size, []);
+  }, [catalogVersion]);
+  const citiesCount = useMemo(() => new Set(UNIVERSITIES.map((u) => `${u.city},${u.country}`)).size, [catalogVersion]);
 
   const filteredCountryOptions = useMemo(() => {
     const q = filterSearchQuery.trim().toLowerCase();
@@ -460,11 +468,11 @@ export function UniversitiesPage() {
     if (sortBy === "name") r.sort((a, b) => a.name.localeCompare(b.name));
     else if (sortBy === "programs") r.sort((a, b) => b.programsCount - a.programsCount);
     return r;
-  }, [searchQuery, selectedCountry, selectedType, sortBy]);
+  }, [searchQuery, selectedCountry, selectedType, sortBy, catalogVersion]);
 
   const trendingUniversities = useMemo(
     () => [...UNIVERSITIES].sort((a, b) => b.programsCount - a.programsCount).slice(0, 8),
-    []
+    [catalogVersion]
   );
 
   const totalPages = Math.ceil(filteredUniversities.length / ITEMS_PER_PAGE);
