@@ -47,7 +47,7 @@ export function CompanyTimeline() {
   return (
     <section
       id="timeline"
-      className="py-16 sm:py-24 md:py-32 relative overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
     >
       {/* --- Ambient Background (Matches Destinations Page) --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -59,7 +59,7 @@ export function CompanyTimeline() {
       <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- Header --- */}
-        <div className="text-center mb-12 sm:mb-24">
+        <div className="text-center page-section-header-gap">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

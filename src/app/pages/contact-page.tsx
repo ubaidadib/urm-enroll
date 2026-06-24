@@ -373,15 +373,15 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 1: HERO                                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="relative page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+      <section className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(74,222,128)" }} />
           <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
           <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-10">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
             <Breadcrumbs
               items={[
                 { label: t<string>("common.home"), href: "/" },
@@ -390,12 +390,13 @@ export function ContactPage() {
             />
           </div>
 
-          <div className="max-w-3xl">
+          <div className="page-hero-grid">
+            <div className="page-hero-main">
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full mb-8"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full page-hero-badge-gap"
               style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)" }}
             >
               <MessageCircle className="w-4 h-4" style={{ color: "rgb(74,222,128)" }} />
@@ -408,7 +409,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 sm:mb-5 leading-tight tracking-tight text-text-primary"
             >
               {t<string>("contact.title")}
             </m.h1>
@@ -417,7 +418,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-xl mb-6 leading-relaxed max-w-2xl text-text-muted"
+              className="text-xl mb-5 lg:mb-0 leading-relaxed max-w-2xl lg:max-w-none text-text-muted"
             >
               {t<string>("contact.description")}
             </m.p>
@@ -426,24 +427,24 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-base text-slate-400 mb-10"
+              className="text-base text-slate-400 lg:mb-0"
             >
               {t<string>("contact.heroSubtitle")}
             </m.p>
+            </div>
 
-            {/* Trust Badges */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-wrap gap-3"
+              transition={{ delay: 0.35, duration: 0.6 }}
+              className="page-hero-aside flex flex-col gap-3"
             >
               {trustBadges.map((badge, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 dark:border-emerald-500/20 text-sm font-medium text-emerald-700 dark:text-emerald-400"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 dark:border-emerald-500/20 text-sm font-medium text-emerald-700 dark:text-emerald-400"
                 >
-                  <Shield className="w-3.5 h-3.5" />
+                  <Shield className="w-3.5 h-3.5 shrink-0" />
                   {badge}
                 </span>
               ))}

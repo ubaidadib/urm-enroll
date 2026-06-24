@@ -52,6 +52,7 @@ export function ComparePage() {
 
       <main className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
         <ContextualPageHeader
+          variant="listing"
           badge={t<string>("comparison.hero.badge")}
           title={t<string>("comparison.title")}
           description={t<string>("comparison.subtitle")}

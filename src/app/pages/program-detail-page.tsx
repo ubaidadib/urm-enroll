@@ -421,14 +421,14 @@ export function ProgramDetailPage() {
 
 
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-linear-to-br from-slate-50 via-brand-navy-900/5 to-white py-14 md:py-20 dark:from-slate-950 dark:via-brand-navy-900/20 dark:to-slate-900">
+        <section className="relative overflow-hidden bg-linear-to-br from-slate-50 via-brand-navy-900/5 to-white py-14 md:py-20 lg:py-12 xl:py-14 dark:from-slate-950 dark:via-brand-navy-900/20 dark:to-slate-900">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute -top-24 right-0 h-80 w-80 rounded-full bg-accent-tech/8 blur-[120px]" />
             <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-accent-primary/6 blur-[100px]" />
           </div>
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
+            <div className="flex flex-col gap-6 lg:gap-8 lg:flex-row lg:items-start">
               <div className="min-w-0 flex-1">
                 <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className={`inline-flex items-center rounded-full border px-3 py-1 text-sm font-semibold ${degreeColors[program.degreeLevel] || degreeColors.bachelor}`}>

@@ -20,6 +20,7 @@ export function QuizPage() {
       <div className="page-container pt-10">
         <h1 className="sr-only">{t<string>("seo.sections.quiz.title")}</h1>
         <Breadcrumbs
+          className="mb-5 lg:mb-4"
           items={[
             { label: t<string>("common.home"), href: "/" },
             { label: t<string>("quiz.title"), href: "/quiz" },

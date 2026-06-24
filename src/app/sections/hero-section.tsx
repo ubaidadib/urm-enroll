@@ -220,7 +220,7 @@ export function HeroSection() {
       </div>
 
       {/* ── 2. Main Hero Content ──────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 4xl:px-10 pt-10 sm:pt-14 md:pt-20 xl:pt-24 pb-10 sm:pb-14 md:pb-20 grid lg:grid-cols-[3fr_2fr] 3xl:grid-cols-[5fr_4fr] gap-8 sm:gap-10 lg:gap-14 3xl:gap-16 4xl:gap-20 items-center min-w-0 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-[var(--content-gutter)] pt-10 sm:pt-14 md:pt-20 lg:pt-12 xl:pt-14 3xl:pt-16 pb-10 sm:pb-14 md:pb-20 lg:pb-12 xl:pb-14 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 items-center min-w-0 w-full">
 
         {/* Left Column */}
         <div className={isRtl ? "text-right" : "text-left"}>
@@ -230,7 +230,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5 text-accent-tech"
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4 lg:mb-4 text-accent-tech"
           >
             {t<string>("hero.eyebrow")}
           </m.p>
@@ -243,7 +243,7 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[4rem] 3xl:text-[4.5rem] 4xl:text-[5.25rem] font-bold leading-[1.1] tracking-tight mb-5 text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.25rem] font-bold leading-[1.1] tracking-tight mb-4 lg:mb-4 text-text-primary"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
@@ -273,7 +273,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.45 }}
-            className="text-base sm:text-lg leading-relaxed mb-7 sm:mb-9 max-w-xl text-text-muted"
+            className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-7 lg:mb-6 max-w-xl text-text-muted"
           >
             {t<string>("hero.subheadline")}
           </m.p>
@@ -283,7 +283,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.45 }}
-            className={`flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-5 sm:mb-7 ${isRtl ? "sm:flex-row-reverse" : ""}`}
+            className={`flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-4 sm:mb-5 lg:mb-5 ${isRtl ? "sm:flex-row-reverse" : ""}`}
           >
             <Link
               to="/universities"
@@ -329,7 +329,7 @@ export function HeroSection() {
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          className="hidden lg:block relative"
+          className="hidden lg:block relative w-full max-w-md justify-self-end"
           aria-hidden="true"
         >
           {/* Glow background */}
@@ -349,7 +349,7 @@ export function HeroSection() {
           )}
 
           {/* Card grid */}
-          <div className="relative grid grid-cols-2 gap-4 p-6">
+          <div className="relative grid grid-cols-2 gap-3 p-4">
             {DESTINATIONS.map((card, i) => (
               <DestinationCardItem
                 key={card.country}
@@ -378,7 +378,7 @@ export function HeroSection() {
         ref={statsRef}
         className="relative z-10 border-t stats-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 py-6 sm:py-8 md:py-10 w-full">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 py-6 sm:py-8 md:py-10 lg:py-7 xl:py-8 w-full">
           <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}

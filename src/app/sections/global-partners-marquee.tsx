@@ -11,7 +11,7 @@ export function GlobalPartnersMarquee() {
 
   return (
     <section
-      className="relative py-20 overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y"
       aria-label={t<string>("globalPartners.badge")}
     >
       {/* Subtle gold glow top */}

@@ -6,12 +6,12 @@ export type BreadcrumbItem = {
   href: string;
 };
 
-export function Breadcrumbs({ items = [] }: { items?: BreadcrumbItem[] }) {
+export function Breadcrumbs({ items = [], className }: { items?: BreadcrumbItem[]; className?: string }) {
   const { t } = useLanguage();
   if (!items.length) return null;
 
   return (
-    <nav aria-label={t<string>("common.breadcrumb")} className="mb-8 text-sm">
+    <nav aria-label={t<string>("common.breadcrumb")} className={`text-sm ${className ?? ""}`}>
       <ol className="flex flex-wrap items-center gap-2 text-text-muted">
         {items.map((item, index) => (
           <li key={item.href} className="flex items-center gap-2">

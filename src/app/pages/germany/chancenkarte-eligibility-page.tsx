@@ -197,7 +197,7 @@ export function ChancenkarteEligibilityPage() {
         ]}
       />
 
-      <section className="relative isolate overflow-hidden page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
+      <section className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -205,7 +205,8 @@ export function ChancenkarteEligibilityPage() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
           </div>
         </div>
-        <div className="max-w-6xl mx-auto">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
           <Breadcrumbs
             items={[
               { label: t<string>("common.home"), href: localizedPath("/") },
@@ -213,6 +214,7 @@ export function ChancenkarteEligibilityPage() {
               { label: "Eligibility", href: localizedPath("/chancenkarte/eligibility") },
             ]}
           />
+          </div>
 
           {phase !== "intro" && (
             <div className="mt-8 grid gap-3 sm:grid-cols-3">

@@ -570,23 +570,100 @@
 
   .page-gutter { padding-inline: 1rem; }
 
-  /* Shared mobile spacing for inner pages (below fixed header) */
-  .page-hero-offset {
-    padding-top: 5rem;
+  /* Shared spacing for inner-page heroes (below fixed header) — Programs reference */
+  .page-hero-offset,
+  .page-hero-offset-listing {
+    padding-top: 4.75rem;
+  }
+
+  .page-hero-pb {
+    padding-bottom: 2.5rem;
+  }
+
+  .page-hero-pb-compact {
+    padding-bottom: 2rem;
+  }
+
+  .page-hero-inner {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .page-hero-crumb-gap {
+    margin-bottom: 1.25rem;
+  }
+
+  .page-hero-badge-gap {
+    margin-bottom: 1rem;
   }
 
   .page-section-y {
     padding-block: 3rem;
   }
 
+  .page-section-header-gap {
+    margin-bottom: 2rem;
+  }
+
   @media (min-width: 640px) {
-    .page-hero-offset { padding-top: 6.5rem; }
-    .page-section-y { padding-block: 4.5rem; }
+    .page-hero-offset,
+    .page-hero-offset-listing { padding-top: 5.5rem; }
+    .page-hero-pb { padding-bottom: 3rem; }
+    .page-hero-pb-compact { padding-bottom: 2.5rem; }
+    .page-section-y { padding-block: 4rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .page-hero-pb { padding-bottom: 3rem; }
+    .page-hero-pb-compact { padding-bottom: 2.75rem; }
+    .page-hero-crumb-gap { margin-bottom: 1rem; }
+    .page-hero-badge-gap { margin-bottom: 0.75rem; }
+    .page-section-y { padding-block: 3.5rem; }
+    .page-section-header-gap { margin-bottom: 2.5rem; }
   }
 
   @media (min-width: 1280px) {
-    .page-hero-offset { padding-top: 8rem; }
-    .page-section-y { padding-block: 5rem; }
+    .page-hero-offset,
+    .page-hero-offset-listing { padding-top: 5.5rem; }
+    .page-section-y { padding-block: 4rem; }
+  }
+
+  @media (min-width: 1920px) {
+    .page-hero-offset,
+    .page-hero-offset-listing { padding-top: 6rem; }
+  }
+
+  /* Shared 12-column hero layout — desktop balance */
+  .page-hero-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .page-hero-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .page-hero-main {
+      grid-column: span 7 / span 7;
+      min-width: 0;
+    }
+
+    .page-hero-aside {
+      grid-column: span 5 / span 5;
+      min-width: 0;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .page-hero-grid {
+      gap: 2.25rem;
+    }
   }
 
   @media (min-width: 640px) {

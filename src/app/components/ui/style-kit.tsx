@@ -72,7 +72,7 @@ export function SectionShell({
     <section
       id={id}
       className={`relative overflow-hidden px-4 sm:px-6 lg:px-8 3xl:px-10 transition-colors duration-500 ${toneClass} ${
-        padded ? "py-16 sm:py-24 md:py-32" : ""
+        padded ? "page-section-y" : ""
       } ${className}`}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -168,7 +168,7 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]`}
+        className={`text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]`}
       >
         {title}
       </m.h2>

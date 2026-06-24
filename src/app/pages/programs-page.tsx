@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { m } from "motion/react";
-import { Search, ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, ChevronDown, X, ChevronLeft, ChevronRight, Sparkles, GraduationCap, Building2, Globe2 } from "lucide-react";
 import { UNIVERSITIES } from "@/data/universities";
 import { ProgramCardModern } from "../components/ui/modern-cards";
+import { Breadcrumbs } from "../components/layout/breadcrumbs";
 import { SeoManager } from "../seo/seo-manager";
+import { useLanguage } from "@/i18n/language-context";
 import { trackPageView } from "@/utils/tracking";
 import { MIRROR_CATALOG_READY_EVENT } from "@/lib/mirror-catalog";
 import {
@@ -182,6 +184,7 @@ function ProgramsEmptyState({ onReset }: { onReset: () => void }) {
 }
 
 export function ProgramsPage() {
+  const { t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") ?? "");
@@ -286,6 +289,8 @@ export function ProgramsPage() {
     [listings],
   );
 
+  const fieldCount = FIELD_OPTIONS.length;
+
   const filteredListings = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
 
@@ -380,30 +385,98 @@ export function ProgramsPage() {
       />
 
       <main className="relative min-h-screen overflow-hidden bg-bg-primary">
-        <div className="pointer-events-none fixed inset-0 overflow-hidden">
-          <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-linear-to-br from-cyan-200/35 to-transparent blur-3xl dark:from-cyan-900/20" />
-          <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr from-amber-200/30 to-transparent blur-3xl dark:from-amber-900/15" />
-        </div>
+        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute top-0 right-0 w-[32rem] h-[32rem] rounded-full bg-accent-tech/8 blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] rounded-full bg-accent-primary/8 blur-[120px]" />
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
+            </div>
+          </div>
 
-        <div className="relative z-10 px-[var(--content-gutter)] pb-12 sm:pb-16 page-hero-offset">
-          <div className="mx-auto max-w-7xl">
-            <m.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
-                Global program catalog
-              </p>
-              <h1 className="mt-3 max-w-3xl text-2xl sm:text-4xl font-black tracking-tight text-slate-950 dark:text-white md:text-5xl">
-                Find the right program for your future.
-              </h1>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">
-                Browse thousands of bachelor's, master's, and postgraduate programs from universities worldwide. Filter by location, intake period, and tuition to narrow your search.
-              </p>
-            </m.section>
+          <div className="page-hero-inner">
+            <div className="page-hero-crumb-gap">
+              <Breadcrumbs
+                items={[
+                  { label: t<string>("common.home"), href: "/" },
+                  { label: t<string>("header.nav.programs"), href: "/programs" },
+                ]}
+              />
+            </div>
+
+            <div className="page-hero-grid">
+              <div className="page-hero-main">
+                <m.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm page-hero-badge-gap"
+                >
+                  <Sparkles className="w-4 h-4 text-accent-tech" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                    {t<string>("programs.listing.hero.badge")}
+                  </span>
+                </m.div>
+
+                <m.h1
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 }}
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white"
+                >
+                  {t<string>("programs.listing.hero.title")}
+                </m.h1>
+
+                <m.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="mt-3 lg:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  {t<string>("programs.listing.hero.subtitle")}
+                </m.p>
+              </div>
+
+              <m.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.15 }}
+                className="page-hero-aside grid gap-3"
+              >
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-accent-tech" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{listings.length}+</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.programs")}</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-accent-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{organizations.length}+</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.universities")}</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-success/10 border border-accent-success/20 flex items-center justify-center">
+                    <Globe2 className="w-5 h-5 text-accent-success" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{fieldCount}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.fields")}</p>
+                  </div>
+                </div>
+              </m.div>
+            </div>
 
             <m.section
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.08 }}
-              className="mt-8 rounded-[1.8rem] border border-slate-200/80 bg-white/85 p-5 shadow-xl shadow-slate-200/40 backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 dark:shadow-black/20 space-y-3"
+              className="mt-5 lg:mt-6 rounded-2xl border border-slate-200/80 bg-white/85 p-4 sm:p-5 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 space-y-3"
             >
               {/* Row 1 — Search bar (full width) */}
               <label className="relative block">
@@ -568,7 +641,11 @@ export function ProgramsPage() {
                 </div>
               ) : null}
             </m.section>
+          </div>
+        </section>
 
+        <div className="relative z-10 px-[var(--content-gutter)]">
+          <div className="mx-auto max-w-7xl">
             <section className="mt-10">
               <div className="flex flex-col gap-3 border-b border-slate-200 pb-5 dark:border-slate-800 sm:flex-row sm:items-end sm:justify-between">
                 <div>

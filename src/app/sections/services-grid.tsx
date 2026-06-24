@@ -110,7 +110,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
   return (
     <section 
       dir={dir}
-      className="relative py-16 sm:py-24 overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full blur-[160px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
@@ -121,7 +121,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
       <div className="max-w-7xl mx-auto relative z-10 px-[var(--content-gutter)]">
         
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="page-section-header-gap">
           {compact ? (
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-3">

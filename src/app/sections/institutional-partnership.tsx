@@ -257,7 +257,7 @@ export function InstitutionalPartnershipPage() {
       />
 
       {/* ── Hero ── */}
-      <div className="relative page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] overflow-hidden border-b border-slate-100 dark:border-white/5">
+      <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden border-b border-slate-100 dark:border-white/5">
 
         {/* Ambient */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -266,9 +266,9 @@ export function InstitutionalPartnershipPage() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-size-[32px_32px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="page-hero-inner">
 
-          <div className="mb-8">
+          <div className="page-hero-crumb-gap">
             <Breadcrumbs
               items={[
                 { label: tx("common.home", "Home"), href: "/" },
@@ -277,14 +277,13 @@ export function InstitutionalPartnershipPage() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
+          <div className="page-hero-grid">
             {/* Left */}
-            <div>
+            <div className="page-hero-main">
               <m.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8"
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm page-hero-badge-gap"
               >
                 <Handshake className="w-4 h-4 text-accent-tech" />
                 <span className="text-xs font-bold tracking-widest uppercase text-slate-900 dark:text-white">
@@ -296,8 +295,8 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.07 }}
-                className="font-black text-slate-900 dark:text-white leading-[0.95] tracking-tight mb-6"
-                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+                className="font-black text-slate-900 dark:text-white leading-[0.95] tracking-tight mb-5 lg:mb-5"
+                style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
               >
                 {tx("institutional.title", "Built for Institutions\nthat Move Fast.")}
               </m.h1>
@@ -306,7 +305,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed max-w-lg mb-10"
+                className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-6 lg:mb-6"
               >
                 {tx("institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies operating at scale.")}
               </m.p>
@@ -341,9 +340,9 @@ export function InstitutionalPartnershipPage() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.7 }}
-              className="hidden lg:block"
+              className="page-hero-aside hidden lg:block"
             >
-              <div className="relative aspect-square max-w-md mx-auto">
+              <div className="relative aspect-[4/3] max-h-[280px] w-full max-w-sm ml-auto">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-100 to-slate-100 dark:from-blue-500/10 dark:to-accent-tech/8 rounded-[3rem] blur-[60px]" />
                 <div className="relative h-full rounded-[3rem] bg-white/70 dark:bg-white/4 border border-slate-200/80 dark:border-white/8 backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center">
 
@@ -387,8 +386,8 @@ export function InstitutionalPartnershipPage() {
       </div>
 
       {/* ── Page Body ── */}
-      <div className="relative py-16 sm:py-24 px-[var(--content-gutter)]">
-        <div className="max-w-7xl mx-auto space-y-24">
+      <div className="relative page-section-y px-[var(--content-gutter)]">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
 
           {/* ── 1. Segment Selector ── */}
           <div>

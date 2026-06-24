@@ -117,7 +117,7 @@ export function UniversityDetailPage() {
 
 
         {/* Hero Banner */}
-        <section className="relative h-96 md:h-112.5 overflow-hidden bg-ink">
+        <section className="relative h-96 md:h-112.5 lg:h-80 xl:h-96 overflow-hidden bg-ink">
           <ImageWithFallback
             src={university.coverPhoto}
             alt={university.name}

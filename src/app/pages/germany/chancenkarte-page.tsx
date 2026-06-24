@@ -26,7 +26,7 @@ export function ChancenkartePage() {
     <main dir={dir} className="bg-slate-50 dark:bg-slate-950">
       <SeoManager path="/chancenkarte" pageKey="chancenkarte" />
 
-      <section className="relative isolate overflow-hidden page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
+      <section className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -34,17 +34,19 @@ export function ChancenkartePage() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
           </div>
         </div>
-        <div className="max-w-6xl mx-auto">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
           <Breadcrumbs
             items={[
               { label: t<string>("common.home"), href: localizedPath("/") },
               { label: t<string>("chancenkarte.hub.breadcrumb"), href: localizedPath("/chancenkarte") },
             ]}
           />
+          </div>
 
-          <div className="grid lg:grid-cols-12 gap-10 items-center mt-2">
-            <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+          <div className="page-hero-grid">
+            <div className="page-hero-main">
+              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm page-hero-badge-gap">
                 <Sparkles className="w-4 h-4 text-accent-tech" />
                 <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
                   {t<string>("chancenkarte.hub.badge")}
@@ -55,16 +57,16 @@ export function ChancenkartePage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="mt-4 sm:mt-6 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white"
+                className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white"
               >
                 {t<string>("chancenkarte.hub.title")}
               </m.h1>
               <p className="mt-4 text-lg md:text-xl text-slate-600 dark:text-slate-400">{t<string>("chancenkarte.hub.titleSub")}</p>
-              <p className="mt-4 max-w-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p className="mt-4 max-w-xl lg:max-w-none text-slate-600 dark:text-slate-400 leading-relaxed">
                 {t<string>("chancenkarte.hub.description")}
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-6 lg:mt-7 flex flex-wrap gap-3">
                 <Link
                   to={localizedPath("/chancenkarte/eligibility")}
                   className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl btn-gold-primary font-bold hover:-translate-y-0.5 hover:shadow-xl transition-all"
@@ -82,7 +84,7 @@ export function ChancenkartePage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="page-hero-aside grid grid-cols-2 gap-3">
               {(["validity", "minPoints", "workAllowance", "familyJoin"] as const).map((k) => (
                 <div
                   key={k}
@@ -99,7 +101,7 @@ export function ChancenkartePage() {
             </div>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-8">
             <TrustIndicators variant="light" />
           </div>
         </div>

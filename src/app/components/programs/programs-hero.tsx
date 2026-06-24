@@ -16,7 +16,7 @@ export function ProgramsHero({
   const { t } = useLanguage();
 
   return (
-    <section className="relative min-h-[65vh] bg-bg-primary px-4 py-24 sm:px-6 lg:px-10">
+      className="relative page-hero-offset page-hero-pb bg-bg-primary px-4 sm:px-6 lg:px-[var(--content-gutter)]"
       {/* Ambient background effects */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-40 top-20 h-[32rem] w-[32rem] rounded-full bg-brand-gold-500/8 blur-[140px]" />
@@ -24,9 +24,9 @@ export function ProgramsHero({
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-softnav-50/3 to-transparent" />
       </div>
 
-      <div className="mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-12 lg:items-center">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 lg:gap-10 lg:grid-cols-12 lg:items-center">
         {/* Main content */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-5 lg:space-y-5">
           {/* Eyebrow */}
           <m.div
             initial={{ opacity: 0, y: 8 }}
@@ -45,7 +45,7 @@ export function ProgramsHero({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
-            className="max-w-3xl font-display text-[clamp(2.8rem,7vw,5.2rem)] font-black leading-[0.95] tracking-[-0.03em] text-text-primary"
+            className="max-w-3xl font-display text-[clamp(2.8rem,7vw,5.2rem)] font-black leading-[0.95] tracking-[-0.03em] text-text-primary lg:max-w-none"
           >
             Your future starts{" "}
             <span className="bg-gradient-to-r from-brand-gold-500 to-brand-steel-600 bg-clip-text text-transparent">
@@ -58,7 +58,7 @@ export function ProgramsHero({
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.16, duration: 0.6 }}
-            className="max-w-2xl text-lg leading-relaxed text-text-secondary"
+            className="max-w-2xl lg:max-w-none text-lg leading-relaxed text-text-secondary"
           >
             Discover programs designed for your ambitions. Find careers with purpose, salary potential, visa pathways,
             and the global mobility that defines the next generation of professionals.

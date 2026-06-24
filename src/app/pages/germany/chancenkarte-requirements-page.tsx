@@ -11,8 +11,9 @@ export function ChancenkarteRequirementsPage() {
   return (
     <main dir={dir} className="bg-slate-50 dark:bg-slate-950">
       <SeoManager path="/chancenkarte/requirements" pageKey="chancenkarteRequirements" />
-      <section className="page-hero-offset pb-10 sm:pb-12 px-[var(--content-gutter)]">
-        <div className="max-w-5xl mx-auto">
+      <section className="page-hero-offset page-hero-pb-compact px-[var(--content-gutter)]">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
           <Breadcrumbs
             items={[
               { label: t<string>("common.home"), href: localizedPath("/") },
@@ -20,13 +21,14 @@ export function ChancenkarteRequirementsPage() {
               { label: t<string>("chancenkarte.requirements.breadcrumb"), href: localizedPath("/chancenkarte/requirements") },
             ]}
           />
+          </div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-tech">
             {t<string>("chancenkarte.requirements.badge")}
           </p>
           <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
             {t<string>("chancenkarte.requirements.title")}
           </h1>
-          <p className="mt-4 max-w-2xl text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="mt-4 max-w-2xl lg:max-w-3xl text-slate-600 dark:text-slate-400 leading-relaxed">
             {t<string>("chancenkarte.requirements.description")}
           </p>
         </div>

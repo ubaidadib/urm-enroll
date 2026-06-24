@@ -31,7 +31,7 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative py-32 px-6 overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -52,7 +52,7 @@ export function CaseStudies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className={`mb-20 ${dir === "rtl" ? "text-right" : "text-left"}`}
+          className={`page-section-header-gap ${dir === "rtl" ? "text-right" : "text-left"}`}
         >
           <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6" style={{ background: "rgba(0,184,217,0.08)", border: "1px solid rgba(0,184,217,0.25)" }}>
             <ShieldCheck className="w-4 h-4" style={{ color: "rgb(0,184,217)" }} />
@@ -61,7 +61,7 @@ export function CaseStudies() {
             </span>
           </div>
           
-          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-text-primary">
+          <h2 id="case-studies-title" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-text-primary">
             {t<string>("caseStudies.title")}
           </h2>
           

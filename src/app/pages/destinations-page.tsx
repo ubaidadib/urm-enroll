@@ -265,6 +265,7 @@ export function DestinationsPage() {
 
 
       <ContextualPageHeader
+        variant="listing"
         badge="Study Destinations"
         title={tx(
           "destinations.listing.headline",

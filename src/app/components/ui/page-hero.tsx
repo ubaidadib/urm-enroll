@@ -74,8 +74,8 @@ export function PageHero({
 
   return (
     <section
-      className={`relative px-4 sm:px-6 lg:px-8 3xl:px-10 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 ${
-        isCompact ? "page-hero-offset pb-10 sm:pb-14" : "page-hero-offset pb-14 sm:pb-20 md:pb-24"
+      className={`relative overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 page-hero-offset px-[var(--content-gutter)] ${
+        isCompact ? "page-hero-pb-compact" : "page-hero-pb"
       }`}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -92,17 +92,17 @@ export function PageHero({
         )}
       </div>
 
-      <div className="content-shell mx-auto relative z-10 px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
+      <div className="page-hero-inner">
         {children}
 
-        <div className={`grid gap-12 ${twoColumn ? "lg:grid-cols-12 lg:gap-20 items-center" : "grid-cols-1"}`}>
-          <div className={`${twoColumn ? "lg:col-span-7" : ""} ${dir === "rtl" ? "text-right" : "text-left"}`}>
+        <div className={twoColumn ? "page-hero-grid" : "grid grid-cols-1 gap-6"}>
+          <div className={`${twoColumn ? "page-hero-main" : ""} ${dir === "rtl" ? "text-right" : "text-left"}`}>
             {badge && (
               <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm page-hero-badge-gap"
               >
                 <span className="text-sm" aria-hidden="true">
                   {badge.icon}
@@ -117,7 +117,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.05 : 0.1 }}
-              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-5 lg:mb-4 tracking-tight leading-[1.1]"
             >
               {typeof headline === "string" ? (
                 <>
@@ -133,7 +133,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.1 : 0.2 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl"
+              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl lg:max-w-none"
             >
               {subtitle}
             </m.p>
@@ -143,7 +143,7 @@ export function PageHero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: isCompact ? 0.15 : 0.3 }}
-                className={`mt-8 flex flex-wrap items-center gap-3 ${dir === "rtl" ? "flex-row-reverse" : ""}`}
+                className={`mt-6 lg:mt-7 flex flex-wrap items-center gap-3 ${dir === "rtl" ? "flex-row-reverse" : ""}`}
               >
                 {primaryCta && (
                   <HeroAction
@@ -161,18 +161,18 @@ export function PageHero({
             )}
           </div>
 
-          {hasAside && <div className="lg:col-span-5 relative">{aside}</div>}
+          {hasAside && <div className="page-hero-aside relative">{aside}</div>}
 
           {showStats && (
-            <div className="lg:col-span-5 relative">
-              <div className="grid gap-4">
+            <div className="page-hero-aside relative">
+              <div className="grid gap-3">
                 {stats.map((stat, i) => (
                   <m.div
                     key={stat.label}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
-                    className={`flex items-center gap-5 p-5 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 shadow-sm transition-all ${
+                    className={`flex items-center gap-4 p-4 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 shadow-sm transition-all ${
                       dir === "rtl" ? "flex-row-reverse text-right" : ""
                     }`}
                   >
@@ -192,7 +192,7 @@ export function PageHero({
           )}
         </div>
 
-        {footer ? <div className="mt-10 md:mt-12">{footer}</div> : null}
+        {footer ? <div className="mt-8 lg:mt-10">{footer}</div> : null}
       </div>
     </section>
   );

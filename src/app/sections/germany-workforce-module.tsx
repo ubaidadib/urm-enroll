@@ -94,7 +94,7 @@ export function GermanyWorkforceModule() {
   return (
     <section
       id="germany-workforce"
-      className="relative py-16 sm:py-24 md:py-32 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
+      className="relative py-16 sm:py-24 md:py-32 lg:py-20 xl:py-24 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* --- 1. Architectural Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -120,13 +120,13 @@ export function GermanyWorkforceModule() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- 2. Executive Header --- */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-24 items-end">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 mb-16 lg:mb-14 items-end">
           <div className={`${dir === "rtl" ? "lg:order-2 text-right" : ""}`}>
             <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 bg-bg-surface border border-border rounded-full mb-8 shadow-sm"
+              className="inline-flex items-center gap-3 px-5 py-2.5 bg-bg-surface border border-border rounded-full mb-6 lg:mb-5 shadow-sm"
             >
               <Globe2 className="w-4 h-4 text-accent-tech" />
               <span className="text-xs font-bold text-text-primary uppercase tracking-widest">
@@ -139,7 +139,7 @@ export function GermanyWorkforceModule() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-6 leading-[1.1] tracking-tight"
+              className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-slate-900 dark:text-white mb-5 lg:mb-4 leading-[1.1] tracking-tight"
             >
               {t<string>("workforce.title")}
             </m.h2>

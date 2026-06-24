@@ -28,7 +28,7 @@ export function StudentJourneySteps() {
 
   return (
     <section
-      className="py-16 sm:py-28 relative overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y"
       aria-labelledby="journey-heading"
     >
       {/* Ambient background */}
@@ -39,7 +39,7 @@ export function StudentJourneySteps() {
 
       <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         {/* Header */}
-        <div className={`text-center mb-20 ${isRtl ? "rtl-text" : ""}`}>
+        <div className={`text-center page-section-header-gap ${isRtl ? "rtl-text" : ""}`}>
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +76,7 @@ export function StudentJourneySteps() {
         </div>
 
         {/* Journey Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-10 lg:mb-12">
           {steps.map((step, index) => {
             const visual = STEP_VISUALS[index % STEP_VISUALS.length] ?? STEP_VISUALS[0]!;
             const Icon = visual.icon;

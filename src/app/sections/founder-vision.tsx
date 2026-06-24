@@ -25,7 +25,7 @@ export function FounderVision() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative py-16 sm:py-24 md:py-32 overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -38,7 +38,7 @@ export function FounderVision() {
       <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- Header --- */}
-        <div className="mb-12 sm:mb-20">
+        <div className="page-section-header-gap">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function FounderVision() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
+            className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
           >
             {t<string>('founder.titleLine1')} <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-accent-tech">
@@ -66,7 +66,7 @@ export function FounderVision() {
         </div>
 
         {/* --- Main Content Grid --- */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           
           {/* Left: Image & Stats (Sticky) */}
           <m.div
@@ -129,7 +129,7 @@ export function FounderVision() {
           </m.div>
 
           {/* Right: Narrative Content */}
-          <div className="space-y-16">
+          <div className="space-y-10 lg:space-y-12">
             
             {/* Bio Section */}
             <div className="space-y-6">

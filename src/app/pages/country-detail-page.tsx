@@ -176,7 +176,7 @@ export function CountryDetailPage() {
       {/* Hero section */}
       <div className="relative overflow-hidden">
         {/* Background image */}
-        <div className="absolute inset-0 h-96">
+        <div className="absolute inset-0 h-96 lg:h-72 xl:h-80">
           <img
             src={dest.image}
             alt={dest.name[lang]}
@@ -185,7 +185,7 @@ export function CountryDetailPage() {
           <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-background-primary" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-[var(--content-gutter)] pt-12 pb-0">
+        <div className="relative max-w-7xl mx-auto px-[var(--content-gutter)] pt-12 lg:pt-8 pb-0">
           {/* Back link */}
           <Link
             to="/destinations"
@@ -196,7 +196,7 @@ export function CountryDetailPage() {
           </Link>
 
           {/* Country header */}
-          <div className="flex items-end gap-6 pb-10">
+          <div className="flex items-end gap-6 pb-8 lg:pb-7">
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-4xl sm:text-5xl" role="img" aria-hidden="true">

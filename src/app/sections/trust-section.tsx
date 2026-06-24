@@ -47,7 +47,7 @@ export function TrustSection() {
 
   return (
     <section
-      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden section-gradient"
+      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
     >
       {/* Grid overlay */}
       <div
@@ -71,12 +71,12 @@ export function TrustSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="text-center mb-10 sm:mb-16"
+          className="text-center page-section-header-gap"
         >
           <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-3 sm:mb-4" style={{ color: "rgb(0,184,217)" }}>
             Trusted Worldwide
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold leading-tight mb-3 sm:mb-4 text-text-primary">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 text-text-primary">
             {t<string>("trust.title")}
           </h2>
           <p className="text-sm sm:text-base md:text-lg max-w-2xl 3xl:max-w-4xl mx-auto leading-relaxed text-text-muted px-1">
