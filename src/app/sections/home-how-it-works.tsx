@@ -1,12 +1,12 @@
 import { m } from "motion/react";
 import { Link } from "react-router-dom";
 import { FileSearch, School, FileCheck2, PlaneTakeoff, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 const STEPS = [
   {
     number: "01",
-    title: "Discover Programs",
-    description: "Browse curated university programs that match your goals, budget, and destination preferences.",
+    key: "discover",
     icon: FileSearch,
     accentColor: "rgb(212,175,55)",
     accentBg: "rgba(212,175,55,0.1)",
@@ -14,8 +14,7 @@ const STEPS = [
   },
   {
     number: "02",
-    title: "Shortlist Universities",
-    description: "Compare admission criteria, tuition, and outcomes to build your best-fit shortlist.",
+    key: "shortlist",
     icon: School,
     accentColor: "rgb(0,184,217)",
     accentBg: "rgba(0,184,217,0.1)",
@@ -23,8 +22,7 @@ const STEPS = [
   },
   {
     number: "03",
-    title: "Prepare Application",
-    description: "Get guided support for documents, language proofs, and timeline planning.",
+    key: "prepare",
     icon: FileCheck2,
     accentColor: "rgb(167,139,250)",
     accentBg: "rgba(167,139,250,0.1)",
@@ -32,8 +30,7 @@ const STEPS = [
   },
   {
     number: "04",
-    title: "Start Your Journey",
-    description: "Submit confidently and move from acceptance to relocation with ongoing assistance.",
+    key: "journey",
     icon: PlaneTakeoff,
     accentColor: "rgb(74,222,128)",
     accentBg: "rgba(74,222,128,0.1)",
@@ -42,6 +39,8 @@ const STEPS = [
 ] as const;
 
 export function HomeHowItWorks() {
+  const { t } = useLanguage();
+
   return (
     <section
       className="relative py-24 md:py-28 overflow-hidden section-gradient"
@@ -71,10 +70,10 @@ export function HomeHowItWorks() {
           className="text-center mb-16"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
-            Simple Process
+            {t<string>("home.howItWorks.badge")}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-text-primary">
-            How It Works
+            {t<string>("home.howItWorks.title")}
           </h2>
         </m.div>
 
@@ -134,13 +133,13 @@ export function HomeHowItWorks() {
                     className="text-xs font-bold tracking-widest mb-2"
                     style={{ color: step.accentColor }}
                   >
-                    STEP {step.number}
+                    {t<string>("home.howItWorks.stepLabel").replace("{{number}}", step.number)}
                   </p>
                   <h3 className="text-lg font-bold mb-2 text-text-primary">
-                    {step.title}
+                    {t<string>(`home.howItWorks.steps.${step.key}.title`)}
                   </h3>
                   <p className="text-sm leading-relaxed text-text-disabled">
-                    {step.description}
+                    {t<string>(`home.howItWorks.steps.${step.key}.description`)}
                   </p>
                 </m.div>
               );
@@ -170,13 +169,13 @@ export function HomeHowItWorks() {
                     </div>
                     <div>
                       <p className="text-xs font-bold tracking-widest mb-1" style={{ color: step.accentColor }}>
-                        STEP {step.number}
+                        {t<string>("home.howItWorks.stepLabel").replace("{{number}}", step.number)}
                       </p>
                       <h3 className="text-base font-bold mb-1 text-text-primary">
-                        {step.title}
+                        {t<string>(`home.howItWorks.steps.${step.key}.title`)}
                       </h3>
                       <p className="text-sm leading-relaxed text-text-disabled">
-                        {step.description}
+                        {t<string>(`home.howItWorks.steps.${step.key}.description`)}
                       </p>
                     </div>
                   </div>
@@ -192,7 +191,7 @@ export function HomeHowItWorks() {
             to="/programs"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
           >
-            Explore Programs
+            {t<string>("globalCta.student.primary.low")}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

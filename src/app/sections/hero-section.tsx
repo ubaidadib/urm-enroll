@@ -183,7 +183,7 @@ export function HeroSection() {
             href="https://www.icef.com"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="ICEF IAS Accredited Agency #6507"
+            aria-label={`${t<string>("icef.accredited")} ${t<string>("icef.member")}`}
             className="shrink-0 flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg border border-accent-primary/30 bg-accent-primary/6 transition-colors duration-200 hover:border-accent-primary/50"
           >
             <Award className="w-4 h-4 text-accent-primary" aria-hidden="true" />

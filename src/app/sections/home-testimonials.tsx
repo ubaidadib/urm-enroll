@@ -1,4 +1,5 @@
 import { m } from "motion/react";
+import { useLanguage } from "@/i18n/language-context";
 
 const TESTIMONIALS = [
   {
@@ -28,6 +29,8 @@ const TESTIMONIALS = [
 ] as const;
 
 export function HomeTestimonials() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 md:py-24 bg-bg-secondary/40">
       <div className="max-w-7xl mx-auto px-6">
@@ -37,8 +40,8 @@ export function HomeTestimonials() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <p className="text-sm tracking-[0.2em] uppercase text-text-muted mb-3">Student Voices</p>
-          <h2 className="text-3xl md:text-4xl font-black text-text-primary">What Our Students Say</h2>
+          <p className="text-sm tracking-[0.2em] uppercase text-text-muted mb-3">{t<string>("home.testimonials.eyebrow")}</p>
+          <h2 className="text-3xl md:text-4xl font-black text-text-primary">{t<string>("home.testimonials.title")}</h2>
         </m.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

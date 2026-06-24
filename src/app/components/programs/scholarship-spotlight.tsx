@@ -1,5 +1,6 @@
 import { m } from "motion/react";
 import { Award, Sparkles } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface ScholarshipSpotlightProps {
   scholarshipCount: number;
@@ -7,6 +8,8 @@ interface ScholarshipSpotlightProps {
 }
 
 export function ScholarshipSpotlight({ scholarshipCount, onViewScholarships }: ScholarshipSpotlightProps) {
+  const { t } = useLanguage();
+
   return (
     <section className="relative px-4 py-16 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
@@ -30,17 +33,16 @@ export function ScholarshipSpotlight({ scholarshipCount, onViewScholarships }: S
                     <Award className="h-6 w-6 text-brand-gold-600" />
                   </div>
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-brand-gold-700 dark:text-brand-gold-300">
-                    Scholarship Accelerator
+                    {t<string>("programs.discovery.scholarships.eyebrow")}
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-3xl font-black text-text-primary">
-                    Unlock full-funded pathways to your dream program
+                    {t<string>("programs.discovery.scholarships.title")}
                   </h3>
                   <p className="mt-3 text-text-secondary">
-                    Discover {scholarshipCount}+ programs with active scholarship opportunities. Get AI-powered funding
-                    recommendations and timeline guidance to maximize your chances.
+                    {t<string>("programs.discovery.scholarships.description").replace("{{count}}", String(scholarshipCount))}
                   </p>
                 </div>
 
@@ -48,15 +50,15 @@ export function ScholarshipSpotlight({ scholarshipCount, onViewScholarships }: S
                 <div className="space-y-3 pt-2">
                   <div className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-brand-gold-600" />
-                    <span className="text-sm font-semibold text-text-secondary">Full-funded & partial scholarships</span>
+                    <span className="text-sm font-semibold text-text-secondary">{t<string>("programs.discovery.scholarships.benefit1")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-brand-gold-600" />
-                    <span className="text-sm font-semibold text-text-secondary">AI funding match scoring</span>
+                    <span className="text-sm font-semibold text-text-secondary">{t<string>("programs.discovery.scholarships.benefit2")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="h-2 w-2 rounded-full bg-brand-gold-600" />
-                    <span className="text-sm font-semibold text-text-secondary">Application timeline planning</span>
+                    <span className="text-sm font-semibold text-text-secondary">{t<string>("programs.discovery.scholarships.benefit3")}</span>
                   </div>
                 </div>
 
@@ -68,7 +70,7 @@ export function ScholarshipSpotlight({ scholarshipCount, onViewScholarships }: S
                   whileTap={{ scale: 0.98 }}
                   className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-brand-navy-900 px-6 py-3 font-bold text-white shadow-lg transition-all hover:shadow-xl dark:bg-brand-gold-600 dark:text-brand-navy-950"
                 >
-                  Explore Scholarship Programs
+                  {t<string>("programs.discovery.finalCta.title")}
                   <Sparkles className="h-4 w-4" />
                 </m.button>
               </div>
@@ -86,21 +88,21 @@ export function ScholarshipSpotlight({ scholarshipCount, onViewScholarships }: S
                   <div className="space-y-3">
                     <div className="rounded-2xl border border-brand-gold-400/40 bg-white/50 backdrop-blur-sm p-4 dark:bg-brand-softnav-900/40">
                       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">
-                        Total Funding Available
+                        {t<string>("programs.discovery.scholarships.statsTotalFunding")}
                       </p>
                       <p className="mt-2 text-3xl font-black text-brand-gold-600">€2.4B+</p>
                     </div>
 
                     <div className="rounded-2xl border border-brand-steel-400/40 bg-white/50 backdrop-blur-sm p-4 dark:bg-brand-softnav-900/40">
                       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">
-                        Success Rate
+                        {t<string>("programs.discovery.scholarships.statsSuccessRate")}
                       </p>
                       <p className="mt-2 text-3xl font-black text-brand-steel-600">73%</p>
                     </div>
 
                     <div className="rounded-2xl border border-brand-softnav-400/40 bg-white/50 backdrop-blur-sm p-4 dark:bg-brand-softnav-900/40">
                       <p className="text-xs font-semibold uppercase tracking-[0.12em] text-text-muted">
-                        Average Award
+                        {t<string>("programs.discovery.scholarships.statsAverageAward")}
                       </p>
                       <p className="mt-2 text-3xl font-black text-brand-softnav-600">€18,500</p>
                     </div>

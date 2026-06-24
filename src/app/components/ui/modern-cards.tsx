@@ -390,13 +390,13 @@ export function ProgramCardModern({
             <div className="min-w-0">
               {displayFees ? (
                 <>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Approx.</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">{t<string>("common.approx")}</p>
                   <p className="mt-0.5 truncate text-base font-bold text-accent-primary dark:text-accent-primary">{displayFees}</p>
                 </>
               ) : (
                 <>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Tuition</p>
-                  <p className="mt-0.5 text-sm font-semibold text-slate-400 dark:text-slate-500">Contact university</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">{t<string>("card.program.tuitionLabel")}</p>
+                  <p className="mt-0.5 text-sm font-semibold text-slate-400 dark:text-slate-500">{t<string>("card.program.contactUniversity")}</p>
                 </>
               )}
             </div>
@@ -406,7 +406,7 @@ export function ProgramCardModern({
                 to={programPath}
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-linear-to-r from-accent-primary to-accent-primary-strong px-4 py-2 text-[13px] font-semibold text-ink shadow-sm transition hover:shadow-[0_8px_20px_rgba(212,175,55,0.35)]"
               >
-                Explore
+                {t<string>("card.program.explore")}
                 <ArrowRight className={`h-3.5 w-3.5 ${isRtl ? "rotate-180" : ""}`} />
               </Link>
             ) : (
@@ -415,7 +415,7 @@ export function ProgramCardModern({
                 onClick={openProgram}
                 className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-linear-to-r from-accent-primary to-accent-primary-strong px-4 py-2 text-[13px] font-semibold text-ink shadow-sm transition hover:shadow-[0_8px_20px_rgba(212,175,55,0.35)]"
               >
-                Explore
+                {t<string>("card.program.explore")}
                 <ArrowRight className={`h-3.5 w-3.5 ${isRtl ? "rotate-180" : ""}`} />
               </button>
             )}

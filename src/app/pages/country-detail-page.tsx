@@ -270,7 +270,7 @@ export function CountryDetailPage() {
 
               {/* Top programs preview */}
               <section>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-3">Top Programs</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-3">{t<string>("destinations.detail.topPrograms")}</h2>
                 <div className="flex flex-wrap gap-2">
                   {dest.topPrograms.map((prog) => (
                     <span
@@ -297,7 +297,7 @@ export function CountryDetailPage() {
               <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                 <div className="flex items-center gap-2 mb-3">
                   <Shield className="w-5 h-5 text-accent-primary" />
-                  <h3 className="font-black text-slate-900 dark:text-white">Visa Information</h3>
+                  <h3 className="font-black text-slate-900 dark:text-white">{t<string>("destinations.detail.visaInsights")}</h3>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                   {dest.visaInsights[lang]}
@@ -305,11 +305,11 @@ export function CountryDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                     <div className="text-lg font-black text-accent-primary">{dest.visaTimeline}</div>
-                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">Processing</div>
+                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">{t<string>("destinations.detail.processing")}</div>
                   </div>
                   <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                     <div className="text-lg font-black text-accent-success">{dest.successRate}%</div>
-                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">Approval Rate</div>
+                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">{t<string>("destinations.detail.approvals")}</div>
                   </div>
                 </div>
               </div>
@@ -317,7 +317,7 @@ export function CountryDetailPage() {
               <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                 <div className="flex items-center gap-2 mb-3">
                   <Languages className="w-5 h-5 text-accent-tech" />
-                  <h3 className="font-black text-slate-900 dark:text-white">Language Requirements</h3>
+                  <h3 className="font-black text-slate-900 dark:text-white">{t<string>("destinations.detail.languageLevels")}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {dest.languageLevels.map((level) => (
@@ -502,11 +502,11 @@ export function CountryDetailPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
                     <div className="text-2xl font-black text-accent-primary mb-1">{dest.visaTimeline}</div>
-                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">Processing Time</div>
+                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">{t<string>("destinations.detail.visaTime")}</div>
                   </div>
                   <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
                     <div className="text-2xl font-black text-accent-success mb-1">{dest.successRate}%</div>
-                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">Success Rate</div>
+                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">{t<string>("destinations.detail.successRate")}</div>
                   </div>
                 </div>
                 <Link

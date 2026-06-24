@@ -70,14 +70,14 @@ export function EligibilityScoreCard({
           </span>
 
           <div className="mt-4 w-full rounded-2xl border border-border bg-background-elevated p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">Mission status</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">{t<string>("eligibilityQuiz.result.missionStatusLabel")}</p>
             <p className="mt-1 text-sm font-semibold text-text-primary">
-              {result.meetsChancenkarteMinimum ? "Mission passed" : "Mission in progress"}
+              {result.meetsChancenkarteMinimum ? t<string>("eligibilityQuiz.result.missionPassed") : t<string>("eligibilityQuiz.result.missionInProgress")}
             </p>
             <p className="mt-1 text-xs text-text-secondary">
               {result.meetsChancenkarteMinimum
-                ? "You crossed the minimum Chancenkarte points threshold."
-                : "You still have a path. Use the action plan below to improve your profile."}
+                ? t<string>("eligibilityQuiz.result.missionPassedNote")
+                : t<string>("eligibilityQuiz.result.missionInProgressNote")}
             </p>
           </div>
         </div>

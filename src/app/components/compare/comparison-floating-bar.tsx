@@ -2,9 +2,11 @@ import { m, AnimatePresence } from "motion/react";
 import { X, GitCompareArrows } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useComparison } from "@/app/context/comparison-context";
+import { useLanguage } from "@/i18n/language-context";
 
 export function ComparisonFloatingBar() {
   const { items, removeFromComparison, clearComparison, toastMessage } = useComparison();
+  const { t } = useLanguage();
 
   return (
     <>
@@ -37,7 +39,7 @@ export function ComparisonFloatingBar() {
                 <div className="flex items-center gap-2 shrink-0">
                   <GitCompareArrows className="w-5 h-5 text-accent-primary" />
                   <span className="font-semibold text-text-primary text-sm">
-                    Compare Programs ({items.length}/3)
+                    {t<string>("comparison.floatingBar.title").replace("{{count}}", String(items.length))}
                   </span>
                 </div>
 
@@ -59,7 +61,7 @@ export function ComparisonFloatingBar() {
                         <button
                           onClick={() => removeFromComparison(item.id)}
                           className="text-text-muted hover:text-error transition-colors"
-                          aria-label={`Remove ${item.name} from comparison`}
+                          aria-label={t<string>("comparison.floatingBar.removeItem").replace("{{name}}", item.name)}
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -73,7 +75,7 @@ export function ComparisonFloatingBar() {
                     onClick={clearComparison}
                     className="text-sm text-text-secondary hover:text-text-primary transition-colors"
                   >
-                    Clear All
+                    {t<string>("comparison.clearAll")}
                   </button>
                   <Link
                     to="/compare"
@@ -84,7 +86,7 @@ export function ComparisonFloatingBar() {
                     }`}
                     aria-disabled={items.length < 2}
                   >
-                    Compare Now
+                    {t<string>("comparison.compareNow")}
                   </Link>
                 </div>
               </div>

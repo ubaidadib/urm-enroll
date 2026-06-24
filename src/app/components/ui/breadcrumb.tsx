@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/i18n/language-context";
 
 interface BreadcrumbItem {
   label: string;
@@ -11,8 +12,10 @@ interface BreadcrumbProps {
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
+  const { t } = useLanguage();
+
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-text-muted">
+    <nav aria-label={t<string>("common.breadcrumb")} className="text-sm text-text-muted">
       <ol className="flex flex-wrap items-center gap-1.5">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;

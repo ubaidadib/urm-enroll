@@ -13,6 +13,7 @@ import {
 
 import { useInstagramContent } from "@/hooks/useInstagramContent";
 import type { InstagramFeedItem } from "@/types/instagram-feed";
+import { useLanguage } from "@/i18n/language-context";
 
 const INSTAGRAM_URL = "https://www.instagram.com/urmenroll";
 const HANDLE = "@urmenroll";
@@ -61,12 +62,13 @@ function FeedCard({
   isActive: boolean;
   onClick: () => void;
 }) {
+  const { t } = useLanguage();
   const [g0, g1, g2] = getPlaceholderGradient(index);
 
   return (
     <m.button
       type="button"
-      aria-label={`Open Instagram success story ${index + 1}`}
+      aria-label={t<string>("home.instagram.aria.openStory").replace("{{index}}", String(index + 1))}
       onClick={onClick}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +100,7 @@ function FeedCard({
         <div className="absolute inset-x-0 top-0 p-3.5">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-[rgba(8,14,28,0.34)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/82 backdrop-blur-md">
             <Instagram className="h-3.5 w-3.5 text-rose-300" />
-            Success story
+            {t<string>("home.instagram.storyBadge")}
           </div>
         </div>
 
@@ -166,6 +168,7 @@ function FeedModal({
   onPrev: () => void;
   onNext: () => void;
 }) {
+  const { t } = useLanguage();
   const item = items[activeIndex];
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -199,7 +202,7 @@ function FeedModal({
       className="fixed inset-0 z-[120] flex items-center justify-center p-4 md:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label={`Instagram success story ${activeIndex + 1} of ${items.length}`}
+      aria-label={t<string>("home.instagram.aria.openStory").replace("{{index}}", String(activeIndex + 1))}
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-[rgba(8,14,28,0.82)] backdrop-blur-xl" />
@@ -225,7 +228,7 @@ function FeedModal({
             <button
               ref={closeRef}
               type="button"
-              aria-label="Close"
+              aria-label={t<string>("common.close")}
               onClick={onClose}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18"
             >
@@ -264,7 +267,7 @@ function FeedModal({
             <div className="flex gap-2">
               <button
                 type="button"
-                aria-label="Previous story"
+                aria-label={t<string>("common.aria.previous")}
                 onClick={onPrev}
                 disabled={activeIndex === 0}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18 disabled:pointer-events-none disabled:opacity-30"
@@ -273,7 +276,7 @@ function FeedModal({
               </button>
               <button
                 type="button"
-                aria-label="Next story"
+                aria-label={t<string>("common.aria.next")}
                 onClick={onNext}
                 disabled={activeIndex === items.length - 1}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18 disabled:pointer-events-none disabled:opacity-30"
@@ -288,7 +291,7 @@ function FeedModal({
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/16"
             >
-              Open in Instagram
+              {t<string>("home.instagram.viewPost")}
               <ExternalLink className="h-3.5 w-3.5 text-white/70" />
             </a>
           </div>
@@ -299,6 +302,7 @@ function FeedModal({
 }
 
 export function InstagramReelsSection() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [atStart, setAtStart] = useState(true);
@@ -381,16 +385,16 @@ export function InstagramReelsSection() {
           >
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--text-muted))]">
               <Instagram className="h-3.5 w-3.5 text-rose-400" />
-              Instagram success stories
+              {t<string>("home.instagram.storyBadge")}
             </div>
             <h2
               className="max-w-3xl text-3xl font-bold tracking-tight text-[rgb(var(--text-primary))] md:text-4xl lg:text-5xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Real student wins, synced from our Instagram feed.
+              {t<string>("home.instagram.title")}
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[rgb(var(--text-muted))]">
-              The website now reads from a dedicated feed pipeline, so new success stories can appear here without manual shortcode updates.
+              {t<string>("home.instagram.subtitle")}
             </p>
           </m.div>
 
@@ -427,7 +431,7 @@ export function InstagramReelsSection() {
               <div className="flex items-center gap-2 self-start md:self-auto">
                 <button
                   type="button"
-                  aria-label="Scroll left"
+                  aria-label={t<string>("common.aria.scrollLeft")}
                   onClick={() => scrollBy("left")}
                   disabled={atStart || isLoading || items.length === 0}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
@@ -436,7 +440,7 @@ export function InstagramReelsSection() {
                 </button>
                 <button
                   type="button"
-                  aria-label="Scroll right"
+                  aria-label={t<string>("common.aria.scrollRight")}
                   onClick={() => scrollBy("right")}
                   disabled={atEnd || isLoading || items.length === 0}
                   className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
@@ -452,9 +456,9 @@ export function InstagramReelsSection() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="mt-0.5 h-5 w-5 text-[rgb(var(--error))]" />
                 <div className="flex-1">
-                  <p className="font-semibold">Instagram stories are temporarily unavailable.</p>
+                  <p className="font-semibold">{t<string>("home.instagram.error")}</p>
                   <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
-                    The feed could not be loaded right now. You can retry or open the Instagram page directly.
+                    {t<string>("home.instagram.loading")}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-3">
                     <button
@@ -463,7 +467,7 @@ export function InstagramReelsSection() {
                       className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
                     >
                       <RefreshCcw className="h-4 w-4" />
-                      Retry
+                      {t<string>("common.retry")}
                     </button>
                     <a
                       href={INSTAGRAM_URL}
@@ -471,7 +475,7 @@ export function InstagramReelsSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
                     >
-                      Open Instagram
+                      {t<string>("home.instagram.followUs")}
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>
@@ -480,7 +484,7 @@ export function InstagramReelsSection() {
             </div>
           ) : showEmptyState ? (
             <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-5 text-[rgb(var(--text-primary))]">
-              <p className="font-semibold">No stories are available yet.</p>
+              <p className="font-semibold">{t<string>("home.instagram.empty")}</p>
               <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
                 Once the feed sync runs and Instagram content is available, stories will appear here automatically.
               </p>

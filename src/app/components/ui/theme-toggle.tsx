@@ -1,23 +1,24 @@
 import { useState } from "react";
 import { Monitor, Moon, Sun, Check } from "lucide-react";
 import { useTheme } from "./theme-provider";
+import { useLanguage } from "@/i18n/language-context";
 
 const themeOptions = [
   {
     value: "system",
-    label: "System",
+    labelKey: "common.theme.system",
     icon: Monitor,
     preview: ["bg-brand-navy-800", "bg-brand-steel-500", "bg-brand-gold-500"],
   },
   {
     value: "light",
-    label: "Light",
+    labelKey: "common.theme.light",
     icon: Sun,
     preview: ["bg-brand-navy-800", "bg-brand-teal-500", "bg-brand-gold-500"],
   },
   {
     value: "dark",
-    label: "Dark",
+    labelKey: "common.theme.dark",
     icon: Moon,
     preview: ["bg-brand-navy-950", "bg-brand-teal-400", "bg-brand-gold-400"],
   },
@@ -28,6 +29,7 @@ type ThemeToggleProps = {
 };
 
 export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
+  const { t } = useLanguage();
   const { theme, setTheme, resolvedTheme, themeSource } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,8 +37,10 @@ export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
   const ActiveIcon = activeOption.icon;
   const sourceLabel =
     themeSource === "system"
-      ? `System theme (${resolvedTheme})`
-      : `${resolvedTheme === "dark" ? "Dark" : "Light"} mode`;
+      ? t<string>("common.theme.ariaSystem").replace("{{theme}}", resolvedTheme)
+      : resolvedTheme === "dark"
+        ? t<string>("common.theme.ariaDark")
+        : t<string>("common.theme.ariaLight");
 
   return (
     <div className="relative">
@@ -54,7 +58,7 @@ export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
       >
         <ActiveIcon className="w-4 h-4 text-text-secondary group-hover:text-text-primary transition-colors" />
         {!iconOnly && (
-          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground">{activeOption.label}</span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground">{t<string>(activeOption.labelKey)}</span>
         )}
       </button>
 
@@ -84,7 +88,7 @@ export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
                       : "text-text-secondary hover:text-text-primary hover:bg-background-hover border border-transparent"
                   }`}
                 >
-                  <span className="sr-only">{option.label}</span>
+                  <span className="sr-only">{t<string>(option.labelKey)}</span>
                   <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-background-surface border border-border/50">
                     <Icon className="w-4 h-4" />
                   </span>

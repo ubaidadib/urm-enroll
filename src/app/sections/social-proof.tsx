@@ -187,7 +187,7 @@ export function SocialProof() {
                 <button
                   type="button"
                   onClick={() => scrollSlider("prev")}
-                  aria-label="Previous"
+                  aria-label={t<string>("common.aria.previous")}
                   className="w-9 h-9 rounded-lg glass-card-light border border-[var(--color-border)] text-[var(--color-text-primary)] hover:shadow-md transition-all"
                 >
                   <ChevronLeft className={`w-4 h-4 mx-auto ${isRtl ? "rotate-180" : ""}`} />
@@ -195,7 +195,7 @@ export function SocialProof() {
                 <button
                   type="button"
                   onClick={() => scrollSlider("next")}
-                  aria-label="Next"
+                  aria-label={t<string>("common.aria.next")}
                   className="w-9 h-9 rounded-lg glass-card-light border border-[var(--color-border)] text-[var(--color-text-primary)] hover:shadow-md transition-all"
                 >
                   <ChevronRight className={`w-4 h-4 mx-auto ${isRtl ? "rotate-180" : ""}`} />

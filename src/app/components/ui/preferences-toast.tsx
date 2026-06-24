@@ -13,7 +13,7 @@ const MESSAGES = {
 } as const;
 
 export function PreferencesToast() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   const message = useMemo(() => {
@@ -52,7 +52,7 @@ export function PreferencesToast() {
         <button
           type="button"
           onClick={() => setVisible(false)}
-          aria-label="Close preference notice"
+          aria-label={t<string>("common.aria.closeNotice")}
           className="shrink-0 rounded-lg p-1 text-muted-foreground hover:text-foreground hover:bg-surface-glass/10 transition-colors"
         >
           <X className="w-4 h-4" />

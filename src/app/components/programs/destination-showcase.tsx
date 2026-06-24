@@ -1,5 +1,6 @@
 import { m } from "motion/react";
 import { Globe2, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface DestinationCard {
   id: string;
@@ -15,6 +16,8 @@ interface DestinationShowcaseProps {
 }
 
 export function DestinationShowcase({ destinations, onSelectDestination }: DestinationShowcaseProps) {
+  const { t } = useLanguage();
+
   return (
     <section className="relative px-4 py-16 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
@@ -26,12 +29,12 @@ export function DestinationShowcase({ destinations, onSelectDestination }: Desti
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-text-muted">Top Destinations</p>
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-text-muted">{t<string>("programs.discovery.destinations.eyebrow")}</p>
           <h2 className="mt-2 text-3xl font-black text-text-primary">
-            Where global students are launching careers in 2026
+            {t<string>("programs.discovery.destinations.title")}
           </h2>
           <p className="mt-3 max-w-2xl text-text-secondary">
-            Discover the world's most sought-after study destinations for international career advancement.
+            {t<string>("programs.discovery.destinations.description")}
           </p>
         </m.div>
 
@@ -81,13 +84,13 @@ export function DestinationShowcase({ destinations, onSelectDestination }: Desti
                   <div>
                     <h3 className="text-2xl font-black text-white drop-shadow">{destination.country}</h3>
                     <p className="mt-1 text-sm font-semibold text-white/80">
-                      {destination.programCount}+ programs available
+                      {t<string>("programs.discovery.destinations.programsAvailable").replace("{{count}}", String(destination.programCount))}
                     </p>
                   </div>
 
                   {/* CTA indicator */}
                   <div className="inline-flex items-center gap-1 rounded-full bg-brand-gold-400 px-3 py-1 text-xs font-bold text-brand-navy-950 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Explore <ChevronRight className="h-3 w-3" />
+                    {t<string>("programs.discovery.destinations.explore")} <ChevronRight className="h-3 w-3" />
                   </div>
                 </div>
               </div>

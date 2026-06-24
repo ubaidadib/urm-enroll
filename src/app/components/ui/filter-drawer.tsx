@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { useRef, useEffect } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { X } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface FilterDrawerProps {
   open: boolean;
@@ -24,6 +25,7 @@ export function FilterDrawer({
   clearAllLabel,
   children,
 }: FilterDrawerProps) {
+  const { t } = useLanguage();
   const drawerRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -113,7 +115,7 @@ export function FilterDrawer({
                 <button
                   type="button"
                   onClick={onClose}
-                  aria-label="Close filters"
+                  aria-label={t<string>("common.aria.closeFilters")}
                   className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-border text-text-secondary transition-colors hover:bg-bg-surface-hover hover:text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary"
                 >
                   <X className="h-5 w-5" />

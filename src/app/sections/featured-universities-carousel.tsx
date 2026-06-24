@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getFeaturedUniversities } from "@/data/universities";
 import { UniversityCardModern } from "../components/ui/modern-cards";
+import { useLanguage } from "@/i18n/language-context";
 
 const SLIDE_VARIANTS = {
   enter: (dir: number) => ({ x: dir > 0 ? "35%" : "-35%", opacity: 0 }),
@@ -14,6 +15,7 @@ const SLIDE_VARIANTS = {
 const SLIDE_TRANSITION = { type: "spring" as const, stiffness: 260, damping: 30, mass: 0.9 };
 
 export function FeaturedUniversitiesCarousel() {
+  const { t } = useLanguage();
   const featured = useMemo(() => getFeaturedUniversities(6), []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -62,27 +64,27 @@ export function FeaturedUniversitiesCarousel() {
           <div>
             <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase mb-3 font-semibold" style={{ color: "rgb(212,175,55)" }}>
               <Sparkles className="w-3.5 h-3.5" />
-              Top Picks
+              {t<string>("home.featuredUniversities.badge")}
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">Featured Universities</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">{t<string>("home.featuredUniversities.title")}</h2>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             <Link to="/universities" className="text-sm font-semibold transition-opacity hover:opacity-70" style={{ color: "rgb(0,184,217)" }}>
-              View All
+              {t<string>("common.viewAll")}
             </Link>
             <div className="flex gap-2">
               <button
                 onClick={handlePrev}
                 className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 border border-accent-primary/20 bg-bg-surface/70 text-text-secondary hover:border-accent-primary/40"
-                aria-label="Previous featured universities"
+                aria-label={t<string>("common.aria.previous")}
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
                 className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 border border-accent-primary/20 bg-bg-surface/70 text-text-secondary hover:border-accent-primary/40"
-                aria-label="Next featured universities"
+                aria-label={t<string>("common.aria.next")}
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -140,7 +142,7 @@ export function FeaturedUniversitiesCarousel() {
               }}
               className={`h-2 rounded-full transition-all ${currentIndex === index ? "w-8" : "w-2"}`}
             style={{ background: currentIndex === index ? "rgb(212,175,55)" : "rgba(212,175,55,0.2)" }}
-              aria-label={`Go to featured university ${index + 1}`}
+              aria-label={t<string>("home.instagram.aria.openStory").replace("{{index}}", String(index + 1))}
             />
           ))}
         </div>

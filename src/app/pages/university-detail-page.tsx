@@ -177,7 +177,7 @@ export function UniversityDetailPage() {
                       className="min-h-11 min-w-11 rounded-lg border border-white/20 bg-white/10 text-white hover:bg-white/20"
                     />
                     <button
-                      aria-label="Share university"
+                      aria-label={t<string>("common.aria.shareUniversity")}
                       className="rounded-lg border border-white/20 bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20"
                     >
                       <Share2 className="w-5 h-5" />

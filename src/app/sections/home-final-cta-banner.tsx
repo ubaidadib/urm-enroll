@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 import { m } from "motion/react";
 import { ArrowRight, ShieldCheck, GraduationCap, Users } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 const AVATARS = ["NA", "MK", "YP", "AF", "LT"];
 
-const PROOF_ITEMS = [
-  { icon: GraduationCap, text: "2,400+ students enrolled this year" },
-  { icon: Users, text: "Across 50+ partner universities in Europe" },
-  { icon: ShieldCheck, text: "Trusted by students from 20+ countries" },
-];
-
 export function HomeFinalCtaBanner() {
+  const { t } = useLanguage();
+
+  const proofItems = [
+    { icon: GraduationCap, text: t<string>("home.finalCta.socialProof") },
+    { icon: Users, text: t<string>("home.finalCta.proofUniversities") },
+    { icon: ShieldCheck, text: t<string>("home.finalCta.proofCountries") },
+  ];
+
   return (
     <section
       className="relative py-24 md:py-28 overflow-hidden section-gradient"
@@ -50,18 +53,18 @@ export function HomeFinalCtaBanner() {
                 className="text-xs font-semibold uppercase tracking-[0.2em] mb-5"
                 style={{ color: "rgb(0,184,217)" }}
               >
-                Personalized Admissions Support
+                {t<string>("home.finalCta.badge")}
               </p>
 
               <h2
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold tracking-tight leading-[1.08] mb-5 text-text-primary"
               >
-                Ready to Find Your{" "}
-                <span style={{ color: "rgb(212,175,55)" }}>Dream University?</span>
+                {t<string>("home.finalCta.titleLead")}{" "}
+                <span style={{ color: "rgb(212,175,55)" }}>{t<string>("home.finalCta.titleHighlight")}</span>
               </h2>
 
               <p className="text-lg leading-relaxed mb-9 text-text-muted">
-                Build your shortlist, compare options, and start applications with confidence.
+                {t<string>("home.finalCta.description")}
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
@@ -69,7 +72,7 @@ export function HomeFinalCtaBanner() {
                   to="/programs"
                   className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
                 >
-                  Get Started Free
+                  {t<string>("home.finalCta.primaryCta")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
@@ -77,7 +80,7 @@ export function HomeFinalCtaBanner() {
                   to="/contact"
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.01] btn-outline-subtle"
                 >
-                  Speak to an Advisor
+                  {t<string>("home.finalCta.secondaryCta")}
                 </Link>
               </div>
             </div>
@@ -105,13 +108,13 @@ export function HomeFinalCtaBanner() {
                   </span>
                 ))}
                 <span className="ms-3 text-sm font-medium text-text-primary">
-                  +495 others
+                  {t<string>("home.finalCta.othersCount")}
                 </span>
               </div>
 
               {/* Proof items */}
               <div className="space-y-3">
-                {PROOF_ITEMS.map((item) => {
+                {proofItems.map((item) => {
                   const Icon = item.icon;
                   return (
                     <div

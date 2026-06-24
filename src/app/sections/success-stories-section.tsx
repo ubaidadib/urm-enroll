@@ -164,7 +164,7 @@ export function SuccessStoriesSection() {
               <button
                 type="button"
                 onClick={() => scrollSlider('prev')}
-                aria-label="Previous stories"
+                aria-label={t<string>("common.aria.previous")}
                 className="w-11 h-11 rounded-xl glass-card-light border border-[var(--color-border)] text-[var(--color-text-primary)] hover:shadow-md transition-all"
               >
                 <ChevronLeft className={`w-5 h-5 mx-auto ${isRtl ? 'rotate-180' : ''}`} />
@@ -172,7 +172,7 @@ export function SuccessStoriesSection() {
               <button
                 type="button"
                 onClick={() => scrollSlider('next')}
-                aria-label="Next stories"
+                aria-label={t<string>("common.aria.next")}
                 className="w-11 h-11 rounded-xl glass-card-light border border-[var(--color-border)] text-[var(--color-text-primary)] hover:shadow-md transition-all"
               >
                 <ChevronRight className={`w-5 h-5 mx-auto ${isRtl ? 'rotate-180' : ''}`} />

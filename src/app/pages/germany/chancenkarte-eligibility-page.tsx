@@ -219,24 +219,24 @@ export function ChancenkarteEligibilityPage() {
           {phase !== "intro" && (
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">Quiz format</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.quizFormat")}</p>
                 <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
                   <Sparkles className="h-4 w-4 text-accent-primary-strong" />
-                  {isVariantB ? "Mission checkpoints" : "18 quick taps"}
+                  {isVariantB ? t<string>("eligibilityQuiz.intro.missionCheckpoints") : t<string>("eligibilityQuiz.intro.quickTaps")}
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">Time</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.time")}</p>
                 <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
                   <Clock3 className="h-4 w-4 text-accent-primary-strong" />
                   {t<string>("eligibilityQuiz.intro.estimatedTime")}
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">Score model</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.scoreModel")}</p>
                 <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
                   <BarChart3 className="h-4 w-4 text-accent-primary-strong" />
-                  Real points logic
+                  {t<string>("eligibilityQuiz.intro.realPointsLogic")}
                 </p>
               </div>
             </div>
@@ -469,7 +469,7 @@ export function ChancenkarteEligibilityPage() {
                     type="button"
                     onClick={() => setMilestone(null)}
                     className="rounded-full p-1 text-text-muted transition hover:bg-bg-secondary hover:text-text-primary"
-                    aria-label="Dismiss milestone"
+                    aria-label={t<string>("eligibilityQuiz.result.dismissMilestone")}
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -576,15 +576,16 @@ function StickyMissionFooter({
   phase: MissionPhase;
   action: StickyAction | null;
 }) {
+  const { t } = useLanguage();
   if (!action || phase === "result") return null;
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-bg-surface/95 dark:border-accent-primary/20 dark:bg-[linear-gradient(120deg,rgba(11,21,48,0.94),rgba(19,41,95,0.94))] p-3 backdrop-blur md:hidden">
       <div className="mx-auto flex max-w-4xl items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary">Mission control</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary">{t<string>("eligibilityQuiz.result.missionControl")}</p>
           <p className="truncate text-sm font-semibold text-text-primary dark:text-white">
-            {phase === "intro" ? "Start your mission" : "Continue to next checkpoint"}
+            {phase === "intro" ? t<string>("eligibilityQuiz.result.startMission") : t<string>("eligibilityQuiz.result.continueCheckpoint")}
           </p>
         </div>
         <button
