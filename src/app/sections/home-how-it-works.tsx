@@ -44,8 +44,7 @@ const STEPS = [
 export function HomeHowItWorks() {
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="relative py-24 md:py-28 overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div
@@ -74,7 +73,7 @@ export function HomeHowItWorks() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
             Simple Process
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "rgb(248,250,252)" }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary">
             How It Works
           </h2>
         </m.div>
@@ -125,7 +124,7 @@ export function HomeHowItWorks() {
                     style={{
                       background: step.accentBg,
                       border: `2px solid ${step.accentBorder}`,
-                      boxShadow: `0 0 0 6px rgba(5,10,24,1), 0 0 0 7px ${step.accentBorder}`,
+                      boxShadow: `0 0 0 6px rgb(var(--bg-primary)), 0 0 0 7px ${step.accentBorder}`,
                     }}
                   >
                     <Icon className="w-8 h-8" style={{ color: step.accentColor }} />
@@ -137,10 +136,10 @@ export function HomeHowItWorks() {
                   >
                     STEP {step.number}
                   </p>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: "rgb(248,250,252)" }}>
+                  <h3 className="text-lg font-bold mb-2 text-text-primary">
                     {step.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgb(105,133,166)" }}>
+                  <p className="text-sm leading-relaxed text-text-disabled">
                     {step.description}
                   </p>
                 </m.div>
@@ -161,14 +160,7 @@ export function HomeHowItWorks() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.45 }}
               >
-                <div
-                  className="rounded-2xl p-6 h-full transition-all duration-300"
-                  style={{
-                    background: "rgba(15,28,52,0.7)",
-                    border: `1.5px solid ${step.accentBorder}`,
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-                  }}
-                >
+                <div className="rounded-2xl p-6 h-full transition-all duration-300 surface-card">
                   <div className="flex items-start gap-4">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
@@ -180,10 +172,10 @@ export function HomeHowItWorks() {
                       <p className="text-xs font-bold tracking-widest mb-1" style={{ color: step.accentColor }}>
                         STEP {step.number}
                       </p>
-                      <h3 className="text-base font-bold mb-1" style={{ color: "rgb(248,250,252)" }}>
+                      <h3 className="text-base font-bold mb-1 text-text-primary">
                         {step.title}
                       </h3>
-                      <p className="text-sm leading-relaxed" style={{ color: "rgb(105,133,166)" }}>
+                      <p className="text-sm leading-relaxed text-text-disabled">
                         {step.description}
                       </p>
                     </div>
@@ -198,18 +190,7 @@ export function HomeHowItWorks() {
         <div className="text-center">
           <Link
             to="/programs"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
-            style={{
-              background: "rgb(212,175,55)",
-              color: "rgb(8,14,28)",
-              boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.4)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 20px rgba(212,175,55,0.25)";
-            }}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
           >
             Explore Programs
             <ArrowRight className="w-4 h-4" />

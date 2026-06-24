@@ -67,7 +67,7 @@ function InputField({
     <div>
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
+        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-disabled"
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -81,8 +81,7 @@ function InputField({
         placeholder={placeholder}
         disabled={disabled}
         className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
-          text-white placeholder-[rgba(105,133,166,0.6)]"
-          style={{ background: "rgba(15,28,52,0.8)", border: "1.5px solid rgba(212,175,55,0.15)", color: "rgb(248,250,252)" }}
+          bg-bg-surface/80 border border-accent-primary/15 text-text-primary placeholder:text-text-disabled/60 focus:border-accent-primary/40"
       />
     </div>
   );
@@ -114,7 +113,7 @@ function SelectField({
     <div className="relative">
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
+        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-disabled"
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -362,7 +361,7 @@ export function ContactPage() {
   const trustBadges = (t("contact.trustBadges") as string[]) || [];
 
   return (
-    <main dir={dir} className="dark min-h-screen" style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}>
+    <main dir={dir} className="min-h-screen section-gradient">
       <SeoManager
         path="/contact"
         breadcrumbs={[
@@ -409,7 +408,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight" style={{ color: "rgb(248,250,252)" }}
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-text-primary"
             >
               {t<string>("contact.title")}
             </m.h1>
@@ -418,7 +417,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-xl mb-6 leading-relaxed max-w-2xl" style={{ color: "rgb(145,177,210)" }}
+              className="text-xl mb-6 leading-relaxed max-w-2xl text-text-muted"
             >
               {t<string>("contact.description")}
             </m.p>
@@ -803,7 +802,7 @@ export function ContactPage() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
+                  className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-disabled"
                 >
                   {t<string>("contact.form.message")}
                   <span className="text-red-500 ms-1">*</span>

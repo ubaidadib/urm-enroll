@@ -82,8 +82,7 @@ export function DestinationsCompact() {
   return (
     <section
       dir={dir}
-      className="relative py-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="relative py-24 overflow-hidden section-gradient"
     >
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -108,10 +107,10 @@ export function DestinationsCompact() {
                 {tx("destinations.badge", "Global Access")}
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text-primary">
               {tx("destinations.compact.title", "Study Destinations.")}
             </h2>
-            <p className="mt-3 text-lg max-w-lg leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+            <p className="mt-3 text-lg max-w-lg leading-relaxed text-text-muted">
               {tx(
                 "destinations.compact.subtitle",
                 "14 countries. 1,400+ universities. Three strategic tiers for every student profile."
@@ -121,8 +120,7 @@ export function DestinationsCompact() {
 
           <Link
             to="/destinations"
-            className="group shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
-            style={{ background: "rgb(212,175,55)", color: "rgb(8,14,28)", boxShadow: "0 4px 20px rgba(212,175,55,0.25)" }}
+            className="group shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
           >
             <span>{tx("destinations.homeCta", "Explore All")}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -144,12 +142,11 @@ export function DestinationsCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 + i * 0.07 }}
-              className="p-5 rounded-2xl transition-all duration-300"
-              style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.12)" }}
+              className="p-5 rounded-2xl transition-all duration-300 surface-glass-subtle"
             >
               <Icon className="w-5 h-5 mb-3" style={{ color }} />
               <div className="text-3xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
-              <div className="text-xs font-semibold uppercase tracking-wide mt-1" style={{ color: "rgb(105,133,166)" }}>{label}</div>
+              <div className="text-xs font-semibold uppercase tracking-wide mt-1 text-text-disabled">{label}</div>
             </m.div>
           ))}
         </m.div>
@@ -223,10 +220,10 @@ export function DestinationsCompact() {
                   </div>
 
                   {/* Card footer */}
-                  <div className="flex items-center justify-between px-4 py-3" style={{ background: "rgba(5,10,24,0.8)", borderTop: "1px solid rgba(212,175,55,0.1)" }}>
+                  <div className="flex items-center justify-between px-4 py-3 bg-bg-surface border-t border-border/60">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: dest.accent }} />
-                      <span className="text-[11px] font-bold uppercase tracking-wide" style={{ color: "rgb(105,133,166)" }}>
+                      <span className="text-[11px] font-bold uppercase tracking-wide text-text-disabled">
                         {tx("destinations.card.fitScore", "Fit Score")}
                       </span>
                     </div>
@@ -244,13 +241,12 @@ export function DestinationsCompact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="rounded-2xl overflow-hidden"
-          style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.15)" }}
+          className="rounded-2xl overflow-hidden surface-card-elevated"
         >
           <div className="grid lg:grid-cols-12">
 
             {/* Left: Dark CTA panel */}
-            <div className="lg:col-span-4 relative p-10 flex flex-col justify-between overflow-hidden" style={{ background: "rgba(5,10,24,0.9)" }}>
+            <div className="lg:col-span-4 relative p-10 flex flex-col justify-between overflow-hidden bg-bg-secondary">
               <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.3) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
               <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.08), transparent)" }} />
 
@@ -259,10 +255,10 @@ export function DestinationsCompact() {
                   <Landmark className="w-3.5 h-3.5" />
                   {tx("destinations.network.germanyPartnersTitle", "Germany Partners")}
                 </div>
-                <h3 className="text-3xl font-bold leading-tight mb-3" style={{ color: "rgb(248,250,252)" }}>
+                <h3 className="text-3xl font-bold leading-tight mb-3 text-text-primary">
                   {tx("destinations.compact.partnerTitle", "1,400+ verified institutions.")}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+                <p className="text-sm leading-relaxed text-text-muted">
                   {tx(
                     "destinations.compact.partnerSub",
                     "Direct agreements and platform access to universities, language schools, and medical institutions."
@@ -273,8 +269,7 @@ export function DestinationsCompact() {
               <div className="relative z-10 mt-8">
                 <Link
                   to="/destinations"
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 hover:scale-[1.03]"
-                  style={{ background: "rgb(212,175,55)", color: "rgb(8,14,28)", boxShadow: "0 4px 20px rgba(212,175,55,0.25)" }}
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 hover:scale-[1.03] btn-gold-primary"
                 >
                   <span>{tx("destinations.homeCta", "Explore All Destinations")}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -283,11 +278,11 @@ export function DestinationsCompact() {
             </div>
 
             {/* Right: Partner logos + country pills */}
-            <div className="lg:col-span-8 p-10 space-y-10" style={{ borderLeft: "1px solid rgba(212,175,55,0.1)" }}>
+            <div className="lg:col-span-8 p-10 space-y-10 border-l border-border/50">
 
               {/* Partner institution tags */}
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest mb-4" style={{ color: "rgb(105,133,166)" }}>
+                <p className="text-[11px] font-bold uppercase tracking-widest mb-4 text-text-disabled">
                   {tx("destinations.network.germanyPartnersTitle", "Featured Partners")}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -297,27 +292,26 @@ export function DestinationsCompact() {
                   ]).slice(0, 10).map((logo, i) => (
                     <span
                       key={i}
-                      className="px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-default"
-                      style={{ background: "rgba(5,10,24,0.6)", border: "1px solid rgba(212,175,55,0.12)", color: "rgb(212,224,239)" }}
+                      className="px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-default surface-inset text-text-secondary"
                     >
                       {logo}
                     </span>
                   ))}
                   {(homeLogos.length > 10) && (
-                    <span className="px-4 py-2 rounded-xl text-xs font-medium" style={{ border: "1px dashed rgba(212,175,55,0.2)", color: "rgb(105,133,166)" }}>
+                    <span className="px-4 py-2 rounded-xl text-xs font-medium border border-dashed border-border text-text-disabled">
                       +{homeLogos.length - 10} {tx("destinations.compact.more", "more")}
                     </span>
                   )}
                 </div>
               </div>
 
-              <div className="h-px" style={{ background: "rgba(212,175,55,0.1)" }} />
+              <div className="h-px bg-border/40" />
 
               {/* Country network pills */}
               <div>
                 <div className="flex items-center gap-2 mb-4">
-                  <MapPin className="w-4 h-4" style={{ color: "rgb(105,133,166)" }} />
-                  <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "rgb(105,133,166)" }}>
+                  <MapPin className="w-4 h-4 text-text-disabled" />
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-text-disabled">
                     {tx("destinations.network.title", "Global Network")}
                   </p>
                 </div>
@@ -327,10 +321,7 @@ export function DestinationsCompact() {
                     <Link
                       key={i}
                       to={`/destinations?country=${country}`}
-                      className="group flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200"
-                      style={{ border: "1px solid rgba(212,175,55,0.12)", background: "rgba(5,10,24,0.5)", color: "rgb(212,224,239)" }}
-                      onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.35)"; (e.currentTarget as HTMLAnchorElement).style.color = "rgb(248,250,252)"; }}
-                      onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.12)"; (e.currentTarget as HTMLAnchorElement).style.color = "rgb(212,224,239)"; }}
+                      className="group flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-200 border border-border/60 bg-bg-secondary text-text-secondary hover:border-accent-primary/35 hover:text-text-primary"
                     >
                       <div className="w-1.5 h-1.5 rounded-full group-hover:scale-125 transition-transform" style={{ background: "rgb(212,175,55)" }} />
                       <span className="text-xs font-semibold">{country}</span>
@@ -339,11 +330,10 @@ export function DestinationsCompact() {
                     ) : (
                     <span
                       key={i}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl"
-                      style={{ border: "1px solid rgba(212,175,55,0.08)", background: "rgba(5,10,24,0.3)" }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border/40 bg-bg-secondary/50"
                     >
                       <div className="w-1.5 h-1.5 rounded-full" style={{ background: "rgba(105,133,166,0.4)" }} />
-                      <span className="text-xs font-semibold" style={{ color: "rgb(105,133,166)" }}>
+                      <span className="text-xs font-semibold text-text-disabled">
                         {country}
                       </span>
                     </span>

@@ -84,6 +84,17 @@ export const clearThemePreference = (): void => {
   }
 };
 
+const THEME_COLOR_LIGHT = "#f8fafc";
+const THEME_COLOR_DARK = "#08101c";
+
+const updateThemeColorMeta = (resolved: ResolvedTheme): void => {
+  if (typeof document === "undefined") return;
+  const color = resolved === "dark" ? THEME_COLOR_DARK : THEME_COLOR_LIGHT;
+  document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+    meta.setAttribute("content", color);
+  });
+};
+
 export const applyTheme = (preference: ThemePreference, root: HTMLElement = document.documentElement): ResolvedTheme => {
   const resolved = resolveTheme(preference);
   root.dataset.theme = resolved;
@@ -91,6 +102,7 @@ export const applyTheme = (preference: ThemePreference, root: HTMLElement = docu
   root.classList.remove("light", "dark");
   root.classList.add(resolved);
   root.style.colorScheme = resolved;
+  updateThemeColorMeta(resolved);
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("urm-theme-change", { detail: resolved }));

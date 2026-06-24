@@ -150,7 +150,7 @@ export function CountryDetailPage() {
   ];
 
   return (
-    <main className="dark min-h-screen" dir={dir} style={{ background: "rgb(5,10,24)" }}>
+    <main className="min-h-screen bg-bg-primary" dir={dir}>
       <SeoManager
         title={`Study in ${dest.name.en} — URM Enroll`}
         description={dest.tagline[lang]}

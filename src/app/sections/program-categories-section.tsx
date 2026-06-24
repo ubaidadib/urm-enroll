@@ -85,8 +85,7 @@ function countProgramsByField(fieldKey: string): number {
 export function ProgramCategoriesSection() {
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="relative py-24 md:py-28 overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div
@@ -112,8 +111,7 @@ export function ProgramCategoriesSection() {
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight"
-              style={{ color: "rgb(248,250,252)" }}
+              className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary"
             >
               Explore by Field of Study
             </h2>
@@ -142,20 +140,7 @@ export function ProgramCategoriesSection() {
               >
                 <Link
                   to={`/programs?field=${category.key}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl p-6 h-[160px] block transition-all duration-300 hover:-translate-y-1.5"
-                  style={{
-                    background: "rgba(15,28,52,0.7)",
-                    border: "1.5px solid rgba(212,224,239,0.07)",
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = category.accentBorder;
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 8px 28px rgba(0,0,0,0.3), 0 0 20px ${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.08)')}`;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.07)";
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)";
-                  }}
+                className="group relative flex flex-col overflow-hidden rounded-2xl p-6 h-[160px] block transition-all duration-300 hover:-translate-y-1.5 surface-card"
                 >
                   {/* Gradient overlay on hover */}
                   <div
@@ -182,14 +167,12 @@ export function ProgramCategoriesSection() {
 
                     <div className="mt-4">
                       <h3
-                        className="text-[0.9rem] font-bold leading-tight transition-colors duration-300"
-                        style={{ color: "rgb(248,250,252)" }}
+                        className="text-[0.9rem] font-bold leading-tight transition-colors duration-300 text-text-primary"
                       >
                         {category.label}
                       </h3>
                       <p
-                        className="mt-1 text-[11px] transition-colors duration-300"
-                        style={{ color: "rgb(105,133,166)" }}
+                        className="mt-1 text-[11px] transition-colors duration-300 text-text-disabled"
                       >
                         {count > 0 ? `${count.toLocaleString()} programs` : category.description}
                       </p>

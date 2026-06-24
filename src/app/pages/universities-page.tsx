@@ -491,7 +491,7 @@ export function UniversitiesPage() {
         path="/universities"
       />
 
-      <main className="dark relative min-h-screen overflow-x-hidden" style={{ background: "rgb(5,10,24)" }}>
+      <main className="relative min-h-screen overflow-x-hidden bg-bg-primary">
 
         {/* HERO */}
         <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
@@ -586,9 +586,9 @@ export function UniversitiesPage() {
                       type="button"
                       onClick={() => document.getElementById("universities-results")?.scrollIntoView({ behavior: "smooth" })}
                       className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 rounded-xl
-                        bg-slate-900 dark:bg-white text-white dark:text-slate-900
+                        btn-gold-primary
                         text-sm font-bold transition-all duration-200
-                        hover:bg-accent-tech hover:text-white dark:hover:bg-accent-tech dark:hover:text-white"
+                        hover:opacity-90"
                     >
                       {t<string>("search.button.label")}
                     </button>
@@ -725,7 +725,7 @@ export function UniversitiesPage() {
                       className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold
                         transition-all duration-200 whitespace-nowrap flex-shrink-0
                         ${!hasActiveFilters
-                          ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm"
+                          ? "chip-active shadow-sm"
                           : "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-600"
                         }`}
                     >
@@ -919,7 +919,7 @@ export function UniversitiesPage() {
                             aria-current={isActive ? "page" : undefined}
                             className={`w-10 h-10 rounded-xl text-sm font-bold transition-all duration-200
                               ${isActive
-                                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md scale-105"
+                                ? "chip-active shadow-md scale-105"
                                 : "border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-accent-tech/60 hover:text-accent-tech"
                               }`}
                           >
@@ -952,8 +952,8 @@ export function UniversitiesPage() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="mb-12 relative overflow-hidden rounded-[32px]
-                    bg-slate-900 dark:bg-slate-800/80
-                    shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+                    section-gradient-hero
+                    shadow-[0_20px_60px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
                 >
                   <div className="pointer-events-none absolute inset-0">
                     <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-accent-tech/28 blur-[80px]" />
@@ -962,14 +962,14 @@ export function UniversitiesPage() {
                   </div>
                   <div className="relative z-10 px-8 py-10 sm:px-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
                     <div>
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-4">
-                        <BookOpen className="w-3.5 h-3.5 text-amber-400" />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-300">Funding Available</span>
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 dark:bg-white/10 border border-amber-200 dark:border-white/20 mb-4">
+                        <BookOpen className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">Funding Available</span>
                       </div>
-                      <h3 className="text-2xl sm:text-3xl font-black text-white leading-snug">
+                      <h3 className="text-2xl sm:text-3xl font-black text-text-primary dark:text-white leading-snug">
                         Find Your Perfect Scholarship
                       </h3>
-                      <p className="mt-2 text-base text-white/60 max-w-lg">
+                      <p className="mt-2 text-base text-text-muted dark:text-white/60 max-w-lg">
                         Explore thousands of merit-based and need-based scholarships matched to your profile.
                       </p>
                     </div>
@@ -977,9 +977,7 @@ export function UniversitiesPage() {
                       <button
                         type="button"
                         onClick={() => navigate("/programs")}
-                        className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl
-                          bg-white text-slate-900 text-sm font-black
-                          hover:bg-amber-400 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl btn-gold-primary text-sm font-black shadow-lg hover:shadow-xl"
                       >
                         Explore Programs
                         <ArrowRight className="w-4 h-4" />
@@ -1052,8 +1050,8 @@ export function UniversitiesPage() {
             whileTap={{ scale: 0.95 }}
             aria-label="Open filters"
             className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full
-              bg-slate-900 dark:bg-white text-white dark:text-slate-900
-              shadow-[0_8px_32px_rgba(0,0,0,0.25)] text-sm font-bold"
+              btn-gold-primary
+              shadow-[var(--surface-shadow)] text-sm font-bold"
           >
             <SlidersHorizontal className="w-4 h-4" />
             Filters

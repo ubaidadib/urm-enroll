@@ -47,8 +47,7 @@ export function CompanyTimeline() {
   return (
     <section
       id="timeline"
-      className="py-32 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="py-32 relative overflow-hidden section-gradient"
     >
       {/* --- Ambient Background (Matches Destinations Page) --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -78,7 +77,7 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}
+            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-text-primary"
           >
             {t<string>('timeline.title')}
           </m.h2>
@@ -87,7 +86,7 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "rgb(145,177,210)" }}
+            className="text-xl max-w-2xl mx-auto leading-relaxed text-text-muted"
           >
             {t<string>('timeline.description')}
           </m.p>
@@ -117,17 +116,17 @@ export function CompanyTimeline() {
                 >
                   {/* Content Card */}
                   <div className={`flex-1 w-full md:w-auto ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-20 md:pl-0`}>
-                    <div className={`group relative inline-block p-8 rounded-[2rem] transition-all duration-300 hover:-translate-y-1 ${index % 2 === 0 ? 'mr-0 md:mr-12' : 'ml-0 md:ml-12'}`} style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.12)" }}>
+                    <div className={`group relative inline-block p-8 rounded-[2rem] transition-all duration-300 hover:-translate-y-1 surface-glass-subtle ${index % 2 === 0 ? 'mr-0 md:mr-12' : 'ml-0 md:ml-12'}`}>
                       {/* Decorative colored bar */}
                       <div className={`absolute top-10 bottom-10 w-1 rounded-full ${visual.bg.replace('/10', '')} ${index % 2 === 0 ? 'right-0 md:right-auto md:left-0' : 'left-0 md:left-auto md:right-0'}`} />
                       
-                      <div className="text-sm font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}>
+                      <div className="text-sm font-bold uppercase tracking-wider mb-2 text-text-disabled">
                         {milestone.year}
                       </div>
-                      <h3 className="text-2xl font-bold mb-2" style={{ color: "rgb(248,250,252)" }}>
+                      <h3 className="text-2xl font-bold mb-2 text-text-primary">
                         {milestone.title}
                       </h3>
-                      <p className="font-medium" style={{ color: "rgb(145,177,210)" }}>
+                      <p className="font-medium text-text-muted">
                         {milestone.description}
                       </p>
                     </div>
@@ -137,7 +136,7 @@ export function CompanyTimeline() {
                   <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
                     <div className="relative">
                       <div className={`absolute inset-0 rounded-full blur-md opacity-50 ${visual.bg.replace('/10', '/30')}`} />
-                      <div className={`w-16 h-16 rounded-full shadow-lg flex items-center justify-center relative z-10 ${visual.border}`} style={{ background: "rgb(5,10,24)", border: "4px solid rgba(212,175,55,0.3)" }}>
+                      <div className={`w-16 h-16 rounded-full shadow-lg flex items-center justify-center relative z-10 bg-bg-primary border-4 border-accent-primary/30 ${visual.border}`}>
                         <Icon className={`w-6 h-6 ${visual.color}`} strokeWidth={2} />
                       </div>
                     </div>
@@ -167,7 +166,7 @@ export function CompanyTimeline() {
             {MEDIA_LOGOS.map((media, index) => (
               <div key={index} className="flex items-center gap-3 group cursor-default">
                 <media.icon className="w-8 h-8 text-slate-400 group-hover:text-accent-primary transition-colors" />
-                <span className="text-lg font-bold transition-colors" style={{ color: "rgb(105,133,166)" }}>
+                <span className="text-lg font-bold transition-colors text-text-disabled">
                   {media.name}
                 </span>
               </div>

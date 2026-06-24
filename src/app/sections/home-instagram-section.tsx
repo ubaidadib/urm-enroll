@@ -70,7 +70,7 @@ const itemVariants = {
 
 export function HomeInstagramSection() {
   return (
-    <section className="relative overflow-hidden bg-slate-950 py-20 md:py-24">
+    <section className="relative overflow-hidden bg-bg-secondary dark:bg-slate-950 py-20 md:py-24 transition-colors duration-500">
       {/* Background accents */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-rose-500/8 blur-[120px]" />
@@ -87,17 +87,17 @@ export function HomeInstagramSection() {
           transition={{ duration: 0.45 }}
           className="mb-14 text-center"
         >
-          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
+          <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface/80 dark:border-white/10 dark:bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
             <Instagram className="h-3.5 w-3.5 text-rose-400" />
             Join Our Community
           </p>
-          <h2 className="text-3xl font-black tracking-tight text-white md:text-5xl">
+          <h2 className="text-3xl font-black tracking-tight text-text-primary dark:text-white md:text-5xl">
             Follow{" "}
             <span className="bg-linear-to-r from-rose-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
               Our Story
             </span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-400">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-text-muted">
             Thousands of students share their global education journeys with us every day.
             Join the conversation on your favourite platform.
           </p>
@@ -122,7 +122,7 @@ export function HomeInstagramSection() {
                 variants={itemVariants}
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.2 }}
-                className={`group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04] p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-2xl ${social.glow}`}
+                className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-bg-surface dark:border-white/[0.08] dark:bg-white/[0.04] p-6 backdrop-blur-sm transition-all duration-300 hover:border-border-strong dark:hover:border-white/20 hover:bg-bg-secondary dark:hover:bg-white/[0.07] hover:shadow-2xl ${social.glow}`}
               >
                 {/* Platform icon badge */}
                 <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br ${social.gradient} text-white shadow-lg`}>
@@ -133,18 +133,18 @@ export function HomeInstagramSection() {
                 </div>
 
                 {/* Content */}
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 mb-1">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted mb-1">
                   {social.platform}
                 </p>
-                <p className="text-base font-bold text-white mb-2">{social.handle}</p>
-                <p className="text-sm leading-relaxed text-slate-400 flex-1">{social.description}</p>
+                <p className="text-base font-bold text-text-primary dark:text-white mb-2">{social.handle}</p>
+                <p className="text-sm leading-relaxed text-text-muted flex-1">{social.description}</p>
 
                 {/* Stat label */}
                 <div className="mt-5 flex items-center justify-between">
-                  <span className="rounded-full bg-white/[0.06] border border-white/[0.08] px-3 py-1 text-[11px] font-semibold text-slate-400">
+                  <span className="rounded-full bg-bg-secondary dark:bg-white/[0.06] border border-border dark:border-white/[0.08] px-3 py-1 text-[11px] font-semibold text-text-muted">
                     {social.stat}
                   </span>
-                  <ArrowUpRight className="h-4 w-4 text-slate-500 transition-all duration-200 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="h-4 w-4 text-text-muted transition-all duration-200 group-hover:text-text-primary dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </m.a>
             );
@@ -157,7 +157,7 @@ export function HomeInstagramSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.3 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-8 rounded-2xl border border-white/[0.07] bg-white/[0.03] py-6 px-8"
+          className="mt-12 flex flex-wrap items-center justify-center gap-8 rounded-2xl border border-border bg-bg-surface dark:border-white/[0.07] dark:bg-white/[0.03] py-6 px-8"
         >
           {STATS.map((stat) => {
             const StatIcon = stat.icon;
@@ -167,8 +167,8 @@ export function HomeInstagramSection() {
                   <StatIcon className="h-4 w-4" />
                 </div>
                 <div>
-                  <p className="text-lg font-black text-white leading-none">{stat.value}</p>
-                  <p className="text-[11px] text-slate-500 mt-0.5">{stat.label}</p>
+                  <p className="text-lg font-black text-text-primary dark:text-white leading-none">{stat.value}</p>
+                  <p className="text-[11px] text-text-muted mt-0.5">{stat.label}</p>
                 </div>
               </div>
             );

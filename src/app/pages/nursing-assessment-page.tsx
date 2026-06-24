@@ -7,9 +7,9 @@ import { useLanguage } from "@/i18n/language-context";
 const TOTAL_QUESTIONS = nursingQuestions.length;
 
 const DIFFICULTY_COLORS = {
-  easy: "bg-green-100 text-green-800 border-green-200",
-  medium: "bg-amber-100 text-amber-800 border-amber-200",
-  hard: "bg-red-100 text-red-800 border-red-200",
+  easy: "bg-green-100 text-green-800 border-green-200 dark:bg-green-950/50 dark:text-green-300 dark:border-green-800",
+  medium: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800",
+  hard: "bg-red-100 text-red-800 border-red-200 dark:bg-red-950/50 dark:text-red-300 dark:border-red-800",
 };
 
 type AssessmentLocale = 'en' | 'de' | 'ar';

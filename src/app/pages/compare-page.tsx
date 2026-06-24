@@ -136,7 +136,7 @@ export function ComparePage() {
                           <div className="flex flex-col gap-2">
                             <Link
                               to={`/programs/${item.id}`}
-                              className="px-4 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold text-center hover:shadow-lg transition-all"
+                              className="px-4 py-2 rounded-lg btn-gold-primary text-sm font-bold text-center hover:shadow-lg transition-all"
                             >
                               {t<string>("comparison.table.apply")}
                             </Link>
@@ -193,7 +193,7 @@ export function ComparePage() {
                     <div className="mt-4 flex gap-2">
                       <Link
                         to={`/programs/${item.id}`}
-                        className="inline-flex min-h-11 flex-1 items-center justify-center rounded-lg bg-slate-900 dark:bg-white px-4 py-2 text-sm font-bold text-white dark:text-slate-900"
+                        className="inline-flex min-h-11 flex-1 items-center justify-center rounded-lg btn-gold-primary px-4 py-2 text-sm font-bold"
                       >
                         {t<string>("comparison.table.apply")}
                       </Link>

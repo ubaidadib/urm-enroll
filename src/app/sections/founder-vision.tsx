@@ -25,8 +25,7 @@ export function FounderVision() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative py-24 md:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="relative py-24 md:py-32 overflow-hidden section-gradient"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -57,7 +56,7 @@ export function FounderVision() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1]" style={{ color: "rgb(248,250,252)" }}
+            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
           >
             {t<string>('founder.titleLine1')} <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-accent-tech">
@@ -104,7 +103,7 @@ export function FounderVision() {
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.direct')}
                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgb(105,133,166)" }}>
+                    <div className="text-xs font-bold uppercase tracking-wider text-text-disabled">
                       {t<string>('founder.stats.directLabel')}
                     </div>
                   </div>
@@ -112,7 +111,7 @@ export function FounderVision() {
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.reach')}
                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgb(105,133,166)" }}>
+                    <div className="text-xs font-bold uppercase tracking-wider text-text-disabled">
                       {t<string>('founder.stats.reachLabel')}
                     </div>
                   </div>

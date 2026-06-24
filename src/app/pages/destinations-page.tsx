@@ -237,13 +237,13 @@ export function DestinationsPage() {
 
   const pillBase =
     "px-4 py-2 rounded-full text-sm font-bold border transition-all cursor-pointer whitespace-nowrap";
-  const pillActive = "bg-slate-900 dark:bg-white text-white dark:text-slate-900 border-slate-900 dark:border-white";
+  const pillActive = "chip-active";
   const pillInactive =
-    "bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-accent-tech hover:text-accent-tech";
+    "bg-bg-surface text-text-muted border-border hover:border-accent-tech hover:text-accent-tech";
   const selectedCountry = filtered.length === 1 ? filtered.at(0)?.code : undefined;
 
   return (
-    <main className="dark min-h-screen transition-colors duration-500" dir={dir} style={{ background: "rgb(5,10,24)" }}>
+    <main className="min-h-screen transition-colors duration-500 bg-bg-primary" dir={dir}>
       <SeoManager
         title={tx(
           "seo.sections.destinations.title",
@@ -399,7 +399,7 @@ export function DestinationsPage() {
                 setLangFilter("all");
                 setRegionFilter("all");
               }}
-              className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-sm hover:-translate-y-0.5 hover:shadow-xl transition-all"
+              className="px-6 py-3 rounded-xl btn-gold-primary font-black text-sm hover:-translate-y-0.5 hover:shadow-xl transition-all"
             >
               Clear Filters
             </button>

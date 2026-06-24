@@ -450,12 +450,7 @@ export function Header({ isCompact = false }: HeaderProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2"
-                    style={{
-                      background: "rgba(15,28,52,0.9)",
-                      border: "1.5px solid rgba(212,175,55,0.4)",
-                      color: "rgb(212,175,55)",
-                    }}
+                    className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 surface-glass-subtle text-accent-primary"
                   >
                     <LayoutDashboard className="w-4 h-4" />
                     {t<string>("header.nav.agentPortal")}

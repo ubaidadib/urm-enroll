@@ -47,8 +47,7 @@ export function TrustSection() {
 
   return (
     <section
-      className="relative py-24 px-6 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="relative py-24 px-6 overflow-hidden section-gradient"
     >
       {/* Grid overlay */}
       <div
@@ -77,10 +76,10 @@ export function TrustSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
             Trusted Worldwide
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4" style={{ color: "rgb(248,250,252)" }}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-text-primary">
             {t<string>("trust.title")}
           </h2>
-          <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+          <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-text-muted">
             {t<string>("trust.subtitle")}
           </p>
         </m.div>
@@ -95,22 +94,7 @@ export function TrustSection() {
             viewport={{ once: true }}
             className="group relative flex flex-col"
           >
-            <div
-              className="relative rounded-2xl p-7 flex flex-col gap-6 h-full transition-all duration-300"
-              style={{
-                background: "rgba(15,28,52,0.8)",
-                border: "1.5px solid rgba(212,175,55,0.2)",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(212,175,55,0.4)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 40px rgba(212,175,55,0.1), 0 8px 32px rgba(0,0,0,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(212,175,55,0.2)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 32px rgba(0,0,0,0.3)";
-              }}
-            >
+            <div className="relative rounded-2xl p-7 flex flex-col gap-6 h-full transition-all duration-300 surface-card-elevated">
               {/* Top row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-4">
@@ -127,7 +111,7 @@ export function TrustSection() {
                     <p className="text-xs font-semibold uppercase tracking-wider mb-0.5" style={{ color: "rgb(212,175,55)" }}>
                       Gold Standard
                     </p>
-                    <h3 className="text-xl font-bold" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-xl font-bold text-text-primary">
                       ICEF IAS Accredited
                     </h3>
                   </div>
@@ -140,18 +124,12 @@ export function TrustSection() {
                 </span>
               </div>
 
-              <p className="leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+              <p className="leading-relaxed text-text-muted">
                 Globally recognized quality standard for international student recruitment agencies — a mark of credibility trusted by universities and students across 120+ countries.
               </p>
 
               {/* Badge embed */}
-              <div
-                className="rounded-xl p-4 flex items-center justify-center min-h-[80px]"
-                style={{
-                  background: "rgba(5,10,24,0.6)",
-                  border: "1px solid rgba(212,175,55,0.12)",
-                }}
-              >
+              <div className="rounded-xl p-4 flex items-center justify-center min-h-[80px] surface-inset">
                 <span id="iasBadge" data-account-id="6507" />
               </div>
 
@@ -188,20 +166,7 @@ export function TrustSection() {
                   viewport={{ once: true }}
                   className="flex-1"
                 >
-                  <div
-                    className="relative rounded-2xl p-6 h-full transition-all duration-300"
-                    style={{
-                      background: "rgba(15,28,52,0.7)",
-                      border: `1.5px solid ${item.borderColor}`,
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = item.iconColor.replace('rgb', 'rgba').replace(')', ',0.4)');
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = item.borderColor;
-                    }}
-                  >
+                  <div className="relative rounded-2xl p-6 h-full transition-all duration-300 surface-card border-accent-tech/20 hover:border-accent-tech/40">
                     <div className="flex items-start gap-4">
                       <div
                         className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
@@ -210,10 +175,10 @@ export function TrustSection() {
                         <Icon className="w-5 h-5" style={{ color: item.iconColor }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-bold mb-1.5" style={{ color: "rgb(248,250,252)" }}>
+                        <h3 className="text-base font-bold mb-1.5 text-text-primary">
                           {item.title}
                         </h3>
-                        <p className="text-sm leading-relaxed mb-3" style={{ color: "rgb(145,177,210)" }}>
+                        <p className="text-sm leading-relaxed mb-3 text-text-muted">
                           {item.description}
                         </p>
                         <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: item.iconColor }}>
@@ -234,13 +199,7 @@ export function TrustSection() {
               transition={{ delay: 0.54, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
             >
-              <div
-                className="rounded-2xl p-6 transition-all duration-300"
-                style={{
-                  background: "rgba(15,28,52,0.7)",
-                  border: "1.5px solid rgba(79,107,138,0.2)",
-                }}
-              >
+              <div className="rounded-2xl p-6 transition-all duration-300 surface-card border-border/70">
                 <div className="flex items-start gap-4">
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
@@ -249,10 +208,10 @@ export function TrustSection() {
                     <Lock className="w-5 h-5" style={{ color: "rgb(79,107,138)" }} />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold mb-1.5" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-base font-bold mb-1.5 text-text-primary">
                       UK-Incorporated Entity
                     </h3>
-                    <p className="text-sm leading-relaxed mb-3" style={{ color: "rgb(145,177,210)" }}>
+                    <p className="text-sm leading-relaxed mb-3 text-text-muted">
                       URM ENROLL LTD is a registered UK company operating under strict financial and regulatory oversight.
                     </p>
                     <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: "rgb(79,107,138)" }}>

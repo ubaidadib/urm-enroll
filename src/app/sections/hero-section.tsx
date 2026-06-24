@@ -96,13 +96,13 @@ function DestinationCardItem({ card, index, shouldReduceMotion }: {
         x: { delay: 0.5 + index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
       }}
       style={{ transform: `translate(${card.offset.x}px, ${card.offset.y}px) rotate(${card.rotation}deg)` }}
-      className="bg-[rgba(15,28,52,0.85)] backdrop-blur-md border border-[rgba(212,175,55,0.2)] rounded-2xl p-4 shadow-xl shadow-black/30 hover:border-[rgba(212,175,55,0.4)] transition-colors duration-300"
+      className="surface-glass rounded-2xl p-4 shadow-xl shadow-black/10 hover:border-accent-primary/40 transition-colors duration-300"
     >
       <div className="flex items-center gap-3 mb-1">
         <span className="text-2xl leading-none">{card.flag}</span>
-        <span className="text-white font-semibold text-sm">{card.country}</span>
+        <span className="text-text-primary font-semibold text-sm">{card.country}</span>
       </div>
-      <p className="text-[rgb(145,177,210)] text-xs">{card.programs}</p>
+      <p className="text-text-muted text-xs">{card.programs}</p>
     </m.div>
   );
 }
@@ -143,8 +143,7 @@ export function HeroSection() {
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative flex flex-col overflow-hidden"
-      style={{ background: "linear-gradient(160deg, rgb(5,10,24) 0%, rgb(8,14,28) 40%, rgb(11,21,48) 100%)" }}
+      className="relative flex flex-col overflow-hidden section-gradient-hero"
     >
       {/* Radial glow blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -183,8 +182,7 @@ export function HeroSection() {
 
       {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
       <div
-        className="relative z-10 border-b"
-        style={{ borderColor: "rgba(212,175,55,0.2)", background: "rgba(8,14,28,0.6)" }}
+        className="relative z-10 border-b trust-bar-surface"
       >
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
           {/* ICEF Badge */}
@@ -193,22 +191,18 @@ export function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="ICEF IAS Accredited Agency #6507"
-            className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors duration-200 hover:border-[rgba(212,175,55,0.5)]"
-            style={{
-              borderColor: "rgba(212,175,55,0.3)",
-              background: "rgba(212,175,55,0.06)",
-            }}
+            className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border border-accent-primary/30 bg-accent-primary/6 transition-colors duration-200 hover:border-accent-primary/50"
           >
-            <Award className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
+            <Award className="w-4 h-4 text-accent-primary" aria-hidden="true" />
             <div className="leading-none">
-              <p className="text-white font-semibold text-xs">{t<string>("hero.icef_label")}</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgb(145,177,210)" }}>#6507</p>
+              <p className="text-text-primary font-semibold text-xs">{t<string>("hero.icef_label")}</p>
+              <p className="text-text-muted text-xs mt-0.5">#6507</p>
             </div>
-            <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary" aria-hidden="true" />
           </a>
 
           {/* Divider */}
-          <div className="h-6 w-px flex-shrink-0" style={{ background: "rgba(212,175,55,0.2)" }} />
+          <div className="h-6 w-px flex-shrink-0 bg-accent-primary/20" />
 
           {/* Ticker */}
           <div className="flex-1 overflow-hidden">
@@ -221,8 +215,7 @@ export function HeroSection() {
               {[0, 1].map((i) => (
                 <span
                   key={i}
-                  className="text-xs font-medium tracking-wide flex-shrink-0"
-                  style={{ color: "rgb(145,177,210)" }}
+                  className="text-xs font-medium tracking-wide flex-shrink-0 text-text-muted"
                 >
                   {tickerText}
                 </span>
@@ -244,8 +237,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5"
-            style={{ color: "rgb(0,184,217)" }}
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5 text-accent-tech"
           >
             {t<string>("hero.eyebrow")}
           </m.p>
@@ -258,31 +250,26 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5"
-              style={{ color: "rgb(248,250,252)" }}
+              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5 text-text-primary"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
                 {headlineParts[0]}
                 <span className="relative inline-block">
-                  <span style={{ color: "rgb(212,175,55)" }}>{countryWord}</span>
+                  <span className="text-accent-primary">{countryWord}</span>
                   {/* Animated underline */}
                   <m.span
                     aria-hidden="true"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
-                    className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full"
-                    style={{
-                      background: "rgb(212,175,55)",
-                      transformOrigin: isRtl ? "right" : "left",
-                    }}
+                    className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full bg-accent-primary"
                   />
                 </span>
                 {headlineParts[1] ?? ""}
               </span>
               {/* Line 2 */}
-              <span className="block mt-1" style={{ color: "rgb(212,224,239)" }}>
+              <span className="block mt-1 text-text-secondary">
                 {t<string>("hero.headline_2")}
               </span>
             </h1>
@@ -293,8 +280,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.45 }}
-            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl"
-            style={{ color: "rgb(145,177,210)" }}
+            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl text-text-muted"
           >
             {t<string>("hero.subheadline")}
           </m.p>
@@ -309,18 +295,7 @@ export function HeroSection() {
             <Link
               to="/universities"
               aria-label={t<string>("hero.new_cta_primary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
-              style={{
-                background: "rgb(212,175,55)",
-                color: "rgb(8,14,28)",
-                boxShadow: "0 4px 24px rgba(212,175,55,0.25)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.45)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(212,175,55,0.25)";
-              }}
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
             >
               <span>{t<string>("hero.new_cta_primary")}</span>
               <ArrowRight
@@ -332,20 +307,7 @@ export function HeroSection() {
             <Link
               to="/programs"
               aria-label={t<string>("hero.new_cta_secondary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02]"
-              style={{
-                border: "1.5px solid rgba(212,224,239,0.25)",
-                color: "rgb(212,224,239)",
-                background: "rgba(255,255,255,0.04)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.09)";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.04)";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.25)";
-              }}
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02] btn-outline-subtle"
             >
               <span>{t<string>("hero.new_cta_secondary")}</span>
               <ArrowRight
@@ -363,7 +325,7 @@ export function HeroSection() {
             className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <span className="text-base" aria-hidden="true">🎓</span>
-            <span className="text-sm" style={{ color: "rgb(105,133,166)" }}>
+            <span className="text-sm text-text-disabled">
               {t<string>("hero.social_proof")}
             </span>
           </m.div>
@@ -416,12 +378,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.4 }}
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-medium whitespace-nowrap"
-            style={{
-              background: "rgba(8,14,28,0.9)",
-              borderColor: "rgba(212,175,55,0.3)",
-              color: "rgb(212,175,55)",
-            }}
+            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-accent-primary/30 bg-bg-secondary/90 text-accent-primary text-xs font-medium whitespace-nowrap"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[rgb(0,184,217)] animate-pulse" />
             10,000+ programs across 4 destinations
@@ -432,8 +389,7 @@ export function HeroSection() {
       {/* ── 3. Stats Bar ─────────────────────────────────────────────────── */}
       <div
         ref={statsRef}
-        className="relative z-10 border-t"
-        style={{ borderColor: "rgba(212,175,55,0.12)", background: "rgba(5,10,24,0.6)" }}
+        className="relative z-10 border-t stats-bar-surface"
       >
         <div className="max-w-7xl mx-auto px-6 py-10">
           <m.div
@@ -445,14 +401,12 @@ export function HeroSection() {
             {STATS.map((stat, i) => (
               <div
                 key={stat.labelKey}
-                className={`flex flex-col items-center text-center px-4 ${
+                className={`flex flex-col items-center text-center px-4 border-accent-primary/15 ${
                   i < STATS.length - 1 ? "md:border-r" : ""
                 }`}
-                style={{ borderColor: "rgba(212,175,55,0.15)" }}
               >
                 <span
-                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1"
-                  style={{ color: "rgb(212,175,55)" }}
+                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1 text-accent-primary"
                 >
                   <CountUp
                     target={stat.value}
@@ -461,7 +415,7 @@ export function HeroSection() {
                     shouldReduceMotion={shouldReduceMotion}
                   />
                 </span>
-                <span className="text-xs sm:text-sm font-medium" style={{ color: "rgb(105,133,166)" }}>
+                <span className="text-xs sm:text-sm font-medium text-text-disabled">
                   {t<string>(stat.labelKey)}
                 </span>
               </div>

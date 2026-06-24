@@ -31,7 +31,7 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(var(--theme-accent-tech), 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(var(--theme-accent-tech), 0.12) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(var(--accent-tech), 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(var(--accent-tech), 0.12) 1px, transparent 1px)",
               backgroundSize: "80px 80px",
             }}
           />

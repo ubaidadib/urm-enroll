@@ -52,7 +52,7 @@ export function FeaturedUniversitiesCarousel() {
   }
 
   return (
-    <section className="dark relative py-20 md:py-24 overflow-hidden" style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}>
+    <section className="relative py-20 md:py-24 overflow-hidden section-gradient">
       <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       <div className="absolute -top-20 -right-16 w-[24rem] h-[24rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(212,175,55,0.06)" }} />
       <div className="absolute -bottom-20 -left-10 w-[20rem] h-[20rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(0,184,217,0.06)" }} />
@@ -64,7 +64,7 @@ export function FeaturedUniversitiesCarousel() {
               <Sparkles className="w-3.5 h-3.5" />
               Top Picks
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight" style={{ color: "rgb(248,250,252)" }}>Featured Universities</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">Featured Universities</h2>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
@@ -74,20 +74,14 @@ export function FeaturedUniversitiesCarousel() {
             <div className="flex gap-2">
               <button
                 onClick={handlePrev}
-                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
-                style={{ border: "1.5px solid rgba(212,175,55,0.2)", background: "rgba(15,28,52,0.7)", color: "rgb(212,224,239)" }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.45)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.2)")}
+                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 border border-accent-primary/20 bg-bg-surface/70 text-text-secondary hover:border-accent-primary/40"
                 aria-label="Previous featured universities"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
-                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
-                style={{ border: "1.5px solid rgba(212,175,55,0.2)", background: "rgba(15,28,52,0.7)", color: "rgb(212,224,239)" }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.45)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.2)")}
+                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 border border-accent-primary/20 bg-bg-surface/70 text-text-secondary hover:border-accent-primary/40"
                 aria-label="Next featured universities"
               >
                 <ChevronRight className="w-5 h-5" />

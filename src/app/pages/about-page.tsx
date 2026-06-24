@@ -13,7 +13,7 @@ export function AboutPage() {
   const { t } = useLanguage();
 
   return (
-    <main className="dark min-h-screen" style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}>
+    <main className="min-h-screen section-gradient">
       <SeoManager
         title={t<string>("seo.sections.founder.title")}
         description={t<string>("seo.sections.founder.description")}
@@ -64,7 +64,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight" style={{ color: "rgb(248,250,252)" }}
+                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight text-text-primary"
               >
                 {t<string>("about.title")}
               </m.h1>
@@ -73,7 +73,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-xl mb-10 leading-relaxed max-w-lg" style={{ color: "rgb(145,177,210)" }}
+                className="text-xl mb-10 leading-relaxed max-w-lg text-text-muted"
               >
                 {t<string>("about.description")}
               </m.p>
@@ -92,14 +92,11 @@ export function AboutPage() {
                 ].map(({ value, label, icon: Icon, color }, i) => (
                   <div
                     key={i}
-                    className="p-5 rounded-2xl transition-all duration-300"
-                    style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.15)" }}
-                    onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.35)")}
-                    onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.15)")}
+                    className="p-5 rounded-2xl surface-glass-subtle transition-all duration-300"
                   >
                     <Icon className="w-4 h-4 mb-2" style={{ color }} />
                     <div className="text-2xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
-                    <div className="text-[10px] font-semibold uppercase tracking-wide mt-0.5 line-clamp-2" style={{ color: "rgb(105,133,166)" }}>{label}</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-wide mt-0.5 line-clamp-2 text-text-disabled">{label}</div>
                   </div>
                 ))}
               </m.div>
@@ -115,7 +112,7 @@ export function AboutPage() {
               <div className="relative aspect-square">
                 <div className="absolute inset-0 bg-linear-to-br from-accent-tech/20 to-accent-success/20 rounded-full blur-[80px]" />
 
-                <div className="relative w-full h-full rounded-[3rem] backdrop-blur-md shadow-2xl p-10 flex items-center justify-center overflow-hidden" style={{ background: "rgba(15,28,52,0.5)", border: "1.5px solid rgba(212,175,55,0.15)" }}>
+                <div className="relative w-full h-full rounded-[3rem] backdrop-blur-md shadow-2xl p-10 flex items-center justify-center overflow-hidden surface-glass-subtle">
                    <div style={{ color: "rgba(212,175,55,0.12)" }}>
                       <Building2 className="w-64 h-64 opacity-40" />
                    </div>
@@ -130,8 +127,8 @@ export function AboutPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: pin.delay, type: "spring" }}
-                        className="absolute w-6 h-6 rounded-full shadow-lg"
-                        style={{ background: "rgb(212,175,55)", border: "4px solid rgb(5,10,24)", top: pin.top, left: pin.left }}
+                        className="absolute w-6 h-6 rounded-full shadow-lg bg-accent-primary border-4 border-bg-primary"
+                        style={{ top: pin.top, left: pin.left }}
                       />
                     ))}
                 </div>

@@ -13,8 +13,7 @@ const PROOF_ITEMS = [
 export function HomeFinalCtaBanner() {
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 60%, rgb(5,10,24) 100%)" }}
+      className="relative py-24 md:py-28 overflow-hidden section-gradient"
     >
       {/* Grid */}
       <div
@@ -32,12 +31,7 @@ export function HomeFinalCtaBanner() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl p-8 md:p-12 lg:p-16"
-          style={{
-            background: "rgba(15,28,52,0.75)",
-            border: "1.5px solid rgba(212,175,55,0.2)",
-            boxShadow: "0 24px 64px rgba(0,0,0,0.4), 0 0 80px rgba(212,175,55,0.05)",
-          }}
+          className="relative overflow-hidden rounded-3xl p-8 md:p-12 lg:p-16 surface-card-elevated"
         >
           {/* Blobs */}
           <div
@@ -60,32 +54,20 @@ export function HomeFinalCtaBanner() {
               </p>
 
               <h2
-                className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.08] mb-5"
-                style={{ color: "rgb(248,250,252)" }}
+                className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.08] mb-5 text-text-primary"
               >
                 Ready to Find Your{" "}
                 <span style={{ color: "rgb(212,175,55)" }}>Dream University?</span>
               </h2>
 
-              <p className="text-lg leading-relaxed mb-9" style={{ color: "rgb(145,177,210)" }}>
+              <p className="text-lg leading-relaxed mb-9 text-text-muted">
                 Build your shortlist, compare options, and start applications with confidence.
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   to="/programs"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
-                  style={{
-                    background: "rgb(212,175,55)",
-                    color: "rgb(8,14,28)",
-                    boxShadow: "0 4px 24px rgba(212,175,55,0.3)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.45)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(212,175,55,0.3)";
-                  }}
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
                 >
                   Get Started Free
                   <ArrowRight className="w-4 h-4" />
@@ -119,29 +101,23 @@ export function HomeFinalCtaBanner() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="rounded-2xl p-6"
-              style={{
-                background: "rgba(5,10,24,0.7)",
-                border: "1.5px solid rgba(212,175,55,0.15)",
-              }}
+              className="rounded-2xl p-6 surface-glass-subtle"
             >
               {/* Avatar stack */}
               <div className="flex items-center mb-4">
                 {AVATARS.map((avatar, index) => (
                   <span
                     key={avatar}
-                    className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-xs font-bold"
+                    className="w-9 h-9 rounded-full border-2 border-bg-primary flex items-center justify-center text-xs font-bold text-accent-tech"
                     style={{
                       marginInlineStart: index === 0 ? 0 : -10,
-                      background: "rgba(0,184,217,0.15)",
-                      borderColor: "rgb(5,10,24)",
-                      color: "rgb(0,184,217)",
+                      background: "rgba(var(--accent-tech), 0.15)",
                     }}
                   >
                     {avatar}
                   </span>
                 ))}
-                <span className="ms-3 text-sm font-medium" style={{ color: "rgb(248,250,252)" }}>
+                <span className="ms-3 text-sm font-medium text-text-primary">
                   +495 others
                 </span>
               </div>
@@ -153,11 +129,10 @@ export function HomeFinalCtaBanner() {
                   return (
                     <div
                       key={item.text}
-                      className="flex items-center gap-3 rounded-xl p-3"
-                      style={{ background: "rgba(15,28,52,0.6)", border: "1px solid rgba(212,175,55,0.1)" }}
+                      className="flex items-center gap-3 rounded-xl p-3 surface-inset"
                     >
                       <Icon className="w-4 h-4 shrink-0" style={{ color: "rgb(212,175,55)" }} />
-                      <span className="text-xs" style={{ color: "rgb(145,177,210)" }}>{item.text}</span>
+                      <span className="text-xs text-text-muted">{item.text}</span>
                     </div>
                   );
                 })}

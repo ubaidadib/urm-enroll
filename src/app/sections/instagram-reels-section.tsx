@@ -233,7 +233,7 @@ function FeedModal({
             </button>
           </div>
 
-          <div className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-[rgb(8,14,28)] shadow-[0_28px_80px_rgba(2,4,12,0.44)]">
+          <div className="overflow-hidden rounded-[1.4rem] border border-border bg-bg-surface shadow-[var(--surface-shadow)]">
             {item.thumbnailUrl ? (
               <img
                 src={item.thumbnailUrl}

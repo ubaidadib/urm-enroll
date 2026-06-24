@@ -21,6 +21,11 @@
     document.documentElement.style.colorScheme = theme;
     document.documentElement.classList.toggle("reduced-motion", reducedMotion);
 
+    var themeColor = theme === "dark" ? "#08101c" : "#f8fafc";
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+      meta.setAttribute("content", themeColor);
+    });
+
     window.__INITIAL_THEME__ = theme;
     window.__PREFERS_REDUCED_MOTION__ = reducedMotion;
   } catch (e) {

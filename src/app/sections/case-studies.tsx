@@ -31,8 +31,7 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="relative py-32 px-6 overflow-hidden section-gradient"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -62,11 +61,11 @@ export function CaseStudies() {
             </span>
           </div>
           
-          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-text-primary">
             {t<string>("caseStudies.title")}
           </h2>
           
-          <p className="text-xl max-w-3xl leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+          <p className="text-xl max-w-3xl leading-relaxed text-text-muted">
             {t<string>("caseStudies.description")}
           </p>
         </m.div>
@@ -89,7 +88,7 @@ export function CaseStudies() {
                 className="group relative h-full"
               >
                 {/* Main Card */}
-                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden ${dir === "rtl" ? "text-right" : "text-left"}`} style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}>
+                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden surface-glass-subtle ${dir === "rtl" ? "text-right" : "text-left"}`}>
                   
                   {/* Subtle Top-Right Arrow for external feel */}
                   <div className={`absolute top-8 ${dir === "rtl" ? "left-8" : "right-8"} opacity-20 group-hover:opacity-100 group-hover:text-accent-tech transition-all`}>
@@ -97,7 +96,7 @@ export function CaseStudies() {
                   </div>
 
                   {/* Icon Container */}
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-inner transition-transform duration-500 group-hover:scale-110" style={{ background: "rgba(5,10,24,0.8)", border: "1px solid rgba(212,175,55,0.15)" }}>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-inner transition-transform duration-500 group-hover:scale-110 bg-bg-secondary border border-border/60">
                     <Icon className={`w-7 h-7 ${visual.color}`} strokeWidth={1.5} />
                   </div>
 
@@ -109,13 +108,13 @@ export function CaseStudies() {
                         {t<string>("caseStudies.anonymized")}
                       </span>
                     </div>
-                    <h3 className="text-2xl font-bold leading-tight" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-2xl font-bold leading-tight text-text-primary">
                       {study.title}
                     </h3>
                   </div>
 
                   {/* Body Text */}
-                  <p className="text-sm leading-relaxed mb-10 flex-grow" style={{ color: "rgb(145,177,210)" }}>
+                  <p className="text-sm leading-relaxed mb-10 flex-grow text-text-muted">
                     {study.summary}
                   </p>
 

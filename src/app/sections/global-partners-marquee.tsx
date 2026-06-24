@@ -11,8 +11,7 @@ export function GlobalPartnersMarquee() {
 
   return (
     <section
-      className="relative py-20 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="relative py-20 overflow-hidden section-gradient"
       aria-label={t<string>("globalPartners.badge")}
     >
       {/* Subtle gold glow top */}
@@ -49,8 +48,7 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
-          style={{ color: "rgb(248,250,252)" }}
+          className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-text-primary"
         >
           {t<string>("globalPartners.title")}
         </m.h2>
@@ -60,8 +58,7 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg max-w-2xl mx-auto leading-relaxed"
-          style={{ color: "rgb(145,177,210)" }}
+          className="text-lg max-w-2xl mx-auto leading-relaxed text-text-muted"
         >
           {t<string>("globalPartners.description")}
         </m.p>
@@ -71,12 +68,10 @@ export function GlobalPartnersMarquee() {
       <div className="relative">
         {/* Edge fades */}
         <div
-          className="absolute inset-y-0 left-0 w-24 md:w-40 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, rgb(8,14,28), transparent)" }}
+          className="absolute inset-y-0 left-0 w-24 md:w-40 z-10 pointer-events-none marquee-fade-left"
         />
         <div
-          className="absolute inset-y-0 right-0 w-24 md:w-40 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, rgb(8,14,28), transparent)" }}
+          className="absolute inset-y-0 right-0 w-24 md:w-40 z-10 pointer-events-none marquee-fade-right"
         />
 
         <div className="overflow-hidden">
@@ -90,18 +85,12 @@ export function GlobalPartnersMarquee() {
             {items.map((partner, index) => (
               <div
                 key={index}
-                className="shrink-0 px-8 py-5 rounded-2xl flex flex-col items-center justify-center gap-1.5 min-w-[180px] transition-all duration-300"
-                style={{
-                  background: "rgba(15,28,52,0.7)",
-                  border: "1.5px solid rgba(212,175,55,0.1)",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
+                className="shrink-0 px-8 py-5 rounded-2xl flex flex-col items-center justify-center gap-1.5 min-w-[180px] transition-all duration-300 surface-glass-subtle"
               >
-                <span className="text-xl font-bold tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+                <span className="text-xl font-bold tracking-tight text-text-primary">
                   {partner.name}
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-center leading-tight" style={{ color: "rgb(105,133,166)" }}>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-center leading-tight text-text-disabled">
                   {t<string>(`globalPartners.categories.${partner.category}`)}
                 </span>
               </div>

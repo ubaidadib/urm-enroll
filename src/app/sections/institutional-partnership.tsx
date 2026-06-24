@@ -244,7 +244,7 @@ export function InstitutionalPartnershipPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0f] transition-colors duration-500" dir={dir}>
+    <div className="min-h-screen bg-bg-primary transition-colors duration-500" dir={dir}>
       <SeoManager
         title={tx("seo.sections.institutional.title", "Institutional Partnerships – URM Enroll")}
         description={tx("seo.sections.institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies.")}
@@ -456,8 +456,8 @@ export function InstitutionalPartnershipPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
-                  className="rounded-3xl bg-slate-950 dark:bg-slate-900 border border-white/5 shadow-2xl overflow-hidden"
-                >
+                  className="rounded-3xl surface-card-elevated shadow-2xl overflow-hidden"
+                  >
                   <div className="h-0.5 w-full" style={{ background: `linear-gradient(to right, ${activeColor}, transparent)` }} />
                   <div className="grid lg:grid-cols-2 min-h-[260px]">
                     <div className="p-10 flex flex-col justify-center">
@@ -470,31 +470,31 @@ export function InstitutionalPartnershipPage() {
                           {activeSegmentData.label}
                         </span>
                       </div>
-                      <h3 className="text-2xl font-black text-white mb-3 leading-tight">
+                      <h3 className="text-2xl font-black text-text-primary mb-3 leading-tight">
                         {activeSegmentData.label} {tx("institutional.segment.solutions", "Solutions")}
                       </h3>
-                      <p className="text-slate-400 leading-relaxed mb-5 max-w-md text-sm">
+                      <p className="text-text-muted leading-relaxed mb-5 max-w-md text-sm">
                         {activeSegmentData.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {activeSegmentData.highlights?.map((h: string) => (
-                          <span key={h} className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white/60 bg-white/5 border border-white/8">
+                          <span key={h} className="px-3 py-1.5 rounded-lg text-xs font-semibold text-text-secondary surface-inset">
                             {h}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div className="border-l border-white/5 flex flex-col items-center justify-center p-10 gap-4">
+                    <div className="border-l border-border flex flex-col items-center justify-center p-10 gap-4">
                       <button
                         onClick={openPartnershipModal}
-                        className="group w-full max-w-xs flex items-center justify-center gap-2.5 px-8 py-4 bg-white text-slate-900 rounded-2xl text-sm font-black hover:opacity-90 transition-all shadow-xl"
+                        className="group w-full max-w-xs flex items-center justify-center gap-2.5 px-8 py-4 btn-gold-primary rounded-2xl text-sm font-black transition-all"
                       >
                         <Zap className="w-4 h-4" style={{ color: activeColor }} />
                         <span>{tx("institutional.cta.partner", "Initialize Partnership")}</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
-                      <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                      <p className="text-[11px] font-bold text-text-muted uppercase tracking-widest flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         {tx("institutional.responseTime", "Avg. Response: 48 Hours")}
                       </p>
@@ -627,9 +627,9 @@ export function InstitutionalPartnershipPage() {
               className="w-full max-w-5xl max-h-[90vh] glass-card-medium overflow-hidden flex flex-col lg:flex-row"
             >
               {/* Sidebar */}
-              <div className="lg:w-[38%] bg-slate-950 text-white p-9 flex flex-col justify-between relative overflow-hidden shrink-0">
+              <div className="lg:w-[38%] bg-bg-secondary dark:bg-slate-950 text-text-primary dark:text-white p-9 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
                 <div className="relative z-10">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/20 mb-7">
@@ -638,10 +638,10 @@ export function InstitutionalPartnershipPage() {
                       {tx("institutional.badge", "Partnership")}
                     </span>
                   </div>
-                  <h2 className="text-2xl font-black text-white mb-3 leading-tight">
+                  <h2 className="text-2xl font-black text-text-primary dark:text-white mb-3 leading-tight">
                     {tx("institutional.form.title", "Let's build together.")}
                   </h2>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-text-muted dark:text-slate-400 text-sm leading-relaxed">
                     {tx("institutional.form.subtitle", "Fill out the details to fast-track your institution's verification.")}
                   </p>
                 </div>
@@ -668,11 +668,11 @@ export function InstitutionalPartnershipPage() {
                           >
                             {isDone ? <CheckCircle2 className="w-3.5 h-3.5" /> : stepNum}
                           </div>
-                          <span className={`text-sm font-semibold ${isActive ? "text-white" : "text-slate-400"}`}>
+                          <span className={`text-sm font-semibold ${isActive ? "text-text-primary dark:text-white" : "text-text-muted dark:text-slate-400"}`}>
                             {label}
                           </span>
                         </div>
-                        {i === 0 && <div className="ms-3.5 my-1.5 w-px h-5 bg-slate-700" />}
+                        {i === 0 && <div className="ms-3.5 my-1.5 w-px h-5 bg-border dark:bg-slate-700" />}
                       </div>
                     );
                   })}
@@ -680,7 +680,7 @@ export function InstitutionalPartnershipPage() {
               </div>
 
               {/* Form panel */}
-              <div className="flex-1 flex flex-col overflow-hidden bg-white dark:bg-slate-950">
+              <div className="flex-1 flex flex-col overflow-hidden bg-bg-surface dark:bg-slate-950">
                 {/* Form header */}
                 <div className="flex items-center justify-between px-8 py-5 border-b border-slate-100 dark:border-white/6 shrink-0">
                   <div>
@@ -722,7 +722,7 @@ export function InstitutionalPartnershipPage() {
                       </p>
                       <button
                         onClick={closeModal}
-                        className="px-7 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-black hover:opacity-80 transition-opacity"
+                        className="px-7 py-3 rounded-xl btn-gold-primary text-sm font-black hover:opacity-80 transition-opacity"
                       >
                         {tx("institutional.form.close", "Close")}
                       </button>
@@ -881,7 +881,7 @@ export function InstitutionalPartnershipPage() {
                           type={step === 1 ? "button" : "submit"}
                           onClick={step === 1 ? handleNext : undefined}
                           disabled={status === "submitting"}
-                          className="flex items-center gap-2 px-7 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-black hover:opacity-80 transition-opacity disabled:opacity-50"
+                          className="flex items-center gap-2 px-7 py-3 btn-gold-primary rounded-xl text-sm font-black hover:opacity-80 transition-opacity disabled:opacity-50"
                         >
                           {status === "submitting" ? (
                             <>

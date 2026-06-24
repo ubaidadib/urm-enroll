@@ -334,7 +334,7 @@ export function AgentPortalShowcase() {
           <button
             type="button"
             onClick={openPartnershipModal}
-            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
+            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl btn-gold-primary text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <Zap className="w-4 h-4 text-blue-400 dark:text-blue-600" />
             <span>{t<string>("agentPortal.cta")}</span>

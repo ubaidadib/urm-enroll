@@ -453,7 +453,7 @@ export function ChancenkarteEligibilityPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ duration: 0.25 }}
-                className="fixed inset-x-4 top-24 z-[60] mx-auto max-w-md rounded-2xl border border-accent-primary/35 bg-[linear-gradient(145deg,#0b1530,#13295f)] px-4 py-3 text-white shadow-[0_30px_40px_-20px_rgba(11,21,48,0.8)]"
+                className="fixed inset-x-4 top-24 z-[60] mx-auto max-w-md rounded-2xl border border-accent-primary/35 surface-card-elevated px-4 py-3 text-text-primary shadow-[var(--card-shadow-hover)]"
               >
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 rounded-full bg-accent-primary/20 p-1.5">
@@ -461,12 +461,12 @@ export function ChancenkarteEligibilityPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold">{milestone.title}</p>
-                    <p className="mt-0.5 text-xs text-white/75">{milestone.subtitle}</p>
+                    <p className="mt-0.5 text-xs text-text-muted">{milestone.subtitle}</p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setMilestone(null)}
-                    className="rounded-full p-1 text-white/70 transition hover:bg-white/10 hover:text-white"
+                    className="rounded-full p-1 text-text-muted transition hover:bg-bg-secondary hover:text-text-primary"
                     aria-label="Dismiss milestone"
                   >
                     <X className="h-4 w-4" />
@@ -577,11 +577,11 @@ function StickyMissionFooter({
   if (!action || phase === "result") return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-accent-primary/20 bg-[linear-gradient(120deg,rgba(11,21,48,0.94),rgba(19,41,95,0.94))] p-3 backdrop-blur md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-bg-surface/95 dark:border-accent-primary/20 dark:bg-[linear-gradient(120deg,rgba(11,21,48,0.94),rgba(19,41,95,0.94))] p-3 backdrop-blur md:hidden">
       <div className="mx-auto flex max-w-4xl items-center gap-3">
         <div className="min-w-0 flex-1">
           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary">Mission control</p>
-          <p className="truncate text-sm font-semibold text-white">
+          <p className="truncate text-sm font-semibold text-text-primary dark:text-white">
             {phase === "intro" ? "Start your mission" : "Continue to next checkpoint"}
           </p>
         </div>

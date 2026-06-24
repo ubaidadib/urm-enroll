@@ -171,7 +171,7 @@ function ProgramsEmptyState({ onReset }: { onReset: () => void }) {
       <button
         type="button"
         onClick={onReset}
-        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-200"
+        className="mt-6 inline-flex items-center gap-2 rounded-xl btn-gold-primary px-5 py-3 text-sm font-semibold"
       >
         <X className="h-4 w-4" />
         Reset filters
@@ -371,7 +371,7 @@ export function ProgramsPage() {
         path="/programs"
       />
 
-      <main className="dark relative min-h-screen overflow-hidden" style={{ background: "rgb(5,10,24)" }}>
+      <main className="relative min-h-screen overflow-hidden bg-bg-primary">
         <div className="pointer-events-none fixed inset-0 overflow-hidden">
           <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-linear-to-br from-cyan-200/35 to-transparent blur-3xl dark:from-cyan-900/20" />
           <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr from-amber-200/30 to-transparent blur-3xl dark:from-amber-900/15" />
@@ -644,7 +644,7 @@ export function ProgramsPage() {
                             onClick={() => setCurrentPage(item)}
                             className={`h-11 min-w-11 rounded-xl border px-3 text-sm font-semibold transition-colors ${
                               item === safeCurrentPage
-                                ? "border-slate-950 bg-slate-950 text-white dark:border-white dark:bg-white dark:text-slate-950"
+                                ? "chip-active border-transparent"
                                 : "border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
                             }`}
                           >

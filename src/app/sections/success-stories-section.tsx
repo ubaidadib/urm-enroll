@@ -94,8 +94,8 @@ export function SuccessStoriesSection() {
       dir={dir}
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 right-8 w-[28rem] h-[28rem] rounded-full bg-[rgba(var(--theme-accent-tech),0.08)] blur-3xl" />
-        <div className="absolute -bottom-28 left-8 w-[24rem] h-[24rem] rounded-full bg-[rgba(var(--theme-accent-success),0.08)] blur-3xl" />
+        <div className="absolute -top-32 right-8 w-[28rem] h-[28rem] rounded-full bg-[rgba(var(--accent-tech),0.08)] blur-3xl" />
+        <div className="absolute -bottom-28 left-8 w-[24rem] h-[24rem] rounded-full bg-[rgba(var(--success),0.08)] blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">

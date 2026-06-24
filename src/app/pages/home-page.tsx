@@ -83,7 +83,7 @@ export function HomePage() {
   useEffect(() => { recordSignal({ type: "page_view", page: "/home" }); }, [recordSignal]);
 
   return (
-    <div className="dark overflow-x-hidden" style={{ background: "rgb(5,10,24)" }}>
+    <div className="overflow-x-hidden">
       <SeoManager />
 
       {/* 1. Hero */}
