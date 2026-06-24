@@ -52,12 +52,12 @@ export function FeaturedUniversitiesCarousel() {
   }
 
   return (
-    <section className="relative py-20 md:py-24 overflow-hidden section-gradient">
+    <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden section-gradient">
       <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       <div className="absolute -top-20 -right-16 w-[24rem] h-[24rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(212,175,55,0.06)" }} />
       <div className="absolute -bottom-20 -left-10 w-[20rem] h-[20rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(0,184,217,0.06)" }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         <div className="mb-9 flex items-end justify-between gap-4">
           <div>
             <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase mb-3 font-semibold" style={{ color: "rgb(212,175,55)" }}>

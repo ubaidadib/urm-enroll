@@ -68,7 +68,7 @@ export function FreeUniversitiesGermanyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 px-6 py-28">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 px-[var(--content-gutter)] page-hero-offset pb-12">
       <SeoManager
         title={copy.title}
         description={copy.description}
@@ -90,7 +90,7 @@ export function FreeUniversitiesGermanyPage() {
           ]}
         />
         <article className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 md:p-12">
-          <h1 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">{copy.title}</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">{copy.title}</h1>
           <p className="mt-4 text-lg text-slate-600 dark:text-slate-400">{copy.description}</p>
           <div className="mt-8 space-y-5 text-slate-600 dark:text-slate-400 leading-relaxed">
             {copy.paragraphs.map((paragraph) => (

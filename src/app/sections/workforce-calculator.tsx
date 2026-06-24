@@ -189,7 +189,7 @@ export function WorkforceCalculator() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         {/* Header */}
         <div className={`text-center mb-16 ${isRtl ? "rtl-text" : ""}`}>
           <m.div
@@ -305,7 +305,7 @@ export function WorkforceCalculator() {
           {/* ── RESULTS PANEL ── */}
           <div className="lg:col-span-7 space-y-6">
             {/* Primary Results Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ResultCard
                 icon={Euro}
                 label={t<string>("workforceCalculator.results.annualSalary")}

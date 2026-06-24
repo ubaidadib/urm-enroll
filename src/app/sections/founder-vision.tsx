@@ -25,7 +25,7 @@ export function FounderVision() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative py-24 md:py-32 overflow-hidden section-gradient"
+      className="relative py-16 sm:py-24 md:py-32 overflow-hidden section-gradient"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -35,10 +35,10 @@ export function FounderVision() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- Header --- */}
-        <div className="mb-20">
+        <div className="mb-12 sm:mb-20">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export function FounderVision() {
                 className={`absolute -bottom-8 ${dir === 'rtl' ? '-left-8' : '-right-8'} backdrop-blur-xl rounded-3xl p-8 shadow-2xl max-w-xs`}
                 style={{ background: "rgba(8,14,28,0.85)", border: "1.5px solid rgba(212,175,55,0.2)" }}
               >
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                   <div>
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.direct')}

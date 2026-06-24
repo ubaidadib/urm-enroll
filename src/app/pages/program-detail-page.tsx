@@ -407,7 +407,7 @@ export function ProgramDetailPage() {
 
       <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
         {/* Breadcrumbs */}
-        <div className="border-b border-slate-200 dark:border-slate-800 px-4 pb-6 pt-28 sm:px-6 lg:px-8">
+        <div className="border-b border-slate-200 dark:border-slate-800 px-[var(--content-gutter)] pb-6 page-hero-offset">
           <div className="max-w-7xl mx-auto">
             <Breadcrumb
               items={[
@@ -444,7 +444,7 @@ export function ProgramDetailPage() {
                   </span>
                 </div>
 
-                <h1 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-4xl lg:text-5xl">
+                <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-4xl lg:text-5xl">
                   {program.name}
                 </h1>
 

@@ -8,7 +8,7 @@ export function LegalNotFound() {
   const { t } = useLanguage();
 
   return (
-    <section className="max-w-3xl mx-auto page-gutter py-24">
+    <section className="max-w-3xl mx-auto page-gutter py-16 sm:py-24">
         <SeoManager pageKey="notFound" noIndex path="/404" />
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +20,7 @@ export function LegalNotFound() {
           <div className="w-12 h-12 rounded-xl bg-accent-success/20 border border-accent-success/30 flex items-center justify-center mx-auto mb-4">
             <AlertTriangle className="w-6 h-6 text-accent-success" />
           </div>
-          <h1 className="text-slate-900 dark:text-white text-3xl font-bold tracking-tight mb-3">{t<string>("notFound.title")}</h1>
+          <h1 className="text-slate-900 dark:text-white text-2xl sm:text-3xl font-bold tracking-tight mb-3">{t<string>("notFound.title")}</h1>
           <p className="text-slate-600 dark:text-slate-400 mb-6">
             {t<string>("notFound.description")}
           </p>

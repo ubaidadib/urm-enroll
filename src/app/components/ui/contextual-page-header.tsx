@@ -35,7 +35,7 @@ export function ContextualPageHeader({
   const hasStats = stats.length > 0;
 
   return (
-    <section className="relative px-4 sm:px-6 lg:px-10 pt-28 pb-16 border-b border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <section className="relative px-[var(--content-gutter)] page-hero-offset pb-10 sm:pb-16 border-b border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
       {/* Ambient atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-20 w-[28rem] h-[28rem] rounded-full bg-accent-tech/10 blur-[120px]" />
@@ -45,7 +45,7 @@ export function ContextualPageHeader({
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1540px] relative z-10">
+      <div className="content-shell-wide mx-auto relative z-10 px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
         <div className="mb-8">
           <Breadcrumbs items={breadcrumbs} />
         </div>
@@ -67,7 +67,7 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1]"
             >
               {title}
             </m.h1>
@@ -76,7 +76,7 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12 }}
-              className="mt-5 text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed"
+              className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed"
             >
               {description}
             </m.p>

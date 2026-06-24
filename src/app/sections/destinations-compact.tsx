@@ -82,7 +82,7 @@ export function DestinationsCompact() {
   return (
     <section
       dir={dir}
-      className="relative py-24 overflow-hidden section-gradient"
+      className="relative py-16 sm:py-24 overflow-hidden section-gradient"
     >
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -91,7 +91,7 @@ export function DestinationsCompact() {
         <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 space-y-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10 space-y-10 sm:space-y-16">
 
         {/* ── Section Header ── */}
         <m.div
@@ -107,10 +107,10 @@ export function DestinationsCompact() {
                 {tx("destinations.badge", "Global Access")}
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-text-primary">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold leading-tight tracking-tight text-text-primary">
               {tx("destinations.compact.title", "Study Destinations.")}
             </h2>
-            <p className="mt-3 text-lg max-w-lg leading-relaxed text-text-muted">
+            <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed text-text-muted">
               {tx(
                 "destinations.compact.subtitle",
                 "14 countries. 1,400+ universities. Three strategic tiers for every student profile."
@@ -133,7 +133,7 @@ export function DestinationsCompact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4"
         >
           {stats.map(({ value, label, icon: Icon, color }, i) => (
             <m.div
@@ -142,11 +142,11 @@ export function DestinationsCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 + i * 0.07 }}
-              className="p-5 rounded-2xl transition-all duration-300 surface-glass-subtle"
+              className="p-3 sm:p-5 rounded-xl sm:rounded-2xl transition-all duration-300 surface-glass-subtle"
             >
-              <Icon className="w-5 h-5 mb-3" style={{ color }} />
-              <div className="text-3xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
-              <div className="text-xs font-semibold uppercase tracking-wide mt-1 text-text-disabled">{label}</div>
+              <Icon className="w-4 h-4 sm:w-5 sm:h-5 mb-2 sm:mb-3" style={{ color }} />
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
+              <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide mt-0.5 sm:mt-1 text-text-disabled leading-tight">{label}</div>
             </m.div>
           ))}
         </m.div>
@@ -158,7 +158,7 @@ export function DestinationsCompact() {
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 3xl:grid-cols-3 4xl:grid-cols-6 gap-3 sm:gap-4 3xl:gap-5">
             {sortedDestinations.map((dest, i) => (
               <m.div
                 key={dest.code}
@@ -177,7 +177,7 @@ export function DestinationsCompact() {
                   }`}
                 >
                   {/* Image */}
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-40 sm:h-44 md:h-48 overflow-hidden">
                     <img
                       src={dest.image}
                       alt={dest.name[lang]}
@@ -191,10 +191,10 @@ export function DestinationsCompact() {
                       style={{ background: `linear-gradient(135deg, ${dest.accent}, transparent)` }}
                     />
 
-                    {/* Tag badge */}
+                    {/* Tag badge — keep clear of score */}
                     {dest.tag && (
                       <div
-                        className="absolute top-3 left-3 px-2.5 py-1 rounded-lg text-white text-[10px] font-black uppercase tracking-widest"
+                        className="absolute top-2.5 left-2.5 max-w-[calc(100%-3.25rem)] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-lg text-white text-[9px] sm:text-[10px] font-black uppercase tracking-wide truncate"
                         style={{ backgroundColor: dest.accent }}
                       >
                         {dest.tag[lang]}
@@ -202,25 +202,25 @@ export function DestinationsCompact() {
                     )}
 
                     {/* Score arc top-right */}
-                    <div className="absolute top-2 right-2 flex items-center justify-center">
-                      <div className="relative">
+                    <div className="absolute top-2 right-2 flex items-center justify-center shrink-0">
+                      <div className="relative scale-90 sm:scale-100">
                         <ScoreArc score={dest.score} accent={dest.accent} />
-                        <span className="absolute inset-0 flex items-center justify-center text-[9px] font-black text-white">
+                        <span className="absolute inset-0 flex items-center justify-center text-[8px] sm:text-[9px] font-black text-white">
                           {dest.score}
                         </span>
                       </div>
                     </div>
 
                     {/* Name overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <h3 className="font-black text-white text-base leading-tight">
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                      <h3 className="font-black text-white text-sm sm:text-base leading-tight line-clamp-2">
                         {dest.name[lang]}
                       </h3>
                     </div>
                   </div>
 
                   {/* Card footer */}
-                  <div className="flex items-center justify-between px-4 py-3 bg-bg-surface border-t border-border/60">
+                  <div className="flex items-center justify-between px-3 py-2.5 sm:px-4 sm:py-3 bg-bg-surface border-t border-border/60 min-h-10">
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: dest.accent }} />
                       <span className="text-[11px] font-bold uppercase tracking-wide text-text-disabled">
@@ -246,7 +246,7 @@ export function DestinationsCompact() {
           <div className="grid lg:grid-cols-12">
 
             {/* Left: Dark CTA panel */}
-            <div className="lg:col-span-4 relative p-10 flex flex-col justify-between overflow-hidden bg-bg-secondary">
+            <div className="lg:col-span-4 relative p-6 sm:p-8 lg:p-10 flex flex-col justify-between overflow-hidden bg-bg-secondary">
               <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.3) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
               <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg, rgba(212,175,55,0.08), transparent)" }} />
 
@@ -278,7 +278,7 @@ export function DestinationsCompact() {
             </div>
 
             {/* Right: Partner logos + country pills */}
-            <div className="lg:col-span-8 p-10 space-y-10 border-l border-border/50">
+            <div className="lg:col-span-8 p-6 sm:p-8 lg:p-10 space-y-8 sm:space-y-10 border-l border-border/50">
 
               {/* Partner institution tags */}
               <div>

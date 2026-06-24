@@ -28,7 +28,7 @@ export function StudentJourneySteps() {
 
   return (
     <section
-      className="py-28 relative overflow-hidden section-gradient"
+      className="py-16 sm:py-28 relative overflow-hidden section-gradient"
       aria-labelledby="journey-heading"
     >
       {/* Ambient background */}
@@ -37,7 +37,7 @@ export function StudentJourneySteps() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         {/* Header */}
         <div className={`text-center mb-20 ${isRtl ? "rtl-text" : ""}`}>
           <m.div

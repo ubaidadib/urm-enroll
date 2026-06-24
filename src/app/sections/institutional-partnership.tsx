@@ -257,7 +257,7 @@ export function InstitutionalPartnershipPage() {
       />
 
       {/* ── Hero ── */}
-      <div className="relative pt-28 pb-20 px-6 overflow-hidden border-b border-slate-100 dark:border-white/5">
+      <div className="relative page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] overflow-hidden border-b border-slate-100 dark:border-white/5">
 
         {/* Ambient */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -316,7 +316,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="grid grid-cols-2 gap-3"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3"
               >
                 {heroStats.map(({ icon: Icon, value, label, color }, i) => (
                   <m.div
@@ -387,7 +387,7 @@ export function InstitutionalPartnershipPage() {
       </div>
 
       {/* ── Page Body ── */}
-      <div className="relative py-24 px-6">
+      <div className="relative py-16 sm:py-24 px-[var(--content-gutter)]">
         <div className="max-w-7xl mx-auto space-y-24">
 
           {/* ── 1. Segment Selector ── */}
@@ -408,7 +408,7 @@ export function InstitutionalPartnershipPage() {
             </div>
 
             {/* Tabs */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-5">
               {segments.map((seg) => {
                 const Icon = SEGMENT_ICONS[seg.value as keyof typeof SEGMENT_ICONS] || Building2;
                 const color = SEGMENT_COLORS[seg.value] ?? "#3b82f6";

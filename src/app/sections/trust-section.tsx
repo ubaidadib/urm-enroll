@@ -47,7 +47,7 @@ export function TrustSection() {
 
   return (
     <section
-      className="relative py-24 px-6 overflow-hidden section-gradient"
+      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden section-gradient"
     >
       {/* Grid overlay */}
       <div
@@ -64,28 +64,28 @@ export function TrustSection() {
         style={{ width: 600, height: 400, background: "rgb(212,175,55)" }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
+          <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-3 sm:mb-4" style={{ color: "rgb(0,184,217)" }}>
             Trusted Worldwide
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-text-primary">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold leading-tight mb-3 sm:mb-4 text-text-primary">
             {t<string>("trust.title")}
           </h2>
-          <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed text-text-muted">
+          <p className="text-sm sm:text-base md:text-lg max-w-2xl 3xl:max-w-4xl mx-auto leading-relaxed text-text-muted px-1">
             {t<string>("trust.subtitle")}
           </p>
         </m.div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[1.15fr_1fr] gap-4 sm:gap-5 3xl:gap-8">
           {/* ICEF hero card */}
           <m.div
             initial={{ opacity: 0, x: -24 }}
@@ -94,7 +94,7 @@ export function TrustSection() {
             viewport={{ once: true }}
             className="group relative flex flex-col"
           >
-            <div className="relative rounded-2xl p-7 flex flex-col gap-6 h-full transition-all duration-300 surface-card-elevated">
+            <div className="relative rounded-2xl p-5 sm:p-7 flex flex-col gap-4 sm:gap-6 h-full transition-all duration-300 surface-card-elevated">
               {/* Top row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-4">

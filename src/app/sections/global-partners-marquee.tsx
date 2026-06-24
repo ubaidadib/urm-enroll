@@ -29,7 +29,7 @@ export function GlobalPartnersMarquee() {
       />
 
       {/* Header */}
-      <div className={`max-w-7xl mx-auto px-6 mb-14 text-center ${dir === "rtl" ? "rtl-text" : ""}`}>
+      <div className={`max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full mb-10 sm:mb-14 text-center ${dir === "rtl" ? "rtl-text" : ""}`}>
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

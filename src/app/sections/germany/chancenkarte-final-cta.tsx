@@ -9,7 +9,7 @@ export function ChancenkarteFinalCta() {
   const localizedPath = useLocalizedPath();
 
   return (
-    <section className="py-24 md:py-32 px-6 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500" dir={dir}>
+    <section className="py-16 sm:py-24 md:py-32 px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500" dir={dir}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />

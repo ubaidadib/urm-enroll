@@ -1,0 +1,25 @@
+{
+  "totalChecks": 660,
+  "routesChecked": 33,
+  "dynamicRoutes": [],
+  "viewports": [
+    "320",
+    "360",
+    "390",
+    "430",
+    "480",
+    "768",
+    "1024",
+    "1280",
+    "1440",
+    "1920"
+  ],
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "overflowCount": 0,
+  "errorCount": 0,
+  "overflowIssues": [],
+  "errors": []
+}

@@ -90,7 +90,7 @@ export function SuccessStoriesSection() {
     <section
       id="success-stories"
       ref={sectionRef}
-      className="relative py-24 px-6 overflow-hidden bg-[var(--color-bg-primary)]"
+      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
       dir={dir}
     >
       <div className="pointer-events-none absolute inset-0">

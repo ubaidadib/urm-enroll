@@ -14,7 +14,7 @@ export function GermanyRelocationPage() {
   return (
     <main dir={dir} className="bg-slate-50 dark:bg-slate-950">
       <SeoManager path="/germany-relocation" pageKey="germanyRelocation" />
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
+      <section className="relative page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] overflow-hidden bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -33,7 +33,7 @@ export function GermanyRelocationPage() {
             <Plane className="w-4 h-4 text-accent-tech" />
             {t<string>("germany.relocation.hero.badge")}
           </span>
-          <h1 className="mt-6 text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white">
+          <h1 className="mt-4 sm:mt-6 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white">
             {t<string>("germany.relocation.hero.title")}
           </h1>
           <p className="mt-5 max-w-2xl text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -51,7 +51,7 @@ export function GermanyRelocationPage() {
         </div>
       </section>
 
-      <section className="py-14 px-6">
+      <section className="py-10 sm:py-14 px-[var(--content-gutter)]">
         <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {t<readonly { title: string; body: string }[]>("germany.relocation.services").map((s, i) => (
             <m.div

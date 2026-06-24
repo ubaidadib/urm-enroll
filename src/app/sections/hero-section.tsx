@@ -184,14 +184,14 @@ export function HeroSection() {
       <div
         className="relative z-10 border-b trust-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3 sm:gap-6 min-w-0">
           {/* ICEF Badge */}
           <a
             href="https://www.icef.com"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="ICEF IAS Accredited Agency #6507"
-            className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border border-accent-primary/30 bg-accent-primary/6 transition-colors duration-200 hover:border-accent-primary/50"
+            className="shrink-0 flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg border border-accent-primary/30 bg-accent-primary/6 transition-colors duration-200 hover:border-accent-primary/50"
           >
             <Award className="w-4 h-4 text-accent-primary" aria-hidden="true" />
             <div className="leading-none">
@@ -202,10 +202,10 @@ export function HeroSection() {
           </a>
 
           {/* Divider */}
-          <div className="h-6 w-px flex-shrink-0 bg-accent-primary/20" />
+          <div className="hidden sm:block h-6 w-px shrink-0 bg-accent-primary/20" />
 
           {/* Ticker */}
-          <div className="flex-1 overflow-hidden">
+          <div className="min-w-0 flex-1 overflow-hidden">
             <m.div
               aria-hidden="true"
               className="flex gap-16 whitespace-nowrap"
@@ -227,7 +227,7 @@ export function HeroSection() {
       </div>
 
       {/* ── 2. Main Hero Content ──────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-20 grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 4xl:px-10 pt-10 sm:pt-14 md:pt-20 xl:pt-24 pb-10 sm:pb-14 md:pb-20 grid lg:grid-cols-[3fr_2fr] 3xl:grid-cols-[5fr_4fr] gap-8 sm:gap-10 lg:gap-14 3xl:gap-16 4xl:gap-20 items-center min-w-0 w-full">
 
         {/* Left Column */}
         <div className={isRtl ? "text-right" : "text-left"}>
@@ -250,7 +250,7 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5 text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[4rem] 3xl:text-[4.5rem] 4xl:text-[5.25rem] font-bold leading-[1.1] tracking-tight mb-5 text-text-primary"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
@@ -280,7 +280,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.45 }}
-            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl text-text-muted"
+            className="text-base sm:text-lg leading-relaxed mb-7 sm:mb-9 max-w-xl text-text-muted"
           >
             {t<string>("hero.subheadline")}
           </m.p>
@@ -290,12 +290,12 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.45 }}
-            className={`flex flex-col sm:flex-row gap-3 mb-7 ${isRtl ? "sm:flex-row-reverse" : ""}`}
+            className={`flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-5 sm:mb-7 ${isRtl ? "sm:flex-row-reverse" : ""}`}
           >
             <Link
               to="/universities"
               aria-label={t<string>("hero.new_cta_primary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
+              className="group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
             >
               <span>{t<string>("hero.new_cta_primary")}</span>
               <ArrowRight
@@ -307,7 +307,7 @@ export function HeroSection() {
             <Link
               to="/programs"
               aria-label={t<string>("hero.new_cta_secondary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02] btn-outline-subtle"
+              className="group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 hover:scale-[1.02] btn-outline-subtle"
             >
               <span>{t<string>("hero.new_cta_secondary")}</span>
               <ArrowRight
@@ -391,12 +391,12 @@ export function HeroSection() {
         ref={statsRef}
         className="relative z-10 border-t stats-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-6 py-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 py-6 sm:py-8 md:py-10 w-full">
           <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 md:gap-0"
           >
             {STATS.map((stat, i) => (
               <div

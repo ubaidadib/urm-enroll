@@ -157,27 +157,32 @@ export function Header({ isCompact = false }: HeaderProps) {
           isScrolled
             ? "glass-nav border-b border-border/70 shadow-[0_16px_36px_rgba(8,23,52,0.24)]"
             : "bg-bg-surface/62 backdrop-blur-xl border-b border-border/35"
+        } ${
+          isCompact
+            ? "h-14 xl:h-[4.5rem]"
+            : isScrolled
+              ? "h-14 xl:h-[5.5rem]"
+              : "h-14 xl:h-[6.25rem]"
         }`}
-        style={{ height: isCompact ? 80 : isScrolled ? 88 : 100 }}
       >
-        <div className="max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-3 2xl:gap-6">
+        <div className="content-shell-header h-full flex items-center justify-between gap-2 sm:gap-3 2xl:gap-6">
           <Link to="/" className="flex items-center gap-2.5 shrink-0 group min-w-0" aria-label="URM ENROLL — Home">
             {/* Real brand mark — theme-aware (navy on light, white on dark) */}
             <img
               src="/img/logo-mark.png"
               alt=""
               aria-hidden="true"
-              className="h-10 w-10 object-contain block dark:hidden"
+              className="h-8 w-8 sm:h-9 sm:w-9 xl:h-10 xl:w-10 object-contain block dark:hidden"
               draggable={false}
             />
             <img
               src="/img/logo-mark-light.png"
               alt=""
               aria-hidden="true"
-              className="h-10 w-10 object-contain hidden dark:block"
+              className="h-8 w-8 sm:h-9 sm:w-9 xl:h-10 xl:w-10 object-contain hidden dark:block"
               draggable={false}
             />
-            <span className="text-[18px] font-extrabold tracking-tight leading-none text-[#15233F] dark:text-white">
+            <span className="text-[13px] sm:text-[15px] xl:text-[18px] font-extrabold tracking-tight leading-none text-[#15233F] dark:text-white truncate">
               URM <span className="text-accent-primary">ENROLL</span>
             </span>
           </Link>
@@ -322,7 +327,7 @@ export function Header({ isCompact = false }: HeaderProps) {
             onClick={() => setIsMobileMenuOpen((v) => !v)}
             aria-expanded={isMobileMenuOpen}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            className="xl:hidden relative z-50 min-w-11 min-h-11 rounded-xl border border-border/60 bg-background-surface/80 text-foreground transition-colors hover:bg-background-hover flex items-center justify-center"
+            className="xl:hidden relative z-50 min-w-9 min-h-9 sm:min-w-10 sm:min-h-10 rounded-lg sm:rounded-xl border border-border/60 bg-background-surface/80 text-foreground transition-colors hover:bg-background-hover flex items-center justify-center"
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -362,7 +367,7 @@ export function Header({ isCompact = false }: HeaderProps) {
               WebkitBackdropFilter: "blur(18px)",
             }}
           >
-            <div className="h-full flex flex-col pt-24 px-5 pb-7 overflow-y-auto">
+            <div className="h-full flex flex-col pt-[3.75rem] px-4 sm:px-5 pb-6 overflow-y-auto">
               <div className="glass-card-medium rounded-[1.6rem] p-4">
                 <nav className="space-y-1.5">
                   <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-text-muted pt-1 pb-1">

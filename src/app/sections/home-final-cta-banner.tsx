@@ -25,7 +25,7 @@ export function HomeFinalCtaBanner() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
         <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export function HomeFinalCtaBanner() {
               </p>
 
               <h2
-                className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.08] mb-5 text-text-primary"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold tracking-tight leading-[1.08] mb-5 text-text-primary"
               >
                 Ready to Find Your{" "}
                 <span style={{ color: "rgb(212,175,55)" }}>Dream University?</span>

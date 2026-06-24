@@ -94,7 +94,7 @@ export function GermanyWorkforceModule() {
   return (
     <section
       id="germany-workforce"
-      className="relative py-32 px-6 overflow-hidden bg-bg-primary transition-colors duration-500"
+      className="relative py-16 sm:py-24 md:py-32 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* --- 1. Architectural Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -314,7 +314,7 @@ export function GermanyWorkforceModule() {
                   </p>
 
                   {/* Compliance Items Preview */}
-                  <div className="grid grid-cols-2 gap-4 mb-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-10">
                     {complianceItems.slice(0, 2).map((item, i) => (
                       <div key={i} className={`flex items-center gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
                         <CheckCircle2 className="w-5 h-5 text-success shrink-0" />

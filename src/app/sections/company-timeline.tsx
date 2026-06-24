@@ -47,7 +47,7 @@ export function CompanyTimeline() {
   return (
     <section
       id="timeline"
-      className="py-32 relative overflow-hidden section-gradient"
+      className="py-16 sm:py-24 md:py-32 relative overflow-hidden section-gradient"
     >
       {/* --- Ambient Background (Matches Destinations Page) --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -56,10 +56,10 @@ export function CompanyTimeline() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- Header --- */}
-        <div className="text-center mb-24">
+        <div className="text-center mb-12 sm:mb-24">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-text-primary"
+            className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 tracking-tight text-text-primary"
           >
             {t<string>('timeline.title')}
           </m.h2>
@@ -86,7 +86,7 @@ export function CompanyTimeline() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl max-w-2xl mx-auto leading-relaxed text-text-muted"
+            className="text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-text-muted"
           >
             {t<string>('timeline.description')}
           </m.p>

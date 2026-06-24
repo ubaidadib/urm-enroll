@@ -110,7 +110,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
   return (
     <section 
       dir={dir}
-      className="relative py-24 overflow-hidden section-gradient"
+      className="relative py-16 sm:py-24 overflow-hidden section-gradient"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full blur-[160px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
@@ -118,7 +118,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
         <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 px-6">
+      <div className="max-w-7xl mx-auto relative z-10 px-[var(--content-gutter)]">
         
         {/* Section Header */}
         <div className="mb-16">

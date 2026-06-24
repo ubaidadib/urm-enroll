@@ -373,7 +373,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 1: HERO                                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+      <section className="relative page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(74,222,128)" }} />
           <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
@@ -408,7 +408,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-text-primary"
+              className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight text-text-primary"
             >
               {t<string>("contact.title")}
             </m.h1>
@@ -455,7 +455,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 2: QUICK CONTACT OPTIONS                        */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6">
+      <section className="page-section-y px-[var(--content-gutter)]">
         <div className="max-w-7xl mx-auto">
           <m.div
             variants={containerVariants}
@@ -549,7 +549,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3: MEET YOUR COUNSELORS                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section id="contact-form" className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section id="contact-form" className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -558,7 +558,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
               {t<string>("contact.counselors.title")}
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -649,7 +649,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3.5: INLINE CALENDLY BOOKING                   */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -658,7 +658,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
               {t<string>("booking.heading")}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -699,7 +699,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 4: SMART CONTACT FORM                           */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -715,7 +715,7 @@ export function ContactPage() {
                   {t<string>("contact.badge")}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
                 {t<string>("contact.form.subject") === "Subject" ? "Send Us a Message" : t<string>("contact.form.submit")}
               </h2>
             </div>
@@ -916,7 +916,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 5: FAQ STRIP                                    */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-3xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -925,7 +925,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
               {t<string>("contact.faqHeading")}
             </h2>
           </m.div>
@@ -954,7 +954,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 6: OFFICES & AVAILABILITY                       */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -963,7 +963,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
               {t<string>("contact.offices.title")}
             </h2>
           </m.div>

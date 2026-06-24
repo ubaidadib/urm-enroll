@@ -26,7 +26,7 @@ export function ChancenkartePage() {
     <main dir={dir} className="bg-slate-50 dark:bg-slate-950">
       <SeoManager path="/chancenkarte" pageKey="chancenkarte" />
 
-      <section className="relative isolate overflow-hidden pt-32 pb-20 px-6 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
+      <section className="relative isolate overflow-hidden page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -55,7 +55,7 @@ export function ChancenkartePage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="mt-6 text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white"
+                className="mt-4 sm:mt-6 text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white"
               >
                 {t<string>("chancenkarte.hub.title")}
               </m.h1>
@@ -82,7 +82,7 @@ export function ChancenkartePage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 grid grid-cols-2 gap-3">
+            <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {(["validity", "minPoints", "workAllowance", "familyJoin"] as const).map((k) => (
                 <div
                   key={k}
@@ -106,13 +106,13 @@ export function ChancenkartePage() {
       </section>
 
       {/* Explainer */}
-      <section className="py-20 px-6 bg-white dark:bg-slate-900">
+      <section className="page-section-y px-[var(--content-gutter)] bg-white dark:bg-slate-900">
         <div className="max-w-5xl mx-auto grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-tech">
               {t<string>("chancenkarte.hub.badge")}
             </p>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="mt-2 text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
               {t<string>("chancenkarte.hub.explainer.title")}
             </h2>
           </div>

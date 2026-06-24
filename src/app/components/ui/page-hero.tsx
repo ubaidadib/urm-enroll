@@ -74,8 +74,8 @@ export function PageHero({
 
   return (
     <section
-      className={`relative px-6 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 ${
-        isCompact ? "pt-24 pb-14" : "pt-32 pb-20 md:pb-24"
+      className={`relative px-4 sm:px-6 lg:px-8 3xl:px-10 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 ${
+        isCompact ? "page-hero-offset pb-10 sm:pb-14" : "page-hero-offset pb-14 sm:pb-20 md:pb-24"
       }`}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -92,7 +92,7 @@ export function PageHero({
         )}
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="content-shell mx-auto relative z-10 px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
         {children}
 
         <div className={`grid gap-12 ${twoColumn ? "lg:grid-cols-12 lg:gap-20 items-center" : "grid-cols-1"}`}>
@@ -117,7 +117,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.05 : 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl 3xl:text-8xl font-bold text-slate-900 dark:text-white mb-5 sm:mb-6 tracking-tight leading-[1.1]"
             >
               {typeof headline === "string" ? (
                 <>
@@ -133,7 +133,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.1 : 0.2 }}
-              className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl"
+              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl"
             >
               {subtitle}
             </m.p>

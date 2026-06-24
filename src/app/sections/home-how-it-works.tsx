@@ -61,7 +61,7 @@ export function HomeHowItWorks() {
         style={{ width: 700, height: 300, background: "rgb(212,175,55)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}

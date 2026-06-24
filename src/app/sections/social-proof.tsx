@@ -125,7 +125,7 @@ export function SocialProof() {
     <section
       id="social-proof"
       ref={sectionRef}
-      className="relative py-24 px-6 overflow-hidden bg-[var(--color-bg-primary)]"
+      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
       dir={dir}
     >
       {/* Ambient glows — static, no animation */}
@@ -211,7 +211,7 @@ export function SocialProof() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10"
+          className="grid grid-cols-2 min-[400px]:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 mb-8 sm:mb-10"
         >
           {stats.map((stat) => {
             const Icon = STAT_ICONS[stat.key];

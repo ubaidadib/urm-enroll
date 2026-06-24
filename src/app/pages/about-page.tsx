@@ -25,7 +25,7 @@ export function AboutPage() {
       />
 
       {/* --- Section 1: Hero --- */}
-      <div className="relative pt-32 pb-20 px-6 overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+      <div className="relative page-hero-offset pb-12 sm:pb-20 px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
           <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
@@ -64,7 +64,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight text-text-primary"
+                className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-[1.1] tracking-tight text-text-primary"
               >
                 {t<string>("about.title")}
               </m.h1>
@@ -73,7 +73,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-xl mb-10 leading-relaxed max-w-lg text-text-muted"
+                className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 leading-relaxed max-w-lg text-text-muted"
               >
                 {t<string>("about.description")}
               </m.p>

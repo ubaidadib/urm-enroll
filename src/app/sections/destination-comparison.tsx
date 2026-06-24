@@ -138,7 +138,7 @@ export function DestinationComparison() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="overflow-x-auto -mx-6 px-6"
+          className="overflow-x-auto rounded-2xl"
         >
           <table className="w-full min-w-[800px] border-separate border-spacing-0" role="table">
             <thead>

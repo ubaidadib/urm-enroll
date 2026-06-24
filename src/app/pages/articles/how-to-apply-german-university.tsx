@@ -467,7 +467,7 @@ export function HowToApplyGermanUniversityPage() {
       />
 
       {/* Hero */}
-      <div className="pt-24 pb-10 px-6 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div className="page-hero-offset pb-8 sm:pb-10 px-[var(--content-gutter)] bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <Breadcrumbs
             items={[

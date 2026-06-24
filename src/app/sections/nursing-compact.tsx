@@ -19,7 +19,7 @@ export function NursingCompact() {
   return (
     <section
       dir={dir}
-      className="relative py-24 bg-bg-primary overflow-hidden transition-colors duration-500"
+      className="relative py-16 sm:py-24 bg-bg-primary overflow-hidden transition-colors duration-500"
     >
       {/* Ambient — very light, no visible borders */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -27,7 +27,7 @@ export function NursingCompact() {
         <div className="absolute -bottom-48 -left-48 w-[700px] h-[700px] rounded-full bg-teal-50 dark:bg-teal-500/4 blur-[140px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-[var(--content-gutter)]">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* ── LEFT: Narrative ── */}
@@ -80,7 +80,7 @@ export function NursingCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.18 }}
-              className="grid grid-cols-2 gap-2.5 mb-10"
+              className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-2.5 mb-8 sm:mb-10"
             >
               {steps.map((step, i) => (
                 <div

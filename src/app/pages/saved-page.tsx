@@ -70,7 +70,7 @@ export function SavedPage() {
           tabs={tabs}
           activeTab={tab}
           onChange={(id) => setTab(id as "universities" | "programs")}
-          stickyTopClass="top-24"
+          stickyTopClass="top-14 xl:top-24"
         />
 
         <section className="py-10">

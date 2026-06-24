@@ -125,7 +125,7 @@ export function FindYourProgram() {
         <div className="absolute -bottom-40 left-1/4 w-125 h-125 rounded-full bg-accent-tech/5 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-3 sm:px-6 3xl:px-8">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 16 }}

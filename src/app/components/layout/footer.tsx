@@ -60,7 +60,7 @@ export function Footer() {
       />
 
       <div className="relative z-10 border-t border-border/40 bg-bg-surface/88 backdrop-blur-xl shadow-[var(--surface-shadow)]">
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-10 md:py-12 lg:py-14">
+        <div className="content-shell mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12 py-10 md:py-12 lg:py-14 3xl:py-16">
           {/* Brand + navigation links */}
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
             <div className="space-y-5 lg:col-span-4 xl:col-span-4">

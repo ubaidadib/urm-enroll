@@ -40,7 +40,7 @@ export function ServicesPage() {
       />
 
       {/* --- Hero Section --- */}
-      <div className="relative pt-32 pb-24 px-6 overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+      <div className="relative page-hero-offset pb-14 sm:pb-20 xl:pb-24 px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
           <div className="absolute top-0 right-0 w-150 h-150 rounded-full blur-[120px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
@@ -75,7 +75,7 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1] text-text-primary"
+                className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 tracking-tight leading-[1.1] text-text-primary"
               >
                 {t<string>("services.title")}
               </m.h1>
@@ -84,7 +84,7 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl leading-relaxed max-w-2xl text-text-muted"
+                className="text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl text-text-muted"
               >
                 {t<string>("services.description")}
               </m.p>

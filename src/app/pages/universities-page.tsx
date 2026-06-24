@@ -494,7 +494,7 @@ export function UniversitiesPage() {
       <main className="relative min-h-screen overflow-x-hidden bg-bg-primary">
 
         {/* HERO */}
-        <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
+        <section className="relative overflow-hidden page-hero-offset pb-12 sm:pb-16 md:pb-20">
           <div className="pointer-events-none absolute inset-0">
             <m.div
               className="absolute -top-32 -left-24 w-[38rem] h-[38rem] rounded-full bg-accent-tech/12 blur-[130px]"
@@ -510,7 +510,7 @@ export function UniversitiesPage() {
           </div>
           <div className="pointer-events-none absolute inset-0 premium-grid opacity-28" />
 
-          <div className="relative z-10 mx-auto w-full max-w-[1540px] px-5 sm:px-8 lg:px-12">
+          <div className="relative z-10 content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
             <div className="mb-8"><Breadcrumbs /></div>
 
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -532,7 +532,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 22 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[clamp(2.4rem,5.5vw,4.6rem)] font-black tracking-tight leading-[1.04]
+                  className="text-[clamp(1.75rem,5.5vw,4.6rem)] font-black tracking-tight leading-[1.04]
                     text-slate-900 dark:text-white"
                 >
                   {t<string>("universities.listing.hero.title")}
@@ -668,7 +668,7 @@ export function UniversitiesPage() {
 
         {/* TRENDING CAROUSEL */}
         <section className="relative py-8 border-t border-slate-100 dark:border-slate-800/60">
-          <div className="mx-auto w-full max-w-[1540px] px-5 sm:px-8 lg:px-12">
+          <div className="content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
             <div className="flex items-center gap-3 mb-5">
               <Flame className="w-4 h-4 text-amber-500" />
               <span className="text-sm font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
@@ -691,7 +691,7 @@ export function UniversitiesPage() {
             <div className="absolute -left-20 top-24 w-60 h-60 rounded-full bg-accent-tech/7 blur-[80px]" />
             <div className="absolute -right-16 bottom-24 w-72 h-72 rounded-full bg-accent-primary/7 blur-[100px]" />
           </div>
-          <div className="relative z-10 mx-auto w-full max-w-[1540px] px-5 sm:px-8 lg:px-12">
+          <div className="relative z-10 content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
 
             {/* Sticky filter bar */}
             <m.div
@@ -702,7 +702,7 @@ export function UniversitiesPage() {
                 py-3 bg-slate-50/95 dark:bg-[#080c14]/95 backdrop-blur-xl
                 border-b border-slate-200/60 dark:border-slate-800/60"
             >
-              <div className="max-w-[1540px] mx-auto flex items-center gap-3 flex-wrap xl:flex-nowrap">
+              <div className="content-shell-wide mx-auto flex items-center gap-3 flex-wrap xl:flex-nowrap">
                 <div className="relative hidden xl:flex items-center gap-2 flex-shrink-0">
                   <Search className="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none" />
                   <input

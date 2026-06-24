@@ -377,13 +377,13 @@ export function ProgramsPage() {
           <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr from-amber-200/30 to-transparent blur-3xl dark:from-amber-900/15" />
         </div>
 
-        <div className="relative z-10 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
+        <div className="relative z-10 px-[var(--content-gutter)] pb-12 sm:pb-16 page-hero-offset">
           <div className="mx-auto max-w-7xl">
             <m.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
                 Global program catalog
               </p>
-              <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-tight text-slate-950 dark:text-white sm:text-5xl">
+              <h1 className="mt-3 max-w-3xl text-2xl sm:text-4xl font-black tracking-tight text-slate-950 dark:text-white md:text-5xl">
                 Find the right program for your future.
               </h1>
               <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300">

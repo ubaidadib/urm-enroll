@@ -111,7 +111,7 @@ export function NursingAssessmentPage() {
 
         <div className="page-container-narrow py-16">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
               {t('nursingAssessment.results.title')}
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">
@@ -133,7 +133,7 @@ export function NursingAssessmentPage() {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-4xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white">
                     {score}/{TOTAL_QUESTIONS}
                   </div>
                   <div className="text-sm text-slate-400">
@@ -200,7 +200,7 @@ export function NursingAssessmentPage() {
       <div className="page-container-narrow py-16">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
             {t('nursingAssessment.heading')}
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400">

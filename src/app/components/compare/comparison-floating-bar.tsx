@@ -30,7 +30,7 @@ export function ComparisonFloatingBar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[65] w-[calc(100%-2rem)] max-w-5xl"
+            className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[65] w-[calc(100%-1.5rem)] max-w-5xl sm:bottom-4"
           >
             <div className="rounded-2xl border border-border bg-bg-surface/95 backdrop-blur-xl shadow-2xl px-4 py-3">
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">

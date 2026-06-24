@@ -384,7 +384,7 @@ export function DestinationsPage() {
       {/* Grid */}
       <div className="page-container py-12">
         {filtered.length === 0 ? (
-          <div className="text-center py-20">
+          <div className="text-center py-12 sm:py-20">
             <Globe2 className="w-12 h-12 text-slate-400 mx-auto mb-4" />
             <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">
               No destinations match
