@@ -666,4 +666,55 @@
   .marquee-fade-right {
     background: linear-gradient(to left, rgb(var(--bg-secondary)), transparent);
   }
+
+  /* Dark mode — premium gold-glass card surfaces & hover depth only */
+  :root.dark .surface-glass,
+  .dark .surface-glass {
+    background: rgba(15, 28, 52, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: border-color var(--duration-fast) var(--ease-primary), box-shadow var(--duration-medium) var(--ease-primary);
+  }
+
+  :root.dark .surface-glass:hover,
+  .dark .surface-glass:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+
+  :root.dark .surface-glass-subtle,
+  .dark .surface-glass-subtle {
+    background: rgba(15, 28, 52, 0.7);
+    border: 1.5px solid rgba(212, 175, 55, 0.12);
+  }
+
+  :root.dark .surface-glass-subtle:hover,
+  .dark .surface-glass-subtle:hover {
+    border-color: rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 28px rgba(2, 4, 12, 0.35);
+  }
+
+  :root.dark .surface-card,
+  .dark .surface-card {
+    background: rgba(15, 28, 52, 0.72);
+    border: 1.5px solid rgba(212, 175, 55, 0.18);
+    box-shadow: 0 4px 20px rgba(2, 4, 12, 0.35);
+  }
+
+  :root.dark .surface-card:hover,
+  .dark .surface-card:hover {
+    border-color: rgba(212, 175, 55, 0.42);
+    box-shadow: 0 16px 44px rgba(2, 4, 12, 0.5);
+  }
+
+  :root.dark .surface-card-elevated,
+  .dark .surface-card-elevated {
+    background: rgba(15, 28, 52, 0.8);
+    border: 1.5px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  :root.dark .surface-card-elevated:hover,
+  .dark .surface-card-elevated:hover {
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
 }

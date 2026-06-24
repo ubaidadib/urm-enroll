@@ -75,20 +75,7 @@ export function HomeFinalCtaBanner() {
 
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.01]"
-                  style={{
-                    border: "1.5px solid rgba(212,224,239,0.2)",
-                    color: "rgb(212,224,239)",
-                    background: "rgba(255,255,255,0.04)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.3)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.04)";
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.2)";
-                  }}
+                  className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.01] btn-outline-subtle"
                 >
                   Speak to an Advisor
                 </Link>
