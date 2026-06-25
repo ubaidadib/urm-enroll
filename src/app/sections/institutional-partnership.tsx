@@ -80,7 +80,7 @@ function InputField({ label, value, onChange, type = "text", options, placeholde
   const [fieldId] = useState(() => `partner-field-${++_fieldIdCounter}`);
   return (
     <div>
-      <label htmlFor={fieldId} className="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">
+      <label htmlFor={fieldId} className="block text-[11px] font-black uppercase tracking-widest text-text-muted mb-2">
         {label}
       </label>
       {type === "select" ? (
@@ -89,7 +89,7 @@ function InputField({ label, value, onChange, type = "text", options, placeholde
             id={fieldId}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full appearance-none bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all"
+            className="w-full appearance-none bg-bg-surface border border-border rounded-xl px-4 py-3.5 text-text-primary text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all"
           >
             <option value="">{selectPlaceholder}</option>
             {options?.map((o) => (
@@ -107,7 +107,7 @@ function InputField({ label, value, onChange, type = "text", options, placeholde
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all placeholder:text-slate-400"
+          className="w-full bg-bg-surface border border-border rounded-xl px-4 py-3.5 text-text-primary text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all placeholder:text-text-muted"
         />
       )}
     </div>
@@ -244,7 +244,7 @@ export function InstitutionalPartnershipPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0a0a0f] transition-colors duration-500" dir={dir}>
+    <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500" dir={dir}>
       <SeoManager
         title={tx("seo.sections.institutional.title", "Institutional Partnerships – URM Enroll")}
         description={tx("seo.sections.institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies.")}
@@ -256,7 +256,7 @@ export function InstitutionalPartnershipPage() {
       />
 
       {/* ── Hero ── */}
-      <div className="relative pt-28 pb-20 px-6 overflow-hidden border-b border-slate-100 dark:border-white/5">
+      <div className="relative pt-28 pb-20 px-6 overflow-hidden border-b border-border/60">
 
         {/* Ambient */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -283,10 +283,10 @@ export function InstitutionalPartnershipPage() {
               <m.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm mb-8"
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border shadow-sm mb-8"
               >
                 <Handshake className="w-4 h-4 text-accent-tech" />
-                <span className="text-xs font-bold tracking-widest uppercase text-slate-900 dark:text-white">
+                <span className="text-xs font-bold tracking-widest uppercase text-text-primary">
                   {tx("institutional.badge", "Partnership Access")}
                 </span>
               </m.div>
@@ -295,7 +295,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.07 }}
-                className="font-black text-slate-900 dark:text-white leading-[0.95] tracking-tight mb-6"
+                className="font-black text-text-primary leading-[0.95] tracking-tight mb-6"
                 style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
               >
                 {tx("institutional.title", "Built for Institutions\nthat Move Fast.")}
@@ -305,7 +305,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed max-w-lg mb-10"
+                className="text-xl text-text-secondary leading-relaxed max-w-lg mb-10"
               >
                 {tx("institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies operating at scale.")}
               </m.p>
@@ -323,11 +323,11 @@ export function InstitutionalPartnershipPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.26 + i * 0.07 }}
-                    className="p-4 rounded-2xl bg-white dark:bg-white/4 border border-slate-200/80 dark:border-white/6 shadow-sm"
+                    className="p-4 rounded-2xl bg-bg-surface border border-border shadow-sm"
                   >
                     <Icon className="w-4 h-4 mb-2" style={{ color }} />
-                    <div className="text-2xl font-black text-slate-900 dark:text-white">{value}</div>
-                    <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide mt-0.5">
+                    <div className="text-2xl font-black text-text-primary">{value}</div>
+                    <div className="text-[11px] font-semibold text-text-muted uppercase tracking-wide mt-0.5">
                       {label[lang]}
                     </div>
                   </m.div>
@@ -344,7 +344,7 @@ export function InstitutionalPartnershipPage() {
             >
               <div className="relative aspect-square max-w-md mx-auto">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-100 to-slate-100 dark:from-blue-500/10 dark:to-accent-tech/8 rounded-[3rem] blur-[60px]" />
-                <div className="relative h-full rounded-[3rem] bg-white/70 dark:bg-white/4 border border-slate-200/80 dark:border-white/8 backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center">
+                  className="relative h-full rounded-[3rem] bg-bg-surface/70 border border-border backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center">
 
                   {/* Background icon */}
                   <Handshake className="w-56 h-56 text-slate-100 dark:text-white/5" />
@@ -396,12 +396,12 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="font-black text-slate-900 dark:text-white tracking-tight mb-3"
+                className="font-black text-text-primary tracking-tight mb-3"
                 style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
               >
                 {tx("institutional.segment.title", "Who Do We Serve?")}
               </m.h2>
-              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
+              <p className="text-text-secondary max-w-xl mx-auto">
                 {tx("institutional.segment.sub", "Tailored solutions for every type of institution.")}
               </p>
             </div>
@@ -418,8 +418,8 @@ export function InstitutionalPartnershipPage() {
                     onClick={() => setActiveSegment(seg.value)}
                     className={`relative group p-5 rounded-2xl text-left border transition-all duration-300 ${
                       isActive
-                        ? "bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 shadow-xl"
-                        : "bg-slate-50 dark:bg-white/3 border-slate-100 dark:border-white/5 hover:bg-white dark:hover:bg-white/6 hover:shadow-md hover:border-slate-200 dark:hover:border-white/10"
+                        ? "bg-bg-surface border-border shadow-xl"
+                        : "bg-bg-secondary border-border/40 hover:bg-bg-surface hover:shadow-md hover:border-border"
                     }`}
                   >
                     {isActive && (
@@ -434,7 +434,7 @@ export function InstitutionalPartnershipPage() {
                         style={{ color: isActive ? color : "#94a3b8" }}
                       />
                     </div>
-                    <div className={`text-sm font-black leading-tight ${isActive ? "text-slate-900 dark:text-white" : "text-slate-500 dark:text-slate-400"}`}>
+                    <div className={`text-sm font-black leading-tight ${isActive ? "text-text-primary" : "text-text-muted"}`}>
                       {seg.label}
                     </div>
                     {isActive && (
@@ -509,12 +509,12 @@ export function InstitutionalPartnershipPage() {
           <div>
             <div className="text-center mb-10">
               <h2
-                className="font-black text-slate-900 dark:text-white tracking-tight mb-3"
+                className="font-black text-text-primary tracking-tight mb-3"
                 style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
               >
                 {tx("institutional.capabilities.title", "What We Offer")}
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm">
+              <p className="text-text-secondary max-w-xl mx-auto text-sm">
                 {tx("institutional.capabilities.sub", "End-to-end support from compliance to placement.")}
               </p>
             </div>
@@ -526,13 +526,13 @@ export function InstitutionalPartnershipPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="group p-7 rounded-2xl bg-white dark:bg-white/4 border border-slate-200/80 dark:border-white/6 hover:border-slate-300 dark:hover:border-white/12 hover:shadow-lg transition-all"
+                  className="group p-7 rounded-2xl bg-bg-surface border border-border hover:border-border-strong hover:shadow-lg transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center mb-5">
                     <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <h3 className="text-base font-black text-slate-900 dark:text-white mb-2">{item.title}</h3>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.description}</p>
+                  <h3 className="text-base font-black text-text-primary mb-2">{item.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
                 </m.div>
               ))}
             </div>
@@ -542,19 +542,19 @@ export function InstitutionalPartnershipPage() {
           <div>
             <div className="text-center mb-12">
               <h2
-                className="font-black text-slate-900 dark:text-white tracking-tight mb-3"
+                className="font-black text-text-primary tracking-tight mb-3"
                 style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
               >
                 {tx("institutional.process.title", "How It Works")}
               </h2>
-              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm">
+              <p className="text-text-secondary max-w-xl mx-auto text-sm">
                 {tx("institutional.process.sub", "From first contact to active partnership in four clear steps.")}
               </p>
             </div>
 
             <div className="relative">
               {/* Connecting line */}
-              <div className="absolute top-8 left-[10%] right-[10%] h-px bg-linear-to-r from-transparent via-slate-200 dark:via-white/8 to-transparent hidden md:block" />
+              <div className="absolute top-8 left-[10%] right-[10%] h-px bg-linear-to-r from-transparent via-border to-transparent hidden md:block" />
 
               <div className="grid md:grid-cols-4 gap-6">
                 {processSteps.map((s, i: number) => {
@@ -586,8 +586,8 @@ export function InstitutionalPartnershipPage() {
           </div>
 
           {/* ── 4. Trust Strip ── */}
-          <div className="flex flex-col items-center gap-5 py-10 border-t border-slate-100 dark:border-white/6">
-            <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
+          <div className="flex flex-col items-center gap-5 py-10 border-t border-border/60">
+            <p className="text-[11px] font-black text-text-muted uppercase tracking-widest">
               {tx("institutional.trust.label", "Verified Compliance")}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -624,7 +624,7 @@ export function InstitutionalPartnershipPage() {
               exit={{ scale: 0.96, opacity: 0, y: 16 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-5xl max-h-[90vh] glass-card-medium overflow-hidden flex flex-col lg:flex-row"
+              className="w-full max-w-5xl max-h-[90vh] bg-bg-surface border border-border rounded-3xl shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col lg:flex-row"
             >
               {/* Sidebar */}
               <div className="lg:w-[38%] bg-slate-950 text-white p-9 flex flex-col justify-between relative overflow-hidden shrink-0">
@@ -680,26 +680,26 @@ export function InstitutionalPartnershipPage() {
               </div>
 
               {/* Form panel */}
-              <div className="flex-1 flex flex-col overflow-hidden bg-white dark:bg-slate-950">
+              <div className="flex-1 flex flex-col overflow-hidden bg-bg-primary">
                 {/* Form header */}
-                <div className="flex items-center justify-between px-8 py-5 border-b border-slate-100 dark:border-white/6 shrink-0">
+                  className="flex items-center justify-between px-8 py-5 border-b border-border/60 shrink-0">
                   <div>
-                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">
+                    <div className="text-[10px] font-black text-text-muted uppercase tracking-widest mb-0.5">
                       {tx("institutional.form.stepLabel", "Step")} {step} / 2
                     </div>
-                    <div className="text-sm font-black text-slate-900 dark:text-white">
+                    <div className="text-sm font-black text-text-primary">
                       {step === 1
                         ? tx("institutional.form.stepOne", "Organisation Details")
                         : tx("institutional.form.stepTwo", "Partnership Scope")}
                     </div>
                   </div>
-                  <button onClick={closeModal} className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/8 transition-colors">
-                    <X className="w-5 h-5 text-slate-400" />
+                  <button onClick={closeModal} className="p-2 rounded-xl hover:bg-bg-secondary transition-colors">
+                    <X className="w-5 h-5 text-text-muted" />
                   </button>
                 </div>
 
                 {/* Progress bar */}
-                <div className="h-0.5 bg-slate-100 dark:bg-white/5 shrink-0">
+                <div className="h-0.5 bg-border shrink-0">
                   <m.div
                     className="h-full bg-blue-500 rounded-full"
                     animate={{ width: step === 1 ? "50%" : "100%" }}
@@ -714,10 +714,10 @@ export function InstitutionalPartnershipPage() {
                       <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-5">
                         <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                       </div>
-                      <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">
+                      <h3 className="text-xl font-black text-text-primary mb-2">
                         {tx("institutional.form.successTitle", "Application Received")}
                       </h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mb-8 leading-relaxed">
+                      <p className="text-text-secondary text-sm max-w-sm mb-8 leading-relaxed">
                         {tx("institutional.form.success", "Our partnerships team will review your submission and respond within 48 hours.")}
                       </p>
                       <button
@@ -833,7 +833,7 @@ export function InstitutionalPartnershipPage() {
                                 {tx("institutional.form.notes", "Additional Notes")}
                               </label>
                               <textarea
-                                className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-xl px-4 py-3 text-slate-900 dark:text-white text-sm outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all resize-none placeholder:text-slate-400"
+                                className="w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary text-sm outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all resize-none placeholder:text-text-muted"
                                 rows={3}
                                 value={formData.notes}
                                 onChange={(e) => handleChange("notes", e.target.value)}
@@ -865,12 +865,12 @@ export function InstitutionalPartnershipPage() {
                         )}
                       </div>
 
-                      <div className="flex justify-between items-center pt-5 border-t border-slate-100 dark:border-white/6 mt-6">
+                      <div className="flex justify-between items-center pt-5 border-t border-border/60 mt-6">
                         {step === 2 ? (
                           <button
                             type="button"
                             onClick={() => setStep(1)}
-                            className="flex items-center gap-1.5 text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+                            className="flex items-center gap-1.5 text-sm font-bold text-text-secondary hover:text-text-primary transition-colors"
                           >
                             <ChevronRight className="w-4 h-4 rotate-180" />
                             {tx("institutional.form.back", "Back")}

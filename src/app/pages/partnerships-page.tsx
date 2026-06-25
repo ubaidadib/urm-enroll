@@ -12,7 +12,7 @@ export function PartnershipsPage() {
   useEffect(() => { recordSignal({ type: "page_view", page: "/partnerships" }); }, [recordSignal]);
 
   return (
-    <div className="dark" style={{ background: "rgb(5,10,24)" }}>
+    <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
       <InstitutionalPartnership />
       <div className="max-w-5xl mx-auto page-gutter py-10">
         <GlobalCTA

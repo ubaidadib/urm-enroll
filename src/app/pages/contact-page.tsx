@@ -67,7 +67,7 @@ function InputField({
     <div>
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
+        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-muted"
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -80,9 +80,7 @@ function InputField({
         onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
-        className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
-          text-white placeholder-[rgba(105,133,166,0.6)]"
-          style={{ background: "rgba(15,28,52,0.8)", border: "1.5px solid rgba(212,175,55,0.15)", color: "rgb(248,250,252)" }}
+        className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none bg-bg-surface border border-border text-text-primary placeholder:text-text-muted/70 focus:border-accent-primary focus:ring-4 focus:ring-accent-primary/10"
       />
     </div>
   );
@@ -114,7 +112,7 @@ function SelectField({
     <div className="relative">
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
+        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-muted"
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -126,11 +124,7 @@ function SelectField({
           value={value}
           onChange={onChange}
           disabled={disabled}
-          className="w-full appearance-none rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
-            bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-            hover:border-accent-tech/40 hover:shadow-sm
-            focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 focus:shadow-sm
-            text-slate-900 dark:text-white"
+          className="w-full appearance-none rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none bg-bg-surface border border-border text-text-primary hover:border-accent-tech/40 hover:shadow-sm focus:ring-2 focus:ring-accent-primary/20 focus:border-accent-primary focus:shadow-sm"
         >
           <option value="">{placeholder}</option>
           {options.map((o) => (
@@ -139,7 +133,7 @@ function SelectField({
             </option>
           ))}
         </select>
-        <div className="absolute end-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+        <div className="absolute end-4 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted">
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
@@ -167,7 +161,7 @@ function FaqItem({
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="w-full flex items-center justify-between gap-4 p-6 text-start font-bold text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        className="w-full flex items-center justify-between gap-4 p-6 text-start font-bold text-text-primary hover:bg-bg-hover transition-colors"
       >
         <span className="text-base">{question}</span>
         <ChevronDown
@@ -183,7 +177,7 @@ function FaqItem({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="px-6 pb-6 text-text-muted leading-relaxed">
               {answer}
             </p>
           </m.div>
@@ -362,7 +356,7 @@ export function ContactPage() {
   const trustBadges = (t("contact.trustBadges") as string[]) || [];
 
   return (
-    <main dir={dir} className="dark min-h-screen" style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}>
+    <main dir={dir} className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
       <SeoManager
         path="/contact"
         breadcrumbs={[
@@ -550,7 +544,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3: MEET YOUR COUNSELORS                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section id="contact-form" className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section id="contact-form" className="py-20 px-6 border-t border-border">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}

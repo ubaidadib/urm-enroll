@@ -20,8 +20,8 @@ const FeaturedUniversitiesCarousel = lazy(() =>
 const HomeHowItWorks = lazy(() =>
   import("../sections/home-how-it-works").then((module) => ({ default: module.HomeHowItWorks }))
 );
-const HomeFinalCtaBanner = lazy(() =>
-  import("../sections/home-final-cta-banner").then((module) => ({ default: module.HomeFinalCtaBanner }))
+const HomeTestimonials = lazy(() =>
+  import("../sections/home-testimonials").then((module) => ({ default: module.HomeTestimonials }))
 );
 const InstagramReelsSection = lazy(() =>
   import("../sections/instagram-reels-section").then((module) => ({ default: module.InstagramReelsSection }))
@@ -83,7 +83,7 @@ export function HomePage() {
   useEffect(() => { recordSignal({ type: "page_view", page: "/home" }); }, [recordSignal]);
 
   return (
-    <div className="dark overflow-x-hidden" style={{ background: "rgb(5,10,24)" }}>
+    <div className="overflow-x-hidden bg-bg-primary text-text-primary transition-colors duration-500">
       <SeoManager />
 
       {/* 1. Hero */}
@@ -116,24 +116,24 @@ export function HomePage() {
         </Suspense>
       </DeferredSection>
 
-      {/* 7. Instagram Reels — live embeds via Instagram embed.js (SEO-friendly) */}
+      {/* 7. Testimonials */}
+      <DeferredSection>
+        <Suspense fallback={<div className="min-h-30" aria-hidden="true" />}>
+          <HomeTestimonials />
+        </Suspense>
+      </DeferredSection>
+
+      {/* 8. Instagram Reels — live embeds via Instagram embed.js (SEO-friendly) */}
       <DeferredSection>
         <Suspense fallback={<div className="min-h-[480px]" aria-hidden="true" />}>
           <InstagramReelsSection />
         </Suspense>
       </DeferredSection>
 
-      {/* 8. Partners Marquee */}
+      {/* 9. Partners Marquee */}
       <DeferredSection>
         <Suspense fallback={<div className="min-h-[480px]" aria-hidden="true" />}>
           <GlobalPartnersMarquee />
-        </Suspense>
-      </DeferredSection>
-
-      {/* 9. Final CTA */}
-      <DeferredSection>
-        <Suspense fallback={<div className="min-h-25" aria-hidden="true" />}>
-          <HomeFinalCtaBanner />
         </Suspense>
       </DeferredSection>
 

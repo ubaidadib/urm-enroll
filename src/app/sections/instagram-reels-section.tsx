@@ -73,8 +73,8 @@ function FeedCard({
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.36, delay: (index % 4) * 0.04 }}
       whileHover={{ y: -4 }}
-      className={`group relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.05] p-2 text-left backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--accent-primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--bg-primary))] sm:w-[224px] ${
-        isActive ? "border-white/25 shadow-[0_20px_60px_rgba(2,4,12,0.2)]" : ""
+      className={`group relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-border/70 bg-bg-surface/80 p-2 text-left backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary sm:w-[224px] ${
+        isActive ? "border-accent-tech/45 shadow-[0_20px_60px_rgba(2,4,12,0.2)]" : ""
       }`}
       style={{ scrollSnapAlign: "start" }}
     >
@@ -125,7 +125,7 @@ function FeedCard({
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-white/0 transition-all duration-300 group-hover:ring-white/18" />
+      <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-transparent transition-all duration-300 group-hover:ring-accent-tech/30" />
     </m.button>
   );
 }
@@ -135,7 +135,7 @@ function LoadingCard({ index }: { index: number }) {
 
   return (
     <div
-      className="relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-2 sm:w-[224px]"
+      className="relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-border/70 bg-bg-surface/72 p-2 sm:w-[224px]"
       style={{ scrollSnapAlign: "start" }}
     >
       <div
@@ -364,7 +364,7 @@ export function InstagramReelsSection() {
   return (
     <section
       id="reels"
-      className="relative overflow-hidden bg-[rgb(var(--bg-primary))] py-18 md:py-22"
+      className="relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary py-18 md:py-22 dark:from-bg-primary dark:to-bg-secondary"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute -top-20 left-[12%] h-64 w-64 rounded-full bg-[rgba(244,114,182,0.1)] blur-[120px]" />
@@ -379,7 +379,7 @@ export function InstagramReelsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.45 }}
           >
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--text-muted))]">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface/76 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
               <Instagram className="h-3.5 w-3.5 text-rose-400" />
               Instagram success stories
             </div>
@@ -402,7 +402,7 @@ export function InstagramReelsSection() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.06] px-4 py-2.5 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.1]"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-border bg-bg-surface/82 px-4 py-2.5 text-sm font-semibold text-text-primary transition-all hover:-translate-y-0.5 hover:border-border-strong hover:bg-bg-surface"
           >
             Visit {HANDLE}
             <ExternalLink className="h-3.5 w-3.5 text-[rgb(var(--text-muted))]" />
@@ -430,7 +430,7 @@ export function InstagramReelsSection() {
                   aria-label="Scroll left"
                   onClick={() => scrollBy("left")}
                   disabled={atStart || isLoading || items.length === 0}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-bg-surface text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover disabled:pointer-events-none disabled:opacity-35"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
@@ -439,7 +439,7 @@ export function InstagramReelsSection() {
                   aria-label="Scroll right"
                   onClick={() => scrollBy("right")}
                   disabled={atEnd || isLoading || items.length === 0}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-bg-surface text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover disabled:pointer-events-none disabled:opacity-35"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
@@ -460,7 +460,7 @@ export function InstagramReelsSection() {
                     <button
                       type="button"
                       onClick={() => void refetch()}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
+                      className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover"
                     >
                       <RefreshCcw className="h-4 w-4" />
                       Retry
@@ -469,7 +469,7 @@ export function InstagramReelsSection() {
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
+                      className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover"
                     >
                       Open Instagram
                       <ExternalLink className="h-3.5 w-3.5" />
@@ -479,7 +479,7 @@ export function InstagramReelsSection() {
               </div>
             </div>
           ) : showEmptyState ? (
-            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-5 text-[rgb(var(--text-primary))]">
+            <div className="rounded-[1.35rem] border border-border bg-bg-surface/72 p-5 text-[rgb(var(--text-primary))]">
               <p className="font-semibold">No stories are available yet.</p>
               <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
                 Once the feed sync runs and Instagram content is available, stories will appear here automatically.
@@ -491,14 +491,14 @@ export function InstagramReelsSection() {
                 <div
                   className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 transition-opacity duration-300 sm:w-16"
                   style={{
-                    background: "linear-gradient(to right, rgba(18, 32, 58, 0.88), transparent)",
+                    background: "linear-gradient(to right, rgb(var(--bg-primary) / 0.9), transparent)",
                     opacity: atStart || isLoading ? 0 : 1,
                   }}
                 />
                 <div
                   className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 transition-opacity duration-300 sm:w-16"
                   style={{
-                    background: "linear-gradient(to left, rgba(18, 32, 58, 0.88), transparent)",
+                    background: "linear-gradient(to left, rgb(var(--bg-primary) / 0.9), transparent)",
                     opacity: atEnd || isLoading ? 0 : 1,
                   }}
                 />
@@ -526,7 +526,7 @@ export function InstagramReelsSection() {
 
               <div className="relative mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-1.5 w-36 overflow-hidden rounded-full bg-white/10 sm:w-44">
+                  <div className="h-1.5 w-36 overflow-hidden rounded-full bg-border/75 sm:w-44">
                     <div
                       className="h-full rounded-full bg-[linear-gradient(90deg,rgb(var(--accent-primary)),rgb(var(--accent-tech-hover)),rgb(var(--accent-tech)))] transition-[width] duration-150 ease-out"
                       style={{ width: `${Math.max(scrollProgress * 100, isLoading ? 22 : 8)}%` }}

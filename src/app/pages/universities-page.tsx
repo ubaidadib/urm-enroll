@@ -491,7 +491,7 @@ export function UniversitiesPage() {
         path="/universities"
       />
 
-      <main className="dark relative min-h-screen overflow-x-hidden" style={{ background: "rgb(5,10,24)" }}>
+      <main className="relative min-h-screen overflow-x-hidden bg-bg-primary text-text-primary transition-colors duration-500">
 
         {/* HERO */}
         <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">

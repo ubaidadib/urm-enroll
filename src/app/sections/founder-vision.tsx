@@ -25,8 +25,7 @@ export function FounderVision() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative py-24 md:py-32 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="relative py-24 md:py-32 overflow-hidden bg-linear-to-b from-bg-primary to-bg-secondary"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -57,7 +56,7 @@ export function FounderVision() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1]" style={{ color: "rgb(248,250,252)" }}
+            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
           >
             {t<string>('founder.titleLine1')} <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-accent-tech">
@@ -97,14 +96,14 @@ export function FounderVision() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className={`absolute -bottom-8 ${dir === 'rtl' ? '-left-8' : '-right-8'} backdrop-blur-xl rounded-3xl p-8 shadow-2xl max-w-xs`}
-                style={{ background: "rgba(8,14,28,0.85)", border: "1.5px solid rgba(212,175,55,0.2)" }}
+                style={{ background: "rgb(var(--bg-primary) / 0.88)", border: "1.5px solid rgba(212,175,55,0.2)" }}
               >
                 <div className="grid grid-cols-2 gap-8">
                   <div>
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.direct')}
                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgb(105,133,166)" }}>
+                    <div className="text-xs font-bold uppercase tracking-wider text-text-muted">
                       {t<string>('founder.stats.directLabel')}
                     </div>
                   </div>
@@ -112,7 +111,7 @@ export function FounderVision() {
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.reach')}
                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider" style={{ color: "rgb(105,133,166)" }}>
+                    <div className="text-xs font-bold uppercase tracking-wider text-text-muted">
                       {t<string>('founder.stats.reachLabel')}
                     </div>
                   </div>
@@ -149,11 +148,11 @@ export function FounderVision() {
               ))}
             </div>
 
-            <div className="h-px bg-slate-200 dark:bg-slate-800 w-full" />
+              <div className="h-px bg-border w-full" />
 
             {/* Highlights Grid */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-8 flex items-center gap-2">
+              <h3 className="text-sm font-bold text-text-primary uppercase tracking-widest mb-8 flex items-center gap-2">
                 <span className="w-8 h-px bg-accent-primary" />
                 {t<string>('founder.sections.highlights')}
               </h3>
@@ -170,7 +169,7 @@ export function FounderVision() {
                     <div className="mt-1.5 p-1 rounded-full bg-accent-primary/10">
                       <div className="w-2 h-2 rounded-full bg-accent-primary" />
                     </div>
-                    <span className="text-slate-700 dark:text-slate-300 font-medium leading-relaxed">
+                    <span className="text-text-secondary font-medium leading-relaxed">
                       {item}
                     </span>
                   </m.div>
@@ -180,14 +179,14 @@ export function FounderVision() {
 
             {/* Skills Tag Cloud */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-6">
+              <h3 className="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">
                 {t<string>('founder.sections.skills')}
               </h3>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (
                   <span 
                     key={index}
-                    className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-200 dark:border-slate-700"
+                    className="px-4 py-2 rounded-lg bg-bg-surface text-text-secondary text-xs font-bold border border-border"
                   >
                     {skill}
                   </span>
@@ -201,7 +200,7 @@ export function FounderVision() {
                 href="https://www.linkedin.com/in/ubaidadib/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-slate-900 dark:text-white font-bold hover:text-accent-primary transition-colors group"
+                className="inline-flex items-center gap-3 text-text-primary font-bold hover:text-accent-primary transition-colors group"
               >
                 <Linkedin className="w-5 h-5" />
                 <span>{t<string>('founder.linkedinCta')}</span>

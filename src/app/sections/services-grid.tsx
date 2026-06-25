@@ -110,13 +110,12 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
   return (
     <section 
       dir={dir}
-      className="relative py-24 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="relative py-24 overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full blur-[160px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
         <div className="absolute -bottom-48 -left-48 w-[700px] h-[700px] rounded-full blur-[140px] opacity-6" style={{ background: "rgb(212,175,55)" }} />
-        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10 px-6">
@@ -126,17 +125,17 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
           {compact ? (
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-3">
-                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: "rgb(248,250,252)", fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}>
+                <h2 className="text-text-primary text-3xl md:text-5xl font-extrabold tracking-tight" style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}>
                   {t<string>("services.homeTitle")}
                 </h2>
-                <p className="text-lg md:text-xl font-medium leading-relaxed max-w-2xl" style={{ color: "rgb(145,177,210)" }}>
+                <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
                   {t<string>("services.homeSubtitle")}
                 </p>
               </div>
               <Link 
                 to="/services" 
                 className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all active:scale-95 group"
-                style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.2)", color: "rgb(212,175,55)" }}
+                style={{ background: "rgb(var(--bg-surface) / 0.85)", border: "1.5px solid rgba(212,175,55,0.25)", color: "rgb(212,175,55)" }}
               >
                 <span>{t<string>("services.viewAll")}</span>
                 <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
@@ -144,10 +143,10 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
             </div>
           ) : (
             <div className="space-y-3 max-w-2xl">
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+              <h2 className="text-text-primary text-3xl md:text-5xl font-extrabold tracking-tight">
                 {t<string>("services.catalogTitle")}
               </h2>
-              <p className="text-lg md:text-xl font-medium leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+              <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed">
                 {t<string>("services.catalogSubtitle")}
               </p>
             </div>
@@ -171,44 +170,44 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
               whileHover={{ y: -6 }}
               onClick={() => SEO_EVENTS.PROGRAM_VIEWED(service.title)}
               className={`group relative flex flex-col p-8 rounded-[2rem] overflow-hidden transition-all duration-300 ${service.glow}`}
-              style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
+              style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgb(var(--border-default) / 0.75)" }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.35)")}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgb(var(--border-default) / 0.75)")}
             >
               {/* Card Header: Icon & Action */}
               <div className="flex items-start justify-between mb-8">
-                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${service.gradient} flex items-center justify-center border border-white/60 dark:border-white/10 shadow-inner`}>
+                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${service.gradient} flex items-center justify-center border border-border/60 shadow-inner`}>
                   <Icon className={`w-7 h-7 ${service.iconColor}`} strokeWidth={1.75} />
                 </div>
                 
                 {compact ? (
                   <Link 
                     to="/services" 
-                    className={`w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
+                    className={`w-10 h-10 rounded-full bg-bg-surface border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
                     aria-label={t<string>("services.viewDetails")}
                   >
-                     <ArrowRight className={`w-4 h-4 text-slate-900 dark:text-white ${isRtl ? 'rotate-180' : ''}`} />
+                     <ArrowRight className={`w-4 h-4 text-text-primary ${isRtl ? 'rotate-180' : ''}`} />
                   </Link>
                 ) : (
-                  <div className={`w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>
-                     <ArrowRight className={`w-4 h-4 text-slate-900 dark:text-white ${isRtl ? 'rotate-180' : ''}`} />
+                  <div className={`w-10 h-10 rounded-full bg-bg-surface border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>
+                     <ArrowRight className={`w-4 h-4 text-text-primary ${isRtl ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </div>
 
               {/* Title & Desc */}
-              <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300" style={{ color: "rgb(248,250,252)" }}>
+              <h3 className="text-text-primary text-xl md:text-2xl font-bold mb-3 transition-colors duration-300">
                 {service.title}
               </h3>
               
-              <p className="text-sm leading-relaxed mb-8 flex-grow" style={{ color: "rgb(145,177,210)" }}>
+              <p className="text-text-secondary text-sm leading-relaxed mb-8 flex-grow">
                 {service.description}
               </p>
 
               {/* Feature List */}
               <div className="mt-auto space-y-3 pt-6 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
                 {service.features?.map((feature: string, i: number) => (
-                  <div key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider" style={{ color: "rgb(145,177,210)" }}>
+                  <div key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-text-secondary">
                     <CheckCircle2 className={`w-4 h-4 shrink-0 ${service.iconColor}`} strokeWidth={2.5} />
                     <span>{feature}</span>
                   </div>

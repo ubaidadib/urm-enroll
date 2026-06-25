@@ -28,7 +28,7 @@ export function ServicesPage() {
   ];
 
   return (
-    <main className="dark min-h-screen" style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}>
+    <main className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
       <SeoManager
         title={t<string>("seo.sections.services.title")}
         description={t<string>("seo.sections.services.description")}
@@ -40,11 +40,11 @@ export function ServicesPage() {
       />
 
       {/* --- Hero Section --- */}
-      <div className="relative pt-32 pb-24 px-6 overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+      <div className="relative pt-32 pb-24 px-6 overflow-hidden border-b border-border/60 bg-linear-to-b from-bg-primary to-bg-secondary">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
-          <div className="absolute top-0 right-0 w-150 h-150 rounded-full blur-[120px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
-          <div className="absolute bottom-0 left-0 w-150 h-150 rounded-full blur-[120px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
+          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(var(--grid),0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--grid),0.18)_1px,transparent_1px)] bg-[size:72px_72px]" />
+          <div className="absolute top-0 right-0 h-[37.5rem] w-[37.5rem] rounded-full blur-[120px] opacity-10 bg-accent-tech/15" />
+          <div className="absolute bottom-0 left-0 h-[37.5rem] w-[37.5rem] rounded-full blur-[120px] opacity-8 bg-accent-primary/15" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -63,10 +63,10 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-8"
-                style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
+                style={{ background: "rgb(var(--bg-surface) / 0.8)", border: "1px solid rgb(var(--accent-primary) / 0.22)" }}
               >
-                <Sparkles className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
-                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
+                <Sparkles className="w-4 h-4 text-accent-primary" />
+                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
                   {t<string>("services.badge")}
                 </span>
               </m.div>
@@ -75,7 +75,7 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1]" style={{ color: "rgb(248,250,252)" }}
+                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1] text-text-primary"
               >
                 {t<string>("services.title")}
               </m.h1>
@@ -84,7 +84,7 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl leading-relaxed max-w-2xl" style={{ color: "rgb(145,177,210)" }}
+                className="text-xl leading-relaxed max-w-2xl text-text-muted"
               >
                 {t<string>("services.description")}
               </m.p>
@@ -98,10 +98,7 @@ export function ServicesPage() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + (i * 0.1) }}
-                    className={`flex items-center gap-5 p-5 rounded-2xl transition-all duration-300 hover:translate-x-1 ${dir === 'rtl' ? 'flex-row-reverse text-right' : ''}`}
-                    style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.15)" }}
-                    onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.35)")}
-                    onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.15)")}
+                    className={`flex items-center gap-5 p-5 rounded-2xl transition-all duration-300 hover:translate-x-1 bg-bg-surface/85 border border-border/70 shadow-sm hover:border-accent-primary/30 ${dir === 'rtl' ? 'flex-row-reverse text-right' : ''}`}
                   >
                     <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${stat.bg} border ${stat.border}`}>
                       <stat.icon className={`w-7 h-7 ${stat.color}`} />

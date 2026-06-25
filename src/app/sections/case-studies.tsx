@@ -31,8 +31,7 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative py-32 px-6 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="relative py-32 px-6 overflow-hidden bg-linear-to-b from-bg-primary to-bg-secondary"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -62,11 +61,11 @@ export function CaseStudies() {
             </span>
           </div>
           
-          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-text-primary">
             {t<string>("caseStudies.title")}
           </h2>
           
-          <p className="text-xl max-w-3xl leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+          <p className="text-xl max-w-3xl leading-relaxed text-text-secondary">
             {t<string>("caseStudies.description")}
           </p>
         </m.div>
@@ -89,7 +88,7 @@ export function CaseStudies() {
                 className="group relative h-full"
               >
                 {/* Main Card */}
-                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden ${dir === "rtl" ? "text-right" : "text-left"}`} style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}>
+                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden ${dir === "rtl" ? "text-right" : "text-left"}`} style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgb(var(--border-default) / 0.75)" }}>
                   
                   {/* Subtle Top-Right Arrow for external feel */}
                   <div className={`absolute top-8 ${dir === "rtl" ? "left-8" : "right-8"} opacity-20 group-hover:opacity-100 group-hover:text-accent-tech transition-all`}>
@@ -109,19 +108,19 @@ export function CaseStudies() {
                         {t<string>("caseStudies.anonymized")}
                       </span>
                     </div>
-                    <h3 className="text-2xl font-bold leading-tight" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-2xl font-bold leading-tight text-text-primary">
                       {study.title}
                     </h3>
                   </div>
 
                   {/* Body Text */}
-                  <p className="text-sm leading-relaxed mb-10 flex-grow" style={{ color: "rgb(145,177,210)" }}>
+                  <p className="text-sm leading-relaxed mb-10 flex-grow text-text-secondary">
                     {study.summary}
                   </p>
 
                   {/* Impact Footer (Heavy Contrast) */}
                   <div className="mt-auto pt-8 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
+                    <div className="text-[10px] font-bold text-text-muted uppercase tracking-[0.2em] mb-3">
                       {t<string>("caseStudies.coreOutcome")}
                     </div>
                     <div className={`text-xl font-black ${visual.color} tracking-tight`}>
@@ -146,10 +145,10 @@ export function CaseStudies() {
           className="mt-20 pt-10 flex flex-wrap justify-center gap-12 opacity-30 hover:opacity-80 transition-all duration-700"
           style={{ borderTop: "1px solid rgba(212,175,55,0.12)" }}
         >
-          <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-text-muted text-xs font-black uppercase tracking-widest">
             <Briefcase className="w-4 h-4" /> {t<string>("caseStudies.trustVerified")}
           </div>
-          <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-text-muted text-xs font-black uppercase tracking-widest">
             <Target className="w-4 h-4" /> {t<string>("caseStudies.trustAudited")}
           </div>
         </m.div>

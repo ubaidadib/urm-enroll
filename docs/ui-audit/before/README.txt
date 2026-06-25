@@ -1,0 +1,1 @@
+Baseline screenshots captured before redesign.

@@ -28,8 +28,7 @@ export function StudentJourneySteps() {
 
   return (
     <section
-      className="py-28 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      className="py-28 relative overflow-hidden bg-linear-to-b from-bg-primary to-bg-secondary"
       aria-labelledby="journey-heading"
     >
       {/* Ambient background */}
@@ -46,7 +45,7 @@ export function StudentJourneySteps() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6"
-            style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
+            style={{ background: "rgb(var(--bg-surface) / 0.12)", border: "1px solid rgba(212,175,55,0.25)" }}
           >
             <Rocket className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
@@ -60,7 +59,7 @@ export function StudentJourneySteps() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: "rgb(248,250,252)" }}
+            className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-text-primary"
           >
             {t<string>("studentJourney.title")}
           </m.h2>
@@ -70,7 +69,7 @@ export function StudentJourneySteps() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: "rgb(145,177,210)" }}
+            className="text-xl max-w-2xl mx-auto leading-relaxed text-text-secondary"
           >
             {t<string>("studentJourney.description")}
           </m.p>
@@ -91,9 +90,9 @@ export function StudentJourneySteps() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 + index * 0.08 }}
                 className="group relative p-6 rounded-2xl transition-all duration-300"
-                style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(212,175,55,0.1)" }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
+                style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgb(var(--border-default) / 0.75)" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.35)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgb(var(--border-default) / 0.75)")}
               >
                 {/* Step number */}
                 <div className={`absolute top-6 ${isRtl ? "left-6" : "right-6"} text-6xl font-black select-none`} style={{ color: "rgba(212,175,55,0.06)" }}>
@@ -106,16 +105,16 @@ export function StudentJourneySteps() {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold mb-3 tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+                <h3 className="text-xl font-bold mb-3 tracking-tight text-text-primary">
                   {step.title}
                 </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+                <p className="text-sm leading-relaxed text-text-secondary">
                   {step.description}
                 </p>
 
                 {/* Connector dot (visible on lg for non-last items) */}
                 {index < steps.length - 1 && (
-                  <div className={`hidden lg:block absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-4" : "-right-4"} w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 z-20`} />
+                  <div className={`hidden lg:block absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-4" : "-right-4"} w-2 h-2 rounded-full bg-border z-20`} />
                 )}
               </m.div>
             );

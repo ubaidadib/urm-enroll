@@ -86,14 +86,14 @@ export function ProgramCategoriesSection() {
   return (
     <section
       className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 100%)" }}
+      style={{ background: "linear-gradient(180deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 100%)" }}
     >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+            "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
@@ -107,13 +107,12 @@ export function ProgramCategoriesSection() {
           transition={{ duration: 0.55 }}
           className="mb-14"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
+          <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-accent-tech">
             Discover Paths
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight"
-              style={{ color: "rgb(248,250,252)" }}
+              className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl"
             >
               Explore by Field of Study
             </h2>
@@ -142,11 +141,11 @@ export function ProgramCategoriesSection() {
               >
                 <Link
                   to={`/programs?field=${category.key}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl p-6 h-[160px] block transition-all duration-300 hover:-translate-y-1.5"
+                  className="group relative flex h-[160px] flex-col overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5"
                   style={{
-                    background: "rgba(15,28,52,0.7)",
+                    background: "rgb(var(--bg-surface) / 0.86)",
                     border: "1.5px solid rgba(212,224,239,0.07)",
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+                    boxShadow: "0 4px 16px rgba(6, 16, 36, 0.12)",
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLAnchorElement).style.borderColor = category.accentBorder;
@@ -183,13 +182,13 @@ export function ProgramCategoriesSection() {
                     <div className="mt-4">
                       <h3
                         className="text-[0.9rem] font-bold leading-tight transition-colors duration-300"
-                        style={{ color: "rgb(248,250,252)" }}
+                        style={{ color: "rgb(var(--text-primary))" }}
                       >
                         {category.label}
                       </h3>
                       <p
                         className="mt-1 text-[11px] transition-colors duration-300"
-                        style={{ color: "rgb(105,133,166)" }}
+                        style={{ color: "rgb(var(--text-muted))" }}
                       >
                         {count > 0 ? `${count.toLocaleString()} programs` : category.description}
                       </p>

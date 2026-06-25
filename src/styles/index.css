@@ -2,6 +2,38 @@
 @import './theme.css';
 @import './glass.css';
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+html {
+  background: rgb(var(--bg-primary));
+  color: rgb(var(--text-primary));
+  color-scheme: light;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--duration-medium) var(--ease-primary), color var(--duration-medium) var(--ease-primary);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: rgb(var(--bg-primary));
+  color: rgb(var(--text-primary));
+  transition: background-color var(--duration-medium) var(--ease-primary), color var(--duration-medium) var(--ease-primary);
+}
+
+::selection {
+  background: rgb(var(--accent-primary) / 0.24);
+  color: rgb(var(--ink));
+}
+
 /* ── Instagram reel marquee ───────────────────────────────────────────── */
 @keyframes urmMarquee {
   0%   { transform: translateX(0); }

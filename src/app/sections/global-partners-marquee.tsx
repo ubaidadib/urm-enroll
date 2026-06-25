@@ -7,12 +7,12 @@ export function GlobalPartnersMarquee() {
   const { t, dir } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
-  const items = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
+  // Duplicate for seamless infinite loop
+  const items = [...PARTNERS, ...PARTNERS];
 
   return (
     <section
-      className="relative py-20 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary py-20 dark:from-bg-primary dark:to-bg-secondary"
       aria-label={t<string>("globalPartners.badge")}
     >
       {/* Subtle gold glow top */}
@@ -24,7 +24,7 @@ export function GlobalPartnersMarquee() {
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
-          backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
@@ -35,11 +35,10 @@ export function GlobalPartnersMarquee() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
-          style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.2)" }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-accent-primary/30 bg-accent-primary/8 px-4 py-2"
         >
-          <Handshake className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
-          <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
+          <Handshake className="h-4 w-4 text-accent-primary" />
+          <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
             {t<string>("globalPartners.badge")}
           </span>
         </m.div>
@@ -49,8 +48,7 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold mb-4 tracking-tight"
-          style={{ color: "rgb(248,250,252)" }}
+          className="mb-4 text-3xl font-bold tracking-tight text-text-primary md:text-4xl"
         >
           {t<string>("globalPartners.title")}
         </m.h2>
@@ -60,8 +58,7 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg max-w-2xl mx-auto leading-relaxed"
-          style={{ color: "rgb(145,177,210)" }}
+          className="mx-auto max-w-2xl text-lg leading-relaxed text-text-secondary"
         >
           {t<string>("globalPartners.description")}
         </m.p>
@@ -72,11 +69,11 @@ export function GlobalPartnersMarquee() {
         {/* Edge fades */}
         <div
           className="absolute inset-y-0 left-0 w-24 md:w-40 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to right, rgb(8,14,28), transparent)" }}
+          style={{ background: "linear-gradient(to right, rgb(var(--bg-primary)), transparent)" }}
         />
         <div
           className="absolute inset-y-0 right-0 w-24 md:w-40 z-10 pointer-events-none"
-          style={{ background: "linear-gradient(to left, rgb(8,14,28), transparent)" }}
+          style={{ background: "linear-gradient(to left, rgb(var(--bg-primary)), transparent)" }}
         />
 
         <div className="overflow-hidden">
@@ -92,16 +89,16 @@ export function GlobalPartnersMarquee() {
                 key={index}
                 className="shrink-0 px-8 py-5 rounded-2xl flex flex-col items-center justify-center gap-1.5 min-w-[180px] transition-all duration-300"
                 style={{
-                  background: "rgba(15,28,52,0.7)",
-                  border: "1.5px solid rgba(212,175,55,0.1)",
+                  background: "rgb(var(--bg-surface) / 0.86)",
+                  border: "1.5px solid rgb(var(--border-default) / 0.75)",
                 }}
                 onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.3)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.1)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgb(var(--border-default) / 0.75)")}
               >
-                <span className="text-xl font-bold tracking-tight" style={{ color: "rgb(248,250,252)" }}>
+                <span className="text-xl font-bold tracking-tight text-text-primary">
                   {partner.name}
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-center leading-tight" style={{ color: "rgb(105,133,166)" }}>
+                <span className="text-center text-[10px] font-semibold uppercase leading-tight tracking-wider text-text-muted">
                   {t<string>(`globalPartners.categories.${partner.category}`)}
                 </span>
               </div>

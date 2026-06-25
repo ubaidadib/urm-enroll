@@ -144,7 +144,7 @@ export function HeroSection() {
       id="hero"
       aria-labelledby="hero-title"
       className="relative flex flex-col overflow-hidden"
-      style={{ background: "linear-gradient(160deg, rgb(5,10,24) 0%, rgb(8,14,28) 40%, rgb(11,21,48) 100%)" }}
+      style={{ background: "linear-gradient(160deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 42%, rgb(var(--bg-tertiary)) 100%)" }}
     >
       {/* Radial glow blobs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -184,7 +184,7 @@ export function HeroSection() {
       {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
       <div
         className="relative z-10 border-b"
-        style={{ borderColor: "rgba(212,175,55,0.2)", background: "rgba(8,14,28,0.6)" }}
+        style={{ borderColor: "rgba(212,175,55,0.2)", background: "rgb(var(--bg-primary) / 0.6)" }}
       >
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
           {/* ICEF Badge */}
@@ -201,8 +201,8 @@ export function HeroSection() {
           >
             <Award className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
             <div className="leading-none">
-              <p className="text-white font-semibold text-xs">{t<string>("hero.icef_label")}</p>
-              <p className="text-xs mt-0.5" style={{ color: "rgb(145,177,210)" }}>#6507</p>
+              <p className="text-xs font-semibold text-text-primary">{t<string>("hero.icef_label")}</p>
+              <p className="text-xs mt-0.5 text-text-muted">#6507</p>
             </div>
             <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
           </a>
@@ -217,12 +217,12 @@ export function HeroSection() {
               className="flex gap-16 whitespace-nowrap"
               animate={{ x: isRtl ? ["0%", "50%"] : ["0%", "-50%"] }}
               transition={shouldReduceMotion ? {} : { duration: 22, repeat: Infinity, ease: "linear" }}
+              style={{ color: "rgb(var(--text-primary))" }}
             >
               {[0, 1].map((i) => (
                 <span
                   key={i}
-                  className="text-xs font-medium tracking-wide flex-shrink-0"
-                  style={{ color: "rgb(145,177,210)" }}
+                  className="text-xs font-medium tracking-wide flex-shrink-0 text-text-secondary"
                 >
                   {tickerText}
                 </span>
@@ -258,8 +258,7 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5"
-              style={{ color: "rgb(248,250,252)" }}
+              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5 text-text-primary"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
@@ -282,7 +281,7 @@ export function HeroSection() {
                 {headlineParts[1] ?? ""}
               </span>
               {/* Line 2 */}
-              <span className="block mt-1" style={{ color: "rgb(212,224,239)" }}>
+              <span className="block mt-1 text-text-secondary">
                 {t<string>("hero.headline_2")}
               </span>
             </h1>
@@ -293,8 +292,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.45 }}
-            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl"
-            style={{ color: "rgb(145,177,210)" }}
+            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl text-text-secondary"
           >
             {t<string>("hero.subheadline")}
           </m.p>
@@ -309,10 +307,8 @@ export function HeroSection() {
             <Link
               to="/universities"
               aria-label={t<string>("hero.new_cta_primary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-accent-primary px-8 py-4 text-base font-semibold text-ink transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
               style={{
-                background: "rgb(212,175,55)",
-                color: "rgb(8,14,28)",
                 boxShadow: "0 4px 24px rgba(212,175,55,0.25)",
               }}
               onMouseEnter={(e) => {
@@ -332,19 +328,17 @@ export function HeroSection() {
             <Link
               to="/programs"
               aria-label={t<string>("hero.new_cta_secondary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02]"
+              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02] text-text-secondary border border-border/40"
               style={{
-                border: "1.5px solid rgba(212,224,239,0.25)",
-                color: "rgb(212,224,239)",
-                background: "rgba(255,255,255,0.04)",
+                background: "rgb(var(--bg-surface) / 0.6)",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.09)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgb(var(--bg-surface))";
                 (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.04)";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.25)";
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgb(var(--bg-surface) / 0.6)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgb(var(--border-default) / 0.4)";
               }}
             >
               <span>{t<string>("hero.new_cta_secondary")}</span>
@@ -363,7 +357,7 @@ export function HeroSection() {
             className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <span className="text-base" aria-hidden="true">🎓</span>
-            <span className="text-sm" style={{ color: "rgb(105,133,166)" }}>
+            <span className="text-sm text-text-muted">
               {t<string>("hero.social_proof")}
             </span>
           </m.div>
@@ -433,7 +427,7 @@ export function HeroSection() {
       <div
         ref={statsRef}
         className="relative z-10 border-t"
-        style={{ borderColor: "rgba(212,175,55,0.12)", background: "rgba(5,10,24,0.6)" }}
+        style={{ borderColor: "rgba(212,175,55,0.12)", background: "rgb(var(--bg-primary) / 0.6)" }}
       >
         <div className="max-w-7xl mx-auto px-6 py-10">
           <m.div
@@ -461,7 +455,7 @@ export function HeroSection() {
                     shouldReduceMotion={shouldReduceMotion}
                   />
                 </span>
-                <span className="text-xs sm:text-sm font-medium" style={{ color: "rgb(105,133,166)" }}>
+                <span className="text-xs sm:text-sm font-medium text-text-muted">
                   {t<string>(stat.labelKey)}
                 </span>
               </div>

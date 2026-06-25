@@ -10,8 +10,7 @@ export function AboutOverview() {
   return (
     <section
       id="about-overview"
-      className="py-24 relative overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      className="py-24 relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -33,7 +32,7 @@ export function AboutOverview() {
             transition={{ duration: 0.6 }}
             className="group relative h-full"
           >
-            <div className="relative h-full p-10 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col" style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(74,222,128,0.15)" }}>
+            <div className="relative h-full p-10 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col" style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgba(74,222,128,0.2)" }}>
               <div className="absolute inset-0 bg-linear-to-br from-accent-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10">
@@ -42,7 +41,7 @@ export function AboutOverview() {
                     <Building2 className="w-8 h-8 text-emerald-500" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold leading-none mb-2" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-2xl font-bold leading-none mb-2 text-text-primary">
                       {t<string>("about.enroll.title")}
                     </h3>
                     <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest">
@@ -51,7 +50,7 @@ export function AboutOverview() {
                   </div>
                 </div>
                 
-                <p className="text-lg leading-relaxed mb-8 min-h-[4rem]" style={{ color: "rgb(145,177,210)" }}>
+                <p className="text-lg leading-relaxed mb-8 min-h-[4rem] text-text-secondary">
                   {t<string>("about.enroll.body")}
                 </p>
                 
@@ -61,7 +60,7 @@ export function AboutOverview() {
                       <div className="mt-1 p-0.5 rounded-full bg-emerald-500/20">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                       </div>
-                      <span className="font-medium text-sm" style={{ color: "rgb(212,224,239)" }}>{point}</span>
+                      <span className="font-medium text-sm text-text-secondary">{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -77,7 +76,7 @@ export function AboutOverview() {
             transition={{ delay: 0.1, duration: 0.6 }}
             className="group relative h-full"
           >
-            <div className="relative h-full p-10 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col" style={{ background: "rgba(15,28,52,0.7)", border: "1.5px solid rgba(99,102,241,0.2)" }}>
+            <div className="relative h-full p-10 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col" style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgba(99,102,241,0.25)" }}>
               <div className="absolute inset-0 bg-linear-to-br from-accent-tech/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10">
@@ -86,7 +85,7 @@ export function AboutOverview() {
                     <Network className="w-8 h-8 text-indigo-500" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold leading-none mb-2" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-2xl font-bold leading-none mb-2 text-text-primary">
                       {t<string>("about.nexus.title")}
                     </h3>
                     <span className="text-xs font-bold text-indigo-500 uppercase tracking-widest">
@@ -95,7 +94,7 @@ export function AboutOverview() {
                   </div>
                 </div>
                 
-                <p className="text-lg leading-relaxed mb-8 min-h-[4rem]" style={{ color: "rgb(145,177,210)" }}>
+                <p className="text-lg leading-relaxed mb-8 min-h-[4rem] text-text-secondary">
                   {t<string>("about.nexus.body")}
                 </p>
                 
@@ -105,7 +104,7 @@ export function AboutOverview() {
                       <div className="mt-1 p-0.5 rounded-full bg-indigo-500/20">
                         <Zap className="w-4 h-4 text-indigo-500" />
                       </div>
-                      <span className="font-medium text-sm" style={{ color: "rgb(212,224,239)" }}>{point}</span>
+                      <span className="font-medium text-sm text-text-secondary">{point}</span>
                     </li>
                   ))}
                 </ul>

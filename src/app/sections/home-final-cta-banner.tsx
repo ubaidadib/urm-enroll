@@ -12,16 +12,13 @@ const PROOF_ITEMS = [
 
 export function HomeFinalCtaBanner() {
   return (
-    <section
-      className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(5,10,24) 0%, rgb(8,14,28) 60%, rgb(5,10,24) 100%)" }}
-    >
+    <section className="relative overflow-hidden bg-linear-to-b from-bg-primary via-bg-secondary to-bg-primary py-24 md:py-28 dark:from-bg-primary dark:via-bg-secondary dark:to-bg-primary">
       {/* Grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+            "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
@@ -34,9 +31,9 @@ export function HomeFinalCtaBanner() {
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           className="relative overflow-hidden rounded-3xl p-8 md:p-12 lg:p-16"
           style={{
-            background: "rgba(15,28,52,0.75)",
-            border: "1.5px solid rgba(212,175,55,0.2)",
-            boxShadow: "0 24px 64px rgba(0,0,0,0.4), 0 0 80px rgba(212,175,55,0.05)",
+            background: "rgb(var(--bg-surface) / 0.86)",
+            border: "1.5px solid rgb(var(--border-default) / 0.8)",
+            boxShadow: "0 24px 64px rgba(7,18,40,0.15), 0 0 80px rgba(212,175,55,0.05)",
           }}
         >
           {/* Blobs */}
@@ -52,22 +49,16 @@ export function HomeFinalCtaBanner() {
           <div className="relative z-10 grid lg:grid-cols-[1fr_300px] gap-12 items-center">
             {/* Left */}
             <div>
-              <p
-                className="text-xs font-semibold uppercase tracking-[0.2em] mb-5"
-                style={{ color: "rgb(0,184,217)" }}
-              >
+              <p className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase text-accent-tech">
                 Personalized Admissions Support
               </p>
 
-              <h2
-                className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.08] mb-5"
-                style={{ color: "rgb(248,250,252)" }}
-              >
+              <h2 className="mb-5 text-4xl font-bold leading-[1.08] tracking-tight text-text-primary md:text-5xl">
                 Ready to Find Your{" "}
                 <span style={{ color: "rgb(212,175,55)" }}>Dream University?</span>
               </h2>
 
-              <p className="text-lg leading-relaxed mb-9" style={{ color: "rgb(145,177,210)" }}>
+              <p className="mb-9 text-lg leading-relaxed text-text-secondary">
                 Build your shortlist, compare options, and start applications with confidence.
               </p>
 
@@ -95,17 +86,17 @@ export function HomeFinalCtaBanner() {
                   to="/contact"
                   className="inline-flex items-center gap-2 px-7 py-4 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.01]"
                   style={{
-                    border: "1.5px solid rgba(212,224,239,0.2)",
-                    color: "rgb(212,224,239)",
-                    background: "rgba(255,255,255,0.04)",
+                    border: "1.5px solid rgb(var(--border-default) / 0.8)",
+                    color: "rgb(var(--text-primary))",
+                    background: "rgb(var(--bg-primary) / 0.55)",
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "rgb(var(--bg-primary) / 0.75)";
                     (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.3)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.04)";
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.2)";
+                    (e.currentTarget as HTMLAnchorElement).style.background = "rgb(var(--bg-primary) / 0.55)";
+                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgb(var(--border-default) / 0.8)";
                   }}
                 >
                   Speak to an Advisor
@@ -121,8 +112,8 @@ export function HomeFinalCtaBanner() {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="rounded-2xl p-6"
               style={{
-                background: "rgba(5,10,24,0.7)",
-                border: "1.5px solid rgba(212,175,55,0.15)",
+                background: "rgb(var(--bg-primary) / 0.62)",
+                border: "1.5px solid rgb(var(--border-default) / 0.6)",
               }}
             >
               {/* Avatar stack */}
@@ -141,7 +132,7 @@ export function HomeFinalCtaBanner() {
                     {avatar}
                   </span>
                 ))}
-                <span className="ms-3 text-sm font-medium" style={{ color: "rgb(248,250,252)" }}>
+                <span className="ms-3 text-sm font-medium text-text-primary">
                   +495 others
                 </span>
               </div>
@@ -154,10 +145,10 @@ export function HomeFinalCtaBanner() {
                     <div
                       key={item.text}
                       className="flex items-center gap-3 rounded-xl p-3"
-                      style={{ background: "rgba(15,28,52,0.6)", border: "1px solid rgba(212,175,55,0.1)" }}
+                      style={{ background: "rgb(var(--bg-surface) / 0.6)", border: "1px solid rgb(var(--border-default) / 0.6)" }}
                     >
                       <Icon className="w-4 h-4 shrink-0" style={{ color: "rgb(212,175,55)" }} />
-                      <span className="text-xs" style={{ color: "rgb(145,177,210)" }}>{item.text}</span>
+                      <span className="text-xs text-text-secondary">{item.text}</span>
                     </div>
                   );
                 })}

@@ -43,16 +43,13 @@ const STEPS = [
 
 export function HomeHowItWorks() {
   return (
-    <section
-      className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
-    >
+    <section className="relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary py-24 md:py-28 dark:from-bg-primary dark:to-bg-secondary">
       {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+            "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
@@ -71,10 +68,10 @@ export function HomeHowItWorks() {
           transition={{ duration: 0.55 }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
+          <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-accent-tech">
             Simple Process
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "rgb(248,250,252)" }}>
+          <h2 className="text-3xl font-bold text-text-primary md:text-4xl">
             How It Works
           </h2>
         </m.div>
@@ -88,7 +85,7 @@ export function HomeHowItWorks() {
               left: "12.5%",
               right: "12.5%",
               height: "1px",
-              background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 15%, rgba(212,175,55,0.3) 85%, transparent 100%)",
+              background: "linear-gradient(90deg, transparent 0%, rgba(var(--accent-primary),0.35) 15%, rgba(var(--accent-primary),0.35) 85%, transparent 100%)",
             }}
           />
           {/* Animated gold fill */}
@@ -125,7 +122,7 @@ export function HomeHowItWorks() {
                     style={{
                       background: step.accentBg,
                       border: `2px solid ${step.accentBorder}`,
-                      boxShadow: `0 0 0 6px rgba(5,10,24,1), 0 0 0 7px ${step.accentBorder}`,
+                      boxShadow: `0 0 0 6px rgb(var(--bg-primary)), 0 0 0 7px ${step.accentBorder}`,
                     }}
                   >
                     <Icon className="w-8 h-8" style={{ color: step.accentColor }} />
@@ -137,10 +134,10 @@ export function HomeHowItWorks() {
                   >
                     STEP {step.number}
                   </p>
-                  <h3 className="text-lg font-bold mb-2" style={{ color: "rgb(248,250,252)" }}>
+                  <h3 className="mb-2 text-lg font-bold text-text-primary">
                     {step.title}
                   </h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "rgb(105,133,166)" }}>
+                  <p className="text-sm leading-relaxed text-text-secondary">
                     {step.description}
                   </p>
                 </m.div>
@@ -164,9 +161,9 @@ export function HomeHowItWorks() {
                 <div
                   className="rounded-2xl p-6 h-full transition-all duration-300"
                   style={{
-                    background: "rgba(15,28,52,0.7)",
+                    background: "rgb(var(--bg-surface) / 0.82)",
                     border: `1.5px solid ${step.accentBorder}`,
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.2)",
+                    boxShadow: "0 4px 16px rgba(5, 10, 24, 0.12)",
                   }}
                 >
                   <div className="flex items-start gap-4">
@@ -180,10 +177,10 @@ export function HomeHowItWorks() {
                       <p className="text-xs font-bold tracking-widest mb-1" style={{ color: step.accentColor }}>
                         STEP {step.number}
                       </p>
-                      <h3 className="text-base font-bold mb-1" style={{ color: "rgb(248,250,252)" }}>
+                      <h3 className="mb-1 text-base font-bold text-text-primary">
                         {step.title}
                       </h3>
-                      <p className="text-sm leading-relaxed" style={{ color: "rgb(105,133,166)" }}>
+                      <p className="text-sm leading-relaxed text-text-secondary">
                         {step.description}
                       </p>
                     </div>
@@ -198,12 +195,8 @@ export function HomeHowItWorks() {
         <div className="text-center">
           <Link
             to="/programs"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-base transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
-            style={{
-              background: "rgb(212,175,55)",
-              color: "rgb(8,14,28)",
-              boxShadow: "0 4px 20px rgba(212,175,55,0.25)",
-            }}
+            className="inline-flex items-center gap-2 rounded-xl bg-accent-primary px-8 py-3.5 text-base font-semibold text-ink transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
+            style={{ boxShadow: "0 4px 20px rgba(212,175,55,0.25)" }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.4)";
             }}

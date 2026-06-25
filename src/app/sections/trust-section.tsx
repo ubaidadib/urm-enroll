@@ -48,14 +48,14 @@ export function TrustSection() {
   return (
     <section
       className="relative py-24 px-6 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(8,14,28) 0%, rgb(5,10,24) 100%)" }}
+      style={{ background: "linear-gradient(180deg, rgb(var(--bg-secondary)) 0%, rgb(var(--bg-primary)) 100%)" }}
     >
       {/* Grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
+            "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
@@ -77,10 +77,10 @@ export function TrustSection() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
             Trusted Worldwide
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4" style={{ color: "rgb(248,250,252)" }}>
+          <h2 className="mb-4 text-3xl font-bold leading-tight text-text-primary md:text-4xl lg:text-5xl">
             {t<string>("trust.title")}
           </h2>
-          <p className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
             {t<string>("trust.subtitle")}
           </p>
         </m.div>
@@ -98,9 +98,9 @@ export function TrustSection() {
             <div
               className="relative rounded-2xl p-7 flex flex-col gap-6 h-full transition-all duration-300"
               style={{
-                background: "rgba(15,28,52,0.8)",
+                background: "rgb(var(--bg-surface) / 0.86)",
                 border: "1.5px solid rgba(212,175,55,0.2)",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+                boxShadow: "0 8px 32px rgba(6, 15, 34, 0.16)",
               }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(212,175,55,0.4)";
@@ -127,7 +127,7 @@ export function TrustSection() {
                     <p className="text-xs font-semibold uppercase tracking-wider mb-0.5" style={{ color: "rgb(212,175,55)" }}>
                       Gold Standard
                     </p>
-                    <h3 className="text-xl font-bold" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="text-xl font-bold text-text-primary">
                       ICEF IAS Accredited
                     </h3>
                   </div>
@@ -140,7 +140,7 @@ export function TrustSection() {
                 </span>
               </div>
 
-              <p className="leading-relaxed" style={{ color: "rgb(145,177,210)" }}>
+              <p className="leading-relaxed text-text-secondary">
                 Globally recognized quality standard for international student recruitment agencies — a mark of credibility trusted by universities and students across 120+ countries.
               </p>
 
@@ -148,7 +148,7 @@ export function TrustSection() {
               <div
                 className="rounded-xl p-4 flex items-center justify-center min-h-[80px]"
                 style={{
-                  background: "rgba(5,10,24,0.6)",
+                  background: "rgb(var(--bg-primary) / 0.6)",
                   border: "1px solid rgba(212,175,55,0.12)",
                 }}
               >
@@ -191,9 +191,9 @@ export function TrustSection() {
                   <div
                     className="relative rounded-2xl p-6 h-full transition-all duration-300"
                     style={{
-                      background: "rgba(15,28,52,0.7)",
+                      background: "rgb(var(--bg-surface) / 0.82)",
                       border: `1.5px solid ${item.borderColor}`,
-                      boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
+                      boxShadow: "0 4px 20px rgba(5, 10, 24, 0.14)",
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLDivElement).style.borderColor = item.iconColor.replace('rgb', 'rgba').replace(')', ',0.4)');
@@ -210,10 +210,10 @@ export function TrustSection() {
                         <Icon className="w-5 h-5" style={{ color: item.iconColor }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-bold mb-1.5" style={{ color: "rgb(248,250,252)" }}>
+                        <h3 className="mb-1.5 text-base font-bold text-text-primary">
                           {item.title}
                         </h3>
-                        <p className="text-sm leading-relaxed mb-3" style={{ color: "rgb(145,177,210)" }}>
+                        <p className="mb-3 text-sm leading-relaxed text-text-secondary">
                           {item.description}
                         </p>
                         <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: item.iconColor }}>
@@ -237,7 +237,7 @@ export function TrustSection() {
               <div
                 className="rounded-2xl p-6 transition-all duration-300"
                 style={{
-                  background: "rgba(15,28,52,0.7)",
+                  background: "rgb(var(--bg-surface) / 0.82)",
                   border: "1.5px solid rgba(79,107,138,0.2)",
                 }}
               >
@@ -249,10 +249,10 @@ export function TrustSection() {
                     <Lock className="w-5 h-5" style={{ color: "rgb(79,107,138)" }} />
                   </div>
                   <div>
-                    <h3 className="text-base font-bold mb-1.5" style={{ color: "rgb(248,250,252)" }}>
+                    <h3 className="mb-1.5 text-base font-bold text-text-primary">
                       UK-Incorporated Entity
                     </h3>
-                    <p className="text-sm leading-relaxed mb-3" style={{ color: "rgb(145,177,210)" }}>
+                    <p className="mb-3 text-sm leading-relaxed text-text-secondary">
                       URM ENROLL LTD is a registered UK company operating under strict financial and regulatory oversight.
                     </p>
                     <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: "rgb(79,107,138)" }}>
