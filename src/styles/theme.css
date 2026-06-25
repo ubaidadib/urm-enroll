@@ -216,9 +216,9 @@
   --grid: 79 107 138;
 
   /* Dark Mode Premium Effects - Layered Depth */
-  --aurora-primary: rgba(212, 175, 55, 0.16);
-  --aurora-secondary: rgba(145, 177, 210, 0.12);
-  --aurora-tertiary: rgba(95, 143, 185, 0.08);
+  --aurora-primary: rgba(212, 175, 55, 0.22);
+  --aurora-secondary: rgba(145, 177, 210, 0.17);
+  --aurora-tertiary: rgba(95, 143, 185, 0.11);
 
   --hero-glow-gold: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 70%);
   --hero-glow-steel: radial-gradient(circle, rgba(79, 107, 138, 0.4) 0%, transparent 70%);
@@ -455,9 +455,10 @@
     min-height: 100vh;
     overflow-x: hidden;
     background-image:
-      radial-gradient(90rem 45rem at -10% -10%, var(--aurora-primary), transparent 56%),
-      radial-gradient(65rem 35rem at 95% 0%, var(--aurora-secondary), transparent 52%),
-      radial-gradient(56rem 30rem at 45% 110%, var(--aurora-tertiary), transparent 55%);
+      radial-gradient(100rem 55rem at -12% -8%, var(--aurora-primary), transparent 54%),
+      radial-gradient(72rem 42rem at 102% -4%, var(--aurora-secondary), transparent 50%),
+      radial-gradient(64rem 36rem at 48% 108%, var(--aurora-tertiary), transparent 53%),
+      radial-gradient(50rem 28rem at 80% 55%, rgba(212,175,55,0.028) 0%, transparent 62%);
     background-attachment: fixed;
   }
 
@@ -499,6 +500,32 @@
   @keyframes skeleton-shimmer {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
+  }
+
+  @keyframes shimmer-sweep {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @keyframes aurora-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+    33% { transform: translate(2%, -3%) scale(1.04); opacity: 0.85; }
+    66% { transform: translate(-2%, 2%) scale(0.97); opacity: 0.65; }
+  }
+
+  @keyframes border-glow {
+    0%, 100% { border-color: rgba(212,175,55,0.2); box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+    50% { border-color: rgba(212,175,55,0.5); box-shadow: 0 0 16px 0 rgba(212,175,55,0.12); }
+  }
+
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes rise-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   @keyframes float-y {
@@ -958,6 +985,39 @@
     color: rgb(145, 177, 210);
   }
 
+  /* ── Gradient text utilities ───────────────────────────────────── */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, rgb(var(--brand-gold-400)) 0%, rgb(var(--brand-gold-600)) 50%, rgb(var(--brand-gold-400)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .dark .text-gradient-gold {
+    background: linear-gradient(135deg, rgb(var(--brand-gold-300)) 0%, rgb(var(--brand-gold-500)) 50%, rgb(var(--brand-gold-300)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-steel {
+    background: linear-gradient(135deg, rgb(var(--brand-steel-500)) 0%, rgb(var(--brand-steel-300)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section divider — a subtle gold shimmer line */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.35) 30%, rgba(212,175,55,0.35) 70%, transparent);
+    margin-block: 0;
+  }
+
+  .dark .section-divider {
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,0.25) 30%, rgba(212,175,55,0.25) 70%, transparent);
+  }
+
   /* Premium Borders */
   .border-gold-subtle {
     border-color: rgba(212, 175, 55, 0.2);
@@ -981,7 +1041,17 @@
   }
 
   .section-gradient-hero {
-    background: linear-gradient(160deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 40%, rgb(var(--bg-tertiary)) 100%);
+    background:
+      radial-gradient(80rem 40rem at -10% 30%, rgba(212,175,55,0.045) 0%, transparent 64%),
+      radial-gradient(60rem 34rem at 108% -10%, rgba(79,107,138,0.07) 0%, transparent 60%),
+      linear-gradient(160deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 40%, rgb(var(--bg-tertiary)) 100%);
+  }
+
+  .dark .section-gradient-hero {
+    background:
+      radial-gradient(80rem 40rem at -10% 30%, rgba(212,175,55,0.08) 0%, transparent 64%),
+      radial-gradient(60rem 34rem at 108% -10%, rgba(79,107,138,0.12) 0%, transparent 60%),
+      linear-gradient(160deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 40%, rgb(var(--bg-tertiary)) 100%);
   }
 
   .surface-glass {
@@ -1036,8 +1106,9 @@
   }
 
   .trust-bar-surface {
-    background: rgba(var(--bg-secondary), 0.65);
-    border-color: rgba(var(--accent-primary), 0.2);
+    background: rgba(var(--bg-secondary), 0.72);
+    border-color: rgba(var(--accent-primary), 0.22);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
   }
 
   .stats-bar-surface {
@@ -1049,13 +1120,19 @@
   }
 
   .btn-gold-primary {
-    background: rgb(var(--accent-primary));
+    background: linear-gradient(135deg, rgb(var(--accent-primary-hover)), rgb(var(--accent-primary)), rgb(var(--accent-primary-strong)));
+    background-size: 200% auto;
     color: rgb(var(--ink));
-    box-shadow: 0 4px 24px rgba(var(--accent-primary), 0.25);
+    box-shadow: 0 4px 24px rgba(212,175,55, 0.32), inset 0 1px 0 rgba(255,255,255,0.25);
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    transition: background-position 0.4s ease, box-shadow 0.28s ease, transform 0.2s ease;
   }
 
   .btn-gold-primary:hover {
-    box-shadow: 0 8px 32px rgba(var(--accent-primary), 0.4);
+    background-position: right center;
+    box-shadow: 0 10px 36px rgba(212,175,55, 0.46), inset 0 1px 0 rgba(255,255,255,0.3);
+    transform: translateY(-1px);
   }
 
   .btn-outline-subtle {
@@ -1153,9 +1230,10 @@
   }
 
   .chip-active {
-    background: rgba(var(--accent-primary), 0.14);
+    background: linear-gradient(135deg, rgba(var(--accent-primary), 0.16), rgba(var(--accent-primary), 0.08));
     color: rgb(var(--text-primary));
-    border-color: rgba(var(--accent-primary), 0.45);
+    border-color: rgba(var(--accent-primary), 0.5);
+    box-shadow: 0 0 0 3px rgba(var(--accent-primary), 0.08), inset 0 1px 0 rgba(255,255,255,0.15);
   }
 
   :root.dark .chip-active {
@@ -1361,10 +1439,11 @@
 @layer components {
   .premium-hero-surface {
     background:
-      radial-gradient(54rem 26rem at 85% 10%, rgb(var(--accent-primary) / 0.12), transparent 62%),
-      radial-gradient(42rem 22rem at 10% 90%, rgb(var(--accent-tech) / 0.10), transparent 58%),
-      linear-gradient(160deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 48%, rgb(var(--bg-tertiary)) 100%);
-    border-bottom: 1px solid rgb(var(--border-default) / 0.58);
+      radial-gradient(60rem 30rem at 90% 5%, rgb(var(--accent-primary) / 0.14), transparent 60%),
+      radial-gradient(48rem 26rem at 6% 88%, rgb(var(--accent-tech) / 0.12), transparent 56%),
+      radial-gradient(30rem 18rem at 50% 40%, rgba(212,175,55,0.04), transparent 72%),
+      linear-gradient(165deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 48%, rgb(var(--bg-tertiary)) 100%);
+    border-bottom: 1px solid rgb(var(--border-default) / 0.6);
   }
 
   .premium-hero-surface::before {
@@ -1446,11 +1525,15 @@
   }
 
   .premium-filter-panel {
-    background: linear-gradient(150deg, rgb(var(--bg-surface) / 0.92), rgb(var(--bg-secondary) / 0.72));
-    border: 1px solid rgb(var(--border-default) / 0.64);
-    box-shadow: 0 22px 55px rgb(11 21 48 / 0.09);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background: linear-gradient(150deg, rgb(var(--bg-surface) / 0.95), rgb(var(--bg-secondary) / 0.78));
+    border: 1px solid rgb(var(--border-default) / 0.68);
+    box-shadow: 0 22px 55px rgb(11 21 48 / 0.1), inset 0 1px 0 rgba(255,255,255,0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .dark .premium-filter-panel {
+    box-shadow: 0 22px 55px rgba(2,4,12,0.32), inset 0 1px 0 rgba(255,255,255,0.04);
   }
 
   .premium-empty-state {

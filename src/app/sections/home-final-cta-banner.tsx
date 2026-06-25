@@ -38,12 +38,20 @@ export function HomeFinalCtaBanner() {
         >
           {/* Blobs */}
           <div
-            className="absolute -top-24 -right-24 rounded-full blur-3xl pointer-events-none"
-            style={{ width: 320, height: 320, background: "rgba(212,175,55,0.1)" }}
+            className="absolute -top-28 -right-28 rounded-full blur-3xl pointer-events-none"
+            style={{ width: 380, height: 380, background: "rgba(212,175,55,0.13)" }}
           />
           <div
-            className="absolute -bottom-24 -left-16 rounded-full blur-3xl pointer-events-none"
-            style={{ width: 280, height: 280, background: "rgba(0,184,217,0.08)" }}
+            className="absolute -bottom-28 -left-20 rounded-full blur-3xl pointer-events-none"
+            style={{ width: 340, height: 340, background: "rgba(0,184,217,0.09)" }}
+          />
+          {/* Diagonal gold accent stripe */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[3px] pointer-events-none"
+            style={{
+              background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.5) 30%, rgba(212,175,55,0.7) 50%, rgba(212,175,55,0.5) 70%, transparent)",
+              boxShadow: "0 0 20px rgba(212,175,55,0.25)",
+            }}
           />
 
           <div className="relative z-10 grid lg:grid-cols-[1fr_300px] 3xl:grid-cols-[1fr_420px] 4xl:grid-cols-[1fr_520px] gap-12 3xl:gap-16 items-center">

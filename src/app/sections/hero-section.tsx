@@ -153,21 +153,35 @@ export function HeroSection() {
         <div
           className="absolute rounded-full hero-ambient-gold"
           style={{
-            width: 480,
-            height: 480,
-            top: "10%",
-            left: isRtl ? "auto" : "-8%",
-            right: isRtl ? "-8%" : "auto",
+            width: 560,
+            height: 560,
+            top: "8%",
+            left: isRtl ? "auto" : "-10%",
+            right: isRtl ? "-10%" : "auto",
           }}
         />
         <div
           className="absolute rounded-full hero-ambient-steel"
           style={{
-            width: 420,
-            height: 420,
-            bottom: "5%",
-            right: isRtl ? "auto" : "-4%",
-            left: isRtl ? "-4%" : "auto",
+            width: 480,
+            height: 480,
+            bottom: "3%",
+            right: isRtl ? "auto" : "-5%",
+            left: isRtl ? "-5%" : "auto",
+          }}
+        />
+        {/* Teal accent blob */}
+        <div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: 360,
+            height: 260,
+            top: "55%",
+            left: isRtl ? "auto" : "25%",
+            right: isRtl ? "25%" : "auto",
+            background: "radial-gradient(circle, rgba(0,184,217,0.055) 0%, transparent 70%)",
+            filter: "blur(72px)",
+            opacity: 0.7,
           }}
         />
         <div className="absolute inset-0 hero-grid-overlay" />
@@ -176,6 +190,7 @@ export function HeroSection() {
       {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
       <div
         className="relative z-10 border-b trust-bar-surface"
+        style={{ animation: "border-glow 4s ease-in-out infinite" }}
       >
         <div className="content-shell mx-auto px-[var(--content-gutter)] py-3 3xl:py-4 flex items-center gap-3 sm:gap-6 3xl:gap-8 min-w-0">
           {/* ICEF Badge */}
@@ -249,14 +264,18 @@ export function HeroSection() {
               <span className="block">
                 {headlineParts[0]}
                 <span className="relative inline-block">
-                  <span className="text-accent-primary">{countryWord}</span>
+                  <span className="text-gradient-gold">{countryWord}</span>
                   {/* Animated underline */}
                   <m.span
                     aria-hidden="true"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
-                    className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full bg-accent-primary"
+                    transition={{ delay: 0.8, duration: 0.7, ease: "easeOut" }}
+                    className="absolute -bottom-0.5 left-0 right-0 h-[3px] rounded-full"
+                    style={{
+                      background: "linear-gradient(90deg, rgba(212,175,55,0.4), rgba(212,175,55,0.95), rgba(212,175,55,0.4))",
+                      boxShadow: "0 0 12px rgba(212,175,55,0.45)",
+                    }}
                   />
                 </span>
                 {headlineParts[1] ?? ""}
@@ -333,7 +352,13 @@ export function HeroSection() {
           aria-hidden="true"
         >
           {/* Glow background */}
-          <div className="absolute inset-0 rounded-3xl hero-cards-ambient pointer-events-none" />
+          <div
+            className="absolute inset-0 rounded-3xl pointer-events-none"
+            style={{
+              background: "radial-gradient(ellipse at 50% 50%, rgba(79,107,138,0.14) 0%, rgba(212,175,55,0.06) 50%, transparent 80%)",
+              filter: "blur(32px)",
+            }}
+          />
 
           {/* Subtle pulse ring */}
           {!shouldReduceMotion && (

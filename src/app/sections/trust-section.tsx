@@ -60,8 +60,13 @@ export function TrustSection() {
       />
       {/* Ambient glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full blur-[120px] opacity-10 pointer-events-none"
-        style={{ width: 600, height: 400, background: "rgb(212,175,55)" }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 rounded-full blur-[140px] opacity-12 pointer-events-none"
+        style={{ width: 700, height: 450, background: "rgb(212,175,55)" }}
+      />
+      {/* Secondary steel glow */}
+      <div
+        className="absolute bottom-0 right-0 rounded-full blur-[100px] opacity-[0.05] pointer-events-none"
+        style={{ width: 400, height: 300, background: "rgb(0,184,217)" }}
       />
 
       <div className="content-shell mx-auto px-[var(--content-gutter)] w-full relative z-10">
@@ -73,9 +78,12 @@ export function TrustSection() {
           viewport={{ once: true }}
           className="text-center page-section-header-gap"
         >
-          <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-3 sm:mb-4" style={{ color: "rgb(0,184,217)" }}>
-            Trusted Worldwide
-          </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5" style={{ border: "1px solid rgba(212,175,55,0.28)", background: "rgba(212,175,55,0.07)" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "rgb(212,175,55)", boxShadow: "0 0 6px rgba(212,175,55,0.8)", animation: "pulse-glow 2.2s infinite" }} />
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgb(212,175,55)" }}>
+              Trusted Worldwide
+            </p>
+          </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold leading-tight mb-3 sm:mb-4 3xl:mb-6 text-text-primary">
             {t<string>("trust.title")}
           </h2>
@@ -94,7 +102,18 @@ export function TrustSection() {
             viewport={{ once: true }}
             className="group relative flex flex-col"
           >
-            <div className="relative rounded-2xl p-5 sm:p-7 flex flex-col gap-4 sm:gap-6 h-full transition-all duration-300 surface-card-elevated">
+            <div className="relative rounded-2xl p-5 sm:p-7 flex flex-col gap-4 sm:gap-6 h-full transition-all duration-300 surface-card-elevated overflow-hidden">
+              {/* Diagonal shimmer beam */}
+              <div
+                className="absolute -top-8 -right-8 pointer-events-none"
+                style={{
+                  width: 200,
+                  height: 200,
+                  background: "linear-gradient(135deg, rgba(212,175,55,0.08), transparent 60%)",
+                  borderRadius: "50%",
+                  filter: "blur(30px)",
+                }}
+              />
               {/* Top row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-4">

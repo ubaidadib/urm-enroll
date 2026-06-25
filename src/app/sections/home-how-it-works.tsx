@@ -69,9 +69,12 @@ export function HomeHowItWorks() {
           transition={{ duration: 0.55 }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
-            {t<string>("home.howItWorks.badge")}
-          </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5" style={{ border: "1px solid rgba(0,184,217,0.28)", background: "rgba(0,184,217,0.07)" }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "rgb(0,184,217)" }} />
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgb(0,184,217)" }}>
+              {t<string>("home.howItWorks.badge")}
+            </p>
+          </div>
           <h2 className="text-3xl md:text-4xl 3xl:text-5xl 4xl:text-6xl font-bold text-text-primary">
             {t<string>("home.howItWorks.title")}
           </h2>
@@ -85,8 +88,9 @@ export function HomeHowItWorks() {
             style={{
               left: "12.5%",
               right: "12.5%",
-              height: "1px",
-              background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.3) 15%, rgba(212,175,55,0.3) 85%, transparent 100%)",
+              height: "2px",
+              background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.18) 8%, rgba(212,175,55,0.24) 50%, rgba(212,175,55,0.18) 92%, transparent 100%)",
+              borderRadius: "999px",
             }}
           />
           {/* Animated gold fill */}
@@ -94,14 +98,16 @@ export function HomeHowItWorks() {
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 1.4, ease: "easeOut" }}
+            transition={{ delay: 0.6, duration: 1.6, ease: "easeOut" }}
             className="absolute top-10 pointer-events-none"
             style={{
               left: "12.5%",
               right: "12.5%",
-              height: "1px",
-              background: "linear-gradient(90deg, rgba(212,175,55,0.6) 0%, rgba(212,175,55,0.2) 100%)",
+              height: "2px",
+              background: "linear-gradient(90deg, rgba(212,175,55,0.8) 0%, rgba(212,175,55,0.4) 100%)",
               transformOrigin: "left",
+              boxShadow: "0 0 12px rgba(212,175,55,0.3)",
+              borderRadius: "999px",
             }}
           />
 
@@ -115,32 +121,43 @@ export function HomeHowItWorks() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  className="relative text-center"
+                  className="relative text-center group"
                 >
-                  {/* Icon circle */}
+                  {/* Card background on hover */}
                   <div
-                    className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center z-10 relative transition-all duration-300 hover:scale-105"
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
-                      background: step.accentBg,
-                      border: `2px solid ${step.accentBorder}`,
-                      boxShadow: `0 0 0 6px rgb(var(--bg-primary)), 0 0 0 7px ${step.accentBorder}`,
+                      background: `linear-gradient(160deg, ${step.accentBg.replace('0.1', '0.05')}, transparent)`,
+                      border: `1px solid ${step.accentBorder}`,
                     }}
-                  >
-                    <Icon className="w-8 h-8" style={{ color: step.accentColor }} />
-                  </div>
+                  />
 
-                  <p
-                    className="text-xs font-bold tracking-widest mb-2"
-                    style={{ color: step.accentColor }}
-                  >
-                    {t<string>("home.howItWorks.stepLabel").replace("{{number}}", step.number)}
-                  </p>
-                  <h3 className="text-lg font-bold mb-2 text-text-primary">
-                    {t<string>(`home.howItWorks.steps.${step.key}.title`)}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-text-disabled">
-                    {t<string>(`home.howItWorks.steps.${step.key}.description`)}
-                  </p>
+                  <div className="relative pt-0 pb-6 px-4">
+                    {/* Icon circle */}
+                    <div
+                      className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center z-10 relative transition-all duration-300 hover:scale-110"
+                      style={{
+                        background: step.accentBg,
+                        border: `2px solid ${step.accentBorder}`,
+                        boxShadow: `0 0 0 6px rgb(var(--bg-primary)), 0 0 0 7px ${step.accentBorder}, 0 8px 24px ${step.accentBorder.replace('0.25', '0.3')}`,
+                      }}
+                    >
+                      <Icon className="w-8 h-8" style={{ color: step.accentColor }} />
+                    </div>
+
+                    <p
+                      className="text-xs font-bold tracking-widest mb-2"
+                      style={{ color: step.accentColor }}
+                    >
+                      {t<string>("home.howItWorks.stepLabel").replace("{{number}}", step.number)}
+                    </p>
+                    <h3 className="text-lg font-bold mb-2 text-text-primary">
+                      {t<string>(`home.howItWorks.steps.${step.key}.title`)}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-text-disabled">
+                      {t<string>(`home.howItWorks.steps.${step.key}.description`)}
+                    </p>
+                  </div>
                 </m.div>
               );
             })}
@@ -159,11 +176,20 @@ export function HomeHowItWorks() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08, duration: 0.45 }}
               >
-                <div className="rounded-2xl p-6 h-full transition-all duration-300 surface-card">
+                <div
+                  className="rounded-2xl p-6 h-full transition-all duration-300 surface-card hover:-translate-y-1"
+                  style={{
+                    borderLeft: `3px solid ${step.accentBorder}`,
+                  }}
+                >
                   <div className="flex items-start gap-4">
                     <div
                       className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                      style={{ background: step.accentBg, border: `1px solid ${step.accentBorder}` }}
+                      style={{
+                        background: step.accentBg,
+                        border: `1px solid ${step.accentBorder}`,
+                        boxShadow: `0 4px 16px ${step.accentBorder.replace('0.25', '0.2')}`,
+                      }}
                     >
                       <Icon className="w-6 h-6" style={{ color: step.accentColor }} />
                     </div>

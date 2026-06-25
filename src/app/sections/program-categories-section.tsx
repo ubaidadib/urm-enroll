@@ -93,11 +93,14 @@ export function ProgramCategoriesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="mb-14 3xl:mb-20"
+          className="mb-12 3xl:mb-18"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
-            {t<string>("home.categories.badge")}
-          </p>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5" style={{ border: "1px solid rgba(0,184,217,0.28)", background: "rgba(0,184,217,0.07)" }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: "rgb(0,184,217)" }} />
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em]" style={{ color: "rgb(0,184,217)" }}>
+              {t<string>("home.categories.badge")}
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2
               className="text-3xl md:text-4xl 3xl:text-5xl 4xl:text-6xl font-bold tracking-tight text-text-primary"
@@ -106,7 +109,7 @@ export function ProgramCategoriesSection() {
             </h2>
             <Link
               to="/programs"
-              className="inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-70 shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 hover:opacity-80 hover:gap-3 shrink-0"
               style={{ color: "rgb(212,175,55)" }}
             >
               {t<string>("home.categories.viewAll")} <ArrowRight className="w-4 h-4" />
@@ -131,8 +134,14 @@ export function ProgramCategoriesSection() {
               >
                 <Link
                   to={`/programs?field=${category.key}`}
-                className="group relative flex flex-col overflow-hidden rounded-2xl p-6 3xl:p-7 h-[160px] 3xl:h-[190px] 4xl:h-[210px] block transition-all duration-300 hover:-translate-y-1.5 surface-card"
+                className="group relative flex flex-col overflow-hidden rounded-2xl p-6 3xl:p-7 h-[180px] 3xl:h-[210px] 4xl:h-[230px] block transition-all duration-300 hover:-translate-y-2 surface-card hover:shadow-[0_24px_60px_rgba(11,21,48,0.18)]"
                 >
+                  {/* Top colour accent bar */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl"
+                    style={{ background: `linear-gradient(90deg, ${category.iconColor}, transparent)` }}
+                  />
+
                   {/* Gradient overlay on hover */}
                   <div
                     className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl bg-gradient-to-br ${category.gradient}`}
@@ -142,28 +151,29 @@ export function ProgramCategoriesSection() {
                   <div className="relative z-10 flex flex-col h-full">
                     <div className="flex items-start justify-between mb-auto">
                       <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-300"
+                        className="w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                         style={{
-                          background: `${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.12)')}`,
-                          border: `1px solid ${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.2)')}`,
+                          background: `${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.13)')}`,
+                          border: `1px solid ${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.22)')}`,
+                          boxShadow: `0 4px 16px ${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.14)')}`,
                         }}
                       >
                         <Icon className="w-5 h-5 transition-colors duration-300" style={{ color: category.iconColor }} />
                       </div>
                       <ArrowRight
-                        className="w-4 h-4 opacity-30 group-hover:opacity-80 translate-x-0 group-hover:translate-x-1 transition-all duration-300"
+                        className="w-4 h-4 opacity-0 group-hover:opacity-80 group-hover:translate-x-1 transition-all duration-300"
                         style={{ color: category.iconColor }}
                       />
                     </div>
 
-                    <div className="mt-4">
+                    <div className="mt-auto pt-4">
                       <h3
-                        className="text-[0.9rem] 3xl:text-base font-bold leading-tight transition-colors duration-300 text-text-primary"
+                        className="text-[0.95rem] 3xl:text-[1.05rem] font-bold leading-tight transition-colors duration-300 text-text-primary"
                       >
                         {label}
                       </h3>
                       <p
-                        className="mt-1 text-[11px] transition-colors duration-300 text-text-disabled"
+                        className="mt-1.5 text-[11px] transition-colors duration-300 text-text-disabled leading-snug"
                       >
                         {count > 0 ? t<string>("home.categories.programCount").replace("{{count}}", count.toLocaleString()) : description}
                       </p>
