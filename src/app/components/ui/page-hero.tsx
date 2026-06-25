@@ -74,18 +74,18 @@ export function PageHero({
 
   return (
     <section
-      className={`relative overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 transition-colors duration-500 page-hero-offset px-[var(--content-gutter)] ${
+      className={`relative overflow-hidden premium-hero-surface transition-colors duration-500 page-hero-offset px-[var(--content-gutter)] ${
         isCompact ? "page-hero-pb-compact" : "page-hero-pb"
       }`}
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute inset-0 opacity-[0.07]">
+          <div className="absolute inset-0 premium-grid" />
         </div>
         {!isCompact ? (
           <>
             <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
-            <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-primary/8 rounded-full blur-[120px]" />
           </>
         ) : (
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-accent-tech/8 rounded-full blur-[120px]" />
@@ -102,12 +102,12 @@ export function PageHero({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm page-hero-badge-gap"
+                className="inline-flex items-center gap-2 px-5 py-2.5 premium-eyebrow page-hero-badge-gap"
               >
                 <span className="text-sm" aria-hidden="true">
                   {badge.icon}
                 </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                <span className="text-xs font-bold uppercase tracking-widest text-text-primary">
                   {badge.text}
                 </span>
               </m.div>
@@ -117,7 +117,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.05 : 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-6xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-5 lg:mb-4 tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-6xl font-bold text-text-primary mb-4 sm:mb-5 lg:mb-4 tracking-tight leading-[1.1]"
             >
               {typeof headline === "string" ? (
                 <>
@@ -133,7 +133,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.1 : 0.2 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl lg:max-w-none"
+              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-text-secondary leading-relaxed max-w-2xl lg:max-w-none"
             >
               {subtitle}
             </m.p>
@@ -154,7 +154,7 @@ export function PageHero({
                 {secondaryCta && (
                   <HeroAction
                     cta={secondaryCta}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold hover:border-accent-tech/40 transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl btn-secondary font-bold hover:border-accent-tech/40 transition-all"
                   />
                 )}
               </m.div>
@@ -172,7 +172,7 @@ export function PageHero({
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + i * 0.1 }}
-                    className={`flex items-center gap-4 p-4 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 shadow-sm transition-all ${
+                    className={`flex items-center gap-4 p-4 rounded-2xl premium-stat-card transition-all ${
                       dir === "rtl" ? "flex-row-reverse text-right" : ""
                     }`}
                   >
@@ -180,8 +180,8 @@ export function PageHero({
                       <stat.icon className="w-7 h-7 text-accent-tech" />
                     </div>
                     <div>
-                      <div className="text-2xl font-black text-slate-900 dark:text-white">{stat.value}</div>
-                      <div className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                      <div className="text-2xl font-black text-text-primary">{stat.value}</div>
+                      <div className="text-sm font-medium text-text-muted uppercase tracking-wide">
                         {stat.label}
                       </div>
                     </div>

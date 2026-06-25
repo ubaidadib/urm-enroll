@@ -163,14 +163,14 @@ function ProgramsEmptyState({ onReset }: { onReset: () => void }) {
   const { t } = useLanguage();
 
   return (
-    <div className="rounded-[1.75rem] border border-dashed border-slate-300 bg-white/80 px-6 py-16 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
-      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
+    <div className="premium-empty-state rounded-[1.75rem] px-6 py-16 text-center">
+      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-text-muted">
         {t<string>("programs.listing.empty.noMatching")}
       </p>
-      <h2 className="mt-3 text-3xl font-black text-slate-950 dark:text-white">
+      <h2 className="mt-3 text-3xl font-black text-text-primary">
         {t<string>("programs.listing.empty.adjustFilters")}
       </h2>
-      <p className="mx-auto mt-4 max-w-xl text-sm text-slate-600 dark:text-slate-400">
+      <p className="mx-auto mt-4 max-w-xl text-sm text-text-secondary">
         {t<string>("programs.listing.empty.searchHint")}
       </p>
       <button
@@ -387,12 +387,12 @@ export function ProgramsPage() {
       />
 
       <main className="relative min-h-screen overflow-hidden bg-bg-primary">
-        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] premium-hero-surface">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute top-0 right-0 w-[32rem] h-[32rem] rounded-full bg-accent-tech/8 blur-[120px]" />
             <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] rounded-full bg-accent-primary/8 blur-[120px]" />
-            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
+            <div className="absolute inset-0 opacity-[0.07]">
+              <div className="absolute inset-0 premium-grid" />
             </div>
           </div>
 
@@ -411,10 +411,10 @@ export function ProgramsPage() {
                 <m.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm page-hero-badge-gap"
+                  className="inline-flex items-center gap-3 px-5 py-2.5 premium-eyebrow page-hero-badge-gap"
                 >
                   <Sparkles className="w-4 h-4 text-accent-tech" />
-                  <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                  <span className="text-xs font-bold uppercase tracking-widest text-text-primary">
                     {t<string>("programs.listing.hero.badge")}
                   </span>
                 </m.div>
@@ -423,7 +423,7 @@ export function ProgramsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-text-primary"
                 >
                   {t<string>("programs.listing.hero.title")}
                 </m.h1>
@@ -432,7 +432,7 @@ export function ProgramsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="mt-3 lg:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
+                  className="mt-3 lg:mt-3 text-base sm:text-lg text-text-secondary leading-relaxed"
                 >
                   {t<string>("programs.listing.hero.subtitle")}
                 </m.p>
@@ -444,31 +444,31 @@ export function ProgramsPage() {
                 transition={{ delay: 0.15 }}
                 className="page-hero-aside grid gap-3"
               >
-                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div className="rounded-2xl p-4 flex items-center gap-3 premium-stat-card">
                   <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
                     <GraduationCap className="w-5 h-5 text-accent-tech" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-lg font-black text-slate-900 dark:text-white">{listings.length}+</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.programs")}</p>
+                    <p className="text-lg font-black text-text-primary">{listings.length}+</p>
+                    <p className="text-sm text-text-muted">{t<string>("programs.listing.hero.stats.programs")}</p>
                   </div>
                 </div>
-                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div className="rounded-2xl p-4 flex items-center gap-3 premium-stat-card">
                   <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center">
                     <Building2 className="w-5 h-5 text-accent-primary" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-lg font-black text-slate-900 dark:text-white">{organizations.length}+</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.universities")}</p>
+                    <p className="text-lg font-black text-text-primary">{organizations.length}+</p>
+                    <p className="text-sm text-text-muted">{t<string>("programs.listing.hero.stats.universities")}</p>
                   </div>
                 </div>
-                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div className="rounded-2xl p-4 flex items-center gap-3 premium-stat-card">
                   <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-success/10 border border-accent-success/20 flex items-center justify-center">
                     <Globe2 className="w-5 h-5 text-accent-success" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-lg font-black text-slate-900 dark:text-white">{fieldCount}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.fields")}</p>
+                    <p className="text-lg font-black text-text-primary">{fieldCount}</p>
+                    <p className="text-sm text-text-muted">{t<string>("programs.listing.hero.stats.fields")}</p>
                   </div>
                 </div>
               </m.div>
@@ -478,12 +478,12 @@ export function ProgramsPage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.08 }}
-              className="mt-5 lg:mt-6 rounded-2xl border border-slate-200/80 bg-white/85 p-4 sm:p-5 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 space-y-3"
+              className="mt-5 lg:mt-6 rounded-2xl premium-filter-panel p-4 sm:p-5 space-y-3"
             >
               {/* Row 1 — Search bar (full width) */}
               <label className="relative block">
                 <span className="sr-only">{t<string>("programs.listing.filters.searchPrograms")}</span>
-                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted/75" />
                 <input
                   type="text"
                   value={searchQuery}
@@ -492,7 +492,7 @@ export function ProgramsPage() {
                     setCurrentPage(1);
                   }}
                   placeholder={t<string>("programs.listing.filters.extendedPlaceholder")}
-                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-11 py-3.5 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                  className="w-full rounded-2xl border border-border/70 bg-bg-surface/80 px-11 py-3.5 text-sm text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-accent-primary"
                 />
               </label>
 
@@ -506,10 +506,10 @@ export function ProgramsPage() {
                       setFieldFilter(event.target.value);
                       setCurrentPage(1);
                     }}
-                    className={`w-full appearance-none rounded-2xl border px-4 py-3 pr-10 text-sm outline-none transition-colors focus:border-slate-400 dark:bg-slate-950 dark:text-white ${
+                    className={`w-full appearance-none rounded-2xl border px-4 py-3 pr-10 text-sm outline-none transition-colors focus:border-accent-primary dark:bg-bg-surface dark:text-text-primary ${
                       fieldFilter
                         ? "border-accent-tech/50 bg-accent-tech/5 text-slate-900 font-semibold dark:border-accent-tech/60 dark:bg-accent-tech/10"
-                        : "border-slate-200 bg-slate-50 text-slate-900 dark:border-slate-800"
+                        : "border-border/70 bg-bg-surface/80 text-text-primary"
                     }`}
                   >
                     <option value="">{t<string>("programs.listing.filters.allFields")}</option>
@@ -519,7 +519,7 @@ export function ProgramsPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted/75" />
                 </label>
 
                 <label className="relative block">
@@ -530,7 +530,7 @@ export function ProgramsPage() {
                       setProgramType(event.target.value ? (event.target.value as ProgramTabId) : null);
                       setCurrentPage(1);
                     }}
-                    className="w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-10 text-sm text-slate-900 outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                    className="w-full appearance-none rounded-2xl border border-border/70 bg-bg-surface/80 px-4 py-3 pr-10 text-sm text-text-primary outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
                     <option value="">{t<string>("programs.listing.filters.allTypes")}</option>
                     {PROGRAM_TYPE_OPTIONS.map((option) => (
@@ -539,7 +539,7 @@ export function ProgramsPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted/75" />
                 </label>
 
                 <label className="relative block">
@@ -550,7 +550,7 @@ export function ProgramsPage() {
                       setOrganizationFilter(event.target.value);
                       setCurrentPage(1);
                     }}
-                    className="w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-10 text-sm text-slate-900 outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                    className="w-full appearance-none rounded-2xl border border-border/70 bg-bg-surface/80 px-4 py-3 pr-10 text-sm text-text-primary outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
                     <option value="">{t<string>("programs.listing.filters.allOrganizations")}</option>
                     {organizations.map((organization) => (
@@ -559,7 +559,7 @@ export function ProgramsPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted/75" />
                 </label>
 
                 <label className="relative block">
@@ -570,7 +570,7 @@ export function ProgramsPage() {
                       setContractTypeFilter(event.target.value);
                       setCurrentPage(1);
                     }}
-                    className="w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-10 text-sm text-slate-900 outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
+                    className="w-full appearance-none rounded-2xl border border-border/70 bg-bg-surface/80 px-4 py-3 pr-10 text-sm text-text-primary outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
                     <option value="">{t<string>("programs.listing.filters.allContractTypes")}</option>
                     {contractTypes.map((contractType) => (
@@ -579,7 +579,7 @@ export function ProgramsPage() {
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted/75" />
                 </label>
               </div>
 
@@ -596,7 +596,7 @@ export function ProgramsPage() {
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all ${
                       fieldFilter === option.value
                         ? "border-accent-tech bg-accent-tech text-white shadow-sm"
-                        : "border-slate-200 bg-slate-50 text-slate-600 hover:border-accent-tech/50 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:border-accent-tech/50 dark:hover:text-white"
+                        : "border-border/70 bg-bg-surface/80 text-text-secondary hover:border-accent-primary/50 hover:text-text-primary"
                     }`}
                   >
                     {t<string>(option.labelKey)}
@@ -605,8 +605,8 @@ export function ProgramsPage() {
               </div>
 
               {hasActiveFilters ? (
-                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
-                  <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">{t<string>("programs.listing.filters.active")}</span>
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-border/60">
+                  <span className="text-xs text-text-muted/75 dark:text-slate-500 font-medium">{t<string>("programs.listing.filters.active")}</span>
                   {fieldFilter && (
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-tech/10 border border-accent-tech/25 px-3 py-1 text-xs font-semibold capitalize text-accent-tech dark:bg-accent-tech/15">
                       {FIELD_OPTIONS.find((f) => f.value === fieldFilter) ? t<string>(FIELD_OPTIONS.find((f) => f.value === fieldFilter)!.labelKey) : fieldFilter.replace(/-/g, " ")}
@@ -616,7 +616,7 @@ export function ProgramsPage() {
                     </span>
                   )}
                   {programType && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-bg-secondary border border-border/70 px-3 py-1 text-xs font-semibold text-text-secondary">
                       {PROGRAM_TYPE_OPTIONS.find((p) => p.id === programType) ? t<string>(PROGRAM_TYPE_OPTIONS.find((p) => p.id === programType)!.labelKey) : programType}
                       <button type="button" onClick={() => { setProgramType(null); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label={t<string>("common.aria.removeTypeFilter")}>
                         <X className="h-3 w-3" />
@@ -624,7 +624,7 @@ export function ProgramsPage() {
                     </span>
                   )}
                   {organizationFilter && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-bg-secondary border border-border/70 px-3 py-1 text-xs font-semibold text-text-secondary">
                       {organizationFilter}
                       <button type="button" onClick={() => { setOrganizationFilter(""); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label={t<string>("common.aria.removeOrganizationFilter")}>
                         <X className="h-3 w-3" />
@@ -634,7 +634,7 @@ export function ProgramsPage() {
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-white"
+                    className="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 dark:border-slate-800 dark:text-text-muted/75 dark:hover:border-slate-600 dark:hover:text-white"
                   >
                     <X className="h-3.5 w-3.5" />
                     {t<string>("programs.listing.filters.clearAll")}
@@ -648,16 +648,16 @@ export function ProgramsPage() {
         <div className="relative z-10 px-[var(--content-gutter)]">
           <div className="mx-auto max-w-7xl">
             <section className="mt-10">
-              <div className="flex flex-col gap-3 border-b border-slate-200 pb-5 dark:border-slate-800 sm:flex-row sm:items-end sm:justify-between">
+              <div className="flex flex-col gap-3 border-b border-border/60 pb-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-slate-600 dark:text-slate-400">
+                  <p className="text-sm font-semibold text-text-secondary">
                     Showing {showingStart}-{showingEnd} of {filteredListings.length} programs
                   </p>
-                  <h2 className="mt-1 text-3xl font-black text-slate-950 dark:text-white capitalize">
+                  <h2 className="mt-1 text-3xl font-black text-text-primary capitalize">
                     {filteredListings.length === 0 ? "No programs found" : fieldFilter ? `${fieldFilter.replace(/-/g, " ")} Programs` : "Programs"}
                   </h2>
                 </div>
-                <p className="max-w-xl text-sm text-slate-500 dark:text-slate-400">
+                <p className="max-w-xl text-sm text-text-muted">
                   Intake dates, fees, and location are sourced directly from the university. Contact the university for the most up-to-date details.
                 </p>
               </div>
@@ -712,7 +712,7 @@ export function ProgramsPage() {
                         type="button"
                         onClick={() => setCurrentPage(Math.max(1, safeCurrentPage - 1))}
                         disabled={safeCurrentPage === 1}
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
+                        className="inline-flex h-11 items-center justify-center rounded-xl border border-border/70 bg-bg-surface/80 px-4 text-sm font-semibold text-text-secondary transition-colors hover:border-accent-primary/50 hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         <ChevronLeft className="h-4 w-4" />
                         Previous
@@ -720,7 +720,7 @@ export function ProgramsPage() {
 
                       {paginationItems.map((item, index) =>
                         item === "ellipsis" ? (
-                          <span key={`ellipsis-${index}`} className="px-2 text-sm text-slate-400">
+                          <span key={`ellipsis-${index}`} className="px-2 text-sm text-text-muted/75">
                             ...
                           </span>
                         ) : (
@@ -731,7 +731,7 @@ export function ProgramsPage() {
                             className={`h-11 min-w-11 rounded-xl border px-3 text-sm font-semibold transition-colors ${
                               item === safeCurrentPage
                                 ? "chip-active border-transparent"
-                                : "border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
+                                : "border-border/70 bg-bg-surface/80 text-text-secondary hover:border-accent-primary/50 hover:text-text-primary"
                             }`}
                           >
                             {item}
@@ -743,7 +743,7 @@ export function ProgramsPage() {
                         type="button"
                         onClick={() => setCurrentPage(Math.min(totalPages, safeCurrentPage + 1))}
                         disabled={safeCurrentPage === totalPages}
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
+                        className="inline-flex h-11 items-center justify-center rounded-xl border border-border/70 bg-bg-surface/80 px-4 text-sm font-semibold text-text-secondary transition-colors hover:border-accent-primary/50 hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         Next
                         <ChevronRight className="h-4 w-4" />

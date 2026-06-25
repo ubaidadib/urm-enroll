@@ -21,7 +21,7 @@ export function AppShell() {
       <div aria-hidden="true" className="app-noise -z-10" />
       <div aria-hidden="true" className="ambient-glow ambient-glow-primary w-[36rem] h-[36rem] -top-40 -left-36" />
       <div aria-hidden="true" className="ambient-glow ambient-glow-secondary w-[30rem] h-[30rem] top-[28%] -right-28" />
-      <div aria-hidden="true" className="ambient-glow ambient-glow-teal w-[26rem] h-[26rem] bottom-[8%] left-[14%]" />
+      <div aria-hidden="true" className="ambient-glow ambient-glow-tertiary w-[26rem] h-[26rem] bottom-[8%] left-[14%]" />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-accent-tech focus:text-ink focus:font-semibold focus:text-sm"

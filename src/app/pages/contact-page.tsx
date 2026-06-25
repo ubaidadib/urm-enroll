@@ -579,7 +579,7 @@ export function ContactPage() {
               const color = COUNSELOR_COLORS[idx]!;
               return (
                 <m.div
-                  key={counselor.email}
+                  key={`${counselor.email}-${i}`}
                   variants={itemVariants}
                   className="glass-card rounded-2xl p-8 flex flex-col items-center text-center"
                 >
