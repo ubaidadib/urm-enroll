@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useExperiment } from "@/hooks/useExperiment";
 import { trackExperimentView, trackPersonalizationApplied } from "@/utils/tracking";
 import { usePersonalization } from "@/hooks/usePersonalization";
+import { useTheme } from "@/app/components/ui/theme-provider";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -96,13 +97,13 @@ function DestinationCardItem({ card, index, shouldReduceMotion }: {
         x: { delay: 0.5 + index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
       }}
       style={{ transform: `translate(${card.offset.x}px, ${card.offset.y}px) rotate(${card.rotation}deg)` }}
-      className="bg-[rgba(15,28,52,0.85)] backdrop-blur-md border border-[rgba(212,175,55,0.2)] rounded-2xl p-4 shadow-xl shadow-black/30 hover:border-[rgba(212,175,55,0.4)] transition-colors duration-300"
+      className="surface-glass hero-destination-card rounded-2xl p-4 hover:border-accent-primary/40 transition-colors duration-300"
     >
       <div className="flex items-center gap-3 mb-1">
         <span className="text-2xl leading-none">{card.flag}</span>
-        <span className="text-white font-semibold text-sm">{card.country}</span>
+        <span className="text-text-primary font-semibold text-sm">{card.country}</span>
       </div>
-      <p className="text-[rgb(145,177,210)] text-xs">{card.programs}</p>
+      <p className="text-text-muted text-xs">{card.programs}</p>
     </m.div>
   );
 }
@@ -114,6 +115,7 @@ export function HeroSection() {
   const { t, dir } = useLanguage();
   const { variant: heroVariant } = useExperiment("hero_headline");
   const { resolveContent, isSlotPersonalized, segment } = usePersonalization();
+  const { resolvedTheme } = useTheme();
 
   const statsRef = useRef<HTMLDivElement>(null);
   const statsInView = useInView(statsRef, { once: true, margin: "-60px" });
@@ -138,91 +140,75 @@ export function HeroSection() {
 
   const tickerText: string = t("hero.trust_ticker");
   const isRtl = dir === "rtl";
+  const pulseOpacity = resolvedTheme === "dark" ? [0.15, 0.25, 0.15] : [0.08, 0.14, 0.08];
 
   return (
     <section
       id="hero"
       aria-labelledby="hero-title"
-      className="relative flex flex-col overflow-hidden"
-      style={{ background: "linear-gradient(160deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 42%, rgb(var(--bg-tertiary)) 100%)" }}
+      className="relative flex flex-col overflow-hidden section-gradient-hero"
     >
       {/* Radial glow blobs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div
-          className="absolute rounded-full blur-[120px] opacity-20"
+          className="absolute rounded-full hero-ambient-gold"
           style={{
-            width: 600,
-            height: 600,
+            width: 480,
+            height: 480,
             top: "10%",
-            left: isRtl ? "auto" : "-10%",
-            right: isRtl ? "-10%" : "auto",
-            background: "radial-gradient(circle, rgba(212,175,55,0.35) 0%, transparent 70%)",
+            left: isRtl ? "auto" : "-8%",
+            right: isRtl ? "-8%" : "auto",
           }}
         />
         <div
-          className="absolute rounded-full blur-[160px] opacity-15"
+          className="absolute rounded-full hero-ambient-steel"
           style={{
-            width: 500,
-            height: 500,
+            width: 420,
+            height: 420,
             bottom: "5%",
-            right: isRtl ? "auto" : "-5%",
-            left: isRtl ? "-5%" : "auto",
-            background: "radial-gradient(circle, rgba(79,107,138,0.4) 0%, transparent 70%)",
+            right: isRtl ? "auto" : "-4%",
+            left: isRtl ? "-4%" : "auto",
           }}
         />
-        {/* Subtle grid */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
-          }}
-        />
+        <div className="absolute inset-0 hero-grid-overlay" />
       </div>
 
       {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
       <div
-        className="relative z-10 border-b"
-        style={{ borderColor: "rgba(212,175,55,0.2)", background: "rgb(var(--bg-primary) / 0.6)" }}
+        className="relative z-10 border-b trust-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3 sm:gap-6 min-w-0">
           {/* ICEF Badge */}
           <a
             href="https://www.icef.com"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="ICEF IAS Accredited Agency #6507"
-            className="flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg border transition-colors duration-200 hover:border-[rgba(212,175,55,0.5)]"
-            style={{
-              borderColor: "rgba(212,175,55,0.3)",
-              background: "rgba(212,175,55,0.06)",
-            }}
+            aria-label={`${t<string>("icef.accredited")} ${t<string>("icef.member")}`}
+            className="shrink-0 flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg border border-accent-primary/30 bg-accent-primary/6 transition-colors duration-200 hover:border-accent-primary/50"
           >
-            <Award className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
+            <Award className="w-4 h-4 text-accent-primary" aria-hidden="true" />
             <div className="leading-none">
-              <p className="text-xs font-semibold text-text-primary">{t<string>("hero.icef_label")}</p>
-              <p className="text-xs mt-0.5 text-text-muted">#6507</p>
+              <p className="text-text-primary font-semibold text-xs">{t<string>("hero.icef_label")}</p>
+              <p className="text-text-muted text-xs mt-0.5">#6507</p>
             </div>
-            <CheckCircle2 className="w-3.5 h-3.5" style={{ color: "rgb(212,175,55)" }} aria-hidden="true" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary" aria-hidden="true" />
           </a>
 
           {/* Divider */}
-          <div className="h-6 w-px flex-shrink-0" style={{ background: "rgba(212,175,55,0.2)" }} />
+          <div className="hidden sm:block h-6 w-px shrink-0 bg-accent-primary/20" />
 
           {/* Ticker */}
-          <div className="flex-1 overflow-hidden">
+          <div className="min-w-0 flex-1 overflow-hidden">
             <m.div
               aria-hidden="true"
               className="flex gap-16 whitespace-nowrap"
               animate={{ x: isRtl ? ["0%", "50%"] : ["0%", "-50%"] }}
               transition={shouldReduceMotion ? {} : { duration: 22, repeat: Infinity, ease: "linear" }}
-              style={{ color: "rgb(var(--text-primary))" }}
             >
               {[0, 1].map((i) => (
                 <span
                   key={i}
-                  className="text-xs font-medium tracking-wide flex-shrink-0 text-text-secondary"
+                  className="text-xs font-medium tracking-wide flex-shrink-0 text-text-muted"
                 >
                   {tickerText}
                 </span>
@@ -234,7 +220,7 @@ export function HeroSection() {
       </div>
 
       {/* ── 2. Main Hero Content ──────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-16 md:pt-24 md:pb-20 grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-[var(--content-gutter)] pt-10 sm:pt-14 md:pt-20 lg:pt-12 xl:pt-14 3xl:pt-16 pb-10 sm:pb-14 md:pb-20 lg:pb-12 xl:pb-14 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 items-center min-w-0 w-full">
 
         {/* Left Column */}
         <div className={isRtl ? "text-right" : "text-left"}>
@@ -244,8 +230,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.4 }}
-            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-5"
-            style={{ color: "rgb(0,184,217)" }}
+            className="text-xs sm:text-sm font-semibold uppercase tracking-[0.18em] mb-4 lg:mb-4 text-accent-tech"
           >
             {t<string>("hero.eyebrow")}
           </m.p>
@@ -258,24 +243,20 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-[4rem] font-bold leading-[1.1] tracking-tight mb-5 text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.25rem] font-bold leading-[1.1] tracking-tight mb-4 lg:mb-4 text-text-primary"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
                 {headlineParts[0]}
                 <span className="relative inline-block">
-                  <span style={{ color: "rgb(212,175,55)" }}>{countryWord}</span>
+                  <span className="text-accent-primary">{countryWord}</span>
                   {/* Animated underline */}
                   <m.span
                     aria-hidden="true"
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
-                    className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full"
-                    style={{
-                      background: "rgb(212,175,55)",
-                      transformOrigin: isRtl ? "right" : "left",
-                    }}
+                    className="absolute bottom-0.5 left-0 right-0 h-[3px] rounded-full bg-accent-primary"
                   />
                 </span>
                 {headlineParts[1] ?? ""}
@@ -292,7 +273,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.45 }}
-            className="text-base sm:text-lg leading-relaxed mb-9 max-w-xl text-text-secondary"
+            className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-7 lg:mb-6 max-w-xl text-text-muted"
           >
             {t<string>("hero.subheadline")}
           </m.p>
@@ -302,21 +283,12 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55, duration: 0.45 }}
-            className={`flex flex-col sm:flex-row gap-3 mb-7 ${isRtl ? "sm:flex-row-reverse" : ""}`}
+            className={`flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-4 sm:mb-5 lg:mb-5 ${isRtl ? "sm:flex-row-reverse" : ""}`}
           >
             <Link
               to="/universities"
               aria-label={t<string>("hero.new_cta_primary")}
-              className="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-accent-primary px-8 py-4 text-base font-semibold text-ink transition-all duration-200 hover:scale-[1.03] hover:shadow-xl"
-              style={{
-                boxShadow: "0 4px 24px rgba(212,175,55,0.25)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 8px 32px rgba(212,175,55,0.45)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 24px rgba(212,175,55,0.25)";
-              }}
+              className="group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
             >
               <span>{t<string>("hero.new_cta_primary")}</span>
               <ArrowRight
@@ -328,18 +300,7 @@ export function HeroSection() {
             <Link
               to="/programs"
               aria-label={t<string>("hero.new_cta_secondary")}
-              className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl text-base font-semibold transition-all duration-200 hover:scale-[1.02] text-text-secondary border border-border/40"
-              style={{
-                background: "rgb(var(--bg-surface) / 0.6)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgb(var(--bg-surface))";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,175,55,0.4)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLAnchorElement).style.background = "rgb(var(--bg-surface) / 0.6)";
-                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgb(var(--border-default) / 0.4)";
-              }}
+              className="group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 hover:scale-[1.02] btn-outline-subtle"
             >
               <span>{t<string>("hero.new_cta_secondary")}</span>
               <ArrowRight
@@ -357,7 +318,7 @@ export function HeroSection() {
             className={`flex items-center gap-2 ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <span className="text-base" aria-hidden="true">🎓</span>
-            <span className="text-sm text-text-muted">
+            <span className="text-sm text-text-disabled">
               {t<string>("hero.social_proof")}
             </span>
           </m.div>
@@ -368,33 +329,27 @@ export function HeroSection() {
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          className="hidden lg:block relative"
+          className="hidden lg:block relative w-full max-w-md justify-self-end"
           aria-hidden="true"
         >
           {/* Glow background */}
-          <div
-            className="absolute inset-0 rounded-3xl blur-3xl opacity-60 pointer-events-none"
-            style={{
-              background: "radial-gradient(ellipse at center, rgba(79,107,138,0.25) 0%, rgba(11,21,48,0.4) 70%)",
-            }}
-          />
+          <div className="absolute inset-0 rounded-3xl hero-cards-ambient pointer-events-none" />
 
-          {/* Teal pulse ring */}
+          {/* Subtle pulse ring */}
           {!shouldReduceMotion && (
             <m.div
-              animate={{ scale: [1, 1.06, 1], opacity: [0.15, 0.25, 0.15] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
-              style={{
-                width: 320,
-                height: 320,
-                background: "radial-gradient(circle, rgba(0,184,217,0.2) 0%, transparent 70%)",
+              animate={{
+                scale: [1, 1.05, 1],
+                opacity: pulseOpacity,
               }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hero-pulse-ring"
+              style={{ width: 300, height: 300 }}
             />
           )}
 
           {/* Card grid */}
-          <div className="relative grid grid-cols-2 gap-4 p-6">
+          <div className="relative grid grid-cols-2 gap-3 p-4">
             {DESTINATIONS.map((card, i) => (
               <DestinationCardItem
                 key={card.country}
@@ -410,12 +365,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.4 }}
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border text-xs font-medium whitespace-nowrap"
-            style={{
-              background: "rgba(8,14,28,0.9)",
-              borderColor: "rgba(212,175,55,0.3)",
-              color: "rgb(212,175,55)",
-            }}
+            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-accent-primary/30 bg-bg-secondary/90 text-accent-primary text-xs font-medium whitespace-nowrap"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[rgb(0,184,217)] animate-pulse" />
             10,000+ programs across 4 destinations
@@ -426,27 +376,24 @@ export function HeroSection() {
       {/* ── 3. Stats Bar ─────────────────────────────────────────────────── */}
       <div
         ref={statsRef}
-        className="relative z-10 border-t"
-        style={{ borderColor: "rgba(212,175,55,0.12)", background: "rgb(var(--bg-primary) / 0.6)" }}
+        className="relative z-10 border-t stats-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-6 py-10">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 py-6 sm:py-8 md:py-10 lg:py-7 xl:py-8 w-full">
           <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 md:gap-0"
           >
             {STATS.map((stat, i) => (
               <div
                 key={stat.labelKey}
-                className={`flex flex-col items-center text-center px-4 ${
+                className={`flex flex-col items-center text-center px-4 border-accent-primary/15 ${
                   i < STATS.length - 1 ? "md:border-r" : ""
                 }`}
-                style={{ borderColor: "rgba(212,175,55,0.15)" }}
               >
                 <span
-                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1"
-                  style={{ color: "rgb(212,175,55)" }}
+                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1 text-accent-primary"
                 >
                   <CountUp
                     target={stat.value}
@@ -455,7 +402,7 @@ export function HeroSection() {
                     shouldReduceMotion={shouldReduceMotion}
                   />
                 </span>
-                <span className="text-xs sm:text-sm font-medium text-text-muted">
+                <span className="text-xs sm:text-sm font-medium text-text-disabled">
                   {t<string>(stat.labelKey)}
                 </span>
               </div>

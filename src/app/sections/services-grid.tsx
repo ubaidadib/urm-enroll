@@ -110,32 +110,31 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
   return (
     <section 
       dir={dir}
-      className="relative py-24 overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-48 -right-48 w-[800px] h-[800px] rounded-full blur-[160px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
         <div className="absolute -bottom-48 -left-48 w-[700px] h-[700px] rounded-full blur-[140px] opacity-6" style={{ background: "rgb(212,175,55)" }} />
-        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10 px-6">
+      <div className="max-w-7xl mx-auto relative z-10 px-[var(--content-gutter)]">
         
         {/* Section Header */}
-        <div className="mb-16">
+        <div className="page-section-header-gap">
           {compact ? (
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="space-y-3">
-                <h2 className="text-text-primary text-3xl md:text-5xl font-extrabold tracking-tight" style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}>
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-text-primary" style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)" }}>
                   {t<string>("services.homeTitle")}
                 </h2>
-                <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed max-w-2xl">
+                <p className="text-lg md:text-xl font-medium leading-relaxed max-w-2xl text-text-muted">
                   {t<string>("services.homeSubtitle")}
                 </p>
               </div>
               <Link 
                 to="/services" 
-                className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all active:scale-95 group"
-                style={{ background: "rgb(var(--bg-surface) / 0.85)", border: "1.5px solid rgba(212,175,55,0.25)", color: "rgb(212,175,55)" }}
+                className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all active:scale-95 group surface-glass-subtle text-accent-primary"
               >
                 <span>{t<string>("services.viewAll")}</span>
                 <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />
@@ -143,10 +142,10 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
             </div>
           ) : (
             <div className="space-y-3 max-w-2xl">
-              <h2 className="text-text-primary text-3xl md:text-5xl font-extrabold tracking-tight">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-text-primary">
                 {t<string>("services.catalogTitle")}
               </h2>
-              <p className="text-text-secondary text-lg md:text-xl font-medium leading-relaxed">
+              <p className="text-lg md:text-xl font-medium leading-relaxed text-text-muted">
                 {t<string>("services.catalogSubtitle")}
               </p>
             </div>
@@ -169,45 +168,42 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
               variants={itemVariants}
               whileHover={{ y: -6 }}
               onClick={() => SEO_EVENTS.PROGRAM_VIEWED(service.title)}
-              className={`group relative flex flex-col p-8 rounded-[2rem] overflow-hidden transition-all duration-300 ${service.glow}`}
-              style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgb(var(--border-default) / 0.75)" }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.35)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "rgb(var(--border-default) / 0.75)")}
+              className={`group relative flex flex-col p-8 rounded-[2rem] overflow-hidden transition-all duration-300 surface-glass-subtle ${service.glow}`}
             >
               {/* Card Header: Icon & Action */}
               <div className="flex items-start justify-between mb-8">
-                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${service.gradient} flex items-center justify-center border border-border/60 shadow-inner`}>
+                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${service.gradient} flex items-center justify-center border border-white/60 dark:border-white/10 shadow-inner`}>
                   <Icon className={`w-7 h-7 ${service.iconColor}`} strokeWidth={1.75} />
                 </div>
                 
                 {compact ? (
                   <Link 
                     to="/services" 
-                    className={`w-10 h-10 rounded-full bg-bg-surface border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
+                    className={`w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
                     aria-label={t<string>("services.viewDetails")}
                   >
-                     <ArrowRight className={`w-4 h-4 text-text-primary ${isRtl ? 'rotate-180' : ''}`} />
+                     <ArrowRight className={`w-4 h-4 text-slate-900 dark:text-white ${isRtl ? 'rotate-180' : ''}`} />
                   </Link>
                 ) : (
-                  <div className={`w-10 h-10 rounded-full bg-bg-surface border border-border flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>
-                     <ArrowRight className={`w-4 h-4 text-text-primary ${isRtl ? 'rotate-180' : ''}`} />
+                  <div className={`w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>
+                     <ArrowRight className={`w-4 h-4 text-slate-900 dark:text-white ${isRtl ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </div>
 
               {/* Title & Desc */}
-              <h3 className="text-text-primary text-xl md:text-2xl font-bold mb-3 transition-colors duration-300">
+              <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300 text-text-primary">
                 {service.title}
               </h3>
               
-              <p className="text-text-secondary text-sm leading-relaxed mb-8 flex-grow">
+              <p className="text-sm leading-relaxed mb-8 flex-grow text-text-muted">
                 {service.description}
               </p>
 
               {/* Feature List */}
-              <div className="mt-auto space-y-3 pt-6 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
+              <div className="mt-auto space-y-3 pt-6 border-t border-accent-primary/12">
                 {service.features?.map((feature: string, i: number) => (
-                  <div key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                  <div key={i} className="flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-text-muted">
                     <CheckCircle2 className={`w-4 h-4 shrink-0 ${service.iconColor}`} strokeWidth={2.5} />
                     <span>{feature}</span>
                   </div>
@@ -226,8 +222,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
           <div className="mt-12 flex justify-center md:hidden">
             <Link 
               to="/services" 
-              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95"
-              style={{ background: "rgb(212,175,55)", color: "rgb(8,14,28)" }}
+              className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 btn-gold-primary"
             >
               <span>{t<string>("services.viewAll")}</span>
               <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />

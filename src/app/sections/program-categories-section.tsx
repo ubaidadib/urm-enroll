@@ -2,70 +2,57 @@ import { m } from "motion/react";
 import { Link } from "react-router-dom";
 import { UNIVERSITIES } from "@/data/universities";
 import { Wrench, HeartPulse, Briefcase, Palette, FlaskConical, Scale, Cpu, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 const CATEGORY_CONFIG = [
   {
     key: "engineering",
-    label: "Engineering",
     icon: Wrench,
     gradient: "from-[rgba(212,175,55,0.25)] to-[rgba(212,175,55,0.05)]",
     iconColor: "rgb(212,175,55)",
     accentBorder: "rgba(212,175,55,0.35)",
-    description: "Build the future with tech & systems",
   },
   {
     key: "medicine",
-    label: "Medicine & Health",
     icon: HeartPulse,
     gradient: "from-[rgba(34,197,94,0.2)] to-[rgba(34,197,94,0.04)]",
     iconColor: "rgb(74,222,128)",
     accentBorder: "rgba(74,222,128,0.3)",
-    description: "Care for people, advance science",
   },
   {
     key: "business",
-    label: "Business",
     icon: Briefcase,
     gradient: "from-[rgba(0,184,217,0.2)] to-[rgba(0,184,217,0.04)]",
     iconColor: "rgb(0,184,217)",
     accentBorder: "rgba(0,184,217,0.3)",
-    description: "Lead markets & shape economies",
   },
   {
     key: "arts",
-    label: "Arts & Design",
     icon: Palette,
     gradient: "from-[rgba(244,114,182,0.2)] to-[rgba(244,114,182,0.04)]",
     iconColor: "rgb(244,114,182)",
     accentBorder: "rgba(244,114,182,0.3)",
-    description: "Create culture & visual worlds",
   },
   {
     key: "computer-science",
-    label: "Computer Science",
     icon: Cpu,
     gradient: "from-[rgba(139,92,246,0.2)] to-[rgba(139,92,246,0.04)]",
     iconColor: "rgb(167,139,250)",
     accentBorder: "rgba(167,139,250,0.3)",
-    description: "Code, AI, data & digital systems",
   },
   {
     key: "science",
-    label: "Natural Sciences",
     icon: FlaskConical,
     gradient: "from-[rgba(251,146,60,0.2)] to-[rgba(251,146,60,0.04)]",
     iconColor: "rgb(251,146,60)",
     accentBorder: "rgba(251,146,60,0.3)",
-    description: "Explore the physical world",
   },
   {
     key: "law",
-    label: "Law",
     icon: Scale,
     gradient: "from-[rgba(148,163,184,0.15)] to-[rgba(148,163,184,0.03)]",
     iconColor: "rgb(148,163,184)",
     accentBorder: "rgba(148,163,184,0.25)",
-    description: "Justice, policy & human rights",
   },
 ] as const;
 
@@ -83,22 +70,23 @@ function countProgramsByField(fieldKey: string): number {
 }
 
 export function ProgramCategoriesSection() {
+  const { t } = useLanguage();
+
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(var(--bg-primary)) 0%, rgb(var(--bg-secondary)) 100%)" }}
+      className="relative py-24 md:py-28 overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
+            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -107,21 +95,21 @@ export function ProgramCategoriesSection() {
           transition={{ duration: 0.55 }}
           className="mb-14"
         >
-          <p className="mb-4 text-xs font-semibold tracking-[0.2em] uppercase text-accent-tech">
-            Discover Paths
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
+            {t<string>("home.categories.badge")}
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2
-              className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl"
+              className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary"
             >
-              Explore by Field of Study
+              {t<string>("home.categories.title")}
             </h2>
             <Link
               to="/programs"
               className="inline-flex items-center gap-2 text-sm font-semibold transition-opacity hover:opacity-70 shrink-0"
               style={{ color: "rgb(212,175,55)" }}
             >
-              All programs <ArrowRight className="w-4 h-4" />
+              {t<string>("home.categories.viewAll")} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </m.div>
@@ -130,6 +118,8 @@ export function ProgramCategoriesSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {CATEGORY_CONFIG.map((category, index) => {
             const count = countProgramsByField(category.key);
+            const label = t<string>(`home.categories.fields.${category.key}.label`);
+            const description = t<string>(`home.categories.fields.${category.key}.description`);
             const Icon = category.icon;
             return (
               <m.div
@@ -141,20 +131,7 @@ export function ProgramCategoriesSection() {
               >
                 <Link
                   to={`/programs?field=${category.key}`}
-                  className="group relative flex h-[160px] flex-col overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1.5"
-                  style={{
-                    background: "rgb(var(--bg-surface) / 0.86)",
-                    border: "1.5px solid rgba(212,224,239,0.07)",
-                    boxShadow: "0 4px 16px rgba(6, 16, 36, 0.12)",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = category.accentBorder;
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = `0 8px 28px rgba(0,0,0,0.3), 0 0 20px ${category.iconColor.replace('rgb(', 'rgba(').replace(')', ',0.08)')}`;
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(212,224,239,0.07)";
-                    (e.currentTarget as HTMLAnchorElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.2)";
-                  }}
+                className="group relative flex flex-col overflow-hidden rounded-2xl p-6 h-[160px] block transition-all duration-300 hover:-translate-y-1.5 surface-card"
                 >
                   {/* Gradient overlay on hover */}
                   <div
@@ -181,16 +158,14 @@ export function ProgramCategoriesSection() {
 
                     <div className="mt-4">
                       <h3
-                        className="text-[0.9rem] font-bold leading-tight transition-colors duration-300"
-                        style={{ color: "rgb(var(--text-primary))" }}
+                        className="text-[0.9rem] font-bold leading-tight transition-colors duration-300 text-text-primary"
                       >
-                        {category.label}
+                        {label}
                       </h3>
                       <p
-                        className="mt-1 text-[11px] transition-colors duration-300"
-                        style={{ color: "rgb(var(--text-muted))" }}
+                        className="mt-1 text-[11px] transition-colors duration-300 text-text-disabled"
                       >
-                        {count > 0 ? `${count.toLocaleString()} programs` : category.description}
+                        {count > 0 ? t<string>("home.categories.programCount").replace("{{count}}", count.toLocaleString()) : description}
                       </p>
                     </div>
                   </div>

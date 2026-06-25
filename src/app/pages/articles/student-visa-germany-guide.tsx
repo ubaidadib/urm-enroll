@@ -505,8 +505,9 @@ export function StudentVisaGermanyGuidePage() {
       />
 
       {/* Hero */}
-      <div className="pt-24 pb-10 px-6 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div className="page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
+          <div className="page-hero-crumb-gap">
           <Breadcrumbs
             items={[
               { label: t<string>("common.home"), href: base || "/" },
@@ -514,6 +515,7 @@ export function StudentVisaGermanyGuidePage() {
               { label: content.title, href: `${base}/resources/${SLUG}` },
             ]}
           />
+          </div>
           <m.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-success/10 border border-accent-success/20 text-accent-success text-xs font-bold mb-4">
               <Shield className="w-3.5 h-3.5" />

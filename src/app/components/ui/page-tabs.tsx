@@ -37,11 +37,11 @@ export function PageTabs({
 
   return (
     <section className={`sticky ${stickyTopClass} z-30 border-b border-border bg-bg-surface/85 backdrop-blur-sm`}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 3xl:px-10">
         <div
           role="tablist"
           aria-label={ariaLabel}
-          className="flex min-h-14 items-stretch gap-1 overflow-x-auto"
+          className="flex min-h-14 items-stretch gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {tabs.map((tab, index) => {
             const isActive = tab.id === activeTab;

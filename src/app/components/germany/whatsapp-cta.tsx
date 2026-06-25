@@ -1,4 +1,5 @@
 import { m } from "motion/react";
+import { useLanguage } from "@/i18n/language-context";
 
 const DEFAULT_WHATSAPP = "96170585052";
 
@@ -13,6 +14,7 @@ type Props = {
  * No popup, no dismiss, just a direct link to chat.
  */
 export function WhatsAppCTA({ number, message }: Props = {}) {
+  const { t } = useLanguage();
   const env = (import.meta.env.VITE_PUBLIC_WHATSAPP_NUMBER as string | undefined) ?? undefined;
   const wa = (number ?? env ?? DEFAULT_WHATSAPP).replace(/[^0-9]/g, "");
   const text = message ?? "Hi URM Enroll — I'd like help choosing my next step.";
@@ -23,13 +25,13 @@ export function WhatsAppCTA({ number, message }: Props = {}) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
+      aria-label={t<string>("globalCta.student.whatsapp")}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 2.5, type: "spring", stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.93 }}
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_28px_rgba(37,211,102,0.55)] transition-shadow duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/50"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_28px_rgba(37,211,102,0.55)] transition-shadow duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/50"
     >
       {/* Official WhatsApp icon path */}
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7" aria-hidden="true">

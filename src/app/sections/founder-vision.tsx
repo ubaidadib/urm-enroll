@@ -25,7 +25,7 @@ export function FounderVision() {
     <section
       id="about"
       aria-labelledby="about-title"
-      className="relative py-24 md:py-32 overflow-hidden bg-linear-to-b from-bg-primary to-bg-secondary"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -35,10 +35,10 @@ export function FounderVision() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- Header --- */}
-        <div className="mb-20">
+        <div className="page-section-header-gap">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export function FounderVision() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
+            className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
           >
             {t<string>('founder.titleLine1')} <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-accent-tech">
@@ -66,7 +66,7 @@ export function FounderVision() {
         </div>
 
         {/* --- Main Content Grid --- */}
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
           
           {/* Left: Image & Stats (Sticky) */}
           <m.div
@@ -96,14 +96,14 @@ export function FounderVision() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className={`absolute -bottom-8 ${dir === 'rtl' ? '-left-8' : '-right-8'} backdrop-blur-xl rounded-3xl p-8 shadow-2xl max-w-xs`}
-                style={{ background: "rgb(var(--bg-primary) / 0.88)", border: "1.5px solid rgba(212,175,55,0.2)" }}
+                style={{ background: "rgba(8,14,28,0.85)", border: "1.5px solid rgba(212,175,55,0.2)" }}
               >
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                   <div>
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.direct')}
                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-text-muted">
+                    <div className="text-xs font-bold uppercase tracking-wider text-text-disabled">
                       {t<string>('founder.stats.directLabel')}
                     </div>
                   </div>
@@ -111,7 +111,7 @@ export function FounderVision() {
                     <div className="text-4xl font-bold mb-1" style={{ color: "rgb(212,175,55)" }}>
                       {t<string>('founder.stats.reach')}
                     </div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-text-muted">
+                    <div className="text-xs font-bold uppercase tracking-wider text-text-disabled">
                       {t<string>('founder.stats.reachLabel')}
                     </div>
                   </div>
@@ -129,7 +129,7 @@ export function FounderVision() {
           </m.div>
 
           {/* Right: Narrative Content */}
-          <div className="space-y-16">
+          <div className="space-y-10 lg:space-y-12">
             
             {/* Bio Section */}
             <div className="space-y-6">
@@ -148,11 +148,11 @@ export function FounderVision() {
               ))}
             </div>
 
-              <div className="h-px bg-border w-full" />
+            <div className="h-px bg-slate-200 dark:bg-slate-800 w-full" />
 
             {/* Highlights Grid */}
             <div>
-              <h3 className="text-sm font-bold text-text-primary uppercase tracking-widest mb-8 flex items-center gap-2">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-8 flex items-center gap-2">
                 <span className="w-8 h-px bg-accent-primary" />
                 {t<string>('founder.sections.highlights')}
               </h3>
@@ -169,7 +169,7 @@ export function FounderVision() {
                     <div className="mt-1.5 p-1 rounded-full bg-accent-primary/10">
                       <div className="w-2 h-2 rounded-full bg-accent-primary" />
                     </div>
-                    <span className="text-text-secondary font-medium leading-relaxed">
+                    <span className="text-slate-700 dark:text-slate-300 font-medium leading-relaxed">
                       {item}
                     </span>
                   </m.div>
@@ -179,14 +179,14 @@ export function FounderVision() {
 
             {/* Skills Tag Cloud */}
             <div>
-              <h3 className="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-6">
                 {t<string>('founder.sections.skills')}
               </h3>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (
                   <span 
                     key={index}
-                    className="px-4 py-2 rounded-lg bg-bg-surface text-text-secondary text-xs font-bold border border-border"
+                    className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-200 dark:border-slate-700"
                   >
                     {skill}
                   </span>
@@ -200,7 +200,7 @@ export function FounderVision() {
                 href="https://www.linkedin.com/in/ubaidadib/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-text-primary font-bold hover:text-accent-primary transition-colors group"
+                className="inline-flex items-center gap-3 text-slate-900 dark:text-white font-bold hover:text-accent-primary transition-colors group"
               >
                 <Linkedin className="w-5 h-5" />
                 <span>{t<string>('founder.linkedinCta')}</span>

@@ -1,6 +1,7 @@
 import { m } from "motion/react";
 import { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface TrendingCategory {
   id: string;
@@ -20,6 +21,7 @@ export function TrendingCategoriesPills({
   onSelectCategory,
   selectedCategory,
 }: TrendingCategoriesPillsProps) {
+  const { t } = useLanguage();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -61,8 +63,8 @@ export function TrendingCategoriesPills({
     <section className="relative px-4 py-8 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
         <div className="mb-4">
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-gray-600 dark:text-text-muted">Trending Now</p>
-          <h2 className="mt-1 text-2xl font-black text-gray-900 dark:text-text-primary">Explore By Career Path</h2>
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-gray-600 dark:text-text-muted">{t<string>("programs.discovery.trending.eyebrow")}</p>
+          <h2 className="mt-1 text-2xl font-black text-gray-900 dark:text-text-primary">{t<string>("programs.discovery.trending.title")}</h2>
         </div>
 
         {/* Scroll container with gradient fade */}
@@ -82,7 +84,7 @@ export function TrendingCategoriesPills({
             <button
               onClick={() => scroll("left")}
               className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-border bg-white dark:bg-bg-surface shadow-md transition-all hover:bg-gray-100 dark:hover:bg-brand-navy-900/10"
-              aria-label="Scroll left"
+              aria-label={t<string>("common.aria.scrollLeft")}
             >
               <ChevronLeft className="h-5 w-5 text-gray-900 dark:text-text-primary" />
             </button>
@@ -92,7 +94,7 @@ export function TrendingCategoriesPills({
             <button
               onClick={() => scroll("right")}
               className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 hidden lg:flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 dark:border-border bg-white dark:bg-bg-surface shadow-md transition-all hover:bg-gray-100 dark:hover:bg-brand-navy-900/10"
-              aria-label="Scroll right"
+              aria-label={t<string>("common.aria.scrollRight")}
             >
               <ChevronRight className="h-5 w-5 text-gray-900 dark:text-text-primary" />
             </button>

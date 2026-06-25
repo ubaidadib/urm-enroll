@@ -2,6 +2,7 @@ import { useMemo, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface HorizontalScrollCarouselProps {
   title: string;
@@ -10,6 +11,7 @@ interface HorizontalScrollCarouselProps {
 }
 
 export function HorizontalScrollCarousel({ title, items, viewAllHref }: HorizontalScrollCarouselProps) {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const canShowArrows = useMemo(() => items.length > 1, [items.length]);
@@ -39,7 +41,7 @@ export function HorizontalScrollCarousel({ title, items, viewAllHref }: Horizont
               type="button"
               onClick={() => scrollByAmount("left")}
               className="absolute left-2 top-1/2 z-10 hidden min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-bg-surface/90 text-text-primary opacity-0 shadow transition-opacity group-hover:opacity-100 lg:inline-flex"
-              aria-label="Scroll left"
+              aria-label={t<string>("common.aria.scrollLeft")}
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -47,7 +49,7 @@ export function HorizontalScrollCarousel({ title, items, viewAllHref }: Horizont
               type="button"
               onClick={() => scrollByAmount("right")}
               className="absolute right-2 top-1/2 z-10 hidden min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-bg-surface/90 text-text-primary opacity-0 shadow transition-opacity group-hover:opacity-100 lg:inline-flex"
-              aria-label="Scroll right"
+              aria-label={t<string>("common.aria.scrollRight")}
             >
               <ChevronRight className="h-4 w-4" />
             </button>

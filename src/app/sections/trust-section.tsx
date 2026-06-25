@@ -47,15 +47,14 @@ export function TrustSection() {
 
   return (
     <section
-      className="relative py-24 px-6 overflow-hidden"
-      style={{ background: "linear-gradient(180deg, rgb(var(--bg-secondary)) 0%, rgb(var(--bg-primary)) 100%)" }}
+      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
     >
       {/* Grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)",
+            "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
         }}
       />
@@ -65,28 +64,28 @@ export function TrustSection() {
         style={{ width: 600, height: 400, background: "rgb(212,175,55)" }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center page-section-header-gap"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
+          <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-3 sm:mb-4" style={{ color: "rgb(0,184,217)" }}>
             Trusted Worldwide
           </p>
-          <h2 className="mb-4 text-3xl font-bold leading-tight text-text-primary md:text-4xl lg:text-5xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 text-text-primary">
             {t<string>("trust.title")}
           </h2>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-text-secondary md:text-lg">
+          <p className="text-sm sm:text-base md:text-lg max-w-2xl 3xl:max-w-4xl mx-auto leading-relaxed text-text-muted px-1">
             {t<string>("trust.subtitle")}
           </p>
         </m.div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[1.15fr_1fr] gap-4 sm:gap-5 3xl:gap-8">
           {/* ICEF hero card */}
           <m.div
             initial={{ opacity: 0, x: -24 }}
@@ -95,22 +94,7 @@ export function TrustSection() {
             viewport={{ once: true }}
             className="group relative flex flex-col"
           >
-            <div
-              className="relative rounded-2xl p-7 flex flex-col gap-6 h-full transition-all duration-300"
-              style={{
-                background: "rgb(var(--bg-surface) / 0.86)",
-                border: "1.5px solid rgba(212,175,55,0.2)",
-                boxShadow: "0 8px 32px rgba(6, 15, 34, 0.16)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(212,175,55,0.4)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 12px 40px rgba(212,175,55,0.1), 0 8px 32px rgba(0,0,0,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(212,175,55,0.2)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 32px rgba(0,0,0,0.3)";
-              }}
-            >
+            <div className="relative rounded-2xl p-5 sm:p-7 flex flex-col gap-4 sm:gap-6 h-full transition-all duration-300 surface-card-elevated">
               {/* Top row */}
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-4">
@@ -140,18 +124,12 @@ export function TrustSection() {
                 </span>
               </div>
 
-              <p className="leading-relaxed text-text-secondary">
+              <p className="leading-relaxed text-text-muted">
                 Globally recognized quality standard for international student recruitment agencies — a mark of credibility trusted by universities and students across 120+ countries.
               </p>
 
               {/* Badge embed */}
-              <div
-                className="rounded-xl p-4 flex items-center justify-center min-h-[80px]"
-                style={{
-                  background: "rgb(var(--bg-primary) / 0.6)",
-                  border: "1px solid rgba(212,175,55,0.12)",
-                }}
-              >
+              <div className="rounded-xl p-4 flex items-center justify-center min-h-[80px] surface-inset">
                 <span id="iasBadge" data-account-id="6507" />
               </div>
 
@@ -188,20 +166,7 @@ export function TrustSection() {
                   viewport={{ once: true }}
                   className="flex-1"
                 >
-                  <div
-                    className="relative rounded-2xl p-6 h-full transition-all duration-300"
-                    style={{
-                      background: "rgb(var(--bg-surface) / 0.82)",
-                      border: `1.5px solid ${item.borderColor}`,
-                      boxShadow: "0 4px 20px rgba(5, 10, 24, 0.14)",
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = item.iconColor.replace('rgb', 'rgba').replace(')', ',0.4)');
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLDivElement).style.borderColor = item.borderColor;
-                    }}
-                  >
+                  <div className="relative rounded-2xl p-6 h-full transition-all duration-300 surface-card border-accent-tech/20 hover:border-accent-tech/40">
                     <div className="flex items-start gap-4">
                       <div
                         className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
@@ -210,10 +175,10 @@ export function TrustSection() {
                         <Icon className="w-5 h-5" style={{ color: item.iconColor }} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="mb-1.5 text-base font-bold text-text-primary">
+                        <h3 className="text-base font-bold mb-1.5 text-text-primary">
                           {item.title}
                         </h3>
-                        <p className="mb-3 text-sm leading-relaxed text-text-secondary">
+                        <p className="text-sm leading-relaxed mb-3 text-text-muted">
                           {item.description}
                         </p>
                         <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: item.iconColor }}>
@@ -234,13 +199,7 @@ export function TrustSection() {
               transition={{ delay: 0.54, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
             >
-              <div
-                className="rounded-2xl p-6 transition-all duration-300"
-                style={{
-                  background: "rgb(var(--bg-surface) / 0.82)",
-                  border: "1.5px solid rgba(79,107,138,0.2)",
-                }}
-              >
+              <div className="rounded-2xl p-6 transition-all duration-300 surface-card border-border/70">
                 <div className="flex items-start gap-4">
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
@@ -249,10 +208,10 @@ export function TrustSection() {
                     <Lock className="w-5 h-5" style={{ color: "rgb(79,107,138)" }} />
                   </div>
                   <div>
-                    <h3 className="mb-1.5 text-base font-bold text-text-primary">
+                    <h3 className="text-base font-bold mb-1.5 text-text-primary">
                       UK-Incorporated Entity
                     </h3>
-                    <p className="mb-3 text-sm leading-relaxed text-text-secondary">
+                    <p className="text-sm leading-relaxed mb-3 text-text-muted">
                       URM ENROLL LTD is a registered UK company operating under strict financial and regulatory oversight.
                     </p>
                     <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: "rgb(79,107,138)" }}>

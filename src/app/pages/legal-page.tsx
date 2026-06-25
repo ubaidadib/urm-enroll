@@ -31,7 +31,7 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(var(--theme-accent-tech), 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(var(--theme-accent-tech), 0.12) 1px, transparent 1px)",
+                "linear-gradient(to right, rgba(var(--accent-tech), 0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(var(--accent-tech), 0.12) 1px, transparent 1px)",
               backgroundSize: "80px 80px",
             }}
           />
@@ -39,7 +39,7 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
         <div className="absolute top-24 right-20 w-72 h-72 bg-accent-success/15 rounded-full blur-[120px]" />
         <div className="absolute bottom-24 left-16 w-72 h-72 bg-accent-tech/15 rounded-full blur-[120px]" />
 
-        <div className="relative page-container-narrow py-24">
+        <div className="relative page-container-narrow py-16 sm:py-24">
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
                 {t<string>("legalPagesLabel")}
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
               {page.title}
             </h1>
             <p className="text-slate-400 text-sm mb-4">

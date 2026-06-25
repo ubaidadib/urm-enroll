@@ -333,7 +333,7 @@ export function ProgramDetailPage() {
   // Intake dates from the rich Nexus dates/seasons arrays
   const intakeLabels = formatIntakeDates(program.dates);
   const seasonLabels = formatSeasonsList(program.seasons);
-  const firstIntake = intakeLabels[0] ?? (seasonLabels.length > 0 ? `Intake: ${seasonLabels[0]}` : null);
+  const firstIntake = intakeLabels[0] ?? (seasonLabels.length > 0 ? `${t<string>("programs.detail.intake")}: ${seasonLabels[0]}` : null);
 
   // Location from program-level city/country (more accurate than university-level)
   const programCity = (program.city as Record<string, unknown>)?.name as string | undefined;
@@ -344,12 +344,12 @@ export function ProgramDetailPage() {
 
   const stats: QuickStatItem[] = [
     resolvedFeesLabel
-      ? { icon: DollarSign, label: "Tuition Per Year", value: resolvedFeesLabel }
-      : { icon: DollarSign, label: "Tuition", value: "Contact university" },
-    durationFromReqs ? { icon: Clock, label: "Duration", value: durationFromReqs } : null,
-    languageFromReqs ? { icon: Globe, label: "Language", value: languageFromReqs } : null,
-    firstIntake ? { icon: Calendar, label: "Intake", value: firstIntake } : null,
-    locationLabel ? { icon: MapPin, label: "Location", value: locationLabel } : null,
+      ? { icon: DollarSign, label: t<string>("programs.detail.keyInfo.tuition"), value: resolvedFeesLabel }
+      : { icon: DollarSign, label: t<string>("card.program.tuitionLabel"), value: "Contact university" },
+    durationFromReqs ? { icon: Clock, label: t<string>("programs.detail.keyInfo.duration"), value: durationFromReqs } : null,
+    languageFromReqs ? { icon: Globe, label: t<string>("programs.detail.keyInfo.language"), value: languageFromReqs } : null,
+    firstIntake ? { icon: Calendar, label: t<string>("programs.detail.keyInfo.intake"), value: firstIntake } : null,
+    locationLabel ? { icon: MapPin, label: t<string>("programs.detail.keyInfo.location"), value: locationLabel } : null,
   ].filter((item): item is QuickStatItem => Boolean(item));
 
   const updateFormField = (field: keyof typeof formData, value: string) => {
@@ -383,11 +383,11 @@ export function ProgramDetailPage() {
   }, [formData, program.id, program.name, university.name, turnstileToken]);
 
   const tabs: { id: Tab; label: string; icon: typeof BookOpen }[] = [
-    { id: "overview", label: "Overview", icon: BookOpen },
-    { id: "curriculum", label: "Curriculum", icon: Calendar },
-    { id: "requirements", label: "Requirements", icon: Award },
-    { id: "career-outcomes", label: "Career Outcomes", icon: Globe },
-    { id: "apply", label: "Apply", icon: FileText },
+    { id: "overview", label: t<string>("programs.detail.tabs.overview"), icon: BookOpen },
+    { id: "curriculum", label: t<string>("programs.detail.tabs.curriculum"), icon: Calendar },
+    { id: "requirements", label: t<string>("programs.detail.tabs.requirements"), icon: Award },
+    { id: "career-outcomes", label: t<string>("programs.detail.tabs.careerOutcomes"), icon: Globe },
+    { id: "apply", label: t<string>("programs.detail.tabs.apply"), icon: FileText },
   ];
 
   const degreeColors: Record<string, string> = {
@@ -407,7 +407,7 @@ export function ProgramDetailPage() {
 
       <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
         {/* Breadcrumbs */}
-        <div className="border-b border-slate-200 dark:border-slate-800 px-4 pb-6 pt-28 sm:px-6 lg:px-8">
+        <div className="border-b border-slate-200 dark:border-slate-800 px-[var(--content-gutter)] pb-6 page-hero-offset">
           <div className="max-w-7xl mx-auto">
             <Breadcrumb
               items={[
@@ -421,14 +421,14 @@ export function ProgramDetailPage() {
 
 
         {/* Hero Section */}
-        <section className="relative overflow-hidden bg-linear-to-br from-slate-50 via-brand-navy-900/5 to-white py-14 md:py-20 dark:from-slate-950 dark:via-brand-navy-900/20 dark:to-slate-900">
+        <section className="relative overflow-hidden bg-linear-to-br from-slate-50 via-brand-navy-900/5 to-white py-14 md:py-20 lg:py-12 xl:py-14 dark:from-slate-950 dark:via-brand-navy-900/20 dark:to-slate-900">
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute -top-24 right-0 h-80 w-80 rounded-full bg-accent-tech/8 blur-[120px]" />
             <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-accent-primary/6 blur-[100px]" />
           </div>
 
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16">
+            <div className="flex flex-col gap-6 lg:gap-8 lg:flex-row lg:items-start">
               <div className="min-w-0 flex-1">
                 <div className="mb-4 flex flex-wrap items-center gap-2">
                   <span className={`inline-flex items-center rounded-full border px-3 py-1 text-sm font-semibold ${degreeColors[program.degreeLevel] || degreeColors.bachelor}`}>
@@ -444,7 +444,7 @@ export function ProgramDetailPage() {
                   </span>
                 </div>
 
-                <h1 className="mb-6 text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-4xl lg:text-5xl">
+                <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-4xl lg:text-5xl">
                   {program.name}
                 </h1>
 
@@ -497,7 +497,7 @@ export function ProgramDetailPage() {
                       onClick={() => setActiveTab("apply")}
                       className="w-full rounded-xl bg-brand-navy-800 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-accent-tech hover:shadow-[0_8px_20px_rgba(79,107,138,0.30)]"
                     >
-                      Apply Now
+                      {t<string>("programs.detail.applyCta")}
                     </button>
                     <button
                       onClick={() => {
@@ -523,7 +523,7 @@ export function ProgramDetailPage() {
                       }}
                       className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${selectedForCompare ? "border-accent-tech/40 bg-accent-tech/8 text-accent-tech dark:border-accent-tech/40 dark:bg-accent-tech/12 dark:text-accent-tech" : "border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"}`}
                     >
-                      {selectedForCompare ? "✓ Added to Compare" : "Compare"}
+                      {selectedForCompare ? "✓ Added to Compare" : t<string>("card.program.compare")}
                     </button>
                     <button
                       onClick={() => {
@@ -549,7 +549,7 @@ export function ProgramDetailPage() {
                       }}
                       className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${programSaved ? "border-accent-primary/40 bg-accent-primary/8 text-amber-700 dark:border-accent-primary/40 dark:bg-accent-primary/12 dark:text-accent-primary" : "border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300"}`}
                     >
-                      {programSaved ? "♥ Saved" : "Save Program"}
+                      {programSaved ? "♥ Saved" : t<string>("programs.detail.saveProgram")}
                     </button>
                   </div>
                 </div>
@@ -593,27 +593,29 @@ export function ProgramDetailPage() {
                     </div>
                   ) : (
                     <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center dark:border-slate-700">
-                      <p className="text-slate-500">No program description is available yet.</p>
-                      <p className="mt-2 text-sm text-slate-400">Contact {university.name} directly for program details.</p>
+                      <p className="text-slate-500">{t<string>("programs.detail.empty.description")}</p>
+                      <p className="mt-2 text-sm text-slate-400">
+                        {t<string>("programs.detail.empty.contactUniversity").replace("{{university}}", university.name)}
+                      </p>
                     </div>
                   )}
 
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                     {[
-                      locationLabel && { label: "Location", value: locationLabel },
-                      durationFromReqs && { label: "Duration", value: durationFromReqs },
-                      languageFromReqs && { label: "Language", value: languageFromReqs },
+                      locationLabel && { label: t<string>("programs.detail.location"), value: locationLabel },
+                      durationFromReqs && { label: t<string>("programs.detail.keyInfo.duration"), value: durationFromReqs },
+                      languageFromReqs && { label: t<string>("programs.detail.keyInfo.language"), value: languageFromReqs },
                       program.degreeLevel && {
-                        label: "Degree Level",
+                        label: t<string>("programs.detail.degreeLevel"),
                         value: (program.level as Record<string, unknown>)?.name as string || program.degreeLevel.charAt(0).toUpperCase() + program.degreeLevel.slice(1),
                       },
                       typeof (program.pathway as Record<string, unknown> | null)?.name === "string" && {
-                        label: "Pathway",
+                        label: t<string>("programs.detail.pathway"),
                         value: (program.pathway as Record<string, string>).name,
                       },
-                      firstIntake && { label: "Next Intake", value: firstIntake },
+                      firstIntake && { label: t<string>("programs.detail.nextIntake"), value: firstIntake },
                       program.toefl_score && program.toefl_score > 0 && {
-                        label: "Min. TOEFL",
+                        label: t<string>("programs.detail.minToefl"),
                         value: String(program.toefl_score),
                       },
                     ]
@@ -639,11 +641,13 @@ export function ProgramDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="mb-6 text-3xl font-bold">Curriculum</h2>
+                <h2 className="mb-6 text-3xl font-bold">{t<string>("programs.detail.sections.curriculumTitle")}</h2>
                 <div className="rounded-2xl border border-dashed border-slate-300 p-12 text-center dark:border-slate-700">
                   <BookOpen className="mx-auto mb-4 h-12 w-12 text-slate-300 dark:text-slate-600" />
-                  <p className="font-semibold text-slate-700 dark:text-slate-300">Curriculum details are provided directly by the university.</p>
-                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Contact {university.name} to request the full curriculum outline.</p>
+                  <p className="font-semibold text-slate-700 dark:text-slate-300">{t<string>("programs.detail.sections.curriculumEmpty")}</p>
+                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                    {t<string>("programs.detail.sections.curriculumContact").replace("{{university}}", university.name)}
+                  </p>
                 </div>
               </m.div>
             )}
@@ -662,7 +666,7 @@ export function ProgramDetailPage() {
                   {/* Intake dates section — from rich Nexus dates/seasons data */}
                   {(intakeLabels.length > 0 || seasonLabels.length > 0) && (
                     <div>
-                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">Intakes &amp; Dates</h2>
+                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">{t<string>("programs.detail.sections.intakesDates")}</h2>
                       <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
                         <ul className="space-y-2">
                           {[...intakeLabels, ...seasonLabels].map((label, idx) => (
@@ -678,11 +682,11 @@ export function ProgramDetailPage() {
 
                   {/* Admission requirements */}
                   <div>
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">Admission Requirements</h2>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">{t<string>("programs.detail.sections.admissionRequirements")}</h2>
                     {requirementBlocks.length === 0 ? (
                       <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center">
-                        <p className="text-slate-500">No detailed requirements are listed for this program.</p>
-                        <p className="mt-2 text-sm text-slate-400">Contact the university directly for admission criteria.</p>
+                        <p className="text-slate-500">{t<string>("programs.detail.sections.noRequirements")}</p>
+                        <p className="mt-2 text-sm text-slate-400">{t<string>("programs.detail.sections.contactUniversity")}</p>
                       </div>
                     ) : (
                       <div className="space-y-6">
@@ -713,18 +717,18 @@ export function ProgramDetailPage() {
                   {/* Additional info */}
                   {(program.toefl_score || program.address) && (
                     <div>
-                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">Additional Info</h2>
+                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">{t<string>("programs.detail.sections.additionalInfo")}</h2>
                       <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
                         <dl className="space-y-3">
                           {program.toefl_score && program.toefl_score > 0 && (
                             <div className="flex items-center gap-3">
-                              <dt className="text-[11px] font-bold uppercase tracking-widest text-slate-400 w-28 shrink-0">Min. TOEFL</dt>
+                              <dt className="text-[11px] font-bold uppercase tracking-widest text-slate-400 w-28 shrink-0">{t<string>("programs.detail.minToefl")}</dt>
                               <dd className="text-sm font-semibold text-slate-900 dark:text-white">{program.toefl_score}</dd>
                             </div>
                           )}
                           {program.address && (
                             <div className="flex items-center gap-3">
-                              <dt className="text-[11px] font-bold uppercase tracking-widest text-slate-400 w-28 shrink-0">Campus</dt>
+                              <dt className="text-[11px] font-bold uppercase tracking-widest text-slate-400 w-28 shrink-0">{t<string>("programs.detail.sections.campus")}</dt>
                               <dd className="text-sm font-semibold text-slate-900 dark:text-white">{program.address}</dd>
                             </div>
                           )}
@@ -746,10 +750,10 @@ export function ProgramDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-3xl font-bold mb-6">Career Outcomes</h2>
+                <h2 className="text-3xl font-bold mb-6">{t<string>("programs.detail.sections.careerOutcomesTitle")}</h2>
                 <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-12 text-center">
                   <Briefcase className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-                  <p className="font-semibold text-slate-700 dark:text-slate-300">Career outcome data is not yet available for this program.</p>
+                  <p className="font-semibold text-slate-700 dark:text-slate-300">{t<string>("programs.detail.sections.careerOutcomesEmpty")}</p>
                   <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Visit {university.name}'s website for graduate employment statistics.</p>
                 </div>
               </m.div>
@@ -769,7 +773,7 @@ export function ProgramDetailPage() {
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-1">
                     Apply to <span className="text-accent-tech">{university.name}</span>
                   </h2>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">Complete all steps to submit your application</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("apply.form.helper.completeSteps")}</p>
                 </div>
 
                 {submitStatus === "success" ? (
@@ -789,10 +793,10 @@ export function ProgramDetailPage() {
                 <div className="mb-8">
                   <div className="flex items-center gap-0">
                     {[
-                      { num: 1, label: "Personal" },
-                      { num: 2, label: "Academic" },
-                      { num: 3, label: "Documents" },
-                      { num: 4, label: "Review" },
+                      { num: 1, label: t<string>("apply.form.steps.personalInfo") },
+                      { num: 2, label: t<string>("apply.form.steps.academicBackground") },
+                      { num: 3, label: t<string>("apply.form.steps.uploadDocuments") },
+                      { num: 4, label: t<string>("apply.form.steps.reviewSubmit") },
                     ].map(({ num, label }, idx) => (
                       <div key={num} className="flex items-center flex-1 last:flex-none">
                         <div className="flex flex-col items-center gap-1.5">
@@ -878,7 +882,7 @@ export function ProgramDetailPage() {
               transition={{ duration: 0.5 }}
             >
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
-                You Might Also Like
+                {t<string>("programs.detail.sections.relatedTitle")}
               </h2>
               {relatedProgramsLoading ? (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -888,7 +892,7 @@ export function ProgramDetailPage() {
                 </div>
               ) : (
                 <HorizontalScrollCarousel
-                  title="Related Programs"
+                  title={t<string>("programs.detail.sections.relatedTitle")}
                   viewAllHref="/programs"
                   items={relatedPrograms.map((prog) => (
                     <ProgramCardModern
@@ -939,6 +943,7 @@ function ApplicationStep1({
   onSaveDraft: () => void;
   onNext: () => void;
 }) {
+  const { t } = useLanguage();
   const canProceed = (formData.fullName ?? "").trim().length >= 2 && /\S+@\S+\.\S+/.test(formData.email ?? "") && (formData.nationality ?? "").length > 0;
 
   return (
@@ -948,16 +953,16 @@ function ApplicationStep1({
           <User className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">Personal Information</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Used to identify your application</p>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.personalInfoTitle")}</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("apply.form.steps.personalInfoSubtitle")}</p>
         </div>
       </div>
 
       <div>
-        <label className={labelCls}>Full Name <span className="text-red-400">*</span></label>
+        <label className={labelCls}>{t<string>("apply.form.fields.fullNameLabel")} <span className="text-red-400">*</span></label>
         <input
           type="text"
-          placeholder="As it appears on your passport"
+          placeholder={t<string>("apply.form.placeholders.passportName")}
           value={formData.fullName}
           onChange={(e) => onChange("fullName", e.target.value)}
           className={inputCls}
@@ -966,10 +971,10 @@ function ApplicationStep1({
       </div>
 
       <div>
-        <label className={labelCls}>Email Address <span className="text-red-400">*</span></label>
+        <label className={labelCls}>{t<string>("apply.form.fields.emailLabel")} <span className="text-red-400">*</span></label>
         <input
           type="email"
-          placeholder="your@email.com"
+          placeholder={t<string>("apply.form.placeholders.email")}
           value={formData.email}
           onChange={(e) => onChange("email", e.target.value)}
           className={inputCls}
@@ -979,14 +984,14 @@ function ApplicationStep1({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelCls}>Nationality <span className="text-red-400">*</span></label>
+          <label className={labelCls}>{t<string>("apply.form.fields.nationalityLabel")} <span className="text-red-400">*</span></label>
           <div className="relative">
             <select
               value={formData.nationality}
               onChange={(e) => onChange("nationality", e.target.value)}
               className={`${inputCls} appearance-none cursor-pointer pr-10`}
             >
-              <option value="">Select nationality…</option>
+              <option value="">{t<string>("apply.form.placeholders.selectNationality")}</option>
               {NATIONALITIES.map((n) => (
                 <option key={n} value={n}>{n}</option>
               ))}
@@ -995,7 +1000,7 @@ function ApplicationStep1({
           </div>
         </div>
         <div>
-          <label className={labelCls}>Phone Number</label>
+          <label className={labelCls}>{t<string>("apply.form.fields.phoneLabel")}</label>
           <input
             type="tel"
             placeholder="+1 234 567 8900"
@@ -1009,14 +1014,14 @@ function ApplicationStep1({
 
       <div className="flex gap-3 pt-2">
         <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
-          Save Draft
+          {t<string>("apply.form.saveDraft")}
         </button>
         <button
           onClick={onNext}
           disabled={!canProceed}
           className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 text-white text-sm font-bold hover:bg-accent-tech transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Continue <ArrowRightIcon className="w-4 h-4" />
+          {t<string>("apply.form.continue")} <ArrowRightIcon className="w-4 h-4" />
         </button>
       </div>
     </div>
@@ -1036,6 +1041,7 @@ function ApplicationStep2({
   onNext: () => void;
   onPrev: () => void;
 }) {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
   const canProceed = (formData.lastDegree ?? "").trim().length >= 2;
 
@@ -1046,13 +1052,13 @@ function ApplicationStep2({
           <GraduationCapIcon className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">Academic Background</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Your education history</p>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.academicBackgroundTitle")}</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("apply.form.steps.academicBackgroundSubtitle")}</p>
         </div>
       </div>
 
       <div>
-        <label className={labelCls}>Highest Degree <span className="text-red-400">*</span></label>
+        <label className={labelCls}>{t<string>("apply.form.fields.highestDegree")} <span className="text-red-400">*</span></label>
         <div className="relative">
           <select
             value={formData.lastDegree}
@@ -1060,11 +1066,11 @@ function ApplicationStep2({
             className={`${inputCls} appearance-none cursor-pointer pr-10`}
           >
             <option value="">Select your highest degree…</option>
-            <option value="High School Diploma">High School Diploma</option>
-            <option value="Associate Degree">Associate Degree</option>
-            <option value="Bachelor's Degree">Bachelor's Degree</option>
-            <option value="Master's Degree">Master's Degree</option>
-            <option value="PhD / Doctorate">PhD / Doctorate</option>
+            <option value="High School Diploma">{t<string>("apply.form.degreeOptions.highSchool")}</option>
+            <option value="Associate Degree">{t<string>("apply.form.degreeOptions.associate")}</option>
+            <option value="Bachelor's Degree">{t<string>("apply.form.degreeOptions.bachelor")}</option>
+            <option value="Master's Degree">{t<string>("apply.form.degreeOptions.master")}</option>
+            <option value="PhD / Doctorate">{t<string>("apply.form.degreeOptions.phd")}</option>
             <option value="Professional Degree (MD/JD/etc.)">Professional Degree (MD / JD / etc.)</option>
           </select>
           <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
@@ -1073,18 +1079,18 @@ function ApplicationStep2({
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className={labelCls}>GPA / Grade</label>
+          <label className={labelCls}>{t<string>("apply.form.fields.gpa")}</label>
           <input
             type="text"
-            placeholder="e.g. 3.8 / 4.0"
+            placeholder={t<string>("apply.form.placeholders.gpa")}
             value={formData.gpa}
             onChange={(e) => onChange("gpa", e.target.value)}
             className={inputCls}
           />
-          <p className="mt-1.5 text-[11px] text-slate-400">Leave blank if not applicable</p>
+          <p className="mt-1.5 text-[11px] text-slate-400">{t<string>("apply.form.gpaHint")}</p>
         </div>
         <div>
-          <label className={labelCls}>Graduation Year</label>
+          <label className={labelCls}>{t<string>("apply.form.fields.graduationYear")}</label>
           <div className="relative">
             <select
               value={formData.graduationYear}
@@ -1095,7 +1101,7 @@ function ApplicationStep2({
               {Array.from({ length: 20 }, (_, i) => currentYear - i).map((y) => (
                 <option key={y} value={String(y)}>{y}</option>
               ))}
-              <option value="Not yet graduated">Not yet graduated</option>
+              <option value="Not yet graduated">{t<string>("apply.form.degreeOptions.notGraduated")}</option>
             </select>
             <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
           </div>
@@ -1104,17 +1110,17 @@ function ApplicationStep2({
 
       <div className="flex gap-3 pt-2">
         <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
-          Save Draft
+          {t<string>("apply.form.saveDraft")}
         </button>
         <button onClick={onPrev} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
-          ← Back
+          ← {t<string>("leadForm.nav.back")}
         </button>
         <button
           onClick={onNext}
           disabled={!canProceed}
           className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 text-white text-sm font-bold hover:bg-accent-tech transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          Continue <ArrowRightIcon className="w-4 h-4" />
+          {t<string>("apply.form.continue")} <ArrowRightIcon className="w-4 h-4" />
         </button>
       </div>
     </div>
@@ -1134,17 +1140,18 @@ function ApplicationStep3({
   onNext: () => void;
   onPrev: () => void;
 }) {
+  const { t } = useLanguage();
   const docs = [
     {
       field: "passportFile" as const,
-      label: "Passport / ID Copy",
+      label: t<string>("apply.form.documents.passport"),
       hint: "Colour scan, valid for at least 6 months",
       icon: FileText,
       value: formData.passportFile,
     },
     {
       field: "transcriptFile" as const,
-      label: "Academic Transcript",
+      label: t<string>("apply.form.documents.transcript"),
       hint: "Official or certified copy from your institution",
       icon: GraduationCapIcon,
       value: formData.transcriptFile,
@@ -1158,7 +1165,7 @@ function ApplicationStep3({
           <Upload className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">Upload Documents</h3>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.uploadDocumentsTitle")}</h3>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">PDF, JPG or PNG · max 10 MB each</p>
         </div>
       </div>
@@ -1192,7 +1199,7 @@ function ApplicationStep3({
                 ? "bg-accent-tech/20 text-accent-tech"
                 : "bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-accent-primary/10 group-hover:text-accent-primary"
             }`}>
-              {value ? "Change" : "Browse"}
+              {value ? t<string>("apply.form.documents.change") : t<string>("apply.form.documents.browse")}
             </div>
             <input
               type="file"
@@ -1207,22 +1214,22 @@ function ApplicationStep3({
       <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/40 flex gap-3">
         <span className="text-lg leading-none">📋</span>
         <p className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
-          <strong>Documents can also be sent later.</strong> The admissions team will contact you with exact requirements after reviewing your initial application.
+          {t<string>("apply.form.documents.laterNote")}
         </p>
       </div>
 
       <div className="flex gap-3 pt-2">
         <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
-          Save Draft
+          {t<string>("apply.form.saveDraft")}
         </button>
         <button onClick={onPrev} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
-          ← Back
+          ← {t<string>("leadForm.nav.back")}
         </button>
         <button
           onClick={onNext}
           className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 text-white text-sm font-bold hover:bg-accent-tech transition-all"
         >
-          Review &amp; Submit <ArrowRightIcon className="w-4 h-4" />
+          {t<string>("apply.form.steps.reviewSubmit")} <ArrowRightIcon className="w-4 h-4" />
         </button>
       </div>
     </div>
@@ -1250,19 +1257,20 @@ function ApplicationStep4({
   onPrev: () => void;
   onSubmit: () => void;
 }) {
+  const { t } = useLanguage();
   const isSubmitting = submitStatus === "submitting";
   const canSubmit = !isSubmitting && (turnstileSiteKey ? Boolean(turnstileToken) : true);
 
   const reviewRows = [
-    { label: "Full Name", value: formData.fullName },
-    { label: "Email", value: formData.email },
-    { label: "Nationality", value: formData.nationality },
-    { label: "Phone", value: formData.phone || "—" },
-    { label: "Highest Degree", value: formData.lastDegree },
-    { label: "GPA", value: formData.gpa || "—" },
-    { label: "Grad. Year", value: formData.graduationYear || "—" },
-    { label: "Passport", value: formData.passportFile || "To be provided" },
-    { label: "Transcript", value: formData.transcriptFile || "To be provided" },
+    { label: t<string>("apply.form.fields.fullNameLabel"), value: formData.fullName },
+    { label: t<string>("apply.form.fields.email"), value: formData.email },
+    { label: t<string>("apply.form.fields.nationalityLabel"), value: formData.nationality },
+    { label: t<string>("apply.form.fields.phoneLabel"), value: formData.phone || "—" },
+    { label: t<string>("apply.form.fields.highestDegree"), value: formData.lastDegree },
+    { label: t<string>("apply.form.fields.gpa"), value: formData.gpa || "—" },
+    { label: t<string>("apply.form.fields.graduationYear"), value: formData.graduationYear || "—" },
+    { label: t<string>("apply.form.documents.passport"), value: formData.passportFile || "To be provided" },
+    { label: t<string>("apply.form.documents.transcript"), value: formData.transcriptFile || "To be provided" },
   ];
 
   return (
@@ -1272,14 +1280,14 @@ function ApplicationStep4({
           <Send className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">Review &amp; Submit</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Double-check everything before sending</p>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.reviewSummary")}</h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("apply.form.steps.reviewSubtitle")}</p>
         </div>
       </div>
 
       <div className="rounded-xl border border-slate-200 dark:border-slate-700/80 overflow-hidden">
         <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-800/60">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">Your Application Summary</p>
+          <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{t<string>("apply.form.steps.applicationSummary")}</p>
         </div>
         <div className="divide-y divide-slate-100 dark:divide-slate-800">
           {reviewRows.map(({ label, value }) => (
@@ -1293,7 +1301,7 @@ function ApplicationStep4({
 
       {turnstileSiteKey && (
         <div className="space-y-2">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">Security Check</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{t<string>("apply.form.steps.securityCheck")}</p>
           <TurnstileWidget siteKey={turnstileSiteKey} onTokenChange={onTurnstileChange} />
         </div>
       )}
@@ -1307,10 +1315,10 @@ function ApplicationStep4({
 
       <div className="flex gap-3 pt-2">
         <button onClick={onSaveDraft} disabled={isSubmitting} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all disabled:opacity-40">
-          Save Draft
+          {t<string>("apply.form.saveDraft")}
         </button>
         <button onClick={onPrev} disabled={isSubmitting} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all disabled:opacity-40">
-          ← Back
+          ← {t<string>("leadForm.nav.back")}
         </button>
         <button
           onClick={onSubmit}
@@ -1318,9 +1326,9 @@ function ApplicationStep4({
           className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-accent-primary text-ink text-sm font-black hover:brightness-105 hover:shadow-[0_8px_24px_rgba(212,175,55,0.35)] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >
           {isSubmitting ? (
-            <><Loader2 className="h-4 w-4 animate-spin" /> Submitting…</>
+            <><Loader2 className="h-4 w-4 animate-spin" /> {t<string>("quiz.submitting")}</>
           ) : (
-            <><Send className="h-4 w-4" /> Submit Application</>
+            <><Send className="h-4 w-4" /> {t<string>("apply.form.submit")}</>
           )}
         </button>
       </div>
@@ -1329,6 +1337,8 @@ function ApplicationStep4({
 }
 
 function ApplicationSuccess({ programName, onBackToProgram }: { programName: string; onBackToProgram: () => void }) {
+  const { t } = useLanguage();
+
   return (
     <m.div
       initial={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -1345,7 +1355,7 @@ function ApplicationSuccess({ programName, onBackToProgram }: { programName: str
           <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-accent-primary/20 border border-accent-primary/30">
             <CheckCircle2 className="h-8 w-8 text-accent-primary" />
           </div>
-          <h3 className="text-2xl font-black text-white mb-2">Application Sent! 🎉</h3>
+          <h3 className="text-2xl font-black text-white mb-2">{t<string>("apply.form.applicationSent")} 🎉</h3>
           <p className="text-brand-steel-200 dark:text-brand-steel-300 mb-1 text-sm">
             Your application for <strong className="text-white">{programName}</strong> has been received.
           </p>

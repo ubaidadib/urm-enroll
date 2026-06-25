@@ -31,7 +31,7 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative py-32 px-6 overflow-hidden bg-linear-to-b from-bg-primary to-bg-secondary"
+      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -52,7 +52,7 @@ export function CaseStudies() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className={`mb-20 ${dir === "rtl" ? "text-right" : "text-left"}`}
+          className={`page-section-header-gap ${dir === "rtl" ? "text-right" : "text-left"}`}
         >
           <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6" style={{ background: "rgba(0,184,217,0.08)", border: "1px solid rgba(0,184,217,0.25)" }}>
             <ShieldCheck className="w-4 h-4" style={{ color: "rgb(0,184,217)" }} />
@@ -61,11 +61,11 @@ export function CaseStudies() {
             </span>
           </div>
           
-          <h2 id="case-studies-title" className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight text-text-primary">
+          <h2 id="case-studies-title" className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-text-primary">
             {t<string>("caseStudies.title")}
           </h2>
           
-          <p className="text-xl max-w-3xl leading-relaxed text-text-secondary">
+          <p className="text-xl max-w-3xl leading-relaxed text-text-muted">
             {t<string>("caseStudies.description")}
           </p>
         </m.div>
@@ -88,7 +88,7 @@ export function CaseStudies() {
                 className="group relative h-full"
               >
                 {/* Main Card */}
-                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden ${dir === "rtl" ? "text-right" : "text-left"}`} style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgb(var(--border-default) / 0.75)" }}>
+                <div className={`relative h-full flex flex-col p-6 rounded-2xl transition-all duration-500 overflow-hidden surface-glass-subtle ${dir === "rtl" ? "text-right" : "text-left"}`}>
                   
                   {/* Subtle Top-Right Arrow for external feel */}
                   <div className={`absolute top-8 ${dir === "rtl" ? "left-8" : "right-8"} opacity-20 group-hover:opacity-100 group-hover:text-accent-tech transition-all`}>
@@ -96,7 +96,7 @@ export function CaseStudies() {
                   </div>
 
                   {/* Icon Container */}
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-inner transition-transform duration-500 group-hover:scale-110" style={{ background: "rgba(5,10,24,0.8)", border: "1px solid rgba(212,175,55,0.15)" }}>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8 shadow-inner transition-transform duration-500 group-hover:scale-110 bg-bg-secondary border border-border/60">
                     <Icon className={`w-7 h-7 ${visual.color}`} strokeWidth={1.5} />
                   </div>
 
@@ -114,13 +114,13 @@ export function CaseStudies() {
                   </div>
 
                   {/* Body Text */}
-                  <p className="text-sm leading-relaxed mb-10 flex-grow text-text-secondary">
+                  <p className="text-sm leading-relaxed mb-10 flex-grow text-text-muted">
                     {study.summary}
                   </p>
 
                   {/* Impact Footer (Heavy Contrast) */}
                   <div className="mt-auto pt-8 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
-                    <div className="text-[10px] font-bold text-text-muted uppercase tracking-[0.2em] mb-3">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
                       {t<string>("caseStudies.coreOutcome")}
                     </div>
                     <div className={`text-xl font-black ${visual.color} tracking-tight`}>
@@ -145,10 +145,10 @@ export function CaseStudies() {
           className="mt-20 pt-10 flex flex-wrap justify-center gap-12 opacity-30 hover:opacity-80 transition-all duration-700"
           style={{ borderTop: "1px solid rgba(212,175,55,0.12)" }}
         >
-          <div className="flex items-center gap-2 text-text-muted text-xs font-black uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
             <Briefcase className="w-4 h-4" /> {t<string>("caseStudies.trustVerified")}
           </div>
-          <div className="flex items-center gap-2 text-text-muted text-xs font-black uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
             <Target className="w-4 h-4" /> {t<string>("caseStudies.trustAudited")}
           </div>
         </m.div>

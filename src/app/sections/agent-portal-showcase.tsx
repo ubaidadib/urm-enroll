@@ -87,7 +87,7 @@ export function AgentPortalShowcase() {
 
   return (
     <section
-      className="py-28 bg-bg-secondary relative overflow-hidden transition-colors duration-500"
+      className="py-16 sm:py-28 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500"
       aria-labelledby="agent-portal-heading"
     >
       {/* Ambient */}
@@ -97,17 +97,17 @@ export function AgentPortalShowcase() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         {/* Header */}
         <div className={`text-center mb-20 ${isRtl ? "rtl-text" : ""}`}>
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-bg-surface border border-border rounded-full mb-6 shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full mb-6 shadow-sm"
           >
             <LayoutDashboard className="w-4 h-4 text-blue-500" />
-            <span className="text-xs font-bold uppercase tracking-widest text-text-secondary">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
               {t<string>("agentPortal.badge")}
             </span>
           </m.div>
@@ -118,7 +118,7 @@ export function AgentPortalShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-text-primary mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight"
           >
             {t<string>("agentPortal.title")}
           </m.h2>
@@ -128,7 +128,7 @@ export function AgentPortalShowcase() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
           >
             {t<string>("agentPortal.description")}
           </m.p>
@@ -156,8 +156,8 @@ export function AgentPortalShowcase() {
                 transition={{ delay: 0.1 + index * 0.08 }}
                 className={`relative rounded-3xl border overflow-hidden transition-all ${
                   tier.highlighted
-                    ? "bg-bg-surface border-blue-200 dark:border-blue-500/20 shadow-xl ring-1 ring-blue-100 dark:ring-blue-500/10"
-                    : "bg-bg-surface border-border shadow-sm hover:shadow-md"
+                    ? "bg-white dark:bg-slate-900 border-blue-200 dark:border-blue-500/20 shadow-xl ring-1 ring-blue-100 dark:ring-blue-500/10"
+                    : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md"
                 }`}
               >
                 {tier.highlighted && (
@@ -168,10 +168,10 @@ export function AgentPortalShowcase() {
                   {/* Tier name + badge */}
                   <div className="flex items-center justify-between mb-6">
                     <div>
-                      <h4 className="text-lg font-black text-text-primary">
+                      <h4 className="text-lg font-black text-slate-900 dark:text-white">
                         {tier.name[lang]}
                       </h4>
-                      <p className="text-xs font-semibold text-text-muted mt-0.5">
+                      <p className="text-xs font-semibold text-slate-400 mt-0.5">
                         {tier.volume[lang]}
                       </p>
                     </div>
@@ -190,7 +190,7 @@ export function AgentPortalShowcase() {
                     >
                       {tier.commission}
                     </span>
-                    <span className="text-sm font-bold text-text-muted ml-2">
+                    <span className="text-sm font-bold text-slate-400 ml-2">
                       {t<string>("agentPortal.tiers.perPlacement")}
                     </span>
                   </div>
@@ -203,7 +203,7 @@ export function AgentPortalShowcase() {
                           className="w-4 h-4 shrink-0"
                           style={{ color: tier.color }}
                         />
-                        <span className="text-sm text-text-secondary">
+                        <span className="text-sm text-slate-600 dark:text-slate-400">
                           {feature}
                         </span>
                       </li>
@@ -228,15 +228,15 @@ export function AgentPortalShowcase() {
           </h3>
 
           {/* Mock dashboard card */}
-          className="rounded-3xl bg-bg-surface border border-border shadow-xl overflow-hidden">
+          <div className="rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
             {/* Dashboard top bar */}
-              className="flex items-center justify-between px-6 py-4 border-b border-border/60">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-red-400" />
                 <div className="w-3 h-3 rounded-full bg-amber-400" />
                 <div className="w-3 h-3 rounded-full bg-emerald-400" />
               </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 bg-bg-secondary rounded-lg">
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-lg">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
                   {t<string>("agentPortal.dashboard.live")}
@@ -248,14 +248,14 @@ export function AgentPortalShowcase() {
             </div>
 
             {/* Stats row */}
-              className="grid grid-cols-2 md:grid-cols-4 divide-x divide-border/60">
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-slate-800">
               {PIPELINE_STATS.map(({ key, value, icon: Icon, color }) => (
                 <div key={key} className="p-6 text-center">
                   <Icon className="w-5 h-5 mx-auto mb-3" style={{ color }} />
-                  <div className="text-2xl font-black text-text-primary mb-1 tabular-nums">
+                  <div className="text-2xl font-black text-slate-900 dark:text-white mb-1 tabular-nums">
                     {value}
                   </div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-text-muted">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
                     {t<string>(`agentPortal.dashboard.stats.${key}`)}
                   </div>
                 </div>
@@ -263,8 +263,8 @@ export function AgentPortalShowcase() {
             </div>
 
             {/* Simulated pipeline rows */}
-              <div className="border-t border-border/60 px-6 py-5">
-              <div className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-4">
+            <div className="border-t border-slate-100 dark:border-slate-800 px-6 py-5">
+              <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">
                 {t<string>("agentPortal.dashboard.recentLabel")}
               </div>
               <div className="space-y-2.5">
@@ -275,10 +275,10 @@ export function AgentPortalShowcase() {
                 ].map((row) => (
                   <div
                     key={row.label.en}
-                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-bg-secondary border border-border/40"
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/3 border border-slate-100 dark:border-white/5"
                   >
                     <div className={`w-2 h-2 rounded-full ${row.status} shrink-0`} />
-                    <span className="text-sm font-medium text-text-secondary">
+                    <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                       {row.label[lang]}
                     </span>
                   </div>
@@ -308,15 +308,15 @@ export function AgentPortalShowcase() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 + index * 0.07 }}
-                className="p-6 rounded-2xl bg-bg-surface border border-border hover:border-blue-200 dark:hover:border-blue-500/20 hover:shadow-md transition-all group"
+                className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-500/20 hover:shadow-md transition-all group"
               >
                 <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <Icon className="w-5 h-5 text-blue-500" />
                 </div>
-                <h4 className="text-sm font-black text-text-primary mb-1.5">
+                <h4 className="text-sm font-black text-slate-900 dark:text-white mb-1.5">
                   {t<string>(`agentPortal.features.items.${key}.title`)}
                 </h4>
-                <p className="text-xs text-text-secondary leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
                   {t<string>(`agentPortal.features.items.${key}.description`)}
                 </p>
               </m.div>
@@ -334,13 +334,13 @@ export function AgentPortalShowcase() {
           <button
             type="button"
             onClick={openPartnershipModal}
-            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
+            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl btn-gold-primary text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <Zap className="w-4 h-4 text-blue-400 dark:text-blue-600" />
             <span>{t<string>("agentPortal.cta")}</span>
             <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />
           </button>
-          <p className="mt-4 text-xs font-semibold text-text-muted flex items-center justify-center gap-2">
+          <p className="mt-4 text-xs font-semibold text-slate-400 flex items-center justify-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             {t<string>("agentPortal.ctaSub")}
           </p>

@@ -13,7 +13,7 @@ export function AboutPage() {
   const { t } = useLanguage();
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
+    <main className="min-h-screen section-gradient">
       <SeoManager
         title={t<string>("seo.sections.founder.title")}
         description={t<string>("seo.sections.founder.description")}
@@ -25,16 +25,16 @@ export function AboutPage() {
       />
 
       {/* --- Section 1: Hero --- */}
-      <div className="relative pt-32 pb-20 px-6 overflow-hidden border-b border-border/60 bg-linear-to-b from-bg-primary to-bg-secondary">
+      <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 h-[37.5rem] w-[37.5rem] rounded-full blur-[150px] opacity-10 bg-accent-tech/15" />
-          <div className="absolute bottom-1/4 right-1/4 h-[31.25rem] w-[31.25rem] rounded-full blur-[150px] opacity-8 bg-accent-primary/15" />
-          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(var(--grid),0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--grid),0.18)_1px,transparent_1px)] bg-[size:72px_72px]" />
+          <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
+          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
+          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="page-hero-inner">
 
-          <div className="mb-10">
+          <div className="page-hero-crumb-gap">
             <Breadcrumbs
               items={[
                 { label: t<string>("common.home"), href: "/" },
@@ -43,19 +43,17 @@ export function AboutPage() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Left Content */}
-            <div className="max-w-2xl">
+          <div className="page-hero-grid">
+            <div className="page-hero-main">
               <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-8"
-                style={{ background: "rgb(var(--bg-surface) / 0.8)", border: "1px solid rgb(var(--accent-tech) / 0.22)" }}
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full page-hero-badge-gap"
+                style={{ background: "rgba(0,184,217,0.08)", border: "1px solid rgba(0,184,217,0.25)" }}
               >
-                <Users className="w-4 h-4 text-accent-tech" />
-                <span className="text-xs font-bold uppercase tracking-widest text-accent-tech">
+                <Users className="w-4 h-4" style={{ color: "rgb(0,184,217)" }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(0,184,217)" }}>
                   {t<string>("about.badge")}
                 </span>
               </m.div>
@@ -64,7 +62,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight text-text-primary"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 sm:mb-5 lg:mb-4 leading-[1.1] tracking-tight text-text-primary"
               >
                 {t<string>("about.title")}
               </m.h1>
@@ -73,7 +71,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-xl mb-10 leading-relaxed max-w-lg text-text-muted"
+                className="text-base sm:text-lg md:text-xl mb-5 lg:mb-6 leading-relaxed text-text-muted"
               >
                 {t<string>("about.description")}
               </m.p>
@@ -92,11 +90,11 @@ export function AboutPage() {
                 ].map(({ value, label, icon: Icon, color }, i) => (
                   <div
                     key={i}
-                    className="p-5 rounded-2xl transition-all duration-300 bg-bg-surface/85 border border-border/70 shadow-sm hover:border-accent-primary/30"
+                    className="p-5 rounded-2xl surface-glass-subtle transition-all duration-300"
                   >
-                    <Icon className={`w-4 h-4 mb-2 ${color}`} />
-                    <div className="text-2xl font-bold text-accent-primary">{value}</div>
-                    <div className="text-[10px] font-semibold uppercase tracking-wide mt-0.5 line-clamp-2 text-text-muted">{label}</div>
+                    <Icon className="w-4 h-4 mb-2" style={{ color }} />
+                    <div className="text-2xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
+                    <div className="text-[10px] font-semibold uppercase tracking-wide mt-0.5 line-clamp-2 text-text-disabled">{label}</div>
                   </div>
                 ))}
               </m.div>
@@ -107,14 +105,14 @@ export function AboutPage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="relative hidden lg:block"
+              className="page-hero-aside relative hidden lg:block"
             >
-              <div className="relative aspect-square">
-                <div className="absolute inset-0 bg-linear-to-br from-accent-tech/20 to-accent-success/20 rounded-full blur-[80px]" />
+              <div className="relative aspect-[4/3] max-h-[280px] w-full max-w-sm ml-auto">
+                <div className="absolute inset-0 bg-linear-to-br from-accent-tech/20 to-accent-success/20 rounded-full blur-[60px]" />
 
-                 <div className="relative w-full h-full rounded-[3rem] backdrop-blur-md shadow-2xl p-10 flex items-center justify-center overflow-hidden bg-bg-surface/70 border border-border/70">
-                   <div className="text-accent-primary/20">
-                      <Building2 className="w-64 h-64 opacity-40" />
+                <div className="relative w-full h-full rounded-[2rem] backdrop-blur-md shadow-2xl p-8 flex items-center justify-center overflow-hidden surface-glass-subtle">
+                   <div style={{ color: "rgba(212,175,55,0.12)" }}>
+                      <Building2 className="w-40 h-40 opacity-40" />
                    </div>
 
                    {[
@@ -127,8 +125,8 @@ export function AboutPage() {
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: pin.delay, type: "spring" }}
-                        className="absolute w-6 h-6 rounded-full shadow-lg"
-                        style={{ background: "rgb(var(--accent-primary))", border: "4px solid rgb(var(--bg-primary))", top: pin.top, left: pin.left }}
+                        className="absolute w-6 h-6 rounded-full shadow-lg bg-accent-primary border-4 border-bg-primary"
+                        style={{ top: pin.top, left: pin.left }}
                       />
                     ))}
                 </div>

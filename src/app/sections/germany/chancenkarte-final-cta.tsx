@@ -9,7 +9,7 @@ export function ChancenkarteFinalCta() {
   const localizedPath = useLocalizedPath();
 
   return (
-    <section className="py-24 md:py-32 px-6 bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500" dir={dir}>
+    <section className="page-section-y px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500" dir={dir}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -36,7 +36,7 @@ export function ChancenkarteFinalCta() {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             to={localizedPath("/chancenkarte/eligibility")}
-            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:-translate-y-0.5 hover:shadow-xl transition-all"
+            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-xl btn-gold-primary font-bold hover:-translate-y-0.5 hover:shadow-xl transition-all"
           >
             {t<string>("chancenkarte.finalCta.primary")}
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-transform" />

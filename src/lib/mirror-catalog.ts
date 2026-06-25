@@ -206,18 +206,24 @@ export async function bootstrapMirrorCatalogCache(): Promise<void> {
   };
 
   try {
-    const [universitiesPayload, coursesPayload] = await Promise.all([
-      fetchJson<CatalogResponse<Record<string, unknown>>>("/api/catalog/universities?page=1&pageSize=500&includePrograms=true"),
-      fetchJson<CatalogResponse<Record<string, unknown>>>("/api/catalog/courses?page=1&pageSize=5000"),
-    ]);
+    const universitiesPayload = await fetchJson<CatalogResponse<Record<string, unknown>>>(
+      "/api/catalog/universities?page=1&pageSize=500&includePrograms=true",
+    );
 
     const universities = Array.isArray(universitiesPayload.data)
       ? universitiesPayload.data.map(toMirrorUniversity)
       : [];
 
-    const programs = Array.isArray(coursesPayload.data)
-      ? coursesPayload.data.map(toMirrorProgram)
-      : [];
+    const programs = universities.flatMap((university) =>
+      university.programs.map((program) =>
+        toMirrorProgram({
+          ...program,
+          name: program.name,
+          title: program.name,
+          countryCode: university.countryCode || university.country,
+        } as Record<string, unknown>),
+      ),
+    );
 
     window.__URM_MIRROR_UNIVERSITIES__ = universities;
     window.__URM_MIRROR_PROGRAMS__ = programs;

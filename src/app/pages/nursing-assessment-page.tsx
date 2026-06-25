@@ -7,9 +7,9 @@ import { useLanguage } from "@/i18n/language-context";
 const TOTAL_QUESTIONS = nursingQuestions.length;
 
 const DIFFICULTY_COLORS = {
-  easy: "bg-green-100 text-green-800 border-green-200",
-  medium: "bg-amber-100 text-amber-800 border-amber-200",
-  hard: "bg-red-100 text-red-800 border-red-200",
+  easy: "bg-green-100 text-green-800 border-green-200 dark:bg-green-950/50 dark:text-green-300 dark:border-green-800",
+  medium: "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800",
+  hard: "bg-red-100 text-red-800 border-red-200 dark:bg-red-950/50 dark:text-red-300 dark:border-red-800",
 };
 
 type AssessmentLocale = 'en' | 'de' | 'ar';
@@ -111,7 +111,7 @@ export function NursingAssessmentPage() {
 
         <div className="page-container-narrow py-16">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
               {t('nursingAssessment.results.title')}
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">
@@ -133,7 +133,7 @@ export function NursingAssessmentPage() {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-4xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white">
                     {score}/{TOTAL_QUESTIONS}
                   </div>
                   <div className="text-sm text-slate-400">
@@ -200,7 +200,7 @@ export function NursingAssessmentPage() {
       <div className="page-container-narrow py-16">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-black text-slate-900 dark:text-white mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
             {t('nursingAssessment.heading')}
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400">

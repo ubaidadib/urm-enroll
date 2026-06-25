@@ -53,6 +53,7 @@ export function SavedPage() {
 
       <main className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
         <ContextualPageHeader
+          variant="listing"
           badge={t<string>("favorites.hero.badge")}
           title={t<string>("favorites.title")}
           description={t<string>("favorites.subtitle")}
@@ -70,7 +71,7 @@ export function SavedPage() {
           tabs={tabs}
           activeTab={tab}
           onChange={(id) => setTab(id as "universities" | "programs")}
-          stickyTopClass="top-24"
+          stickyTopClass="top-14 xl:top-24"
         />
 
         <section className="py-10">

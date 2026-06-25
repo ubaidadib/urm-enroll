@@ -94,7 +94,7 @@ export function GermanyWorkforceModule() {
   return (
     <section
       id="germany-workforce"
-      className="relative py-32 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+      className="relative py-16 sm:py-24 md:py-32 lg:py-20 xl:py-24 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* --- 1. Architectural Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -120,16 +120,16 @@ export function GermanyWorkforceModule() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- 2. Executive Header --- */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-24 items-end">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 xl:gap-16 mb-16 lg:mb-14 items-end">
           <div className={`${dir === "rtl" ? "lg:order-2 text-right" : ""}`}>
             <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full mb-8 shadow-sm"
+              className="inline-flex items-center gap-3 px-5 py-2.5 bg-bg-surface border border-border rounded-full mb-6 lg:mb-5 shadow-sm"
             >
               <Globe2 className="w-4 h-4 text-accent-tech" />
-              <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-widest">
+              <span className="text-xs font-bold text-text-primary uppercase tracking-widest">
                 {t<string>("workforce.badge")}
               </span>
             </m.div>
@@ -139,7 +139,7 @@ export function GermanyWorkforceModule() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white mb-6 leading-[1.1] tracking-tight"
+              className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-slate-900 dark:text-white mb-5 lg:mb-4 leading-[1.1] tracking-tight"
             >
               {t<string>("workforce.title")}
             </m.h2>
@@ -165,9 +165,9 @@ export function GermanyWorkforceModule() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + (index * 0.1) }}
-                  className="p-6 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 transition-all shadow-sm group text-center sm:text-left"
+                  className="p-6 rounded-2xl surface-card group text-center sm:text-left"
                 >
-                  <div className="text-3xl font-black text-slate-900 dark:text-white mb-1 group-hover:text-accent-tech transition-colors">
+                  <div className="text-3xl font-black text-text-primary mb-1 group-hover:text-accent-tech transition-colors">
                     {metric.value}
                   </div>
                   <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
@@ -210,7 +210,7 @@ export function GermanyWorkforceModule() {
                     transition={{ delay: index * 0.15 }}
                     className="relative group"
                   >
-                    <div className="relative h-full p-8 rounded-[2rem] glass-card-light hover:border-transparent transition-all hover:shadow-2xl overflow-hidden">
+                    <div className="relative h-full p-8 rounded-[2rem] surface-card hover:shadow-lg transition-all overflow-hidden">
                       <div className={`absolute inset-0 bg-linear-to-br ${visual.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                       
                       <div className="relative z-10 flex flex-col items-center text-center">
@@ -259,25 +259,25 @@ export function GermanyWorkforceModule() {
                   key={idx}
                   onClick={() => setActiveOpportunity(idx)}
                   className={`w-full text-left p-5 rounded-2xl transition-all duration-300 border-2 group ${
-                    isActive 
-                      ? "bg-slate-900 dark:bg-white border-slate-900 dark:border-white shadow-xl scale-105 z-10" 
-                      : "bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
+                    isActive
+                      ? "bg-accent-primary/10 border-accent-primary/40 shadow-lg scale-[1.02] z-10"
+                      : "bg-bg-surface border-border hover:border-border-strong"
                   }`}
                 >
                   <div className={`flex items-center gap-4 ${dir === 'rtl' ? 'flex-row-reverse text-right' : ''}`}>
-                    <div className={`p-3 rounded-xl transition-colors ${isActive ? "bg-white/10 dark:bg-slate-900/10 text-white dark:text-slate-900" : "bg-slate-100 dark:bg-slate-800 text-slate-500"}`}>
+                    <div className={`p-3 rounded-xl transition-colors ${isActive ? "bg-accent-primary/20 text-accent-primary" : "bg-bg-secondary text-text-muted"}`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="flex-1">
-                      <div className={`font-bold text-lg ${isActive ? "text-white dark:text-slate-900" : "text-slate-900 dark:text-white"}`}>
+                      <div className="font-bold text-lg text-text-primary">
                         {opp.title}
                       </div>
-                      <div className={`text-xs font-medium uppercase tracking-wider mt-1 ${isActive ? "text-slate-400 dark:text-slate-500" : "text-slate-500"}`}>
+                      <div className={`text-xs font-medium uppercase tracking-wider mt-1 ${isActive ? "text-text-muted" : "text-text-disabled"}`}>
                         {opp.metric}
                       </div>
                     </div>
                     {isActive && (
-                      <ChevronRight className={`w-5 h-5 ${isActive ? "text-white dark:text-slate-900" : "text-slate-400"} ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+                      <ChevronRight className={`w-5 h-5 text-accent-primary ${dir === 'rtl' ? 'rotate-180' : ''}`} />
                     )}
                   </div>
                 </button>
@@ -293,45 +293,45 @@ export function GermanyWorkforceModule() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
-                className="relative h-full min-h-125 rounded-[2.5rem] bg-slate-900 text-white overflow-hidden p-10 flex flex-col justify-center shadow-2xl"
+                className="relative h-full min-h-125 rounded-[2.5rem] surface-card-elevated overflow-hidden p-10 flex flex-col justify-center"
               >
-                {/* Fixed Background - CSS Gradient & Dots instead of URL */}
-                <div className="absolute inset-0 bg-linear-to-br from-accent-primary to-accent-tech opacity-20" />
-                <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent-success rounded-full blur-[100px] opacity-30" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-size-[32px_32px] opacity-50" />
+                {/* Decorative background */}
+                <div className="absolute inset-0 bg-linear-to-br from-accent-primary/15 to-accent-tech/10" />
+                <div className="absolute -top-24 -right-24 w-96 h-96 bg-accent-success/20 rounded-full blur-[100px]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_2px_2px,rgba(var(--border-default),0.35)_1px,transparent_0)] bg-size-[32px_32px] opacity-40 dark:opacity-50" />
 
                 <div className={`relative z-10 ${dir === 'rtl' ? 'text-right' : ''}`}>
-                  <div className={`w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-8 ${dir === 'rtl' ? 'ml-auto' : ''}`}>
+                  <div className={`w-16 h-16 rounded-2xl bg-accent-success/10 backdrop-blur-md border border-accent-success/25 flex items-center justify-center mb-8 ${dir === 'rtl' ? 'ml-auto' : ''}`}>
                     <Sparkles className="w-8 h-8 text-accent-success" />
                   </div>
 
-                  <h3 className="text-4xl font-bold mb-6">
+                  <h3 className="text-4xl font-bold mb-6 text-text-primary">
                     {opportunitiesRaw[activeOpportunity]?.title}
                   </h3>
                   
-                  <p className="text-xl text-slate-300 leading-relaxed mb-10 max-w-2xl">
+                  <p className="text-xl text-text-muted leading-relaxed mb-10 max-w-2xl">
                     {opportunitiesRaw[activeOpportunity]?.description}
                   </p>
 
                   {/* Compliance Items Preview */}
-                  <div className="grid grid-cols-2 gap-4 mb-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 sm:mb-10">
                     {complianceItems.slice(0, 2).map((item, i) => (
                       <div key={i} className={`flex items-center gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
-                        <span className="text-sm font-medium text-slate-200">{item}</span>
+                        <CheckCircle2 className="w-5 h-5 text-success shrink-0" />
+                        <span className="text-sm font-medium text-text-secondary">{item}</span>
                       </div>
                     ))}
                   </div>
 
                   <div className={`flex flex-wrap gap-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                    <Link to="/nursing-assessment" className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-colors flex items-center gap-2 group">
+                    <Link to="/nursing-assessment" className="px-8 py-4 btn-gold-primary rounded-xl font-bold transition-colors flex items-center gap-2 group">
                       {t<string>("workforce.cta")}
                       <ArrowRight className={`w-5 h-5 group-hover:translate-x-1 transition-transform ${dir === 'rtl' ? 'rotate-180' : ''}`} />
                     </Link>
                     
-                    <div className="px-8 py-4 rounded-xl border border-white/20 hover:bg-white/5 transition-colors flex items-center gap-2 cursor-default">
-                      <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                      <span className="font-medium text-emerald-400">{t<string>("workforce.guaranteedPlacement")}</span>
+                    <div className="px-8 py-4 rounded-xl border border-success/30 bg-success/5 hover:bg-success/10 transition-colors flex items-center gap-2 cursor-default">
+                      <ShieldCheck className="w-5 h-5 text-success" />
+                      <span className="font-medium text-success">{t<string>("workforce.guaranteedPlacement")}</span>
                     </div>
                   </div>
                 </div>

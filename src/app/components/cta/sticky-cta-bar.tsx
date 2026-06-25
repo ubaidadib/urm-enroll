@@ -87,7 +87,7 @@ export function StickyCTABar() {
                 rel="noopener noreferrer"
                 onClick={handleWhatsApp}
                 className="flex items-center justify-center min-w-12 h-12 rounded-xl bg-[#25D366]/10 text-[#25D366] transition-colors active:bg-[#25D366]/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
-                aria-label="WhatsApp"
+                aria-label={t<string>("globalCta.student.whatsapp")}
               >
                 <MessageCircle className="w-5 h-5" />
               </a>
@@ -132,7 +132,7 @@ export function StickyCTABar() {
                 rel="noopener noreferrer"
                 onClick={handleWhatsApp}
                 className="flex items-center justify-center min-w-10 h-10 rounded-xl bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366]/20 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366]"
-                aria-label="WhatsApp"
+                aria-label={t<string>("globalCta.student.whatsapp")}
               >
                 <MessageCircle className="w-5 h-5" />
               </a>

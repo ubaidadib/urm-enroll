@@ -8,7 +8,7 @@ export function FocusShell() {
 
   return (
     <div
-      className={`min-h-screen bg-bg-primary text-text-primary ${dir === "rtl" ? "font-arabic" : ""}`}
+      className={`relative min-h-screen overflow-x-hidden bg-bg-primary text-text-primary ${dir === "rtl" ? "font-arabic" : ""}`}
       dir={dir}
       lang={language}
     >
@@ -22,7 +22,7 @@ export function FocusShell() {
       </a>
       <ScrollToTop />
       <Header isCompact />
-      <main id="main-content" tabIndex={-1} className="relative z-10 pt-24 lg:pt-24">
+      <main id="main-content" tabIndex={-1} className="relative z-10 pt-14 xl:pt-24">
         <Outlet />
       </main>
     </div>

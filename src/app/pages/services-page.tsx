@@ -28,7 +28,7 @@ export function ServicesPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
+    <main className="min-h-screen section-gradient">
       <SeoManager
         title={t<string>("seo.sections.services.title")}
         description={t<string>("seo.sections.services.description")}
@@ -40,15 +40,15 @@ export function ServicesPage() {
       />
 
       {/* --- Hero Section --- */}
-      <div className="relative pt-32 pb-24 px-6 overflow-hidden border-b border-border/60 bg-linear-to-b from-bg-primary to-bg-secondary">
+      <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(rgba(var(--grid),0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--grid),0.18)_1px,transparent_1px)] bg-[size:72px_72px]" />
-          <div className="absolute top-0 right-0 h-[37.5rem] w-[37.5rem] rounded-full blur-[120px] opacity-10 bg-accent-tech/15" />
-          <div className="absolute bottom-0 left-0 h-[37.5rem] w-[37.5rem] rounded-full blur-[120px] opacity-8 bg-accent-primary/15" />
+          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+          <div className="absolute top-0 right-0 w-150 h-150 rounded-full blur-[120px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
+          <div className="absolute bottom-0 left-0 w-150 h-150 rounded-full blur-[120px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-10">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
             <Breadcrumbs
               items={[
                 { label: t<string>("common.home"), href: "/" },
@@ -57,16 +57,16 @@ export function ServicesPage() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-            <div className={`lg:col-span-7 ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
+          <div className="page-hero-grid">
+            <div className={`page-hero-main ${dir === 'rtl' ? 'text-right' : 'text-left'}`}>
               <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-8"
-                style={{ background: "rgb(var(--bg-surface) / 0.8)", border: "1px solid rgb(var(--accent-primary) / 0.22)" }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full page-hero-badge-gap"
+                style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
               >
-                <Sparkles className="w-4 h-4 text-accent-primary" />
-                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+                <Sparkles className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
                   {t<string>("services.badge")}
                 </span>
               </m.div>
@@ -75,7 +75,7 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight leading-[1.1] text-text-primary"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 lg:mb-5 tracking-tight leading-[1.1] text-text-primary"
               >
                 {t<string>("services.title")}
               </m.h1>
@@ -84,28 +84,28 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl leading-relaxed max-w-2xl text-text-muted"
+                className="text-base sm:text-lg md:text-xl leading-relaxed lg:max-w-none text-text-muted"
               >
                 {t<string>("services.description")}
               </m.p>
             </div>
 
-            <div className="lg:col-span-5 relative">
-              <div className="grid gap-4">
+            <div className="page-hero-aside relative">
+              <div className="grid gap-3">
                 {heroStats.map((stat, i) => (
                   <m.div
                     key={i}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + (i * 0.1) }}
-                    className={`flex items-center gap-5 p-5 rounded-2xl transition-all duration-300 hover:translate-x-1 bg-bg-surface/85 border border-border/70 shadow-sm hover:border-accent-primary/30 ${dir === 'rtl' ? 'flex-row-reverse text-right' : ''}`}
+                    className={`flex items-center gap-4 p-4 rounded-2xl surface-glass-subtle transition-all duration-300 hover:translate-x-1 ${dir === 'rtl' ? 'flex-row-reverse text-right' : ''}`}
                   >
                     <div className={`w-14 h-14 rounded-xl flex items-center justify-center ${stat.bg} border ${stat.border}`}>
                       <stat.icon className={`w-7 h-7 ${stat.color}`} />
                     </div>
                     <div>
                       <div className="text-2xl font-bold" style={{ color: "rgb(212,175,55)" }}>{stat.value}</div>
-                      <div className="text-sm font-medium uppercase tracking-wide" style={{ color: "rgb(105,133,166)" }}>{stat.label}</div>
+                      <div className="text-sm font-medium uppercase tracking-wide text-text-disabled">{stat.label}</div>
                     </div>
                   </m.div>
                 ))}

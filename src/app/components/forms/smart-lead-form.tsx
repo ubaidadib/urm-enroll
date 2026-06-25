@@ -437,7 +437,7 @@ export function SmartLeadForm() {
           <button
             type="button"
             onClick={resetForm}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold hover:shadow-lg transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl btn-gold-primary text-sm font-bold hover:shadow-lg transition-all"
           >
             {t<string>("leadForm.success.reset")}
           </button>

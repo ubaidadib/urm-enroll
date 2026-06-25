@@ -197,7 +197,7 @@ export function ChancenkarteEligibilityPage() {
         ]}
       />
 
-      <section className="relative isolate overflow-hidden pt-32 pb-20 px-6 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
+      <section className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -205,7 +205,8 @@ export function ChancenkarteEligibilityPage() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
           </div>
         </div>
-        <div className="max-w-6xl mx-auto">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
           <Breadcrumbs
             items={[
               { label: t<string>("common.home"), href: localizedPath("/") },
@@ -213,28 +214,29 @@ export function ChancenkarteEligibilityPage() {
               { label: "Eligibility", href: localizedPath("/chancenkarte/eligibility") },
             ]}
           />
+          </div>
 
           {phase !== "intro" && (
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">Quiz format</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.quizFormat")}</p>
                 <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
                   <Sparkles className="h-4 w-4 text-accent-primary-strong" />
-                  {isVariantB ? "Mission checkpoints" : "18 quick taps"}
+                  {isVariantB ? t<string>("eligibilityQuiz.intro.missionCheckpoints") : t<string>("eligibilityQuiz.intro.quickTaps")}
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">Time</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.time")}</p>
                 <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
                   <Clock3 className="h-4 w-4 text-accent-primary-strong" />
                   {t<string>("eligibilityQuiz.intro.estimatedTime")}
                 </p>
               </div>
               <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">Score model</p>
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.scoreModel")}</p>
                 <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
                   <BarChart3 className="h-4 w-4 text-accent-primary-strong" />
-                  Real points logic
+                  {t<string>("eligibilityQuiz.intro.realPointsLogic")}
                 </p>
               </div>
             </div>
@@ -453,7 +455,7 @@ export function ChancenkarteEligibilityPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ duration: 0.25 }}
-                className="fixed inset-x-4 top-24 z-[60] mx-auto max-w-md rounded-2xl border border-accent-primary/35 bg-[linear-gradient(145deg,#0b1530,#13295f)] px-4 py-3 text-white shadow-[0_30px_40px_-20px_rgba(11,21,48,0.8)]"
+                className="fixed inset-x-4 top-24 z-[60] mx-auto max-w-md rounded-2xl border border-accent-primary/35 surface-card-elevated px-4 py-3 text-text-primary shadow-[var(--card-shadow-hover)]"
               >
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 rounded-full bg-accent-primary/20 p-1.5">
@@ -461,13 +463,13 @@ export function ChancenkarteEligibilityPage() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold">{milestone.title}</p>
-                    <p className="mt-0.5 text-xs text-white/75">{milestone.subtitle}</p>
+                    <p className="mt-0.5 text-xs text-text-muted">{milestone.subtitle}</p>
                   </div>
                   <button
                     type="button"
                     onClick={() => setMilestone(null)}
-                    className="rounded-full p-1 text-white/70 transition hover:bg-white/10 hover:text-white"
-                    aria-label="Dismiss milestone"
+                    className="rounded-full p-1 text-text-muted transition hover:bg-bg-secondary hover:text-text-primary"
+                    aria-label={t<string>("eligibilityQuiz.result.dismissMilestone")}
                   >
                     <X className="h-4 w-4" />
                   </button>
@@ -574,15 +576,16 @@ function StickyMissionFooter({
   phase: MissionPhase;
   action: StickyAction | null;
 }) {
+  const { t } = useLanguage();
   if (!action || phase === "result") return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-accent-primary/20 bg-[linear-gradient(120deg,rgba(11,21,48,0.94),rgba(19,41,95,0.94))] p-3 backdrop-blur md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-bg-surface/95 dark:border-accent-primary/20 dark:bg-[linear-gradient(120deg,rgba(11,21,48,0.94),rgba(19,41,95,0.94))] p-3 backdrop-blur md:hidden">
       <div className="mx-auto flex max-w-4xl items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary">Mission control</p>
-          <p className="truncate text-sm font-semibold text-white">
-            {phase === "intro" ? "Start your mission" : "Continue to next checkpoint"}
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary">{t<string>("eligibilityQuiz.result.missionControl")}</p>
+          <p className="truncate text-sm font-semibold text-text-primary dark:text-white">
+            {phase === "intro" ? t<string>("eligibilityQuiz.result.startMission") : t<string>("eligibilityQuiz.result.continueCheckpoint")}
           </p>
         </div>
         <button

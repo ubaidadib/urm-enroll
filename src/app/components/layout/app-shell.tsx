@@ -30,7 +30,7 @@ export function AppShell() {
       </a>
       <ScrollToTop />
       <Header />
-      <main id="main-content" tabIndex={-1} className="relative z-10 pt-24 lg:pt-24 pb-16 lg:pb-20">
+      <main id="main-content" tabIndex={-1} className="relative z-10 pt-14 xl:pt-24 pb-0">
         <Outlet />
       </main>
       <Footer />

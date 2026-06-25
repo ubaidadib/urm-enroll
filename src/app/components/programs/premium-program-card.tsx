@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { m } from "motion/react";
 import { ArrowUpRight, Bookmark, BriefcaseBusiness, Coins, Sparkles, Timer, Trophy } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface PremiumProgramCardProps {
   id: string;
@@ -64,6 +65,7 @@ export function PremiumProgramCard({
   trending,
   onOpen,
 }: PremiumProgramCardProps) {
+  const { t } = useLanguage();
   const [saved, setSaved] = useState(false);
   const [compared, setCompared] = useState(false);
 
@@ -119,7 +121,7 @@ export function PremiumProgramCard({
         {/* Bottom overlay info */}
         <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
           <div>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">Salary Trajectory</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/70">{t<string>("card.program.salaryTrajectory")}</p>
             <p className="text-base font-bold text-white">{salaryRange}</p>
           </div>
           <div className="rounded-lg border border-white/30 bg-white/15 backdrop-blur-md px-2.5 py-1.5 text-xs font-semibold text-white">

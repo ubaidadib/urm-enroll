@@ -114,7 +114,7 @@ function ResultCard({
     <m.div
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="relative p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-md transition-shadow"
+      className="relative p-5 rounded-2xl surface-card overflow-hidden group hover:shadow-md transition-shadow"
     >
       <div
         className="absolute top-0 right-0 w-20 h-20 rounded-full opacity-10 blur-2xl -translate-y-6 translate-x-6"
@@ -179,7 +179,7 @@ export function WorkforceCalculator() {
   return (
     <section
       id="eligibility"
-      className="py-28 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-500"
+      className="py-28 bg-bg-primary relative overflow-hidden transition-colors duration-500"
       aria-labelledby="calculator-heading"
     >
       {/* Ambient */}
@@ -189,7 +189,7 @@ export function WorkforceCalculator() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         {/* Header */}
         <div className={`text-center mb-16 ${isRtl ? "rtl-text" : ""}`}>
           <m.div
@@ -305,7 +305,7 @@ export function WorkforceCalculator() {
           {/* ── RESULTS PANEL ── */}
           <div className="lg:col-span-7 space-y-6">
             {/* Primary Results Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ResultCard
                 icon={Euro}
                 label={t<string>("workforceCalculator.results.annualSalary")}
@@ -340,7 +340,7 @@ export function WorkforceCalculator() {
             <m.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm"
+              className="p-6 rounded-2xl surface-card shadow-sm"
             >
               <h4 className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-5">
                 {t<string>("workforceCalculator.timeline.title")}
@@ -406,7 +406,7 @@ export function WorkforceCalculator() {
             {/* CTA */}
             <Link
               to="/contact?topic=nursing&action=application&destination=Germany#contact-form"
-              className={`group flex items-center justify-center gap-3 w-full px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-[0.98] ${isRtl ? "flex-row-reverse" : ""}`}
+              className={`group flex items-center justify-center gap-3 w-full px-8 py-4 rounded-2xl btn-gold-primary text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-[0.98] ${isRtl ? "flex-row-reverse" : ""}`}
             >
               <span>{t<string>("workforceCalculator.cta")}</span>
               <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />

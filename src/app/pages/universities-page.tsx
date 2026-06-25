@@ -20,6 +20,7 @@ import { FilterDrawer } from "../components/ui/filter-drawer";
 import { FilterPanel } from "../components/ui/filter-panel";
 import { DiscoveryBridgeSection, buildDiscoveryQuery } from "../components/ui/discovery-nav";
 import { UNIVERSITIES, type University } from "@/data/universities";
+import { MIRROR_CATALOG_READY_EVENT } from "@/lib/mirror-catalog";
 import { trackPageView } from "@/utils/tracking";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -207,6 +208,7 @@ function UniversityDiscoveryCard({
   featured?: boolean;
 }) {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const flag = getCountryFlag(university.country, university.countryCode);
   const hasCoverPhoto = Boolean(university.coverPhoto);
   const hasCourses = university.hasCourses ?? university.programsCount > 0;
@@ -286,7 +288,7 @@ function UniversityDiscoveryCard({
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-brand-navy-800/85 backdrop-blur-sm border border-white/10">
             <GraduationCap className="w-3 h-3 text-accent-primary" />
             <span className="text-[11px] font-bold text-white">{university.programsCount}</span>
-            <span className="text-[10px] text-white/70 font-medium">programs</span>
+            <span className="text-[10px] text-white/70 font-medium">{t<string>("universities.listing.card.programs")}</span>
           </div>
         </div>
       </div>
@@ -309,17 +311,17 @@ function UniversityDiscoveryCard({
         <div className="flex flex-wrap gap-1.5 mb-4">
           {hasCourses ? (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/80 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20">
-              ✓ Courses available
+              ✓ {t<string>("universities.listing.card.coursesAvailable")}
             </span>
           ) : (
             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-              No active courses
+              {t<string>("universities.listing.card.noActiveCourses")}
             </span>
           )}
 
           {startingTuition !== null && (
             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-accent-primary/10 text-amber-700 border border-accent-primary/25 dark:text-accent-primary dark:border-accent-primary/20">
-              From {formatMoneyCompact(startingTuition, university.startingTuitionCurrency || "EUR")}/yr
+              {t<string>("universities.listing.card.fromPerYear").replace("{{amount}}", formatMoneyCompact(startingTuition, university.startingTuitionCurrency || "EUR"))}
             </span>
           )}
 
@@ -333,7 +335,7 @@ function UniversityDiscoveryCard({
         {/* Footer CTA */}
         <div className="flex items-center justify-between border-t border-slate-100 dark:border-[#1a2a45] pt-3.5">
           <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-            {university.city || university.country || "Global"}
+            {university.city || university.country || t<string>("common.global")}
           </p>
           <button
             type="button"
@@ -343,7 +345,7 @@ function UniversityDiscoveryCard({
               hover:bg-accent-tech hover:shadow-md hover:shadow-accent-tech/20
               transition-all duration-200"
           >
-            View
+            {t<string>("universities.listing.card.view")}
             <ArrowRight className="w-3 h-3" />
           </button>
         </div>
@@ -371,8 +373,15 @@ export function UniversitiesPage() {
   );
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [catalogVersion, setCatalogVersion] = useState(0);
 
   useEffect(() => { trackPageView({ page: "universities" }); }, []);
+
+  useEffect(() => {
+    const handleCatalogReady = () => setCatalogVersion((version) => version + 1);
+    window.addEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+    return () => window.removeEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+  }, []);
 
   // URL → state sync
   useEffect(() => {
@@ -408,11 +417,11 @@ export function UniversitiesPage() {
 
   const countries = useMemo(
     () => [...new Set(UNIVERSITIES.map((u) => u.country).filter((country) => Boolean(country && country.trim().length > 0)))].sort(),
-    []
+    [catalogVersion]
   );
   const types = useMemo(
     () => [...new Set(UNIVERSITIES.map((u) => u.type).filter((type) => Boolean(type && type.trim().length > 0)))].sort(),
-    []
+    [catalogVersion]
   );
   const countryCodeByName = useMemo(() => {
     const mapping = new Map<string, string>();
@@ -423,7 +432,7 @@ export function UniversitiesPage() {
       }
     }
     return mapping;
-  }, []);
+  }, [catalogVersion]);
   const trendingCountries = useMemo(() => {
     const counts = new Map<string, number>();
     for (const university of UNIVERSITIES) {
@@ -436,8 +445,8 @@ export function UniversitiesPage() {
       .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
       .slice(0, 6)
       .map(([country]) => country);
-  }, []);
-  const citiesCount = useMemo(() => new Set(UNIVERSITIES.map((u) => `${u.city},${u.country}`)).size, []);
+  }, [catalogVersion]);
+  const citiesCount = useMemo(() => new Set(UNIVERSITIES.map((u) => `${u.city},${u.country}`)).size, [catalogVersion]);
 
   const filteredCountryOptions = useMemo(() => {
     const q = filterSearchQuery.trim().toLowerCase();
@@ -460,11 +469,11 @@ export function UniversitiesPage() {
     if (sortBy === "name") r.sort((a, b) => a.name.localeCompare(b.name));
     else if (sortBy === "programs") r.sort((a, b) => b.programsCount - a.programsCount);
     return r;
-  }, [searchQuery, selectedCountry, selectedType, sortBy]);
+  }, [searchQuery, selectedCountry, selectedType, sortBy, catalogVersion]);
 
   const trendingUniversities = useMemo(
     () => [...UNIVERSITIES].sort((a, b) => b.programsCount - a.programsCount).slice(0, 8),
-    []
+    [catalogVersion]
   );
 
   const totalPages = Math.ceil(filteredUniversities.length / ITEMS_PER_PAGE);
@@ -491,39 +500,30 @@ export function UniversitiesPage() {
         path="/universities"
       />
 
-      <main className="relative min-h-screen overflow-x-hidden bg-bg-primary text-text-primary transition-colors duration-500">
+      <main className="relative min-h-screen overflow-x-hidden bg-bg-primary">
 
         {/* HERO */}
-        <section className="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-20">
+        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
           <div className="pointer-events-none absolute inset-0">
-            <m.div
-              className="absolute -top-32 -left-24 w-[38rem] h-[38rem] rounded-full bg-accent-tech/12 blur-[130px]"
-              animate={{ scale: [1, 1.08, 1], opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <m.div
-              className="absolute -top-16 right-0 w-[44rem] h-[44rem] rounded-full bg-accent-primary/9 blur-[150px]"
-              animate={{ scale: [1, 1.12, 1], opacity: [0.55, 0.9, 0.55] }}
-              transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            />
-            <div className="absolute bottom-0 left-1/3 w-[30rem] h-[22rem] rounded-full bg-accent-steel/7 blur-[110px]" />
+            <div className="absolute top-0 right-0 w-[32rem] h-[32rem] rounded-full bg-accent-tech/8 blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] rounded-full bg-accent-primary/8 blur-[120px]" />
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] premium-grid" />
           </div>
-          <div className="pointer-events-none absolute inset-0 premium-grid opacity-28" />
 
-          <div className="relative z-10 mx-auto w-full max-w-[1540px] px-5 sm:px-8 lg:px-12">
-            <div className="mb-8"><Breadcrumbs /></div>
+          <div className="page-hero-inner w-full">
+            <div className="page-hero-crumb-gap"><Breadcrumbs /></div>
 
-            <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              <div className="lg:col-span-7">
+            <div className="page-hero-grid">
+              <div className="page-hero-main">
                 <m.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full
                     border border-slate-200 dark:border-slate-700/80
-                    bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl mb-7"
+                    bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl page-hero-badge-gap"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-accent-tech" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                  <Sparkles className="w-4 h-4 text-accent-tech" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                     {t<string>("universities.listing.hero.badge")}
                   </span>
                 </m.div>
@@ -532,8 +532,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 22 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[clamp(2.4rem,5.5vw,4.6rem)] font-black tracking-tight leading-[1.04]
-                    text-slate-900 dark:text-white"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white"
                 >
                   {t<string>("universities.listing.hero.title")}
                 </m.h1>
@@ -542,7 +541,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="mt-5 text-[clamp(1rem,1.4vw,1.18rem)] text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed"
+                  className="mt-3 lg:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
                 >
                   {t<string>("universities.listing.hero.subtitle")}
                 </m.p>
@@ -551,7 +550,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  className="mt-8"
+                  className="mt-5 lg:mt-5"
                 >
                   <div className="relative flex items-center gap-3
                     rounded-2xl border border-slate-200 dark:border-slate-700/80
@@ -586,9 +585,9 @@ export function UniversitiesPage() {
                       type="button"
                       onClick={() => document.getElementById("universities-results")?.scrollIntoView({ behavior: "smooth" })}
                       className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 rounded-xl
-                        bg-slate-900 dark:bg-white text-white dark:text-slate-900
+                        btn-gold-primary
                         text-sm font-bold transition-all duration-200
-                        hover:bg-accent-tech hover:text-white dark:hover:bg-accent-tech dark:hover:text-white"
+                        hover:opacity-90"
                     >
                       {t<string>("search.button.label")}
                     </button>
@@ -602,7 +601,7 @@ export function UniversitiesPage() {
                   className="mt-5 flex flex-wrap items-center gap-2"
                 >
                   <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
-                    <TrendingUp className="w-3.5 h-3.5" /> Trending:
+                    <TrendingUp className="w-3.5 h-3.5" /> {t<string>("universities.listing.search.trending")}:
                   </span>
                   {trendingCountries.map((country) => (
                     <button
@@ -629,36 +628,36 @@ export function UniversitiesPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-5 grid gap-4"
+                className="page-hero-aside grid gap-3"
               >
-                <div className="glass-card rounded-[22px] p-5 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-accent-tech/15 flex items-center justify-center flex-shrink-0">
-                    <GraduationCap className="w-6 h-6 text-accent-tech" />
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-accent-tech" />
                   </div>
-                  <div>
-                    <p className="text-xl font-black text-slate-900 dark:text-white">{UNIVERSITIES.length}+</p>
-                    <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Verified universities</p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="glass-card rounded-[22px] p-5 text-center">
-                    <Globe2 className="w-6 h-6 mx-auto text-accent-primary mb-2" />
-                    <p className="text-xl font-black text-slate-900 dark:text-white">{countries.length}+</p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">Countries</p>
-                  </div>
-                  <div className="glass-card rounded-[22px] p-5 text-center">
-                    <MapPin className="w-6 h-6 mx-auto text-accent-steel mb-2" />
-                    <p className="text-xl font-black text-slate-900 dark:text-white">{citiesCount}+</p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">Cities</p>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{UNIVERSITIES.length}+</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("universities.listing.hero.stats.verified")}</p>
                   </div>
                 </div>
-                <div className="glass-card-light rounded-[22px] p-4 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-amber-500/15 flex items-center justify-center flex-shrink-0">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="rounded-2xl p-4 text-center bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <Globe2 className="w-5 h-5 mx-auto text-accent-primary mb-1.5" />
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{countries.length}+</p>
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("universities.listing.hero.stats.countries")}</p>
+                  </div>
+                  <div className="rounded-2xl p-4 text-center bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <MapPin className="w-5 h-5 mx-auto text-accent-steel mb-1.5" />
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{citiesCount}+</p>
+                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("universities.listing.hero.stats.cities")}</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-9 h-9 shrink-0 rounded-xl bg-amber-500/15 flex items-center justify-center">
                     <Zap className="w-4 h-4 text-amber-500" />
                   </div>
-                  <div>
-                    <p className="text-sm font-bold text-slate-900 dark:text-white">AI-Powered Matching</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Find your perfect fit instantly</p>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-slate-900 dark:text-white">{t<string>("universities.listing.hero.aiMatch.title")}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">{t<string>("universities.listing.hero.aiMatch.subtitle")}</p>
                   </div>
                 </div>
               </m.div>
@@ -668,11 +667,11 @@ export function UniversitiesPage() {
 
         {/* TRENDING CAROUSEL */}
         <section className="relative py-8 border-t border-slate-100 dark:border-slate-800/60">
-          <div className="mx-auto w-full max-w-[1540px] px-5 sm:px-8 lg:px-12">
+          <div className="content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
             <div className="flex items-center gap-3 mb-5">
               <Flame className="w-4 h-4 text-amber-500" />
               <span className="text-sm font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
-                Trending Now
+                {t<string>("universities.listing.trendingNow")}
               </span>
             </div>
             <div className="flex gap-4 overflow-x-auto pb-3 scrollbar-none snap-x snap-mandatory">
@@ -691,7 +690,7 @@ export function UniversitiesPage() {
             <div className="absolute -left-20 top-24 w-60 h-60 rounded-full bg-accent-tech/7 blur-[80px]" />
             <div className="absolute -right-16 bottom-24 w-72 h-72 rounded-full bg-accent-primary/7 blur-[100px]" />
           </div>
-          <div className="relative z-10 mx-auto w-full max-w-[1540px] px-5 sm:px-8 lg:px-12">
+          <div className="relative z-10 content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
 
             {/* Sticky filter bar */}
             <m.div
@@ -702,15 +701,15 @@ export function UniversitiesPage() {
                 py-3 bg-slate-50/95 dark:bg-[#080c14]/95 backdrop-blur-xl
                 border-b border-slate-200/60 dark:border-slate-800/60"
             >
-              <div className="max-w-[1540px] mx-auto flex items-center gap-3 flex-wrap xl:flex-nowrap">
+              <div className="content-shell-wide mx-auto flex items-center gap-3 flex-wrap xl:flex-nowrap">
                 <div className="relative hidden xl:flex items-center gap-2 flex-shrink-0">
                   <Search className="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none" />
                   <input
                     type="search"
                     value={searchQuery}
                     onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
-                    placeholder="Quick search…"
-                    aria-label="Search universities"
+                    placeholder={t<string>("search.placeholder.quick")}
+                    aria-label={t<string>("search.placeholder.universities")}
                     className="h-9 w-48 pl-9 pr-3 rounded-xl border border-slate-200 dark:border-slate-700/80
                       bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white placeholder:text-slate-400
                       outline-none focus:border-accent-tech/60 transition-colors"
@@ -725,11 +724,11 @@ export function UniversitiesPage() {
                       className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold
                         transition-all duration-200 whitespace-nowrap flex-shrink-0
                         ${!hasActiveFilters
-                          ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm"
+                          ? "chip-active shadow-sm"
                           : "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-600"
                         }`}
                     >
-                      All
+                      {t<string>("common.all")}
                     </button>
 
                     {countries.map((country) => {
@@ -782,13 +781,13 @@ export function UniversitiesPage() {
                       className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full
                         text-xs font-bold text-accent-primary hover:text-accent-primary/80 transition-colors"
                     >
-                      <X className="w-3 h-3" /> Clear
+                      <X className="w-3 h-3" /> {t<string>("universities.listing.filters.clearAll")}
                     </button>
                   )}
                   <select
                     value={sortBy}
                     onChange={(e) => { setSortBy(e.target.value as typeof sortBy); setCurrentPage(1); }}
-                    aria-label="Sort universities"
+                    aria-label={t<string>("common.aria.sortUniversities")}
                     className="h-9 px-3 rounded-xl border border-slate-200 dark:border-slate-700/80
                       bg-white dark:bg-slate-900 text-xs font-semibold text-slate-700 dark:text-slate-300
                       outline-none focus:border-accent-tech/60 transition-colors cursor-pointer"
@@ -810,15 +809,18 @@ export function UniversitiesPage() {
               <div>
                 <h2 className="inline-flex items-center gap-2 text-lg font-black text-slate-900 dark:text-white">
                   <Building2 className="w-5 h-5 text-accent-tech" />
-                  {filteredUniversities.length} Universit{filteredUniversities.length !== 1 ? "ies" : "y"}
+                  {filteredUniversities.length} {filteredUniversities.length !== 1 ? t<string>("universities.listing.results.universityPlural") : t<string>("universities.listing.results.universitySingular")}
                   {hasActiveFilters && (
-                    <span className="text-sm font-medium text-slate-400 dark:text-slate-500 ml-1">matched</span>
+                    <span className="text-sm font-medium text-slate-400 dark:text-slate-500 ml-1">{t<string>("universities.listing.results.matched")}</span>
                   )}
                 </h2>
                 {!isLoading && (
                   <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
-                    {`Showing ${paginatedUniversities.length} of ${filteredUniversities.length}`}
-                    {totalPages > 1 && ` · Page ${currentPage} of ${totalPages}`}
+                    {t<string>("universities.listing.results.showingCount")
+                      .replace("{{start}}", String(paginatedUniversities.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1))
+                      .replace("{{end}}", String(Math.min(filteredUniversities.length, currentPage * ITEMS_PER_PAGE)))
+                      .replace("{{total}}", String(filteredUniversities.length))}
+                    {totalPages > 1 && ` · ${t<string>("universities.listing.results.pageOf").replace("{{current}}", String(currentPage)).replace("{{total}}", String(totalPages))}`}
                   </p>
                 )}
               </div>
@@ -826,14 +828,14 @@ export function UniversitiesPage() {
               <button
                 type="button"
                 onClick={() => setIsMobileFilterOpen(true)}
-                aria-label="Open filters"
+                aria-label={t<string>("common.aria.openFilters")}
                 className="xl:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
                   border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900
                   text-sm font-semibold text-slate-700 dark:text-slate-300
                   hover:border-accent-tech/60 transition-colors shadow-sm"
               >
                 <SlidersHorizontal className="w-4 h-4" />
-                Filters
+                {t<string>("universities.listing.filters.title")}
                 {activeFilterCount > 0 && (
                   <span className="inline-flex items-center justify-center w-5 h-5 rounded-full
                     bg-accent-tech text-white text-[10px] font-bold">
@@ -891,14 +893,14 @@ export function UniversitiesPage() {
                       type="button"
                       onClick={() => { setCurrentPage(Math.max(1, currentPage - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                       disabled={currentPage === 1}
-                      aria-label="Previous page"
+                      aria-label={t<string>("common.aria.previousPage")}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
                         border border-slate-200 dark:border-slate-700/80
                         bg-white dark:bg-slate-900 text-sm font-semibold text-slate-700 dark:text-slate-300
                         hover:border-accent-tech/60 hover:text-accent-tech transition-all duration-200
                         disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                     >
-                      <ChevronLeft className="w-4 h-4" /> Prev
+                      <ChevronLeft className="w-4 h-4" /> {t<string>("common.prev")}
                     </button>
 
                     <div className="flex items-center gap-1.5">
@@ -915,11 +917,11 @@ export function UniversitiesPage() {
                             key={page}
                             type="button"
                             onClick={() => { setCurrentPage(page); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                            aria-label={`Page ${page}`}
+                            aria-label={t<string>("common.aria.pageNumber").replace("{{page}}", String(page))}
                             aria-current={isActive ? "page" : undefined}
                             className={`w-10 h-10 rounded-xl text-sm font-bold transition-all duration-200
                               ${isActive
-                                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md scale-105"
+                                ? "chip-active shadow-md scale-105"
                                 : "border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-accent-tech/60 hover:text-accent-tech"
                               }`}
                           >
@@ -933,14 +935,14 @@ export function UniversitiesPage() {
                       type="button"
                       onClick={() => { setCurrentPage(Math.min(totalPages, currentPage + 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
                       disabled={currentPage === totalPages}
-                      aria-label="Next page"
+                      aria-label={t<string>("common.aria.nextPage")}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
                         border border-slate-200 dark:border-slate-700/80
                         bg-white dark:bg-slate-900 text-sm font-semibold text-slate-700 dark:text-slate-300
                         hover:border-accent-tech/60 hover:text-accent-tech transition-all duration-200
                         disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                     >
-                      Next <ChevronRight className="w-4 h-4" />
+                      {t<string>("common.next")} <ChevronRight className="w-4 h-4" />
                     </button>
                   </m.div>
                 )}
@@ -952,8 +954,8 @@ export function UniversitiesPage() {
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="mb-12 relative overflow-hidden rounded-[32px]
-                    bg-slate-900 dark:bg-slate-800/80
-                    shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
+                    section-gradient-hero
+                    shadow-[0_20px_60px_rgba(0,0,0,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
                 >
                   <div className="pointer-events-none absolute inset-0">
                     <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-accent-tech/28 blur-[80px]" />
@@ -962,26 +964,24 @@ export function UniversitiesPage() {
                   </div>
                   <div className="relative z-10 px-8 py-10 sm:px-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
                     <div>
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-4">
-                        <BookOpen className="w-3.5 h-3.5 text-amber-400" />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-300">Funding Available</span>
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-50 dark:bg-white/10 border border-amber-200 dark:border-white/20 mb-4">
+                        <BookOpen className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                        <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-amber-700 dark:text-amber-300">{t<string>("universities.listing.funding.badge")}</span>
                       </div>
-                      <h3 className="text-2xl sm:text-3xl font-black text-white leading-snug">
-                        Find Your Perfect Scholarship
+                      <h3 className="text-2xl sm:text-3xl font-black text-text-primary dark:text-white leading-snug">
+                        {t<string>("universities.listing.funding.title")}
                       </h3>
-                      <p className="mt-2 text-base text-white/60 max-w-lg">
-                        Explore thousands of merit-based and need-based scholarships matched to your profile.
+                      <p className="mt-2 text-base text-text-muted dark:text-white/60 max-w-lg">
+                        {t<string>("universities.listing.funding.description")}
                       </p>
                     </div>
                     <div className="flex-shrink-0">
                       <button
                         type="button"
                         onClick={() => navigate("/programs")}
-                        className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl
-                          bg-white text-slate-900 text-sm font-black
-                          hover:bg-amber-400 transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl btn-gold-primary text-sm font-black shadow-lg hover:shadow-xl"
                       >
-                        Explore Programs
+                        {t<string>("universities.listing.funding.cta")}
                         <ArrowRight className="w-4 h-4" />
                       </button>
                     </div>
@@ -1050,13 +1050,13 @@ export function UniversitiesPage() {
             onClick={() => setIsMobileFilterOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            aria-label="Open filters"
+            aria-label={t<string>("common.aria.openFilters")}
             className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full
-              bg-slate-900 dark:bg-white text-white dark:text-slate-900
-              shadow-[0_8px_32px_rgba(0,0,0,0.25)] text-sm font-bold"
+              btn-gold-primary
+              shadow-[var(--surface-shadow)] text-sm font-bold"
           >
             <SlidersHorizontal className="w-4 h-4" />
-            Filters
+            {t<string>("universities.listing.filters.title")}
             {activeFilterCount > 0 && (
               <span className="w-5 h-5 rounded-full bg-accent-tech text-white text-[10px] font-black
                 inline-flex items-center justify-center">

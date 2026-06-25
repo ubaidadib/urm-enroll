@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, m } from "motion/react";
 import {
   ArrowRight, ShieldCheck, ClipboardCheck, Building2, Users, TrendingUp,
@@ -80,7 +81,7 @@ function InputField({ label, value, onChange, type = "text", options, placeholde
   const [fieldId] = useState(() => `partner-field-${++_fieldIdCounter}`);
   return (
     <div>
-      <label htmlFor={fieldId} className="block text-[11px] font-black uppercase tracking-widest text-text-muted mb-2">
+      <label htmlFor={fieldId} className="block text-[11px] font-black uppercase tracking-widest text-slate-400 mb-2">
         {label}
       </label>
       {type === "select" ? (
@@ -89,7 +90,7 @@ function InputField({ label, value, onChange, type = "text", options, placeholde
             id={fieldId}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full appearance-none bg-bg-surface border border-border rounded-xl px-4 py-3.5 text-text-primary text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all"
+            className="w-full appearance-none bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all"
           >
             <option value="">{selectPlaceholder}</option>
             {options?.map((o) => (
@@ -107,7 +108,7 @@ function InputField({ label, value, onChange, type = "text", options, placeholde
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className="w-full bg-bg-surface border border-border rounded-xl px-4 py-3.5 text-text-primary text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all placeholder:text-text-muted"
+          className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white text-sm font-medium outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all placeholder:text-slate-400"
         />
       )}
     </div>
@@ -244,7 +245,7 @@ export function InstitutionalPartnershipPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500" dir={dir}>
+    <div className="min-h-screen bg-bg-primary transition-colors duration-500" dir={dir}>
       <SeoManager
         title={tx("seo.sections.institutional.title", "Institutional Partnerships – URM Enroll")}
         description={tx("seo.sections.institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies.")}
@@ -256,7 +257,7 @@ export function InstitutionalPartnershipPage() {
       />
 
       {/* ── Hero ── */}
-      <div className="relative pt-28 pb-20 px-6 overflow-hidden border-b border-border/60">
+      <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden border-b border-slate-100 dark:border-white/5">
 
         {/* Ambient */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -265,9 +266,9 @@ export function InstitutionalPartnershipPage() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-size-[32px_32px]" />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="page-hero-inner">
 
-          <div className="mb-8">
+          <div className="page-hero-crumb-gap">
             <Breadcrumbs
               items={[
                 { label: tx("common.home", "Home"), href: "/" },
@@ -276,17 +277,16 @@ export function InstitutionalPartnershipPage() {
             />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
+          <div className="page-hero-grid">
             {/* Left */}
-            <div>
+            <div className="page-hero-main">
               <m.div
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border shadow-sm mb-8"
+                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm page-hero-badge-gap"
               >
                 <Handshake className="w-4 h-4 text-accent-tech" />
-                <span className="text-xs font-bold tracking-widest uppercase text-text-primary">
+                <span className="text-xs font-bold tracking-widest uppercase text-slate-900 dark:text-white">
                   {tx("institutional.badge", "Partnership Access")}
                 </span>
               </m.div>
@@ -295,8 +295,8 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.07 }}
-                className="font-black text-text-primary leading-[0.95] tracking-tight mb-6"
-                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+                className="font-black text-slate-900 dark:text-white leading-[0.95] tracking-tight mb-5 lg:mb-5"
+                style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
               >
                 {tx("institutional.title", "Built for Institutions\nthat Move Fast.")}
               </m.h1>
@@ -305,7 +305,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.13 }}
-                className="text-xl text-text-secondary leading-relaxed max-w-lg mb-10"
+                className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-6 lg:mb-6"
               >
                 {tx("institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies operating at scale.")}
               </m.p>
@@ -315,7 +315,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="grid grid-cols-2 gap-3"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3"
               >
                 {heroStats.map(({ icon: Icon, value, label, color }, i) => (
                   <m.div
@@ -323,11 +323,11 @@ export function InstitutionalPartnershipPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.26 + i * 0.07 }}
-                    className="p-4 rounded-2xl bg-bg-surface border border-border shadow-sm"
+                    className="p-4 rounded-2xl bg-white dark:bg-white/4 border border-slate-200/80 dark:border-white/6 shadow-sm"
                   >
                     <Icon className="w-4 h-4 mb-2" style={{ color }} />
-                    <div className="text-2xl font-black text-text-primary">{value}</div>
-                    <div className="text-[11px] font-semibold text-text-muted uppercase tracking-wide mt-0.5">
+                    <div className="text-2xl font-black text-slate-900 dark:text-white">{value}</div>
+                    <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide mt-0.5">
                       {label[lang]}
                     </div>
                   </m.div>
@@ -340,11 +340,11 @@ export function InstitutionalPartnershipPage() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4, duration: 0.7 }}
-              className="hidden lg:block"
+              className="page-hero-aside hidden lg:block"
             >
-              <div className="relative aspect-square max-w-md mx-auto">
+              <div className="relative aspect-[4/3] max-h-[280px] w-full max-w-sm ml-auto">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-100 to-slate-100 dark:from-blue-500/10 dark:to-accent-tech/8 rounded-[3rem] blur-[60px]" />
-                  className="relative h-full rounded-[3rem] bg-bg-surface/70 border border-border backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center">
+                <div className="relative h-full rounded-[3rem] bg-white/70 dark:bg-white/4 border border-slate-200/80 dark:border-white/8 backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center">
 
                   {/* Background icon */}
                   <Handshake className="w-56 h-56 text-slate-100 dark:text-white/5" />
@@ -386,8 +386,8 @@ export function InstitutionalPartnershipPage() {
       </div>
 
       {/* ── Page Body ── */}
-      <div className="relative py-24 px-6">
-        <div className="max-w-7xl mx-auto space-y-24">
+      <div className="relative page-section-y px-[var(--content-gutter)]">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
 
           {/* ── 1. Segment Selector ── */}
           <div>
@@ -396,18 +396,18 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="font-black text-text-primary tracking-tight mb-3"
+                className="font-black text-slate-900 dark:text-white tracking-tight mb-3"
                 style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
               >
                 {tx("institutional.segment.title", "Who Do We Serve?")}
               </m.h2>
-              <p className="text-text-secondary max-w-xl mx-auto">
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
                 {tx("institutional.segment.sub", "Tailored solutions for every type of institution.")}
               </p>
             </div>
 
             {/* Tabs */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-5">
               {segments.map((seg) => {
                 const Icon = SEGMENT_ICONS[seg.value as keyof typeof SEGMENT_ICONS] || Building2;
                 const color = SEGMENT_COLORS[seg.value] ?? "#3b82f6";
@@ -418,8 +418,8 @@ export function InstitutionalPartnershipPage() {
                     onClick={() => setActiveSegment(seg.value)}
                     className={`relative group p-5 rounded-2xl text-left border transition-all duration-300 ${
                       isActive
-                        ? "bg-bg-surface border-border shadow-xl"
-                        : "bg-bg-secondary border-border/40 hover:bg-bg-surface hover:shadow-md hover:border-border"
+                        ? "bg-white dark:bg-slate-900 border-slate-200 dark:border-white/10 shadow-xl"
+                        : "bg-slate-50 dark:bg-white/3 border-slate-100 dark:border-white/5 hover:bg-white dark:hover:bg-white/6 hover:shadow-md hover:border-slate-200 dark:hover:border-white/10"
                     }`}
                   >
                     {isActive && (
@@ -434,7 +434,7 @@ export function InstitutionalPartnershipPage() {
                         style={{ color: isActive ? color : "#94a3b8" }}
                       />
                     </div>
-                    <div className={`text-sm font-black leading-tight ${isActive ? "text-text-primary" : "text-text-muted"}`}>
+                    <div className={`text-sm font-black leading-tight ${isActive ? "text-slate-900 dark:text-white" : "text-slate-500 dark:text-slate-400"}`}>
                       {seg.label}
                     </div>
                     {isActive && (
@@ -456,8 +456,8 @@ export function InstitutionalPartnershipPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
-                  className="rounded-3xl bg-slate-950 dark:bg-slate-900 border border-white/5 shadow-2xl overflow-hidden"
-                >
+                  className="rounded-3xl surface-card-elevated shadow-2xl overflow-hidden"
+                  >
                   <div className="h-0.5 w-full" style={{ background: `linear-gradient(to right, ${activeColor}, transparent)` }} />
                   <div className="grid lg:grid-cols-2 min-h-[260px]">
                     <div className="p-10 flex flex-col justify-center">
@@ -470,31 +470,31 @@ export function InstitutionalPartnershipPage() {
                           {activeSegmentData.label}
                         </span>
                       </div>
-                      <h3 className="text-2xl font-black text-white mb-3 leading-tight">
+                      <h3 className="text-2xl font-black text-text-primary mb-3 leading-tight">
                         {activeSegmentData.label} {tx("institutional.segment.solutions", "Solutions")}
                       </h3>
-                      <p className="text-slate-400 leading-relaxed mb-5 max-w-md text-sm">
+                      <p className="text-text-muted leading-relaxed mb-5 max-w-md text-sm">
                         {activeSegmentData.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
                         {activeSegmentData.highlights?.map((h: string) => (
-                          <span key={h} className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white/60 bg-white/5 border border-white/8">
+                          <span key={h} className="px-3 py-1.5 rounded-lg text-xs font-semibold text-text-secondary surface-inset">
                             {h}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div className="border-l border-white/5 flex flex-col items-center justify-center p-10 gap-4">
+                    <div className="border-l border-border flex flex-col items-center justify-center p-10 gap-4">
                       <button
                         onClick={openPartnershipModal}
-                        className="group w-full max-w-xs flex items-center justify-center gap-2.5 px-8 py-4 bg-white text-slate-900 rounded-2xl text-sm font-black hover:opacity-90 transition-all shadow-xl"
+                        className="group w-full max-w-xs flex items-center justify-center gap-2.5 px-8 py-4 btn-gold-primary rounded-2xl text-sm font-black transition-all"
                       >
                         <Zap className="w-4 h-4" style={{ color: activeColor }} />
                         <span>{tx("institutional.cta.partner", "Initialize Partnership")}</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </button>
-                      <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                      <p className="text-[11px] font-bold text-text-muted uppercase tracking-widest flex items-center gap-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         {tx("institutional.responseTime", "Avg. Response: 48 Hours")}
                       </p>
@@ -509,12 +509,12 @@ export function InstitutionalPartnershipPage() {
           <div>
             <div className="text-center mb-10">
               <h2
-                className="font-black text-text-primary tracking-tight mb-3"
+                className="font-black text-slate-900 dark:text-white tracking-tight mb-3"
                 style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
               >
                 {tx("institutional.capabilities.title", "What We Offer")}
               </h2>
-              <p className="text-text-secondary max-w-xl mx-auto text-sm">
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm">
                 {tx("institutional.capabilities.sub", "End-to-end support from compliance to placement.")}
               </p>
             </div>
@@ -526,13 +526,13 @@ export function InstitutionalPartnershipPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="group p-7 rounded-2xl bg-bg-surface border border-border hover:border-border-strong hover:shadow-lg transition-all"
+                  className="group p-7 rounded-2xl bg-white dark:bg-white/4 border border-slate-200/80 dark:border-white/6 hover:border-slate-300 dark:hover:border-white/12 hover:shadow-lg transition-all"
                 >
                   <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center mb-5">
                     <Target className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </div>
-                  <h3 className="text-base font-black text-text-primary mb-2">{item.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">{item.description}</p>
+                  <h3 className="text-base font-black text-slate-900 dark:text-white mb-2">{item.title}</h3>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.description}</p>
                 </m.div>
               ))}
             </div>
@@ -542,19 +542,19 @@ export function InstitutionalPartnershipPage() {
           <div>
             <div className="text-center mb-12">
               <h2
-                className="font-black text-text-primary tracking-tight mb-3"
+                className="font-black text-slate-900 dark:text-white tracking-tight mb-3"
                 style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
               >
                 {tx("institutional.process.title", "How It Works")}
               </h2>
-              <p className="text-text-secondary max-w-xl mx-auto text-sm">
+              <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm">
                 {tx("institutional.process.sub", "From first contact to active partnership in four clear steps.")}
               </p>
             </div>
 
             <div className="relative">
               {/* Connecting line */}
-              <div className="absolute top-8 left-[10%] right-[10%] h-px bg-linear-to-r from-transparent via-border to-transparent hidden md:block" />
+              <div className="absolute top-8 left-[10%] right-[10%] h-px bg-linear-to-r from-transparent via-slate-200 dark:via-white/8 to-transparent hidden md:block" />
 
               <div className="grid md:grid-cols-4 gap-6">
                 {processSteps.map((s, i: number) => {
@@ -586,8 +586,8 @@ export function InstitutionalPartnershipPage() {
           </div>
 
           {/* ── 4. Trust Strip ── */}
-          <div className="flex flex-col items-center gap-5 py-10 border-t border-border/60">
-            <p className="text-[11px] font-black text-text-muted uppercase tracking-widest">
+          <div className="flex flex-col items-center gap-5 py-10 border-t border-slate-100 dark:border-white/6">
+            <p className="text-[11px] font-black text-slate-400 uppercase tracking-widest">
               {tx("institutional.trust.label", "Verified Compliance")}
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -603,33 +603,34 @@ export function InstitutionalPartnershipPage() {
         </div>
       </div>
 
-      {/* ── Partnership Modal ── */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 glass-backdrop"
-            onClick={closeModal}
-          >
+      {/* ── Partnership Modal (portal escapes main z-10 stacking context) ── */}
+      {typeof document !== "undefined" && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
             <m.div
-              ref={modalRef}
-              role="dialog"
-              aria-modal="true"
-              aria-label={t<string>("institutional.form.title")}
-              tabIndex={-1}
-              initial={{ scale: 0.96, opacity: 0, y: 16 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.96, opacity: 0, y: 16 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-5xl max-h-[90vh] bg-bg-surface border border-border rounded-3xl shadow-2xl backdrop-blur-xl overflow-hidden flex flex-col lg:flex-row"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto px-4 sm:px-6 py-6 sm:py-8 glass-backdrop"
+              onClick={closeModal}
             >
+              <m.div
+                ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-label={t<string>("institutional.form.title")}
+                tabIndex={-1}
+                initial={{ scale: 0.96, opacity: 0, y: 16 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.96, opacity: 0, y: 16 }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                onClick={(e) => e.stopPropagation()}
+                className="w-full max-w-5xl max-h-[min(90vh,calc(100dvh-3rem))] translate-y-2 sm:translate-y-3 glass-card-medium overflow-hidden flex flex-col lg:flex-row shrink-0"
+              >
               {/* Sidebar */}
-              <div className="lg:w-[38%] bg-slate-950 text-white p-9 flex flex-col justify-between relative overflow-hidden shrink-0">
+              <div className="lg:w-[38%] bg-bg-secondary dark:bg-slate-950 text-text-primary dark:text-white p-9 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
                 <div className="relative z-10">
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/20 mb-7">
@@ -638,10 +639,10 @@ export function InstitutionalPartnershipPage() {
                       {tx("institutional.badge", "Partnership")}
                     </span>
                   </div>
-                  <h2 className="text-2xl font-black text-white mb-3 leading-tight">
+                  <h2 className="text-2xl font-black text-text-primary dark:text-white mb-3 leading-tight">
                     {tx("institutional.form.title", "Let's build together.")}
                   </h2>
-                  <p className="text-slate-400 text-sm leading-relaxed">
+                  <p className="text-text-muted dark:text-slate-400 text-sm leading-relaxed">
                     {tx("institutional.form.subtitle", "Fill out the details to fast-track your institution's verification.")}
                   </p>
                 </div>
@@ -668,11 +669,11 @@ export function InstitutionalPartnershipPage() {
                           >
                             {isDone ? <CheckCircle2 className="w-3.5 h-3.5" /> : stepNum}
                           </div>
-                          <span className={`text-sm font-semibold ${isActive ? "text-white" : "text-slate-400"}`}>
+                          <span className={`text-sm font-semibold ${isActive ? "text-text-primary dark:text-white" : "text-text-muted dark:text-slate-400"}`}>
                             {label}
                           </span>
                         </div>
-                        {i === 0 && <div className="ms-3.5 my-1.5 w-px h-5 bg-slate-700" />}
+                        {i === 0 && <div className="ms-3.5 my-1.5 w-px h-5 bg-border dark:bg-slate-700" />}
                       </div>
                     );
                   })}
@@ -680,26 +681,26 @@ export function InstitutionalPartnershipPage() {
               </div>
 
               {/* Form panel */}
-              <div className="flex-1 flex flex-col overflow-hidden bg-bg-primary">
+              <div className="flex-1 flex flex-col overflow-hidden bg-bg-surface dark:bg-slate-950">
                 {/* Form header */}
-                  className="flex items-center justify-between px-8 py-5 border-b border-border/60 shrink-0">
+                <div className="flex items-center justify-between px-8 py-5 border-b border-slate-100 dark:border-white/6 shrink-0">
                   <div>
-                    <div className="text-[10px] font-black text-text-muted uppercase tracking-widest mb-0.5">
+                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-0.5">
                       {tx("institutional.form.stepLabel", "Step")} {step} / 2
                     </div>
-                    <div className="text-sm font-black text-text-primary">
+                    <div className="text-sm font-black text-slate-900 dark:text-white">
                       {step === 1
                         ? tx("institutional.form.stepOne", "Organisation Details")
                         : tx("institutional.form.stepTwo", "Partnership Scope")}
                     </div>
                   </div>
-                  <button onClick={closeModal} className="p-2 rounded-xl hover:bg-bg-secondary transition-colors">
-                    <X className="w-5 h-5 text-text-muted" />
+                  <button onClick={closeModal} className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/8 transition-colors">
+                    <X className="w-5 h-5 text-slate-400" />
                   </button>
                 </div>
 
                 {/* Progress bar */}
-                <div className="h-0.5 bg-border shrink-0">
+                <div className="h-0.5 bg-slate-100 dark:bg-white/5 shrink-0">
                   <m.div
                     className="h-full bg-blue-500 rounded-full"
                     animate={{ width: step === 1 ? "50%" : "100%" }}
@@ -714,15 +715,15 @@ export function InstitutionalPartnershipPage() {
                       <div className="w-16 h-16 bg-emerald-50 dark:bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-5">
                         <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                       </div>
-                      <h3 className="text-xl font-black text-text-primary mb-2">
+                      <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">
                         {tx("institutional.form.successTitle", "Application Received")}
                       </h3>
-                      <p className="text-text-secondary text-sm max-w-sm mb-8 leading-relaxed">
+                      <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm mb-8 leading-relaxed">
                         {tx("institutional.form.success", "Our partnerships team will review your submission and respond within 48 hours.")}
                       </p>
                       <button
                         onClick={closeModal}
-                        className="px-7 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-black hover:opacity-80 transition-opacity"
+                        className="px-7 py-3 rounded-xl btn-gold-primary text-sm font-black hover:opacity-80 transition-opacity"
                       >
                         {tx("institutional.form.close", "Close")}
                       </button>
@@ -833,7 +834,7 @@ export function InstitutionalPartnershipPage() {
                                 {tx("institutional.form.notes", "Additional Notes")}
                               </label>
                               <textarea
-                                className="w-full bg-bg-surface border border-border rounded-xl px-4 py-3 text-text-primary text-sm outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all resize-none placeholder:text-text-muted"
+                                className="w-full bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-xl px-4 py-3 text-slate-900 dark:text-white text-sm outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 dark:focus:border-blue-500 transition-all resize-none placeholder:text-slate-400"
                                 rows={3}
                                 value={formData.notes}
                                 onChange={(e) => handleChange("notes", e.target.value)}
@@ -865,12 +866,12 @@ export function InstitutionalPartnershipPage() {
                         )}
                       </div>
 
-                      <div className="flex justify-between items-center pt-5 border-t border-border/60 mt-6">
+                      <div className="flex justify-between items-center pt-5 border-t border-slate-100 dark:border-white/6 mt-6">
                         {step === 2 ? (
                           <button
                             type="button"
                             onClick={() => setStep(1)}
-                            className="flex items-center gap-1.5 text-sm font-bold text-text-secondary hover:text-text-primary transition-colors"
+                            className="flex items-center gap-1.5 text-sm font-bold text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
                           >
                             <ChevronRight className="w-4 h-4 rotate-180" />
                             {tx("institutional.form.back", "Back")}
@@ -881,7 +882,7 @@ export function InstitutionalPartnershipPage() {
                           type={step === 1 ? "button" : "submit"}
                           onClick={step === 1 ? handleNext : undefined}
                           disabled={status === "submitting"}
-                          className="flex items-center gap-2 px-7 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl text-sm font-black hover:opacity-80 transition-opacity disabled:opacity-50"
+                          className="flex items-center gap-2 px-7 py-3 btn-gold-primary rounded-xl text-sm font-black hover:opacity-80 transition-opacity disabled:opacity-50"
                         >
                           {status === "submitting" ? (
                             <>
@@ -902,10 +903,12 @@ export function InstitutionalPartnershipPage() {
                   )}
                 </div>
               </div>
+              </m.div>
             </m.div>
-          </m.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body,
+      )}
     </div>
   );
 }

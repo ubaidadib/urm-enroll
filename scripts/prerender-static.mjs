@@ -104,7 +104,15 @@ const writeRouteHtml = (route, html) => {
 
 const run = async () => {
   await new Promise((resolveStart) => server.listen(port, host, resolveStart));
-  const browser = await puppeteer.launch({ headless: true });
+  const chromePath =
+    process.env.PUPPETEER_EXECUTABLE_PATH ||
+    (process.platform === "win32"
+      ? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+      : undefined);
+  const browser = await puppeteer.launch({
+    headless: true,
+    ...(chromePath ? { executablePath: chromePath } : {}),
+  });
   const page = await browser.newPage();
 
   try {

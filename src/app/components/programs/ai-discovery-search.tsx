@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { Command, Mic, Search, Sparkles, TrendingUp } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface AiDiscoverySearchProps {
   value: string;
@@ -17,17 +18,18 @@ export function AiDiscoverySearch({
   trendingQueries,
   recentQueries,
 }: AiDiscoverySearchProps) {
+  const { t } = useLanguage();
   const [isFocused, setIsFocused] = useState(false);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const suggestions = useMemo(() => {
     const base = [
-      "AI + Germany + English + low tuition",
-      "Cybersecurity in Netherlands with scholarships",
-      "Medicine in Europe visa friendly",
-      "Business analytics remote-work careers",
-      "Nursing pathways with high employability",
+      t<string>("programs.discovery.suggestions.example1"),
+      t<string>("programs.discovery.suggestions.example2"),
+      t<string>("programs.discovery.suggestions.example3"),
+      t<string>("programs.discovery.suggestions.example4"),
+      t<string>("programs.discovery.suggestions.example5"),
     ];
 
     if (!value.trim()) return base;
@@ -38,7 +40,7 @@ export function AiDiscoverySearch({
       .filter((item, index, self) => self.indexOf(item) === index)
       .filter((item) => item.toLowerCase().includes(query))
       .slice(0, 7);
-  }, [recentQueries, trendingQueries, value]);
+  }, [recentQueries, trendingQueries, t, value]);
 
   useEffect(() => {
     const handleCommandPalette = (event: KeyboardEvent) => {
@@ -99,19 +101,19 @@ export function AiDiscoverySearch({
                   setIsFocused(false);
                 }
               }}
-              aria-label="AI-powered program search"
-              placeholder="Describe your dream future: AI + Berlin + English + scholarship"
+              aria-label={t<string>("programs.discovery.search.aria")}
+              placeholder={t<string>("programs.discovery.search.placeholder")}
               className="h-11 w-full bg-transparent text-sm font-medium text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-white/70 outline-none md:text-base"
             />
 
             <p className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-gray-500 dark:text-white/60">
-              Smart query understanding with dynamic career matching
+              {t<string>("programs.discovery.search.subtitle")}
             </p>
           </div>
 
           <button
             type="button"
-            aria-label="Voice search"
+            aria-label={t<string>("programs.discovery.search.voice")}
             className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-gray-300 dark:border-white/25 text-gray-600 dark:text-white/85 transition-colors hover:bg-gray-100 dark:hover:bg-white/15 hover:text-gray-900 dark:hover:text-white"
           >
             <Mic className="h-4.5 w-4.5" />
@@ -122,7 +124,7 @@ export function AiDiscoverySearch({
             className="inline-flex h-11 items-center gap-2 rounded-2xl bg-brand-navy-900 dark:bg-brand-gold-500 px-4 text-sm font-bold text-white dark:text-brand-navy-950 transition-all hover:scale-[1.02] hover:shadow-lg"
           >
             <Sparkles className="h-4 w-4" />
-            Match
+            {t<string>("programs.discovery.search.submit")}
           </button>
         </div>
       </form>
@@ -131,9 +133,9 @@ export function AiDiscoverySearch({
       <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-600 dark:text-white/65">
         <span className="inline-flex items-center gap-1 rounded-full border border-gray-300 dark:border-white/20 bg-gray-50 dark:bg-white/5 px-3 py-1 text-gray-700 dark:text-white/80">
           <Command className="h-3.5 w-3.5" />
-          Cmd K
+          {t<string>("programs.discovery.search.shortcut")}
         </span>
-        <span className="text-gray-500 dark:text-gray-400">Trending</span>
+        <span className="text-gray-500 dark:text-gray-400">{t<string>("programs.discovery.search.trending")}</span>
         {trendingQueries.slice(0, 4).map((item) => (
           <button
             key={item}
@@ -160,8 +162,8 @@ export function AiDiscoverySearch({
             className="absolute left-0 right-0 top-[calc(100%+14px)] z-40 overflow-hidden rounded-2xl border border-gray-300 dark:border-white/20 bg-white dark:bg-brand-softnav-900/95 p-3 shadow-2xl dark:shadow-2xl backdrop-blur-xl"
           >
             <div className="mb-2 flex items-center justify-between px-2">
-              <p className="text-[11px] uppercase tracking-[0.18em] text-gray-600 dark:text-white/55">AI suggestions</p>
-              <p className="text-[11px] text-gray-500 dark:text-white/50">Enter to apply</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-gray-600 dark:text-white/55">{t<string>("programs.discovery.suggestions.title")}</p>
+              <p className="text-[11px] text-gray-500 dark:text-white/50">{t<string>("programs.discovery.suggestions.hint")}</p>
             </div>
             <div className="space-y-1">
               {suggestions.map((item, index) => (

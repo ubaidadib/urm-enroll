@@ -11,7 +11,7 @@ export const CTA_SECONDARY_GLASS =
   "bg-surface-glass/5 backdrop-blur-sm border border-border/50 text-text-primary hover:bg-surface-glass/10 hover:border-accent-tech/50 hover:shadow-lg hover:shadow-accent-tech/10";
 
 export const CTA_DARK =
-  "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg hover:shadow-xl hover:-translate-y-0.5";
+  "btn-gold-primary shadow-lg hover:shadow-xl hover:-translate-y-0.5";
 
 export const CTA_WHATSAPP =
   "inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#25D366]/10 text-[#25D366] text-sm font-bold hover:bg-[#25D366]/20 transition-all duration-300 shrink-0";

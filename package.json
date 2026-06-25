@@ -26,6 +26,7 @@
     "check:translations": "node scripts/check-translations.js",
     "check:page-style": "node scripts/check-page-style-consistency.mjs",
     "security:audit": "bash scripts/security-audit.sh",
+    "check:responsive": "node scripts/responsive-audit.mjs",
     "check:ui-tokens": "node scripts/ui-token-guard.mjs"
   },
   "dependencies": {

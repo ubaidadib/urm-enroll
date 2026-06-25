@@ -22,6 +22,8 @@ type ContextualPageHeaderProps = {
   breadcrumbs: Crumb[];
   stats?: HeaderStat[];
   searchSlot?: ReactNode;
+  /** Tighter spacing for Explore / listing pages */
+  variant?: "default" | "listing";
 };
 
 export function ContextualPageHeader({
@@ -31,11 +33,15 @@ export function ContextualPageHeader({
   breadcrumbs,
   stats = [],
   searchSlot,
+  variant = "default",
 }: ContextualPageHeaderProps) {
   const hasStats = stats.length > 0;
+  const isListing = variant === "listing";
 
   return (
-    <section className="relative px-4 sm:px-6 lg:px-10 pt-28 pb-16 border-b border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <section
+      className="relative px-[var(--content-gutter)] page-hero-offset page-hero-pb-compact border-b border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+    >
       {/* Ambient atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-24 -right-20 w-[28rem] h-[28rem] rounded-full bg-accent-tech/10 blur-[120px]" />
@@ -45,17 +51,17 @@ export function ContextualPageHeader({
         </div>
       </div>
 
-      <div className="mx-auto w-full max-w-[1540px] relative z-10">
-        <div className="mb-8">
+      <div className="page-hero-inner">
+        <div className="page-hero-crumb-gap">
           <Breadcrumbs items={breadcrumbs} />
         </div>
 
-        <div className={`grid gap-8 lg:gap-10 items-start ${hasStats ? "lg:grid-cols-12" : ""}`}>
-          <div className={hasStats ? "lg:col-span-7" : "max-w-4xl"}>
+        <div className={`page-hero-grid ${hasStats ? "" : ""}`}>
+          <div className={hasStats ? "page-hero-main" : isListing ? "w-full" : "w-full max-w-4xl"}>
             <m.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm mb-6"
+              className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm page-hero-badge-gap`}
             >
               <Sparkles className="w-4 h-4 text-accent-tech" />
               <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
@@ -67,7 +73,11 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1]"
+              className={`font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1] ${
+                isListing
+                  ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl"
+                  : "text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+              }`}
             >
               {title}
             </m.h1>
@@ -76,7 +86,7 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12 }}
-              className="mt-5 text-xl text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed"
+              className={`${isListing ? "mt-2 sm:mt-3" : "mt-3 sm:mt-4 lg:mt-4"} text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl lg:max-w-none leading-relaxed`}
             >
               {description}
             </m.p>
@@ -86,7 +96,7 @@ export function ContextualPageHeader({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.16 }}
-                className="mt-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4"
+                className={isListing ? "mt-4 lg:mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4" : "mt-5 lg:mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4"}
               >
                 {searchSlot}
               </m.div>
@@ -98,21 +108,23 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3"
+              className={`page-hero-aside grid gap-3 ${
+                stats.length <= 2 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2"
+              }`}
             >
               {stats.slice(0, 4).map((stat) => {
                 const Icon = stat.icon;
                 return (
                   <div
                     key={`${stat.label}-${stat.value}`}
-                    className="rounded-2xl p-5 flex items-center gap-4 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 transition-all shadow-sm"
+                    className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 transition-all shadow-sm"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
-                      <Icon className="w-6 h-6 text-accent-tech" />
+                    <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-accent-tech" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-lg font-black text-slate-900 dark:text-white">{stat.value}</p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">{stat.label}</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 truncate">{stat.label}</p>
                     </div>
                   </div>
                 );

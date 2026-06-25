@@ -71,8 +71,8 @@ export function SectionShell({
   return (
     <section
       id={id}
-      className={`relative overflow-hidden px-6 transition-colors duration-500 ${toneClass} ${
-        padded ? "py-24 md:py-32" : ""
+      className={`relative overflow-hidden px-4 sm:px-6 lg:px-8 3xl:px-10 transition-colors duration-500 ${toneClass} ${
+        padded ? "page-section-y" : ""
       } ${className}`}
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -98,7 +98,7 @@ export function SectionShell({
         )}
       </div>
 
-      <div className={`max-w-7xl mx-auto relative z-10 ${containerClassName}`}>{children}</div>
+      <div className={`content-shell mx-auto relative z-10 ${containerClassName}`}>{children}</div>
     </section>
   );
 }
@@ -168,7 +168,7 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1]`}
+        className={`text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]`}
       >
         {title}
       </m.h2>
@@ -179,7 +179,7 @@ export function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className={`text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed ${
+          className={`text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed ${
             isCenter ? "mx-auto max-w-2xl" : "max-w-xl"
           }`}
         >

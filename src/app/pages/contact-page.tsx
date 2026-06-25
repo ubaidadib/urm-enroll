@@ -67,7 +67,7 @@ function InputField({
     <div>
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-muted"
+        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-disabled"
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -80,7 +80,8 @@ function InputField({
         onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
-        className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none bg-bg-surface border border-border text-text-primary placeholder:text-text-muted/70 focus:border-accent-primary focus:ring-4 focus:ring-accent-primary/10"
+        className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
+          bg-bg-surface/80 border border-accent-primary/15 text-text-primary placeholder:text-text-disabled/60 focus:border-accent-primary/40"
       />
     </div>
   );
@@ -112,7 +113,7 @@ function SelectField({
     <div className="relative">
       <label
         htmlFor={id}
-        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-muted"
+        className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-disabled"
       >
         {label}
         {required && <span className="text-red-500 ms-1">*</span>}
@@ -124,7 +125,11 @@ function SelectField({
           value={value}
           onChange={onChange}
           disabled={disabled}
-          className="w-full appearance-none rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none bg-bg-surface border border-border text-text-primary hover:border-accent-tech/40 hover:shadow-sm focus:ring-2 focus:ring-accent-primary/20 focus:border-accent-primary focus:shadow-sm"
+          className="w-full appearance-none rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
+            bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+            hover:border-accent-tech/40 hover:shadow-sm
+            focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 focus:shadow-sm
+            text-slate-900 dark:text-white"
         >
           <option value="">{placeholder}</option>
           {options.map((o) => (
@@ -133,7 +138,7 @@ function SelectField({
             </option>
           ))}
         </select>
-        <div className="absolute end-4 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted">
+        <div className="absolute end-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
@@ -161,7 +166,7 @@ function FaqItem({
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="w-full flex items-center justify-between gap-4 p-6 text-start font-bold text-text-primary hover:bg-bg-hover transition-colors"
+        className="w-full flex items-center justify-between gap-4 p-6 text-start font-bold text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
       >
         <span className="text-base">{question}</span>
         <ChevronDown
@@ -177,7 +182,7 @@ function FaqItem({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="px-6 pb-6 text-text-muted leading-relaxed">
+            <p className="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
               {answer}
             </p>
           </m.div>
@@ -356,7 +361,7 @@ export function ContactPage() {
   const trustBadges = (t("contact.trustBadges") as string[]) || [];
 
   return (
-    <main dir={dir} className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
+    <main dir={dir} className="min-h-screen section-gradient">
       <SeoManager
         path="/contact"
         breadcrumbs={[
@@ -368,15 +373,15 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 1: HERO                                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
+      <section className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(74,222,128)" }} />
           <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(0,184,217)" }} />
           <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-10">
+        <div className="page-hero-inner">
+          <div className="page-hero-crumb-gap">
             <Breadcrumbs
               items={[
                 { label: t<string>("common.home"), href: "/" },
@@ -385,12 +390,13 @@ export function ContactPage() {
             />
           </div>
 
-          <div className="max-w-3xl">
+          <div className="page-hero-grid">
+            <div className="page-hero-main">
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-3 px-4 py-2 rounded-full mb-8"
+              className="inline-flex items-center gap-3 px-4 py-2 rounded-full page-hero-badge-gap"
               style={{ background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.25)" }}
             >
               <MessageCircle className="w-4 h-4" style={{ color: "rgb(74,222,128)" }} />
@@ -403,7 +409,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight" style={{ color: "rgb(248,250,252)" }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 sm:mb-5 leading-tight tracking-tight text-text-primary"
             >
               {t<string>("contact.title")}
             </m.h1>
@@ -412,7 +418,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="text-xl mb-6 leading-relaxed max-w-2xl" style={{ color: "rgb(145,177,210)" }}
+              className="text-xl mb-5 lg:mb-0 leading-relaxed max-w-2xl lg:max-w-none text-text-muted"
             >
               {t<string>("contact.description")}
             </m.p>
@@ -421,24 +427,24 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-base text-slate-400 mb-10"
+              className="text-base text-slate-400 lg:mb-0"
             >
               {t<string>("contact.heroSubtitle")}
             </m.p>
+            </div>
 
-            {/* Trust Badges */}
             <m.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="flex flex-wrap gap-3"
+              transition={{ delay: 0.35, duration: 0.6 }}
+              className="page-hero-aside flex flex-col gap-3"
             >
               {trustBadges.map((badge, i) => (
                 <span
                   key={i}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 dark:border-emerald-500/20 text-sm font-medium text-emerald-700 dark:text-emerald-400"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/10 dark:border-emerald-500/20 text-sm font-medium text-emerald-700 dark:text-emerald-400"
                 >
-                  <Shield className="w-3.5 h-3.5" />
+                  <Shield className="w-3.5 h-3.5 shrink-0" />
                   {badge}
                 </span>
               ))}
@@ -450,7 +456,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 2: QUICK CONTACT OPTIONS                        */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6">
+      <section className="page-section-y px-[var(--content-gutter)]">
         <div className="max-w-7xl mx-auto">
           <m.div
             variants={containerVariants}
@@ -544,7 +550,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3: MEET YOUR COUNSELORS                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section id="contact-form" className="py-20 px-6 border-t border-border">
+      <section id="contact-form" className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -553,7 +559,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
               {t<string>("contact.counselors.title")}
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -644,7 +650,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3.5: INLINE CALENDLY BOOKING                   */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -653,7 +659,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
               {t<string>("booking.heading")}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
@@ -694,7 +700,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 4: SMART CONTACT FORM                           */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-4xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -710,7 +716,7 @@ export function ContactPage() {
                   {t<string>("contact.badge")}
                 </span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
                 {t<string>("contact.form.subject") === "Subject" ? "Send Us a Message" : t<string>("contact.form.submit")}
               </h2>
             </div>
@@ -797,7 +803,7 @@ export function ContactPage() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: "rgb(105,133,166)" }}
+                  className="block text-xs font-bold uppercase tracking-wider mb-2 text-text-disabled"
                 >
                   {t<string>("contact.form.message")}
                   <span className="text-red-500 ms-1">*</span>
@@ -911,7 +917,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 5: FAQ STRIP                                    */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-3xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -920,7 +926,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
               {t<string>("contact.faqHeading")}
             </h2>
           </m.div>
@@ -949,7 +955,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 6: OFFICES & AVAILABILITY                       */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="py-20 px-6 border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -958,7 +964,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
               {t<string>("contact.offices.title")}
             </h2>
           </m.div>

@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getFeaturedUniversities } from "@/data/universities";
 import { UniversityCardModern } from "../components/ui/modern-cards";
+import { useLanguage } from "@/i18n/language-context";
 
 const SLIDE_VARIANTS = {
   enter: (dir: number) => ({ x: dir > 0 ? "35%" : "-35%", opacity: 0 }),
@@ -14,6 +15,7 @@ const SLIDE_VARIANTS = {
 const SLIDE_TRANSITION = { type: "spring" as const, stiffness: 260, damping: 30, mass: 0.9 };
 
 export function FeaturedUniversitiesCarousel() {
+  const { t } = useLanguage();
   const featured = useMemo(() => getFeaturedUniversities(6), []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -52,37 +54,37 @@ export function FeaturedUniversitiesCarousel() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary py-20 md:py-24 dark:from-bg-primary dark:to-bg-secondary">
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(var(--grid),0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--grid),0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+    <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden section-gradient">
+      <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       <div className="absolute -top-20 -right-16 w-[24rem] h-[24rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(212,175,55,0.06)" }} />
       <div className="absolute -bottom-20 -left-10 w-[20rem] h-[20rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(0,184,217,0.06)" }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         <div className="mb-9 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-3 inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-accent-primary">
+            <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase mb-3 font-semibold" style={{ color: "rgb(212,175,55)" }}>
               <Sparkles className="w-3.5 h-3.5" />
-              Top Picks
+              {t<string>("home.featuredUniversities.badge")}
             </p>
-            <h2 className="text-3xl font-bold tracking-tight text-text-primary md:text-4xl">Featured Universities</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">{t<string>("home.featuredUniversities.title")}</h2>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            <Link to="/universities" className="text-sm font-semibold text-accent-tech transition-opacity hover:opacity-70">
-              View All
+            <Link to="/universities" className="text-sm font-semibold transition-opacity hover:opacity-70" style={{ color: "rgb(0,184,217)" }}>
+              {t<string>("common.viewAll")}
             </Link>
             <div className="flex gap-2">
               <button
                 onClick={handlePrev}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-bg-surface text-text-secondary transition-all duration-200 hover:border-accent-primary/50 hover:text-text-primary"
-                aria-label="Previous featured universities"
+                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 border border-accent-primary/20 bg-bg-surface/70 text-text-secondary hover:border-accent-primary/40"
+                aria-label={t<string>("common.aria.previous")}
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={handleNext}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-bg-surface text-text-secondary transition-all duration-200 hover:border-accent-primary/50 hover:text-text-primary"
-                aria-label="Next featured universities"
+                className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 border border-accent-primary/20 bg-bg-surface/70 text-text-secondary hover:border-accent-primary/40"
+                aria-label={t<string>("common.aria.next")}
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -140,7 +142,7 @@ export function FeaturedUniversitiesCarousel() {
               }}
               className={`h-2 rounded-full transition-all ${currentIndex === index ? "w-8" : "w-2"}`}
             style={{ background: currentIndex === index ? "rgb(212,175,55)" : "rgba(212,175,55,0.2)" }}
-              aria-label={`Go to featured university ${index + 1}`}
+              aria-label={t<string>("home.instagram.aria.openStory").replace("{{index}}", String(index + 1))}
             />
           ))}
         </div>

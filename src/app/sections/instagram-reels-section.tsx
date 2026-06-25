@@ -13,6 +13,7 @@ import {
 
 import { useInstagramContent } from "@/hooks/useInstagramContent";
 import type { InstagramFeedItem } from "@/types/instagram-feed";
+import { useLanguage } from "@/i18n/language-context";
 
 const INSTAGRAM_URL = "https://www.instagram.com/urmenroll";
 const HANDLE = "@urmenroll";
@@ -61,20 +62,21 @@ function FeedCard({
   isActive: boolean;
   onClick: () => void;
 }) {
+  const { t } = useLanguage();
   const [g0, g1, g2] = getPlaceholderGradient(index);
 
   return (
     <m.button
       type="button"
-      aria-label={`Open Instagram success story ${index + 1}`}
+      aria-label={t<string>("home.instagram.aria.openStory").replace("{{index}}", String(index + 1))}
       onClick={onClick}
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.36, delay: (index % 4) * 0.04 }}
       whileHover={{ y: -4 }}
-      className={`group relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-border/70 bg-bg-surface/80 p-2 text-left backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary sm:w-[224px] ${
-        isActive ? "border-accent-tech/45 shadow-[0_20px_60px_rgba(2,4,12,0.2)]" : ""
+      className={`group relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.05] p-2 text-left backdrop-blur-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--accent-primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--bg-primary))] sm:w-[224px] ${
+        isActive ? "border-white/25 shadow-[0_20px_60px_rgba(2,4,12,0.2)]" : ""
       }`}
       style={{ scrollSnapAlign: "start" }}
     >
@@ -98,7 +100,7 @@ function FeedCard({
         <div className="absolute inset-x-0 top-0 p-3.5">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-[rgba(8,14,28,0.34)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/82 backdrop-blur-md">
             <Instagram className="h-3.5 w-3.5 text-rose-300" />
-            Success story
+            {t<string>("home.instagram.storyBadge")}
           </div>
         </div>
 
@@ -125,7 +127,7 @@ function FeedCard({
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-transparent transition-all duration-300 group-hover:ring-accent-tech/30" />
+      <div className="pointer-events-none absolute inset-0 rounded-[1.75rem] ring-1 ring-inset ring-white/0 transition-all duration-300 group-hover:ring-white/18" />
     </m.button>
   );
 }
@@ -135,7 +137,7 @@ function LoadingCard({ index }: { index: number }) {
 
   return (
     <div
-      className="relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-border/70 bg-bg-surface/72 p-2 sm:w-[224px]"
+      className="relative w-[210px] shrink-0 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-2 sm:w-[224px]"
       style={{ scrollSnapAlign: "start" }}
     >
       <div
@@ -166,6 +168,7 @@ function FeedModal({
   onPrev: () => void;
   onNext: () => void;
 }) {
+  const { t } = useLanguage();
   const item = items[activeIndex];
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -199,7 +202,7 @@ function FeedModal({
       className="fixed inset-0 z-[120] flex items-center justify-center p-4 md:p-6"
       role="dialog"
       aria-modal="true"
-      aria-label={`Instagram success story ${activeIndex + 1} of ${items.length}`}
+      aria-label={t<string>("home.instagram.aria.openStory").replace("{{index}}", String(activeIndex + 1))}
       onClick={onClose}
     >
       <div className="absolute inset-0 bg-[rgba(8,14,28,0.82)] backdrop-blur-xl" />
@@ -225,7 +228,7 @@ function FeedModal({
             <button
               ref={closeRef}
               type="button"
-              aria-label="Close"
+              aria-label={t<string>("common.close")}
               onClick={onClose}
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18"
             >
@@ -233,7 +236,7 @@ function FeedModal({
             </button>
           </div>
 
-          <div className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-[rgb(8,14,28)] shadow-[0_28px_80px_rgba(2,4,12,0.44)]">
+          <div className="overflow-hidden rounded-[1.4rem] border border-border bg-bg-surface shadow-[var(--surface-shadow)]">
             {item.thumbnailUrl ? (
               <img
                 src={item.thumbnailUrl}
@@ -264,7 +267,7 @@ function FeedModal({
             <div className="flex gap-2">
               <button
                 type="button"
-                aria-label="Previous story"
+                aria-label={t<string>("common.aria.previous")}
                 onClick={onPrev}
                 disabled={activeIndex === 0}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18 disabled:pointer-events-none disabled:opacity-30"
@@ -273,7 +276,7 @@ function FeedModal({
               </button>
               <button
                 type="button"
-                aria-label="Next story"
+                aria-label={t<string>("common.aria.next")}
                 onClick={onNext}
                 disabled={activeIndex === items.length - 1}
                 className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white transition-colors hover:bg-white/18 disabled:pointer-events-none disabled:opacity-30"
@@ -288,7 +291,7 @@ function FeedModal({
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/16"
             >
-              Open in Instagram
+              {t<string>("home.instagram.viewPost")}
               <ExternalLink className="h-3.5 w-3.5 text-white/70" />
             </a>
           </div>
@@ -299,6 +302,7 @@ function FeedModal({
 }
 
 export function InstagramReelsSection() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [atStart, setAtStart] = useState(true);
@@ -364,7 +368,7 @@ export function InstagramReelsSection() {
   return (
     <section
       id="reels"
-      className="relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary py-18 md:py-22 dark:from-bg-primary dark:to-bg-secondary"
+      className="relative overflow-hidden bg-[rgb(var(--bg-primary))] py-18 md:py-22"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute -top-20 left-[12%] h-64 w-64 rounded-full bg-[rgba(244,114,182,0.1)] blur-[120px]" />
@@ -379,18 +383,18 @@ export function InstagramReelsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.45 }}
           >
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface/76 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--text-muted))]">
               <Instagram className="h-3.5 w-3.5 text-rose-400" />
-              Instagram success stories
+              {t<string>("home.instagram.storyBadge")}
             </div>
             <h2
               className="max-w-3xl text-3xl font-bold tracking-tight text-[rgb(var(--text-primary))] md:text-4xl lg:text-5xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Real student wins, synced from our Instagram feed.
+              {t<string>("home.instagram.title")}
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-relaxed text-[rgb(var(--text-muted))]">
-              The website now reads from a dedicated feed pipeline, so new success stories can appear here without manual shortcode updates.
+              {t<string>("home.instagram.subtitle")}
             </p>
           </m.div>
 
@@ -402,7 +406,7 @@ export function InstagramReelsSection() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-border bg-bg-surface/82 px-4 py-2.5 text-sm font-semibold text-text-primary transition-all hover:-translate-y-0.5 hover:border-border-strong hover:bg-bg-surface"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-white/10 bg-white/[0.06] px-4 py-2.5 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.1]"
           >
             Visit {HANDLE}
             <ExternalLink className="h-3.5 w-3.5 text-[rgb(var(--text-muted))]" />
@@ -427,19 +431,19 @@ export function InstagramReelsSection() {
               <div className="flex items-center gap-2 self-start md:self-auto">
                 <button
                   type="button"
-                  aria-label="Scroll left"
+                  aria-label={t<string>("common.aria.scrollLeft")}
                   onClick={() => scrollBy("left")}
                   disabled={atStart || isLoading || items.length === 0}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-bg-surface text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover disabled:pointer-events-none disabled:opacity-35"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <button
                   type="button"
-                  aria-label="Scroll right"
+                  aria-label={t<string>("common.aria.scrollRight")}
                   onClick={() => scrollBy("right")}
                   disabled={atEnd || isLoading || items.length === 0}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-bg-surface text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover disabled:pointer-events-none disabled:opacity-35"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white transition-all hover:bg-white/[0.15] disabled:pointer-events-none disabled:opacity-35"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
@@ -452,26 +456,26 @@ export function InstagramReelsSection() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="mt-0.5 h-5 w-5 text-[rgb(var(--error))]" />
                 <div className="flex-1">
-                  <p className="font-semibold">Instagram stories are temporarily unavailable.</p>
+                  <p className="font-semibold">{t<string>("home.instagram.error")}</p>
                   <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
-                    The feed could not be loaded right now. You can retry or open the Instagram page directly.
+                    {t<string>("home.instagram.loading")}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-3">
                     <button
                       type="button"
                       onClick={() => void refetch()}
-                      className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
                     >
                       <RefreshCcw className="h-4 w-4" />
-                      Retry
+                      {t<string>("common.retry")}
                     </button>
                     <a
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-4 py-2 text-sm font-semibold text-text-primary transition-all hover:border-border-strong hover:bg-bg-surface-hover"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.08] px-4 py-2 text-sm font-semibold text-[rgb(var(--text-primary))] transition-all hover:bg-white/[0.12]"
                     >
-                      Open Instagram
+                      {t<string>("home.instagram.followUs")}
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>
@@ -479,8 +483,8 @@ export function InstagramReelsSection() {
               </div>
             </div>
           ) : showEmptyState ? (
-            <div className="rounded-[1.35rem] border border-border bg-bg-surface/72 p-5 text-[rgb(var(--text-primary))]">
-              <p className="font-semibold">No stories are available yet.</p>
+            <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-5 text-[rgb(var(--text-primary))]">
+              <p className="font-semibold">{t<string>("home.instagram.empty")}</p>
               <p className="mt-1 text-sm text-[rgb(var(--text-muted))]">
                 Once the feed sync runs and Instagram content is available, stories will appear here automatically.
               </p>
@@ -491,14 +495,14 @@ export function InstagramReelsSection() {
                 <div
                   className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 transition-opacity duration-300 sm:w-16"
                   style={{
-                    background: "linear-gradient(to right, rgb(var(--bg-primary) / 0.9), transparent)",
+                    background: "linear-gradient(to right, rgba(18, 32, 58, 0.88), transparent)",
                     opacity: atStart || isLoading ? 0 : 1,
                   }}
                 />
                 <div
                   className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 transition-opacity duration-300 sm:w-16"
                   style={{
-                    background: "linear-gradient(to left, rgb(var(--bg-primary) / 0.9), transparent)",
+                    background: "linear-gradient(to left, rgba(18, 32, 58, 0.88), transparent)",
                     opacity: atEnd || isLoading ? 0 : 1,
                   }}
                 />
@@ -526,7 +530,7 @@ export function InstagramReelsSection() {
 
               <div className="relative mt-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="h-1.5 w-36 overflow-hidden rounded-full bg-border/75 sm:w-44">
+                  <div className="h-1.5 w-36 overflow-hidden rounded-full bg-white/10 sm:w-44">
                     <div
                       className="h-full rounded-full bg-[linear-gradient(90deg,rgb(var(--accent-primary)),rgb(var(--accent-tech-hover)),rgb(var(--accent-tech)))] transition-[width] duration-150 ease-out"
                       style={{ width: `${Math.max(scrollProgress * 100, isLoading ? 22 : 8)}%` }}

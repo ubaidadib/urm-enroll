@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { AnimatePresence, m } from "motion/react";
 import { SlidersHorizontal, Sparkles, X } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 export type SmartFilterId =
   | "best-match"
@@ -31,14 +32,23 @@ interface FloatingFiltersProps {
   onClearAll: () => void;
 }
 
-const SMART_FILTERS: Array<{ id: SmartFilterId; label: string }> = [
-  { id: "best-match", label: "Best Match" },
-  { id: "trending", label: "Trending" },
-  { id: "high-employability", label: "High Employability" },
-  { id: "scholarships", label: "Scholarships" },
-  { id: "english-friendly", label: "English Friendly" },
-  { id: "visa-friendly", label: "Visa Friendly" },
+const SMART_FILTER_IDS: SmartFilterId[] = [
+  "best-match",
+  "trending",
+  "high-employability",
+  "scholarships",
+  "english-friendly",
+  "visa-friendly",
 ];
+
+const SMART_FILTER_LABEL_KEYS: Record<SmartFilterId, string> = {
+  "best-match": "programs.discovery.smartFilters.bestMatch",
+  trending: "programs.discovery.smartFilters.trending",
+  "high-employability": "programs.discovery.smartFilters.highEmployability",
+  scholarships: "programs.discovery.smartFilters.scholarships",
+  "english-friendly": "programs.discovery.smartFilters.englishFriendly",
+  "visa-friendly": "programs.discovery.smartFilters.visaFriendly",
+};
 
 export function FloatingFilters({
   countryOptions,
@@ -55,6 +65,8 @@ export function FloatingFilters({
   onOpenMobileSheet,
   onClearAll,
 }: FloatingFiltersProps) {
+  const { t } = useLanguage();
+
   const activeCount = useMemo(
     () => [selectedCountry, selectedDegree, selectedLanguage].filter(Boolean).length + smartFilters.length,
     [selectedCountry, selectedDegree, selectedLanguage, smartFilters]
@@ -67,12 +79,12 @@ export function FloatingFilters({
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-2 rounded-2xl bg-brand-navy-900 px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white dark:bg-brand-steel-500 dark:text-brand-navy-950">
               <Sparkles className="h-3.5 w-3.5" />
-              Smart Filters
+              {t<string>("programs.discovery.smartFilters.title")}
             </div>
 
-            <FilterSelect label="Country" options={countryOptions} value={selectedCountry} onChange={onChangeCountry} />
-            <FilterSelect label="Degree" options={degreeOptions} value={selectedDegree} onChange={onChangeDegree} />
-            <FilterSelect label="Language" options={languageOptions} value={selectedLanguage} onChange={onChangeLanguage} />
+            <FilterSelect label={t<string>("programs.listing.filters.country")} options={countryOptions} value={selectedCountry} onChange={onChangeCountry} anyLabel={t<string>("common.any")} />
+            <FilterSelect label={t<string>("programs.listing.filters.degree")} options={degreeOptions} value={selectedDegree} onChange={onChangeDegree} anyLabel={t<string>("common.any")} />
+            <FilterSelect label={t<string>("programs.listing.filters.language")} options={languageOptions} value={selectedLanguage} onChange={onChangeLanguage} anyLabel={t<string>("common.any")} />
 
             <div className="ml-auto flex items-center gap-2">
               {activeCount > 0 ? (
@@ -82,27 +94,27 @@ export function FloatingFilters({
                   className="inline-flex h-10 items-center gap-1 rounded-xl border border-border px-3 text-xs font-semibold text-text-secondary transition-colors hover:bg-bg-surface-hover hover:text-text-primary"
                 >
                   <X className="h-3.5 w-3.5" />
-                  Reset
+                  {t<string>("programs.discovery.smartFilters.reset")}
                 </button>
               ) : null}
             </div>
           </div>
 
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            {SMART_FILTERS.map((item) => {
-              const active = smartFilters.includes(item.id);
+            {SMART_FILTER_IDS.map((id) => {
+              const active = smartFilters.includes(id);
               return (
                 <button
-                  key={item.id}
+                  key={id}
                   type="button"
-                  onClick={() => onToggleSmartFilter(item.id)}
+                  onClick={() => onToggleSmartFilter(id)}
                   className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
                     active
                       ? "bg-brand-steel-500 text-brand-navy-950 shadow-sm"
                       : "border border-border bg-bg-surface text-text-secondary hover:border-brand-steel-400/60"
                   }`}
                 >
-                  {item.label}
+                  {t<string>(SMART_FILTER_LABEL_KEYS[id])}
                 </button>
               );
             })}
@@ -118,7 +130,7 @@ export function FloatingFilters({
         >
           <span className="inline-flex items-center gap-2 text-sm font-semibold">
             <SlidersHorizontal className="h-4 w-4" />
-            Filters + AI Smart Match
+            {t<string>("programs.discovery.smartFilters.mobileCta")}
           </span>
           <span className="rounded-full bg-brand-steel-500 px-2.5 py-1 text-xs font-bold text-brand-navy-950">
             {activeCount}
@@ -134,9 +146,10 @@ interface FilterSelectProps {
   options: OptionItem[];
   value: string | null;
   onChange: (value: string | null) => void;
+  anyLabel: string;
 }
 
-function FilterSelect({ label, options, value, onChange }: FilterSelectProps) {
+function FilterSelect({ label, options, value, onChange, anyLabel }: FilterSelectProps) {
   return (
     <label className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-bg-surface px-3 text-xs font-semibold text-text-secondary">
       <span>{label}</span>
@@ -146,7 +159,7 @@ function FilterSelect({ label, options, value, onChange }: FilterSelectProps) {
         onChange={(event) => onChange(event.target.value ? event.target.value : null)}
         className="min-w-28 bg-transparent text-text-primary outline-none"
       >
-        <option value="">Any</option>
+        <option value="">{anyLabel}</option>
         {options.map((option) => (
           <option key={option.id} value={option.id}>
             {option.label}
@@ -190,10 +203,12 @@ export function MobileFiltersSheet({
   onToggleSmartFilter,
   onClearAll,
 }: MobileFiltersSheetProps) {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {open ? (
-        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label="Filters">
+        <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true" aria-label={t<string>("programs.listing.filters.title")}>
           <m.button
             type="button"
             initial={{ opacity: 0 }}
@@ -212,7 +227,7 @@ export function MobileFiltersSheet({
           >
             <div className="mx-auto mb-4 h-1.5 w-16 rounded-full bg-border" />
             <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-lg font-black text-text-primary">Smart Discovery Filters</h2>
+              <h2 className="text-lg font-black text-text-primary">{t<string>("programs.discovery.smartFilters.mobileSheetTitle")}</h2>
               <button
                 type="button"
                 onClick={onClose}
@@ -223,27 +238,27 @@ export function MobileFiltersSheet({
             </div>
 
             <div className="space-y-3">
-              <FilterSelect label="Country" options={countryOptions} value={selectedCountry} onChange={onChangeCountry} />
-              <FilterSelect label="Degree" options={degreeOptions} value={selectedDegree} onChange={onChangeDegree} />
-              <FilterSelect label="Language" options={languageOptions} value={selectedLanguage} onChange={onChangeLanguage} />
+              <FilterSelect label={t<string>("programs.listing.filters.country")} options={countryOptions} value={selectedCountry} onChange={onChangeCountry} anyLabel={t<string>("common.any")} />
+              <FilterSelect label={t<string>("programs.listing.filters.degree")} options={degreeOptions} value={selectedDegree} onChange={onChangeDegree} anyLabel={t<string>("common.any")} />
+              <FilterSelect label={t<string>("programs.listing.filters.language")} options={languageOptions} value={selectedLanguage} onChange={onChangeLanguage} anyLabel={t<string>("common.any")} />
 
               <div className="rounded-2xl border border-border p-3">
-                <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-text-muted">AI smart filters</p>
+                <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-text-muted">{t<string>("programs.discovery.smartFilters.aiLabel")}</p>
                 <div className="flex flex-wrap gap-2">
-                  {SMART_FILTERS.map((item) => {
-                    const active = smartFilters.includes(item.id);
+                  {SMART_FILTER_IDS.map((id) => {
+                    const active = smartFilters.includes(id);
                     return (
                       <button
-                        key={`mobile-${item.id}`}
+                        key={`mobile-${id}`}
                         type="button"
-                        onClick={() => onToggleSmartFilter(item.id)}
+                        onClick={() => onToggleSmartFilter(id)}
                         className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
                           active
                             ? "bg-brand-gold-500 text-brand-navy-950"
                             : "border border-border bg-bg-surface text-text-secondary"
                         }`}
                       >
-                        {item.label}
+                        {t<string>(SMART_FILTER_LABEL_KEYS[id])}
                       </button>
                     );
                   })}
@@ -257,14 +272,14 @@ export function MobileFiltersSheet({
                 onClick={onClearAll}
                 className="inline-flex h-11 items-center justify-center rounded-xl border border-border text-sm font-semibold text-text-secondary"
               >
-                Clear all
+                {t<string>("programs.listing.filters.clearAll")}
               </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="inline-flex h-11 items-center justify-center rounded-xl bg-brand-steel-500 text-sm font-bold text-brand-navy-950"
               >
-                Apply
+                {t<string>("programs.discovery.smartFilters.apply")}
               </button>
             </div>
           </m.div>

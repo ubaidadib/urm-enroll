@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom";
-import { useMemo, useState, type FormEvent } from "react";
 import {
   Facebook,
   Linkedin,
   Instagram,
-  ArrowRight,
+  ArrowUp,
   ArrowUpRight,
   ShieldCheck,
   Globe,
+  ExternalLink,
   Building2,
   Wallet,
-  Mail,
-  Lock,
-  Sparkles,
 } from "lucide-react";
 import { useLanguage } from "@/i18n/language-context";
+
+const AGENT_PORTAL_URL = "https://agents-portal.enrollurm.com/";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (
@@ -27,45 +26,7 @@ function TikTokIcon({ className }: { className?: string }) {
 export function Footer() {
   const { t, dir } = useLanguage();
   const currentYear = new Date().getFullYear();
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-
-  const footerSections = useMemo(
-    () => [
-      {
-        title: "Company",
-        links: [
-          { href: "/about", label: "About URM" },
-          { href: "/services", label: t<string>("footer.services") },
-          { href: "/partnerships", label: t<string>("footer.explore.forInstitutions") },
-        ],
-      },
-      {
-        title: "Programs",
-        links: [
-          { href: "/programs", label: t<string>("footer.journeys.programs") },
-          { href: "/universities", label: t<string>("footer.journeys.universities") },
-          { href: "/quiz", label: t<string>("footer.journeys.quiz") },
-        ],
-      },
-      {
-        title: "Destinations",
-        links: [
-          { href: "/destinations", label: t<string>("footer.destinations") },
-          { href: "/chancenkarte", label: t<string>("footer.journeys.chancenkarte") },
-          { href: "/germany-jobs", label: t<string>("footer.journeys.germanyJobs") },
-        ],
-      },
-      {
-        title: "Help",
-        links: [
-          { href: "/contact", label: "Contact & Book" },
-          { href: "/resources/how-to-apply-german-university", label: "How To Apply" },
-          { href: "/resources/student-visa-germany-guide", label: "Visa Guide" },
-        ],
-      },
-    ],
-    [t],
-  );
+  const isRtl = dir === "rtl";
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -76,209 +37,286 @@ export function Footer() {
     window.dispatchEvent(new Event("urm:open-cookie-preferences"));
   };
 
-  const handleNewsletterSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const email = newsletterEmail.trim();
-    if (!email) return;
-    window.location.href = `/contact?topic=newsletter&subject=${encodeURIComponent("Newsletter subscription")}&message=${encodeURIComponent(email)}`;
-  };
+  const socialLinks = [
+    { icon: Instagram, href: "https://www.instagram.com/urmenroll", label: "Instagram" },
+    { icon: Facebook, href: "https://www.facebook.com/URMENROLL", label: "Facebook" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/urm-enroll", label: "LinkedIn" },
+    { icon: TikTokIcon, href: "https://www.tiktok.com/@urm.enroll.ltd", label: "TikTok" },
+  ];
+
+  const legalLinks = [
+    { label: t<string>("footer.legal.privacy"), path: "/privacy" },
+    { label: t<string>("footer.legal.terms"), path: "/terms" },
+    { label: t<string>("footer.legal.cookies"), path: "/cookies" },
+    { label: t<string>("footer.legal.impressum"), path: "/impressum" },
+  ];
 
   return (
-    <footer className="relative w-full overflow-hidden border-t border-border/60 bg-bg-secondary text-text-primary">
-      <div className="pointer-events-none absolute inset-0 premium-grid opacity-25" />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-bg-secondary/80 to-bg-primary" />
+    <footer className="relative w-full overflow-hidden border-t border-border/50">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 premium-grid opacity-30" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-bg-secondary/60 to-bg-primary"
+      />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-16 sm:px-8 lg:px-10 lg:py-20">
-        <section className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-bg-surface/88 p-8 shadow-[0_24px_60px_rgba(7,18,40,0.15)] backdrop-blur-xl md:p-12">
-          <div className="pointer-events-none absolute -top-28 -right-20 h-64 w-64 rounded-full bg-accent-primary/16 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-accent-tech/14 blur-3xl" />
-          <div className="relative grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-tech">Admissions Support</p>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-text-primary sm:text-4xl">
-                Ready to Start Your Study Journey?
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-text-secondary">
-                Talk to an advisor, build your shortlist, and move from program discovery to application with a clear plan.
-              </p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-accent-primary px-6 py-3 text-sm font-semibold text-ink transition-all hover:-translate-y-0.5 hover:shadow-xl"
-                >
-                  Book A Free Consultation
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
-                  to="/programs"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-border-strong bg-bg-primary/70 px-6 py-3 text-sm font-semibold text-text-primary transition-all hover:-translate-y-0.5 hover:border-accent-tech/60"
-                >
-                  Explore Programs
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-
-            <form onSubmit={handleNewsletterSubmit} className="rounded-3xl border border-border/70 bg-bg-primary/72 p-5 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="mt-0.5 rounded-2xl bg-accent-primary/14 p-3 text-accent-primary">
-                  <Sparkles className="h-4 w-4" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-semibold text-text-primary">Weekly Admissions Brief</p>
-                  <p className="mt-1 text-xs text-text-muted">Updates on intakes, visas, and scholarships.</p>
-                </div>
-              </div>
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                <label className="sr-only" htmlFor="footer-newsletter-email">Email address</label>
-                <input
-                  id="footer-newsletter-email"
-                  type="email"
-                  value={newsletterEmail}
-                  onChange={(event) => setNewsletterEmail(event.target.value)}
-                  placeholder="Enter your email"
-                  className="min-w-0 flex-1 rounded-2xl border border-border bg-bg-surface px-4 py-3 text-sm text-text-primary placeholder:text-text-muted focus:border-accent-primary focus:outline-none focus:ring-4 focus:ring-accent-primary/10"
+      <div className="relative z-10 border-t border-border/40 bg-bg-surface/88 backdrop-blur-xl shadow-[var(--surface-shadow)]">
+        <div className="content-shell mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12 py-10 md:py-12 lg:py-14 3xl:py-16">
+          {/* Brand + navigation links */}
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
+            <div className="space-y-5 lg:col-span-4 xl:col-span-4">
+              <Link to="/" className="group flex w-fit items-center gap-3" aria-label="URM ENROLL — Home">
+                <img
+                  src="/img/logo-mark.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-11 w-11 shrink-0 object-contain block dark:hidden"
+                  draggable={false}
                 />
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl border border-accent-tech/35 bg-bg-surface px-4 py-3 text-sm font-semibold text-text-primary transition-all hover:-translate-y-0.5 hover:border-accent-tech/65"
-                >
-                  <Mail className="h-4 w-4" />
-                  Subscribe
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
+                <img
+                  src="/img/logo-mark-light.png"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-11 w-11 shrink-0 object-contain hidden dark:block"
+                  draggable={false}
+                />
+                <div>
+                  <span className="block text-[15px] font-black leading-none tracking-tight text-text-primary transition-colors duration-200 group-hover:text-accent-primary">
+                    URM <span className="text-accent-primary">ENROLL</span>
+                  </span>
+                  <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.15em] text-text-muted">
+                    Your Bridge to Global Education
+                  </span>
+                </div>
+              </Link>
 
-        <section className="mt-14 border-t border-border/60 pt-12">
-          <div className="mb-10 flex items-start justify-between gap-6">
-            <Link to="/" className="group inline-flex items-center gap-3" aria-label="URM ENROLL — Home">
-              <img src="/img/logo-mark.png" alt="" aria-hidden="true" className="h-11 w-11 shrink-0 object-contain dark:hidden" draggable={false} />
-              <img src="/img/logo-mark-light.png" alt="" aria-hidden="true" className="hidden h-11 w-11 shrink-0 object-contain dark:block" draggable={false} />
-              <div>
-                <span className="block text-[15px] font-black tracking-tight leading-none text-text-primary transition-colors group-hover:text-accent-primary">
-                  URM <span className="text-accent-primary">ENROLL</span>
-                </span>
-                <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.18em] text-text-muted">
-                  Global Student Admissions
-                </span>
-              </div>
-            </Link>
+              <p className="max-w-sm text-sm leading-relaxed text-text-secondary">{t<string>("footer.description")}</p>
 
-            <div className="hidden gap-2 sm:flex">
-              {[
-                { icon: Instagram, href: "https://www.instagram.com/urmenroll", label: "Instagram" },
-                { icon: Facebook, href: "https://www.facebook.com/URMENROLL", label: "Facebook" },
-                { icon: Linkedin, href: "https://www.linkedin.com/company/urm-enroll", label: "LinkedIn" },
-                { icon: TikTokIcon, href: "https://www.tiktok.com/@urm.enroll.ltd", label: "TikTok" },
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit our ${social.label} profile`}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-bg-surface text-text-secondary transition-all hover:-translate-y-0.5 hover:border-accent-tech/55 hover:text-text-primary"
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit our ${social.label} profile`}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/55 bg-background-primary/80 text-text-secondary transition-all duration-200 hover:border-accent-tech/55 hover:bg-background-hover hover:text-text-primary"
+                  >
+                    <social.icon className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-8 xl:col-span-8">
+              <FooterColumn
+                title={t<string>("footer.journeys.studyTitle")}
+                links={[
+                  { href: "/universities", label: t<string>("footer.journeys.universities") },
+                  { href: "/programs", label: t<string>("footer.journeys.programs") },
+                  { href: "/destinations", label: t<string>("footer.destinations") },
+                  { href: "/quiz", label: t<string>("footer.journeys.quiz") },
+                ]}
+              />
+
+              <FooterColumn
+                title={t<string>("footer.journeys.germanyTitle")}
+                links={[
+                  { href: "/services", label: t<string>("footer.services") },
+                  { href: "/nursing", label: t<string>("footer.explore.nursingProgram") },
+                  { href: "/germany-jobs", label: t<string>("footer.journeys.germanyJobs") },
+                  { href: "/chancenkarte", label: t<string>("footer.journeys.chancenkarte") },
+                ]}
+              />
+
+              <FooterColumn
+                className="col-span-2 sm:col-span-1"
+                title={t<string>("footer.journeys.supportTitle")}
+                links={[
+                  { href: "/about", label: t<string>("footer.journeys.about") },
+                  { href: "/contact", label: t<string>("footer.journeys.contact") },
+                  { href: "/compare", label: t<string>("header.nav.compare") },
+                  { href: "/resources", label: t<string>("footer.resourcesTitle") },
+                ]}
+              />
             </div>
           </div>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {footerSections.map((section) => (
-              <FooterColumn key={section.title} title={section.title} links={section.links} />
-            ))}
-          </div>
+          {/* Partner cards */}
+          <section
+            aria-labelledby="footer-partners-heading"
+            className="mt-10 border-t border-border/50 pt-10 md:mt-12 md:pt-12"
+          >
+            <h2
+              id="footer-partners-heading"
+              className="mb-5 text-xs font-semibold uppercase tracking-[0.17em] text-text-muted"
+            >
+              {t<string>("footer.partnersTitle")}
+            </h2>
 
-          <div className="mt-12 grid gap-3 sm:grid-cols-3">
-            {[
-              { title: t<string>("footer.badges.gdpr.title"), note: t<string>("footer.badges.gdpr.note"), icon: ShieldCheck },
-              { title: t<string>("footer.badges.icef.title"), note: t<string>("footer.badges.icef.note"), icon: Lock },
-              { title: t<string>("footer.badges.network.title"), note: t<string>("footer.badges.network.note"), icon: Globe },
-            ].map(({ title, note, icon: Icon }) => (
-              <div key={title} className="rounded-2xl border border-border bg-bg-surface/85 p-4 shadow-sm">
-                <Icon className="h-4 w-4 text-accent-tech" />
-                <p className="mt-3 text-sm font-semibold text-text-primary">{title}</p>
-                <p className="mt-1 text-xs text-text-muted">{note}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className={`mt-12 border-t border-border/60 pt-7 ${dir === "rtl" ? "text-right" : ""}`}>
-          <div className={`flex flex-col gap-4 md:flex-row md:items-center md:justify-between ${dir === "rtl" ? "md:flex-row-reverse" : ""}`}>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-text-secondary">
-              <span className="text-text-muted">{`© ${currentYear} ${t<string>("seo.siteName")}. ${t<string>("footer.legal.rights")}`}</span>
-              {[
-                { label: t<string>("footer.legal.privacy"), path: "/privacy" },
-                { label: t<string>("footer.legal.terms"), path: "/terms" },
-                { label: t<string>("footer.legal.cookies"), path: "/cookies" },
-                { label: t<string>("footer.legal.impressum"), path: "/impressum" },
-              ].map((item) => (
-                <Link key={item.path} to={item.path} className="group inline-flex items-center gap-1 transition-colors hover:text-text-primary">
-                  {item.label}
-                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
-                </Link>
-              ))}
-              <button
-                type="button"
-                onClick={openCookieSettings}
-                className="group inline-flex items-center gap-1 transition-colors hover:text-text-primary"
-              >
-                {t<string>("footer.legal.cookieSettings")}
-                <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
-              </button>
-            </div>
-
-            <div className="flex items-center gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
               <a
-                href="https://agents-portal.enrollurm.com/"
+                href={AGENT_PORTAL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface px-3 py-2 text-xs font-semibold text-text-secondary transition-all hover:border-accent-primary/55 hover:text-text-primary"
+                className="group flex items-start gap-3 rounded-2xl border border-accent-primary/20 bg-accent-primary/6 p-4 transition-all duration-200 hover:border-accent-primary/45 hover:bg-accent-primary/10"
               >
-                <Wallet className="h-3.5 w-3.5" />
-                {t<string>("header.nav.agentPortal")}
+                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-primary/12">
+                  <Wallet className="h-4 w-4 text-accent-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-0.5 flex items-center gap-1.5">
+                    <p className="text-sm font-semibold text-text-primary">{t<string>("header.nav.agentPortal")}</p>
+                    <ExternalLink className="h-3 w-3 text-text-muted transition-colors group-hover:text-accent-primary" />
+                  </div>
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-accent-primary">
+                    {t<string>("footer.partners.agentsAudience")}
+                  </p>
+                  <p className="text-xs leading-relaxed text-text-secondary">{t<string>("footer.partners.agentsDescription")}</p>
+                </div>
               </a>
+
               <Link
                 to="/partnerships"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface px-3 py-2 text-xs font-semibold text-text-secondary transition-all hover:border-accent-tech/55 hover:text-text-primary"
+                className="group flex items-start gap-3 rounded-2xl border border-accent-tech/20 bg-accent-tech/5 p-4 transition-all duration-200 hover:border-accent-tech/45 hover:bg-accent-tech/10"
               >
-                <Building2 className="h-3.5 w-3.5" />
-                Partner With Us
+                <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-tech/12">
+                  <Building2 className="h-4 w-4 text-accent-tech" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="mb-0.5 text-sm font-semibold text-text-primary">{t<string>("footer.partners.institutionsTitle")}</p>
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-accent-tech">
+                    {t<string>("footer.partners.institutionsAudience")}
+                  </p>
+                  <p className="text-xs leading-relaxed text-text-secondary">
+                    {t<string>("footer.partners.institutionsDescription")}
+                  </p>
+                </div>
               </Link>
-              <button
-                onClick={scrollToTop}
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-bg-surface px-3 py-2 text-xs font-semibold text-text-secondary transition-all hover:-translate-y-0.5 hover:border-accent-tech/60 hover:text-text-primary"
-              >
-                {t<string>("footer.backToTop")}
-                <ArrowUpRight className="h-3 w-3" />
-              </button>
             </div>
+          </section>
+
+          {/* Trust badges */}
+          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <TrustBadge
+              icon={ShieldCheck}
+              title={t<string>("footer.badges.gdpr.title")}
+              note={t<string>("footer.badges.gdpr.note")}
+              tone="success"
+            />
+            <TrustBadge
+              icon={Globe}
+              title={t<string>("footer.badges.network.title")}
+              note={t<string>("footer.badges.network.note")}
+              tone="info"
+            />
           </div>
-        </section>
+
+          {/* Legal bar */}
+          <div
+            className={`mt-8 flex flex-col gap-5 border-t border-border/55 pt-8 md:mt-10 md:gap-6 md:pt-8 lg:flex-row lg:items-end lg:justify-between ${isRtl ? "lg:flex-row-reverse" : ""}`}
+          >
+            <div className={`space-y-3 text-center lg:text-start ${isRtl ? "lg:text-end" : ""}`}>
+              <p className="text-xs leading-relaxed text-text-muted">
+                {`© ${currentYear} ${t<string>("seo.siteName")}. ${t<string>("footer.legal.rights")}`}
+              </p>
+              <p className="text-[11px] leading-relaxed text-text-muted/90">{t<string>("footer.legal.registration")}</p>
+
+              <nav
+                aria-label="Legal"
+                className={`flex flex-wrap items-center justify-center gap-x-4 gap-y-2 lg:justify-start ${isRtl ? "lg:justify-end" : ""}`}
+              >
+                {legalLinks.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className="group inline-flex items-center gap-1 text-xs text-text-secondary transition-colors duration-200 hover:text-text-primary"
+                  >
+                    {item.label}
+                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-70" />
+                  </Link>
+                ))}
+                <button
+                  type="button"
+                  onClick={openCookieSettings}
+                  className="group inline-flex items-center gap-1 text-xs text-text-secondary transition-colors duration-200 hover:text-text-primary"
+                >
+                  {t<string>("footer.legal.cookieSettings")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-70" />
+                </button>
+              </nav>
+            </div>
+
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="inline-flex shrink-0 items-center justify-center gap-2 self-center rounded-full border border-border/60 bg-background-surface px-4 py-2.5 text-xs font-semibold text-text-secondary transition-all duration-200 hover:border-accent-tech/60 hover:bg-background-hover hover:text-text-primary lg:self-auto"
+            >
+              {t<string>("footer.backToTop")}
+              <ArrowUp className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        </div>
       </div>
     </footer>
   );
 }
 
-function FooterColumn({ title, links }: { title: string; links: Array<{ href: string; label: string }> }) {
+function FooterColumn({
+  title,
+  links,
+  className = "",
+}: {
+  title: string;
+  links: Array<{ href: string; label: string }>;
+  className?: string;
+}) {
   return (
-    <div>
-      <h3 className="text-xs uppercase tracking-[0.17em] font-semibold text-text-muted mb-4">{title}</h3>
-      <ul className="space-y-2.5">
+    <div className={className}>
+      <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.17em] text-text-muted">{title}</h3>
+      <ul className="space-y-2">
         {links.map((link) => (
           <li key={link.href}>
-            <Link to={link.href} className="group inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-text-primary">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-tech/60 group-hover:bg-accent-primary transition-colors" />
-              {link.label}
+            <Link
+              to={link.href}
+              className="group inline-flex min-h-9 items-center gap-2 py-0.5 text-sm text-text-secondary transition-colors duration-200 hover:text-text-primary sm:min-h-0"
+            >
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-tech/50 transition-colors group-hover:bg-accent-primary" />
+              <span className="group-hover:underline group-hover:decoration-accent-primary/40 group-hover:underline-offset-4">
+                {link.label}
+              </span>
             </Link>
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function TrustBadge({
+  icon: Icon,
+  title,
+  note,
+  tone,
+}: {
+  icon: typeof ShieldCheck;
+  title: string;
+  note: string;
+  tone: "success" | "info";
+}) {
+  const iconWrapClass =
+    tone === "success"
+      ? "bg-success/15 text-success"
+      : "bg-info/15 text-info";
+
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-border/55 bg-background-primary/70 p-3.5">
+      <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${iconWrapClass}`}>
+        <Icon className="h-4 w-4" />
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold text-text-primary">{title}</p>
+        <p className="text-[10px] leading-snug text-text-muted">{note}</p>
+      </div>
     </div>
   );
 }

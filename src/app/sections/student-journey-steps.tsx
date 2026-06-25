@@ -28,7 +28,7 @@ export function StudentJourneySteps() {
 
   return (
     <section
-      className="py-28 relative overflow-hidden bg-linear-to-b from-bg-primary to-bg-secondary"
+      className="relative overflow-hidden section-gradient page-section-y"
       aria-labelledby="journey-heading"
     >
       {/* Ambient background */}
@@ -37,15 +37,15 @@ export function StudentJourneySteps() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         {/* Header */}
-        <div className={`text-center mb-20 ${isRtl ? "rtl-text" : ""}`}>
+        <div className={`text-center page-section-header-gap ${isRtl ? "rtl-text" : ""}`}>
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full mb-6"
-            style={{ background: "rgb(var(--bg-surface) / 0.12)", border: "1px solid rgba(212,175,55,0.25)" }}
+            style={{ background: "rgba(212,175,55,0.08)", border: "1px solid rgba(212,175,55,0.25)" }}
           >
             <Rocket className="w-4 h-4" style={{ color: "rgb(212,175,55)" }} />
             <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "rgb(212,175,55)" }}>
@@ -69,14 +69,14 @@ export function StudentJourneySteps() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl max-w-2xl mx-auto leading-relaxed text-text-secondary"
+            className="text-xl max-w-2xl mx-auto leading-relaxed text-text-muted"
           >
             {t<string>("studentJourney.description")}
           </m.p>
         </div>
 
         {/* Journey Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-10 lg:mb-12">
           {steps.map((step, index) => {
             const visual = STEP_VISUALS[index % STEP_VISUALS.length] ?? STEP_VISUALS[0]!;
             const Icon = visual.icon;
@@ -89,10 +89,7 @@ export function StudentJourneySteps() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 + index * 0.08 }}
-                className="group relative p-6 rounded-2xl transition-all duration-300"
-                style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgb(var(--border-default) / 0.75)" }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(212,175,55,0.35)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgb(var(--border-default) / 0.75)")}
+                className="group relative p-6 rounded-2xl transition-all duration-300 surface-glass-subtle"
               >
                 {/* Step number */}
                 <div className={`absolute top-6 ${isRtl ? "left-6" : "right-6"} text-6xl font-black select-none`} style={{ color: "rgba(212,175,55,0.06)" }}>
@@ -108,13 +105,13 @@ export function StudentJourneySteps() {
                 <h3 className="text-xl font-bold mb-3 tracking-tight text-text-primary">
                   {step.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-text-secondary">
+                <p className="text-sm leading-relaxed text-text-muted">
                   {step.description}
                 </p>
 
                 {/* Connector dot (visible on lg for non-last items) */}
                 {index < steps.length - 1 && (
-                  <div className={`hidden lg:block absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-4" : "-right-4"} w-2 h-2 rounded-full bg-border z-20`} />
+                  <div className={`hidden lg:block absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-4" : "-right-4"} w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 z-20`} />
                 )}
               </m.div>
             );
@@ -130,8 +127,7 @@ export function StudentJourneySteps() {
         >
           <Link
             to="/contact"
-            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
-            style={{ background: "rgb(212,175,55)", color: "rgb(8,14,28)", boxShadow: "0 4px 20px rgba(212,175,55,0.25)" }}
+            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 btn-gold-primary ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <span>{t<string>("studentJourney.cta")}</span>
             <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />

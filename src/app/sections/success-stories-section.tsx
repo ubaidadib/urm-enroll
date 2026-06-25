@@ -90,12 +90,12 @@ export function SuccessStoriesSection() {
     <section
       id="success-stories"
       ref={sectionRef}
-      className="relative py-24 px-6 overflow-hidden bg-[var(--color-bg-primary)]"
+      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
       dir={dir}
     >
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 right-8 w-[28rem] h-[28rem] rounded-full bg-[rgba(var(--theme-accent-tech),0.08)] blur-3xl" />
-        <div className="absolute -bottom-28 left-8 w-[24rem] h-[24rem] rounded-full bg-[rgba(var(--theme-accent-success),0.08)] blur-3xl" />
+        <div className="absolute -top-32 right-8 w-[28rem] h-[28rem] rounded-full bg-[rgba(var(--accent-tech),0.08)] blur-3xl" />
+        <div className="absolute -bottom-28 left-8 w-[24rem] h-[24rem] rounded-full bg-[rgba(var(--success),0.08)] blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -164,7 +164,7 @@ export function SuccessStoriesSection() {
               <button
                 type="button"
                 onClick={() => scrollSlider('prev')}
-                aria-label="Previous stories"
+                aria-label={t<string>("common.aria.previous")}
                 className="w-11 h-11 rounded-xl glass-card-light border border-[var(--color-border)] text-[var(--color-text-primary)] hover:shadow-md transition-all"
               >
                 <ChevronLeft className={`w-5 h-5 mx-auto ${isRtl ? 'rotate-180' : ''}`} />
@@ -172,7 +172,7 @@ export function SuccessStoriesSection() {
               <button
                 type="button"
                 onClick={() => scrollSlider('next')}
-                aria-label="Next stories"
+                aria-label={t<string>("common.aria.next")}
                 className="w-11 h-11 rounded-xl glass-card-light border border-[var(--color-border)] text-[var(--color-text-primary)] hover:shadow-md transition-all"
               >
                 <ChevronRight className={`w-5 h-5 mx-auto ${isRtl ? 'rotate-180' : ''}`} />

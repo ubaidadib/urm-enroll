@@ -138,7 +138,7 @@ export function DestinationComparison() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="overflow-x-auto -mx-6 px-6"
+          className="overflow-x-auto rounded-2xl"
         >
           <table className="w-full min-w-[800px] border-separate border-spacing-0" role="table">
             <thead>
@@ -262,7 +262,7 @@ export function DestinationComparison() {
         >
           <Link
             to="/quiz"
-            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
+            className={`group inline-flex items-center gap-3 px-8 py-4 rounded-2xl btn-gold-primary text-sm font-bold shadow-lg hover:shadow-xl transition-all active:scale-95 ${isRtl ? "flex-row-reverse" : ""}`}
           >
             <span>{t<string>("destinationComparison.cta")}</span>
             <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />

@@ -8,6 +8,13 @@ export const footer = {
   resourcesTitle: "Ressourcen",
   accreditationTitle: "Akkreditierung",
   partnersTitle: "Für Partner",
+  partners: {
+    agentsAudience: "Für Einzelpersonen",
+    agentsDescription: "Empfehlen Sie Studierende und verdienen Sie Provisionen — ein flexibles Zusatzeinkommen. Keine Firma erforderlich.",
+    institutionsTitle: "Partner werden",
+    institutionsAudience: "Für Institutionen",
+    institutionsDescription: "Universitäten & Schulen — werden Sie Teil des URM-Nexus-Netzwerks und rekrutieren Sie weltweit.",
+  },
   backToTop: "Nach oben",
   journeys: {
     studyTitle: "Studienweg",

@@ -18,7 +18,7 @@ export function NursingPage() {
   }, [recordSignal]);
 
   return (
-    <main className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-500">
+    <main className="min-h-screen transition-colors duration-500 bg-bg-primary">
       <SeoManager
         title={t<string>("seo.sections.workforce.title")}
         description={t<string>("seo.sections.workforce.description")}

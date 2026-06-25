@@ -1,5 +1,6 @@
 import { m } from "motion/react";
 import { Star } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 interface SuccessStory {
   id: string;
@@ -15,6 +16,8 @@ interface SuccessStoriesProps {
 }
 
 export function SuccessStories({ stories }: SuccessStoriesProps) {
+  const { t } = useLanguage();
+
   return (
     <section className="relative px-4 py-16 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
@@ -26,9 +29,9 @@ export function SuccessStories({ stories }: SuccessStoriesProps) {
           transition={{ duration: 0.5 }}
           className="mb-10"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-text-muted">Student Voices</p>
+          <p className="text-xs font-bold uppercase tracking-[0.12em] text-text-muted">{t<string>("programs.discovery.studentVoices")}</p>
           <h2 className="mt-2 text-3xl font-black text-text-primary">
-            How students like you transformed their futures
+            {t<string>("programs.discovery.studentVoicesHeading")}
           </h2>
         </m.div>
 

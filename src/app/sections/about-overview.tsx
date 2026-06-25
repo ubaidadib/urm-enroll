@@ -10,7 +10,7 @@ export function AboutOverview() {
   return (
     <section
       id="about-overview"
-      className="py-24 relative overflow-hidden bg-linear-to-b from-bg-secondary to-bg-primary"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -19,7 +19,7 @@ export function AboutOverview() {
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-size-[40px_40px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- The Two Pillars Grid --- */}
         <div className={`grid lg:grid-cols-2 gap-8 ${dir === "rtl" ? "rtl-text-right" : ""}`}>
@@ -32,7 +32,7 @@ export function AboutOverview() {
             transition={{ duration: 0.6 }}
             className="group relative h-full"
           >
-            <div className="relative h-full p-10 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col" style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgba(74,222,128,0.2)" }}>
+            <div className="relative h-full p-6 sm:p-8 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col surface-glass-subtle border-emerald-500/15">
               <div className="absolute inset-0 bg-linear-to-br from-accent-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10">
@@ -50,7 +50,7 @@ export function AboutOverview() {
                   </div>
                 </div>
                 
-                <p className="text-lg leading-relaxed mb-8 min-h-[4rem] text-text-secondary">
+                <p className="text-lg leading-relaxed mb-8 min-h-[4rem] text-text-muted">
                   {t<string>("about.enroll.body")}
                 </p>
                 
@@ -60,7 +60,7 @@ export function AboutOverview() {
                       <div className="mt-1 p-0.5 rounded-full bg-emerald-500/20">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                       </div>
-                      <span className="font-medium text-sm text-text-secondary">{point}</span>
+                      <span className="font-medium text-sm" style={{ color: "rgb(212,224,239)" }}>{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -76,7 +76,7 @@ export function AboutOverview() {
             transition={{ delay: 0.1, duration: 0.6 }}
             className="group relative h-full"
           >
-            <div className="relative h-full p-10 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col" style={{ background: "rgb(var(--bg-surface) / 0.86)", border: "1.5px solid rgba(99,102,241,0.25)" }}>
+            <div className="relative h-full p-6 sm:p-8 rounded-[2.5rem] transition-all duration-300 overflow-hidden flex flex-col surface-glass-subtle border-indigo-500/20">
               <div className="absolute inset-0 bg-linear-to-br from-accent-tech/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10">
@@ -94,7 +94,7 @@ export function AboutOverview() {
                   </div>
                 </div>
                 
-                <p className="text-lg leading-relaxed mb-8 min-h-[4rem] text-text-secondary">
+                <p className="text-lg leading-relaxed mb-8 min-h-[4rem] text-text-muted">
                   {t<string>("about.nexus.body")}
                 </p>
                 
@@ -104,7 +104,7 @@ export function AboutOverview() {
                       <div className="mt-1 p-0.5 rounded-full bg-indigo-500/20">
                         <Zap className="w-4 h-4 text-indigo-500" />
                       </div>
-                      <span className="font-medium text-sm text-text-secondary">{point}</span>
+                      <span className="font-medium text-sm" style={{ color: "rgb(212,224,239)" }}>{point}</span>
                     </li>
                   ))}
                 </ul>

@@ -20,8 +20,8 @@ const FeaturedUniversitiesCarousel = lazy(() =>
 const HomeHowItWorks = lazy(() =>
   import("../sections/home-how-it-works").then((module) => ({ default: module.HomeHowItWorks }))
 );
-const HomeTestimonials = lazy(() =>
-  import("../sections/home-testimonials").then((module) => ({ default: module.HomeTestimonials }))
+const HomeFinalCtaBanner = lazy(() =>
+  import("../sections/home-final-cta-banner").then((module) => ({ default: module.HomeFinalCtaBanner }))
 );
 const InstagramReelsSection = lazy(() =>
   import("../sections/instagram-reels-section").then((module) => ({ default: module.InstagramReelsSection }))
@@ -72,7 +72,7 @@ function DeferredSection({ children }: { children: React.ReactNode }) {
     return <>{children}</>;
   }
 
-  return <div ref={placeholderRef} className="min-h-35 overflow-hidden" aria-hidden="true" />;
+  return <div ref={placeholderRef} className="min-h-px w-full overflow-hidden" aria-hidden="true" />;
 }
 
 export function HomePage() {
@@ -83,7 +83,7 @@ export function HomePage() {
   useEffect(() => { recordSignal({ type: "page_view", page: "/home" }); }, [recordSignal]);
 
   return (
-    <div className="overflow-x-hidden bg-bg-primary text-text-primary transition-colors duration-500">
+    <div className="overflow-x-hidden">
       <SeoManager />
 
       {/* 1. Hero */}
@@ -116,26 +116,24 @@ export function HomePage() {
         </Suspense>
       </DeferredSection>
 
-      {/* 7. Testimonials */}
+      {/* 7. Instagram Reels — live embeds via Instagram embed.js (SEO-friendly) */}
       <DeferredSection>
-        <Suspense fallback={<div className="min-h-30" aria-hidden="true" />}>
-          <HomeTestimonials />
-        </Suspense>
-      </DeferredSection>
-
-      {/* 8. Instagram Reels — live embeds via Instagram embed.js (SEO-friendly) */}
-      <DeferredSection>
-        <Suspense fallback={<div className="min-h-[480px]" aria-hidden="true" />}>
+        <Suspense fallback={<div className="min-h-px" aria-hidden="true" />}>
           <InstagramReelsSection />
         </Suspense>
       </DeferredSection>
 
-      {/* 9. Partners Marquee */}
+      {/* 8. Partners Marquee */}
       <DeferredSection>
-        <Suspense fallback={<div className="min-h-[480px]" aria-hidden="true" />}>
+        <Suspense fallback={<div className="min-h-px" aria-hidden="true" />}>
           <GlobalPartnersMarquee />
         </Suspense>
       </DeferredSection>
+
+      {/* 9. Final CTA — always render (no deferred placeholder above footer) */}
+      <Suspense fallback={<div className="min-h-px" aria-hidden="true" />}>
+        <HomeFinalCtaBanner />
+      </Suspense>
 
     </div>
   );

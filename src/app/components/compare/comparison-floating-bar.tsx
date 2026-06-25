@@ -2,9 +2,11 @@ import { m, AnimatePresence } from "motion/react";
 import { X, GitCompareArrows } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useComparison } from "@/app/context/comparison-context";
+import { useLanguage } from "@/i18n/language-context";
 
 export function ComparisonFloatingBar() {
   const { items, removeFromComparison, clearComparison, toastMessage } = useComparison();
+  const { t } = useLanguage();
 
   return (
     <>
@@ -30,14 +32,14 @@ export function ComparisonFloatingBar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[65] w-[calc(100%-2rem)] max-w-5xl"
+            className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[65] w-[calc(100%-1.5rem)] max-w-5xl sm:bottom-4"
           >
             <div className="rounded-2xl border border-border bg-bg-surface/95 backdrop-blur-xl shadow-2xl px-4 py-3">
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
                 <div className="flex items-center gap-2 shrink-0">
                   <GitCompareArrows className="w-5 h-5 text-accent-primary" />
                   <span className="font-semibold text-text-primary text-sm">
-                    Compare Programs ({items.length}/3)
+                    {t<string>("comparison.floatingBar.title").replace("{{count}}", String(items.length))}
                   </span>
                 </div>
 
@@ -59,7 +61,7 @@ export function ComparisonFloatingBar() {
                         <button
                           onClick={() => removeFromComparison(item.id)}
                           className="text-text-muted hover:text-error transition-colors"
-                          aria-label={`Remove ${item.name} from comparison`}
+                          aria-label={t<string>("comparison.floatingBar.removeItem").replace("{{name}}", item.name)}
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -73,7 +75,7 @@ export function ComparisonFloatingBar() {
                     onClick={clearComparison}
                     className="text-sm text-text-secondary hover:text-text-primary transition-colors"
                   >
-                    Clear All
+                    {t<string>("comparison.clearAll")}
                   </button>
                   <Link
                     to="/compare"
@@ -84,7 +86,7 @@ export function ComparisonFloatingBar() {
                     }`}
                     aria-disabled={items.length < 2}
                   >
-                    Compare Now
+                    {t<string>("comparison.compareNow")}
                   </Link>
                 </div>
               </div>

@@ -103,7 +103,7 @@ export function UniversityDetailPage() {
 
       <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
         {/* Breadcrumbs */}
-        <div className="border-b border-slate-200 dark:border-slate-800 px-4 pb-6 pt-28 sm:px-6 lg:px-8">
+        <div className="border-b border-slate-200 dark:border-slate-800 px-[var(--content-gutter)] pb-6 page-hero-offset">
           <div className="max-w-7xl mx-auto">
             <Breadcrumb
               items={[
@@ -117,7 +117,7 @@ export function UniversityDetailPage() {
 
 
         {/* Hero Banner */}
-        <section className="relative h-96 md:h-112.5 overflow-hidden bg-ink">
+        <section className="relative h-96 md:h-112.5 lg:h-80 xl:h-96 overflow-hidden bg-ink">
           <ImageWithFallback
             src={university.coverPhoto}
             alt={university.name}
@@ -151,7 +151,7 @@ export function UniversityDetailPage() {
 
                     {/* Info */}
                     <div className="text-white">
-                      <h1 className="text-4xl md:text-5xl font-bold mb-3">
+                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3">
                         {university.name}
                       </h1>
                       <div className="flex items-center gap-6 text-lg opacity-90 flex-wrap">
@@ -177,7 +177,7 @@ export function UniversityDetailPage() {
                       className="min-h-11 min-w-11 rounded-lg border border-white/20 bg-white/10 text-white hover:bg-white/20"
                     />
                     <button
-                      aria-label="Share university"
+                      aria-label={t<string>("common.aria.shareUniversity")}
                       className="rounded-lg border border-white/20 bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20"
                     >
                       <Share2 className="w-5 h-5" />

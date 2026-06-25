@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { m } from "motion/react";
-import { Search, ChevronDown, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, ChevronDown, X, ChevronLeft, ChevronRight, Sparkles, GraduationCap, Building2, Globe2 } from "lucide-react";
 import { UNIVERSITIES } from "@/data/universities";
 import { ProgramCardModern } from "../components/ui/modern-cards";
+import { Breadcrumbs } from "../components/layout/breadcrumbs";
 import { SeoManager } from "../seo/seo-manager";
+import { useLanguage } from "@/i18n/language-context";
 import { trackPageView } from "@/utils/tracking";
+import { MIRROR_CATALOG_READY_EVENT } from "@/lib/mirror-catalog";
 import {
   formatDisplayFees,
   formatIntakeDates,
@@ -72,23 +75,23 @@ type ProgramListing = {
 
 const ITEMS_PER_PAGE = 12;
 
-const PROGRAM_TYPE_OPTIONS: Array<{ id: ProgramTabId; label: string }> = [
-  { id: "global", label: "Global" },
-  { id: "internships", label: "Internships" },
-  { id: "scholarships", label: "Scholarships" },
-  { id: "research", label: "Research" },
-  { id: "careers", label: "Careers" },
+const PROGRAM_TYPE_OPTIONS: Array<{ id: ProgramTabId; labelKey: string }> = [
+  { id: "global", labelKey: "programs.listing.filters.programTypes.global" },
+  { id: "internships", labelKey: "programs.listing.filters.programTypes.internships" },
+  { id: "scholarships", labelKey: "programs.listing.filters.programTypes.scholarships" },
+  { id: "research", labelKey: "programs.listing.filters.programTypes.research" },
+  { id: "careers", labelKey: "programs.listing.filters.programTypes.careers" },
 ];
 
-const FIELD_OPTIONS: Array<{ value: string; label: string }> = [
-  { value: "business", label: "Business & Management" },
-  { value: "engineering", label: "Engineering" },
-  { value: "computer-science", label: "Computer Science & IT" },
-  { value: "medicine", label: "Medicine & Health" },
-  { value: "design", label: "Design & Arts" },
-  { value: "languages", label: "Languages" },
-  { value: "law", label: "Law" },
-  { value: "science", label: "Natural Sciences" },
+const FIELD_OPTIONS: Array<{ value: string; labelKey: string }> = [
+  { value: "business", labelKey: "programs.listing.filters.fields.business" },
+  { value: "engineering", labelKey: "programs.listing.filters.fields.engineering" },
+  { value: "computer-science", labelKey: "programs.listing.filters.fields.computerScience" },
+  { value: "medicine", labelKey: "programs.listing.filters.fields.medicine" },
+  { value: "design", labelKey: "programs.listing.filters.fields.design" },
+  { value: "languages", labelKey: "programs.listing.filters.fields.languages" },
+  { value: "law", labelKey: "programs.listing.filters.fields.law" },
+  { value: "science", labelKey: "programs.listing.filters.fields.science" },
 ];
 
 /**
@@ -157,30 +160,33 @@ function buildPaginationItems(currentPage: number, totalPages: number): Paginati
 }
 
 function ProgramsEmptyState({ onReset }: { onReset: () => void }) {
+  const { t } = useLanguage();
+
   return (
-    <div className="rounded-[1.75rem] border border-dashed border-border-strong/70 bg-bg-surface/80 px-6 py-16 text-center shadow-sm">
-      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-text-muted">
-        No matching programs
+    <div className="rounded-[1.75rem] border border-dashed border-slate-300 bg-white/80 px-6 py-16 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+      <p className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
+        {t<string>("programs.listing.empty.noMatching")}
       </p>
-      <h2 className="mt-3 text-3xl font-black text-text-primary">
-        Adjust the filters and try again.
+      <h2 className="mt-3 text-3xl font-black text-slate-950 dark:text-white">
+        {t<string>("programs.listing.empty.adjustFilters")}
       </h2>
-      <p className="mx-auto mt-4 max-w-xl text-sm text-text-secondary">
-        Search by program name, organization, level, pathway, city, or country to narrow the catalog.
+      <p className="mx-auto mt-4 max-w-xl text-sm text-slate-600 dark:text-slate-400">
+        {t<string>("programs.listing.empty.searchHint")}
       </p>
       <button
         type="button"
         onClick={onReset}
-        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-accent-primary px-5 py-3 text-sm font-semibold text-ink transition-all hover:-translate-y-0.5 hover:shadow-lg"
+        className="mt-6 inline-flex items-center gap-2 rounded-xl btn-gold-primary px-5 py-3 text-sm font-semibold"
       >
         <X className="h-4 w-4" />
-        Reset filters
+        {t<string>("programs.listing.empty.resetFilters")}
       </button>
     </div>
   );
 }
 
 export function ProgramsPage() {
+  const { t } = useLanguage();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") ?? "");
@@ -195,9 +201,16 @@ export function ProgramsPage() {
     const parsed = Number.parseInt(searchParams.get("page") ?? "1", 10);
     return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
   });
+  const [catalogVersion, setCatalogVersion] = useState(0);
 
   useEffect(() => {
     trackPageView({ page: "programs-premium" });
+  }, []);
+
+  useEffect(() => {
+    const handleCatalogReady = () => setCatalogVersion((version) => version + 1);
+    window.addEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
+    return () => window.removeEventListener(MIRROR_CATALOG_READY_EVENT, handleCatalogReady);
   }, []);
 
   const listings = useMemo<ProgramListing[]>(() => {
@@ -266,7 +279,7 @@ export function ProgramsPage() {
         };
       });
     });
-  }, []);
+  }, [catalogVersion]);
 
   const organizations = useMemo(
     () => [...new Set(listings.map((listing) => listing.organization).filter((value) => isMeaningfulText(value)))].sort((a, b) => a.localeCompare(b)),
@@ -277,6 +290,8 @@ export function ProgramsPage() {
     () => [...new Set(listings.map((listing) => listing.contractType).filter((value) => isMeaningfulText(value)))].sort((a, b) => a.localeCompare(b)),
     [listings],
   );
+
+  const fieldCount = FIELD_OPTIONS.length;
 
   const filteredListings = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -371,36 +386,104 @@ export function ProgramsPage() {
         path="/programs"
       />
 
-      <main className="relative min-h-screen overflow-hidden bg-bg-primary text-text-primary">
-        <div className="pointer-events-none fixed inset-0 overflow-hidden">
-          <div className="absolute -top-40 right-0 h-96 w-96 rounded-full bg-linear-to-br from-accent-tech/25 to-transparent blur-3xl" />
-          <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-linear-to-tr from-accent-primary/20 to-transparent blur-3xl" />
-        </div>
+      <main className="relative min-h-screen overflow-hidden bg-bg-primary">
+        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+          <div className="pointer-events-none absolute inset-0">
+            <div className="absolute top-0 right-0 w-[32rem] h-[32rem] rounded-full bg-accent-tech/8 blur-[120px]" />
+            <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] rounded-full bg-accent-primary/8 blur-[120px]" />
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
+            </div>
+          </div>
 
-        <div className="relative z-10 px-4 pb-16 pt-8 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <m.section initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-text-muted">
-                Global program catalog
-              </p>
-              <h1 className="mt-3 max-w-3xl text-4xl font-black tracking-tight text-text-primary sm:text-5xl">
-                Find the right program for your future.
-              </h1>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-text-secondary">
-                Browse thousands of bachelor's, master's, and postgraduate programs from universities worldwide. Filter by location, intake period, and tuition to narrow your search.
-              </p>
-            </m.section>
+          <div className="page-hero-inner">
+            <div className="page-hero-crumb-gap">
+              <Breadcrumbs
+                items={[
+                  { label: t<string>("common.home"), href: "/" },
+                  { label: t<string>("header.nav.programs"), href: "/programs" },
+                ]}
+              />
+            </div>
+
+            <div className="page-hero-grid">
+              <div className="page-hero-main">
+                <m.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm page-hero-badge-gap"
+                >
+                  <Sparkles className="w-4 h-4 text-accent-tech" />
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+                    {t<string>("programs.listing.hero.badge")}
+                  </span>
+                </m.div>
+
+                <m.h1
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 }}
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white"
+                >
+                  {t<string>("programs.listing.hero.title")}
+                </m.h1>
+
+                <m.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="mt-3 lg:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
+                >
+                  {t<string>("programs.listing.hero.subtitle")}
+                </m.p>
+              </div>
+
+              <m.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.15 }}
+                className="page-hero-aside grid gap-3"
+              >
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-accent-tech" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{listings.length}+</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.programs")}</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-accent-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{organizations.length}+</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.universities")}</p>
+                  </div>
+                </div>
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-success/10 border border-accent-success/20 flex items-center justify-center">
+                    <Globe2 className="w-5 h-5 text-accent-success" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-lg font-black text-slate-900 dark:text-white">{fieldCount}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("programs.listing.hero.stats.fields")}</p>
+                  </div>
+                </div>
+              </m.div>
+            </div>
 
             <m.section
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.08 }}
-              className="mt-8 space-y-3 rounded-[1.8rem] border border-border/70 bg-bg-surface/88 p-5 shadow-xl shadow-black/10 backdrop-blur"
+              className="mt-5 lg:mt-6 rounded-2xl border border-slate-200/80 bg-white/85 p-4 sm:p-5 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/80 space-y-3"
             >
               {/* Row 1 — Search bar (full width) */}
               <label className="relative block">
-                <span className="sr-only">Search programs</span>
-                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+                <span className="sr-only">{t<string>("programs.listing.filters.searchPrograms")}</span>
+                <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 <input
                   type="text"
                   value={searchQuery}
@@ -408,15 +491,15 @@ export function ProgramsPage() {
                     setSearchQuery(event.target.value);
                     setCurrentPage(1);
                   }}
-                  placeholder="Search by program name, university, city, country…"
-                  className="w-full rounded-2xl border border-border bg-bg-primary px-11 py-3.5 text-sm text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-accent-tech"
+                  placeholder={t<string>("programs.listing.filters.extendedPlaceholder")}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-11 py-3.5 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                 />
               </label>
 
               {/* Row 2 — Dropdowns */}
               <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
                 <label className="relative block">
-                  <span className="sr-only">Field of study</span>
+                  <span className="sr-only">{t<string>("programs.listing.filters.fieldOfStudy")}</span>
                   <select
                     value={fieldFilter}
                     onChange={(event) => {
@@ -425,78 +508,78 @@ export function ProgramsPage() {
                     }}
                     className={`w-full appearance-none rounded-2xl border px-4 py-3 pr-10 text-sm outline-none transition-colors focus:border-slate-400 dark:bg-slate-950 dark:text-white ${
                       fieldFilter
-                        ? "border-accent-tech/60 bg-accent-tech/10 text-text-primary font-semibold"
-                        : "border-border bg-bg-primary text-text-primary"
+                        ? "border-accent-tech/50 bg-accent-tech/5 text-slate-900 font-semibold dark:border-accent-tech/60 dark:bg-accent-tech/10"
+                        : "border-slate-200 bg-slate-50 text-slate-900 dark:border-slate-800"
                     }`}
                   >
-                    <option value="">All fields of study</option>
+                    <option value="">{t<string>("programs.listing.filters.allFields")}</option>
                     {FIELD_OPTIONS.map((option) => (
                       <option key={option.value} value={option.value}>
-                        {option.label}
+                        {t<string>(option.labelKey)}
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 </label>
 
                 <label className="relative block">
-                  <span className="sr-only">Program type</span>
+                  <span className="sr-only">{t<string>("programs.listing.filters.programType")}</span>
                   <select
                     value={programType ?? ""}
                     onChange={(event) => {
                       setProgramType(event.target.value ? (event.target.value as ProgramTabId) : null);
                       setCurrentPage(1);
                     }}
-                    className="w-full appearance-none rounded-2xl border border-border bg-bg-primary px-4 py-3 pr-10 text-sm text-text-primary outline-none transition-colors focus:border-accent-tech"
+                    className="w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-10 text-sm text-slate-900 outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
-                    <option value="">All program types</option>
+                    <option value="">{t<string>("programs.listing.filters.allTypes")}</option>
                     {PROGRAM_TYPE_OPTIONS.map((option) => (
                       <option key={option.id} value={option.id}>
-                        {option.label}
+                        {t<string>(option.labelKey)}
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 </label>
 
                 <label className="relative block">
-                  <span className="sr-only">Organization</span>
+                  <span className="sr-only">{t<string>("programs.listing.filters.organization")}</span>
                   <select
                     value={organizationFilter}
                     onChange={(event) => {
                       setOrganizationFilter(event.target.value);
                       setCurrentPage(1);
                     }}
-                    className="w-full appearance-none rounded-2xl border border-border bg-bg-primary px-4 py-3 pr-10 text-sm text-text-primary outline-none transition-colors focus:border-accent-tech"
+                    className="w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-10 text-sm text-slate-900 outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
-                    <option value="">All organizations</option>
+                    <option value="">{t<string>("programs.listing.filters.allOrganizations")}</option>
                     {organizations.map((organization) => (
                       <option key={organization} value={organization}>
                         {organization}
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 </label>
 
                 <label className="relative block">
-                  <span className="sr-only">Contract type</span>
+                  <span className="sr-only">{t<string>("programs.listing.filters.contractType")}</span>
                   <select
                     value={contractTypeFilter}
                     onChange={(event) => {
                       setContractTypeFilter(event.target.value);
                       setCurrentPage(1);
                     }}
-                    className="w-full appearance-none rounded-2xl border border-border bg-bg-primary px-4 py-3 pr-10 text-sm text-text-primary outline-none transition-colors focus:border-accent-tech"
+                    className="w-full appearance-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 pr-10 text-sm text-slate-900 outline-none transition-colors focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-white"
                   >
-                    <option value="">All contract types</option>
+                    <option value="">{t<string>("programs.listing.filters.allContractTypes")}</option>
                     {contractTypes.map((contractType) => (
                       <option key={contractType} value={contractType}>
                         {contractType}
                       </option>
                     ))}
                   </select>
-                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+                  <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                 </label>
               </div>
 
@@ -513,38 +596,37 @@ export function ProgramsPage() {
                     className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all ${
                       fieldFilter === option.value
                         ? "border-accent-tech bg-accent-tech text-white shadow-sm"
-                        : "border-border bg-bg-primary text-text-secondary hover:border-accent-tech/50 hover:text-text-primary"
+                        : "border-slate-200 bg-slate-50 text-slate-600 hover:border-accent-tech/50 hover:text-slate-900 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:border-accent-tech/50 dark:hover:text-white"
                     }`}
                   >
-                    {option.label}
+                    {t<string>(option.labelKey)}
                   </button>
                 ))}
               </div>
 
-              {/* Active filters bar */}
               {hasActiveFilters ? (
-                <div className="flex flex-wrap items-center gap-2 border-t border-border/70 pt-1">
-                  <span className="text-xs font-medium text-text-muted">Active:</span>
+                <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-100 dark:border-slate-800">
+                  <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">{t<string>("programs.listing.filters.active")}</span>
                   {fieldFilter && (
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-tech/10 border border-accent-tech/25 px-3 py-1 text-xs font-semibold capitalize text-accent-tech dark:bg-accent-tech/15">
-                      {FIELD_OPTIONS.find((f) => f.value === fieldFilter)?.label ?? fieldFilter.replace(/-/g, " ")}
-                      <button type="button" onClick={() => { setFieldFilter(""); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label="Remove field filter">
+                      {FIELD_OPTIONS.find((f) => f.value === fieldFilter) ? t<string>(FIELD_OPTIONS.find((f) => f.value === fieldFilter)!.labelKey) : fieldFilter.replace(/-/g, " ")}
+                      <button type="button" onClick={() => { setFieldFilter(""); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label={t<string>("common.aria.removeFieldFilter")}>
                         <X className="h-3 w-3" />
                       </button>
                     </span>
                   )}
                   {programType && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border-strong bg-bg-primary px-3 py-1 text-xs font-semibold text-text-secondary">
-                      {PROGRAM_TYPE_OPTIONS.find((p) => p.id === programType)?.label ?? programType}
-                      <button type="button" onClick={() => { setProgramType(null); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label="Remove type filter">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300">
+                      {PROGRAM_TYPE_OPTIONS.find((p) => p.id === programType) ? t<string>(PROGRAM_TYPE_OPTIONS.find((p) => p.id === programType)!.labelKey) : programType}
+                      <button type="button" onClick={() => { setProgramType(null); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label={t<string>("common.aria.removeTypeFilter")}>
                         <X className="h-3 w-3" />
                       </button>
                     </span>
                   )}
                   {organizationFilter && (
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border-strong bg-bg-primary px-3 py-1 text-xs font-semibold text-text-secondary">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300">
                       {organizationFilter}
-                      <button type="button" onClick={() => { setOrganizationFilter(""); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label="Remove organization filter">
+                      <button type="button" onClick={() => { setOrganizationFilter(""); setCurrentPage(1); }} className="hover:text-red-500 transition-colors" aria-label={t<string>("common.aria.removeOrganizationFilter")}>
                         <X className="h-3 w-3" />
                       </button>
                     </span>
@@ -552,26 +634,30 @@ export function ProgramsPage() {
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-border px-4 py-2 text-xs font-semibold text-text-secondary transition-colors hover:border-border-strong hover:text-text-primary"
+                    className="ml-auto inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 transition-colors hover:border-slate-400 hover:text-slate-900 dark:border-slate-800 dark:text-slate-400 dark:hover:border-slate-600 dark:hover:text-white"
                   >
                     <X className="h-3.5 w-3.5" />
-                    Clear all
+                    {t<string>("programs.listing.filters.clearAll")}
                   </button>
                 </div>
               ) : null}
             </m.section>
+          </div>
+        </section>
 
+        <div className="relative z-10 px-[var(--content-gutter)]">
+          <div className="mx-auto max-w-7xl">
             <section className="mt-10">
-              <div className="flex flex-col gap-3 border-b border-border pb-5 sm:flex-row sm:items-end sm:justify-between">
+              <div className="flex flex-col gap-3 border-b border-slate-200 pb-5 dark:border-slate-800 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-text-secondary">
+                  <p className="text-sm font-semibold text-slate-600 dark:text-slate-400">
                     Showing {showingStart}-{showingEnd} of {filteredListings.length} programs
                   </p>
-                  <h2 className="mt-1 text-3xl font-black capitalize text-text-primary">
+                  <h2 className="mt-1 text-3xl font-black text-slate-950 dark:text-white capitalize">
                     {filteredListings.length === 0 ? "No programs found" : fieldFilter ? `${fieldFilter.replace(/-/g, " ")} Programs` : "Programs"}
                   </h2>
                 </div>
-                <p className="max-w-xl text-sm text-text-muted">
+                <p className="max-w-xl text-sm text-slate-500 dark:text-slate-400">
                   Intake dates, fees, and location are sourced directly from the university. Contact the university for the most up-to-date details.
                 </p>
               </div>
@@ -626,7 +712,7 @@ export function ProgramsPage() {
                         type="button"
                         onClick={() => setCurrentPage(Math.max(1, safeCurrentPage - 1))}
                         disabled={safeCurrentPage === 1}
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-border px-4 text-sm font-semibold text-text-secondary transition-colors hover:border-border-strong hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
                       >
                         <ChevronLeft className="h-4 w-4" />
                         Previous
@@ -634,7 +720,7 @@ export function ProgramsPage() {
 
                       {paginationItems.map((item, index) =>
                         item === "ellipsis" ? (
-                          <span key={`ellipsis-${index}`} className="px-2 text-sm text-text-muted">
+                          <span key={`ellipsis-${index}`} className="px-2 text-sm text-slate-400">
                             ...
                           </span>
                         ) : (
@@ -644,8 +730,8 @@ export function ProgramsPage() {
                             onClick={() => setCurrentPage(item)}
                             className={`h-11 min-w-11 rounded-xl border px-3 text-sm font-semibold transition-colors ${
                               item === safeCurrentPage
-                                ? "border-accent-primary bg-accent-primary text-ink"
-                                : "border-border text-text-secondary hover:border-border-strong hover:text-text-primary"
+                                ? "chip-active border-transparent"
+                                : "border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-950 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
                             }`}
                           >
                             {item}
@@ -657,7 +743,7 @@ export function ProgramsPage() {
                         type="button"
                         onClick={() => setCurrentPage(Math.min(totalPages, safeCurrentPage + 1))}
                         disabled={safeCurrentPage === totalPages}
-                        className="inline-flex h-11 items-center justify-center rounded-xl border border-border px-4 text-sm font-semibold text-text-secondary transition-colors hover:border-border-strong hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-40"
+                        className="inline-flex h-11 items-center justify-center rounded-xl border border-slate-200 px-4 text-sm font-semibold text-slate-700 transition-colors hover:border-slate-400 hover:text-slate-950 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:text-white"
                       >
                         Next
                         <ChevronRight className="h-4 w-4" />

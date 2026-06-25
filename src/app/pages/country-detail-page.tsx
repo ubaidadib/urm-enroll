@@ -150,7 +150,7 @@ export function CountryDetailPage() {
   ];
 
   return (
-    <main className="dark min-h-screen" dir={dir} style={{ background: "rgb(5,10,24)" }}>
+    <main className="min-h-screen bg-bg-primary" dir={dir}>
       <SeoManager
         title={`Study in ${dest.name.en} — URM Enroll`}
         description={dest.tagline[lang]}
@@ -163,7 +163,7 @@ export function CountryDetailPage() {
       />
 
       {/* Breadcrumb */}
-      <div className="max-w-7xl mx-auto px-6 pt-24 pb-2">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] page-hero-offset pb-2">
         <Breadcrumbs
           items={[
             { label: tx("common.home", "Home"), href: "/" },
@@ -176,7 +176,7 @@ export function CountryDetailPage() {
       {/* Hero section */}
       <div className="relative overflow-hidden">
         {/* Background image */}
-        <div className="absolute inset-0 h-96">
+        <div className="absolute inset-0 h-96 lg:h-72 xl:h-80">
           <img
             src={dest.image}
             alt={dest.name[lang]}
@@ -185,7 +185,7 @@ export function CountryDetailPage() {
           <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/40 to-background-primary" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-12 pb-0">
+        <div className="relative max-w-7xl mx-auto px-[var(--content-gutter)] pt-12 lg:pt-8 pb-0">
           {/* Back link */}
           <Link
             to="/destinations"
@@ -196,14 +196,14 @@ export function CountryDetailPage() {
           </Link>
 
           {/* Country header */}
-          <div className="flex items-end gap-6 pb-10">
+          <div className="flex items-end gap-6 pb-8 lg:pb-7">
             <div>
               <div className="flex items-center gap-3 mb-3">
-                <span className="text-5xl" role="img" aria-hidden="true">
+                <span className="text-4xl sm:text-5xl" role="img" aria-hidden="true">
                   {dest.flag}
                 </span>
                 <div>
-                  <h1 className="text-4xl md:text-5xl font-black text-white leading-tight">
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
                     {dest.name[lang]}
                   </h1>
                   <p className="text-white/70 text-lg mt-1">{dest.tagline[lang]}</p>
@@ -228,7 +228,7 @@ export function CountryDetailPage() {
       </div>
 
       {/* Stats bar */}
-      <div className="max-w-7xl mx-auto px-6 -mt-2">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] -mt-2">
         <QuickStatsBar stats={stats} />
       </div>
 
@@ -242,7 +242,7 @@ export function CountryDetailPage() {
       />
 
       {/* Tab content */}
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] py-10">
         {/* ── Overview ─────────────────────────────────────────────────── */}
         {activeTab === "overview" && (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -270,7 +270,7 @@ export function CountryDetailPage() {
 
               {/* Top programs preview */}
               <section>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-3">Top Programs</h2>
+                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-3">{t<string>("destinations.detail.topPrograms")}</h2>
                 <div className="flex flex-wrap gap-2">
                   {dest.topPrograms.map((prog) => (
                     <span
@@ -297,19 +297,19 @@ export function CountryDetailPage() {
               <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                 <div className="flex items-center gap-2 mb-3">
                   <Shield className="w-5 h-5 text-accent-primary" />
-                  <h3 className="font-black text-slate-900 dark:text-white">Visa Information</h3>
+                  <h3 className="font-black text-slate-900 dark:text-white">{t<string>("destinations.detail.visaInsights")}</h3>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                   {dest.visaInsights[lang]}
                 </p>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                     <div className="text-lg font-black text-accent-primary">{dest.visaTimeline}</div>
-                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">Processing</div>
+                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">{t<string>("destinations.detail.processing")}</div>
                   </div>
                   <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
                     <div className="text-lg font-black text-accent-success">{dest.successRate}%</div>
-                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">Approval Rate</div>
+                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">{t<string>("destinations.detail.approvals")}</div>
                   </div>
                 </div>
               </div>
@@ -317,7 +317,7 @@ export function CountryDetailPage() {
               <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                 <div className="flex items-center gap-2 mb-3">
                   <Languages className="w-5 h-5 text-accent-tech" />
-                  <h3 className="font-black text-slate-900 dark:text-white">Language Requirements</h3>
+                  <h3 className="font-black text-slate-900 dark:text-white">{t<string>("destinations.detail.languageLevels")}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {dest.languageLevels.map((level) => (
@@ -499,14 +499,14 @@ export function CountryDetailPage() {
                     {dest.visaInsights[lang]}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
                     <div className="text-2xl font-black text-accent-primary mb-1">{dest.visaTimeline}</div>
-                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">Processing Time</div>
+                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">{t<string>("destinations.detail.visaTime")}</div>
                   </div>
                   <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
                     <div className="text-2xl font-black text-accent-success mb-1">{dest.successRate}%</div>
-                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">Success Rate</div>
+                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">{t<string>("destinations.detail.successRate")}</div>
                   </div>
                 </div>
                 <Link

@@ -187,7 +187,7 @@ export function SmartQuiz() {
   );
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <section className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 right-0 w-150 h-150 bg-accent-tech/5 rounded-full blur-[120px]" />
@@ -301,8 +301,8 @@ export function SmartQuiz() {
                         />
                         <defs>
                           <linearGradient id="resultGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="rgb(var(--theme-accent-tech))" />
-                            <stop offset="100%" stopColor="rgb(var(--theme-accent-success))" />
+                            <stop offset="0%" stopColor="rgb(var(--accent-tech))" />
+                            <stop offset="100%" stopColor="rgb(var(--success))" />
                           </linearGradient>
                         </defs>
                       </svg>
@@ -350,7 +350,7 @@ export function SmartQuiz() {
                       <button 
                         onClick={handleConsultation}
                         disabled={submitStatus === 'submitting' || (!!turnstileSiteKey && !turnstileToken)}
-                        className="flex-1 px-8 py-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-xl font-bold text-sm shadow-xl hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="flex-1 px-8 py-4 btn-gold-primary rounded-xl font-bold text-sm shadow-xl hover:-translate-y-0.5 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {submitStatus === 'submitting' ? t<string>('quiz.submitting') : t<string>('quiz.consultationCta')}
                       </button>

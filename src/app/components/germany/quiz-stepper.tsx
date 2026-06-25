@@ -51,14 +51,14 @@ export function QuizStepper({ current, total, variant = "A", currentPhase = "qui
           className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
             variant === "B"
               ? "bg-accent-primary/10 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary"
-              : "bg-slate-900/6 text-slate-900 dark:bg-white/10 dark:text-white"
+              : "bg-accent-primary/10 text-text-primary dark:bg-white/10 dark:text-white"
           }`}
         >
           {phasePill}
         </span>
       </div>
       <div
-        className="h-2 w-full rounded-full overflow-hidden bg-black/10 dark:bg-white/10"
+        className="h-2 w-full rounded-full overflow-hidden bg-border/40 dark:bg-white/10"
         role="progressbar"
         aria-valuemin={0}
         aria-valuemax={100}
@@ -85,7 +85,7 @@ export function QuizStepper({ current, total, variant = "A", currentPhase = "qui
                   done
                     ? "bg-emerald-500 border-emerald-500 text-white"
                     : active
-                      ? "bg-slate-900 border-accent-primary text-accent-primary shadow-[0_12px_20px_-10px_rgba(212,175,55,0.35)]"
+                      ? "chip-active border-accent-primary shadow-[0_12px_20px_-10px_rgba(212,175,55,0.35)]"
                       : "bg-white/65 border-border text-text-muted dark:bg-white/5"
                 }`}
               >
@@ -113,7 +113,7 @@ export function QuizStepper({ current, total, variant = "A", currentPhase = "qui
                 done
                   ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
                   : active
-                    ? "bg-accent-primary/20 text-[#7a5b10]"
+                    ? "bg-accent-primary/20 text-accent-primary-strong dark:text-accent-primary"
                     : "bg-background-elevated text-text-secondary"
               }`}
             >

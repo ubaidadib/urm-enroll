@@ -8,6 +8,13 @@ export const footer = {
   resourcesTitle: "الموارد",
   accreditationTitle: "الاعتمادات",
   partnersTitle: "للشركاء",
+  partners: {
+    agentsAudience: "للأفراد",
+    agentsDescription: "أحِل الطلاب واكسب عمولات — دخل إضافي مرن. لا حاجة لشركة.",
+    institutionsTitle: "كن شريكًا معنا",
+    institutionsAudience: "للمؤسسات",
+    institutionsDescription: "الجامعات والمدارس — انضم إلى شبكة URM Nexus ووظّف عالميًا.",
+  },
   backToTop: "العودة للأعلى",
   journeys: {
     studyTitle: "مسار الدراسة",
