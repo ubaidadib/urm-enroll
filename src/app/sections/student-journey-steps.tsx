@@ -76,7 +76,7 @@ export function StudentJourneySteps() {
         </div>
 
         {/* Journey Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-10 lg:mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-5 gap-6 lg:gap-8 4xl:gap-10 mb-10 lg:mb-12 3xl:mb-16">
           {steps.map((step, index) => {
             const visual = STEP_VISUALS[index % STEP_VISUALS.length] ?? STEP_VISUALS[0]!;
             const Icon = visual.icon;

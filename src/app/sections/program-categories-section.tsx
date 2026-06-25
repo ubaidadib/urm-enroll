@@ -74,7 +74,7 @@ export function ProgramCategoriesSection() {
 
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div
@@ -86,21 +86,21 @@ export function ProgramCategoriesSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
+      <div className="content-shell mx-auto px-[var(--content-gutter)] w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="mb-14"
+          className="mb-14 3xl:mb-20"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
             {t<string>("home.categories.badge")}
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2
-              className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary"
+              className="text-3xl md:text-4xl 3xl:text-5xl 4xl:text-6xl font-bold tracking-tight text-text-primary"
             >
               {t<string>("home.categories.title")}
             </h2>
@@ -115,7 +115,7 @@ export function ProgramCategoriesSection() {
         </m.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 4xl:grid-cols-7 gap-4 3xl:gap-5">
           {CATEGORY_CONFIG.map((category, index) => {
             const count = countProgramsByField(category.key);
             const label = t<string>(`home.categories.fields.${category.key}.label`);
@@ -131,7 +131,7 @@ export function ProgramCategoriesSection() {
               >
                 <Link
                   to={`/programs?field=${category.key}`}
-                className="group relative flex flex-col overflow-hidden rounded-2xl p-6 h-[160px] block transition-all duration-300 hover:-translate-y-1.5 surface-card"
+                className="group relative flex flex-col overflow-hidden rounded-2xl p-6 3xl:p-7 h-[160px] 3xl:h-[190px] 4xl:h-[210px] block transition-all duration-300 hover:-translate-y-1.5 surface-card"
                 >
                   {/* Gradient overlay on hover */}
                   <div
@@ -158,7 +158,7 @@ export function ProgramCategoriesSection() {
 
                     <div className="mt-4">
                       <h3
-                        className="text-[0.9rem] font-bold leading-tight transition-colors duration-300 text-text-primary"
+                        className="text-[0.9rem] 3xl:text-base font-bold leading-tight transition-colors duration-300 text-text-primary"
                       >
                         {label}
                       </h3>

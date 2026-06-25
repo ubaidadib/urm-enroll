@@ -117,7 +117,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.05 : 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-6xl font-bold text-text-primary mb-4 sm:mb-5 lg:mb-4 tracking-tight leading-[1.1]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-7xl 4xl:text-8xl font-bold text-text-primary mb-4 sm:mb-5 lg:mb-5 3xl:mb-7 tracking-tight leading-[1.06] max-w-[14ch]"
             >
               {typeof headline === "string" ? (
                 <>
@@ -133,7 +133,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: isCompact ? 0.1 : 0.2 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-text-secondary leading-relaxed max-w-2xl lg:max-w-none"
+              className="text-sm sm:text-base md:text-lg lg:text-xl 3xl:text-2xl text-text-secondary leading-relaxed max-w-2xl 3xl:max-w-4xl"
             >
               {subtitle}
             </m.p>

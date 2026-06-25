@@ -43,7 +43,7 @@ export function HomeHowItWorks() {
 
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div
@@ -60,7 +60,7 @@ export function HomeHowItWorks() {
         style={{ width: 700, height: 300, background: "rgb(212,175,55)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
+      <div className="content-shell mx-auto px-[var(--content-gutter)] w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -72,7 +72,7 @@ export function HomeHowItWorks() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
             {t<string>("home.howItWorks.badge")}
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary">
+          <h2 className="text-3xl md:text-4xl 3xl:text-5xl 4xl:text-6xl font-bold text-text-primary">
             {t<string>("home.howItWorks.title")}
           </h2>
         </m.div>
@@ -105,7 +105,7 @@ export function HomeHowItWorks() {
             }}
           />
 
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-4 gap-6 3xl:gap-8">
             {STEPS.map((step, index) => {
               const Icon = step.icon;
               return (

@@ -168,7 +168,7 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-text-primary mb-4 sm:mb-6 tracking-tight leading-[1.1]`}
+        className={`text-2xl sm:text-4xl md:text-5xl lg:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold text-text-primary mb-4 sm:mb-6 3xl:mb-8 tracking-tight leading-[1.08]`}
       >
         {title}
       </m.h2>
@@ -180,7 +180,7 @@ export function SectionHeader({
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
           className={`text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed ${
-            isCenter ? "mx-auto max-w-2xl" : "max-w-xl"
+            isCenter ? "mx-auto max-w-2xl 3xl:max-w-4xl" : "max-w-xl 3xl:max-w-3xl"
           }`}
         >
           {description}

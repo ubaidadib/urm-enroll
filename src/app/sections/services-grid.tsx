@@ -158,7 +158,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-6 lg:gap-8 4xl:gap-10"
         >
           {displayedServices.map((service, index) => {
             const Icon = service.icon ?? GraduationCap;

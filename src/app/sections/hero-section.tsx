@@ -97,13 +97,13 @@ function DestinationCardItem({ card, index, shouldReduceMotion }: {
         x: { delay: 0.5 + index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
       }}
       style={{ transform: `translate(${card.offset.x}px, ${card.offset.y}px) rotate(${card.rotation}deg)` }}
-      className="surface-glass hero-destination-card rounded-2xl p-4 hover:border-accent-primary/40 transition-colors duration-300"
+      className="surface-glass hero-destination-card rounded-2xl p-4 3xl:p-5 4xl:p-6 hover:border-accent-primary/40 transition-colors duration-300"
     >
       <div className="flex items-center gap-3 mb-1">
         <span className="text-2xl leading-none">{card.flag}</span>
-        <span className="text-text-primary font-semibold text-sm">{card.country}</span>
+        <span className="text-text-primary font-semibold text-sm 3xl:text-base">{card.country}</span>
       </div>
-      <p className="text-text-muted text-xs">{card.programs}</p>
+      <p className="text-text-muted text-xs 3xl:text-sm">{card.programs}</p>
     </m.div>
   );
 }
@@ -177,7 +177,7 @@ export function HeroSection() {
       <div
         className="relative z-10 border-b trust-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3 sm:gap-6 min-w-0">
+        <div className="content-shell mx-auto px-[var(--content-gutter)] py-3 3xl:py-4 flex items-center gap-3 sm:gap-6 3xl:gap-8 min-w-0">
           {/* ICEF Badge */}
           <a
             href="https://www.icef.com"
@@ -220,7 +220,7 @@ export function HeroSection() {
       </div>
 
       {/* ── 2. Main Hero Content ──────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-[var(--content-gutter)] pt-10 sm:pt-14 md:pt-20 lg:pt-12 xl:pt-14 3xl:pt-16 pb-10 sm:pb-14 md:pb-20 lg:pb-12 xl:pb-14 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 items-center min-w-0 w-full">
+      <div className="relative z-10 content-shell mx-auto px-[var(--content-gutter)] py-[var(--hero-y)] grid lg:grid-cols-[minmax(0,1.08fr)_minmax(25rem,0.92fr)] 3xl:grid-cols-[minmax(0,1fr)_minmax(34rem,0.9fr)] gap-8 sm:gap-10 lg:gap-10 xl:gap-14 3xl:gap-20 items-center min-w-0 w-full">
 
         {/* Left Column */}
         <div className={isRtl ? "text-right" : "text-left"}>
@@ -243,7 +243,7 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.25rem] font-bold leading-[1.1] tracking-tight mb-4 lg:mb-4 text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.9rem] 3xl:text-[5rem] 4xl:text-[6.25rem] font-bold leading-[1.04] tracking-tight mb-4 lg:mb-5 3xl:mb-7 text-text-primary max-w-[13ch]"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
@@ -273,7 +273,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.45 }}
-            className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-7 lg:mb-6 max-w-xl text-text-muted"
+            className="text-base sm:text-lg 3xl:text-xl 4xl:text-2xl leading-relaxed mb-6 sm:mb-7 lg:mb-8 3xl:mb-10 max-w-2xl text-text-muted"
           >
             {t<string>("hero.subheadline")}
           </m.p>
@@ -329,7 +329,7 @@ export function HeroSection() {
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          className="hidden lg:block relative w-full max-w-md justify-self-end"
+          className="hidden lg:block relative w-full max-w-md 3xl:max-w-xl 4xl:max-w-2xl justify-self-end"
           aria-hidden="true"
         >
           {/* Glow background */}
@@ -344,12 +344,12 @@ export function HeroSection() {
               }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hero-pulse-ring"
-              style={{ width: 300, height: 300 }}
+              style={{ width: "clamp(300px, 18vw, 520px)", height: "clamp(300px, 18vw, 520px)" }}
             />
           )}
 
           {/* Card grid */}
-          <div className="relative grid grid-cols-2 gap-3 p-4">
+          <div className="relative grid grid-cols-2 gap-3 3xl:gap-5 p-4 3xl:p-6">
             {DESTINATIONS.map((card, i) => (
               <DestinationCardItem
                 key={card.country}
@@ -378,12 +378,12 @@ export function HeroSection() {
         ref={statsRef}
         className="relative z-10 border-t stats-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 py-6 sm:py-8 md:py-10 lg:py-7 xl:py-8 w-full">
+        <div className="content-shell mx-auto px-[var(--content-gutter)] py-6 sm:py-8 md:py-10 lg:py-8 3xl:py-10 4xl:py-12 w-full">
           <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 md:gap-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 3xl:gap-10 md:gap-0"
           >
             {STATS.map((stat, i) => (
               <div
@@ -393,7 +393,7 @@ export function HeroSection() {
                 }`}
               >
                 <span
-                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1 text-accent-primary"
+                  className="text-3xl sm:text-4xl 3xl:text-5xl font-bold tabular-nums mb-1 3xl:mb-2 text-accent-primary"
                 >
                   <CountUp
                     target={stat.value}

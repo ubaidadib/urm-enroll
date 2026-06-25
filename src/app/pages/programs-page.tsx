@@ -423,7 +423,7 @@ export function ProgramsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-text-primary"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-7xl 4xl:text-8xl font-bold tracking-tight leading-[1.06] text-text-primary max-w-[13ch]"
                 >
                   {t<string>("programs.listing.hero.title")}
                 </m.h1>
@@ -432,7 +432,7 @@ export function ProgramsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="mt-3 lg:mt-3 text-base sm:text-lg text-text-secondary leading-relaxed"
+                  className="mt-3 lg:mt-4 text-base sm:text-lg 3xl:text-xl 4xl:text-2xl text-text-secondary leading-relaxed max-w-3xl"
                 >
                   {t<string>("programs.listing.hero.subtitle")}
                 </m.p>
@@ -478,7 +478,7 @@ export function ProgramsPage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.08 }}
-              className="mt-5 lg:mt-6 rounded-2xl premium-filter-panel p-4 sm:p-5 space-y-3"
+              className="mt-5 lg:mt-7 3xl:mt-10 rounded-2xl premium-filter-panel p-4 sm:p-5 3xl:p-7 space-y-3 3xl:space-y-5"
             >
               {/* Row 1 — Search bar (full width) */}
               <label className="relative block">
@@ -497,7 +497,7 @@ export function ProgramsPage() {
               </label>
 
               {/* Row 2 — Dropdowns */}
-              <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
+              <div className="grid gap-3 3xl:gap-4 grid-cols-2 md:grid-cols-4 4xl:grid-cols-8">
                 <label className="relative block">
                   <span className="sr-only">{t<string>("programs.listing.filters.fieldOfStudy")}</span>
                   <select
@@ -668,7 +668,7 @@ export function ProgramsPage() {
                 </div>
               ) : (
                 <>
-                  <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
+                  <div className="mt-8 3xl:mt-10 grid grid-cols-1 gap-6 3xl:gap-7 4xl:gap-8 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 auto-rows-fr">
                     {visibleListings.map((listing, index) => (
                       <m.div
                         key={listing.id}

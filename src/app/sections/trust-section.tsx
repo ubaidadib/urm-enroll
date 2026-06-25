@@ -64,7 +64,7 @@ export function TrustSection() {
         style={{ width: 600, height: 400, background: "rgb(212,175,55)" }}
       />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="content-shell mx-auto px-[var(--content-gutter)] w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ export function TrustSection() {
           <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-3 sm:mb-4" style={{ color: "rgb(0,184,217)" }}>
             Trusted Worldwide
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 text-text-primary">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold leading-tight mb-3 sm:mb-4 3xl:mb-6 text-text-primary">
             {t<string>("trust.title")}
           </h2>
           <p className="text-sm sm:text-base md:text-lg max-w-2xl 3xl:max-w-4xl mx-auto leading-relaxed text-text-muted px-1">
@@ -85,7 +85,7 @@ export function TrustSection() {
         </m.div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[1.15fr_1fr] gap-4 sm:gap-5 3xl:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-[1.25fr_1fr] gap-4 sm:gap-5 3xl:gap-10">
           {/* ICEF hero card */}
           <m.div
             initial={{ opacity: 0, x: -24 }}

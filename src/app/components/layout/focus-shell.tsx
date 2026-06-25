@@ -22,7 +22,7 @@ export function FocusShell() {
       </a>
       <ScrollToTop />
       <Header isCompact />
-      <main id="main-content" tabIndex={-1} className="relative z-10 pt-14 xl:pt-24">
+      <main id="main-content" tabIndex={-1} className="relative z-10 pt-14 xl:pt-24 3xl:pt-20">
         <Outlet />
       </main>
     </div>

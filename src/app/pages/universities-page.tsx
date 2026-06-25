@@ -532,7 +532,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 22 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-7xl 4xl:text-8xl font-bold tracking-tight leading-[1.06] text-slate-900 dark:text-white max-w-[13ch]"
                 >
                   {t<string>("universities.listing.hero.title")}
                 </m.h1>
@@ -541,7 +541,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="mt-3 lg:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
+                  className="mt-3 lg:mt-4 text-base sm:text-lg 3xl:text-xl 4xl:text-2xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl"
                 >
                   {t<string>("universities.listing.hero.subtitle")}
                 </m.p>
@@ -628,7 +628,7 @@ export function UniversitiesPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="page-hero-aside grid gap-3"
+                className="page-hero-aside grid gap-3 3xl:gap-5"
               >
                 <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
                   <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
@@ -666,7 +666,7 @@ export function UniversitiesPage() {
         </section>
 
         {/* TRENDING CAROUSEL */}
-        <section className="relative py-8 border-t border-slate-100 dark:border-slate-800/60">
+        <section className="relative py-8 3xl:py-10 4xl:py-12 border-t border-slate-100 dark:border-slate-800/60">
           <div className="content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
             <div className="flex items-center gap-3 mb-5">
               <Flame className="w-4 h-4 text-amber-500" />
@@ -674,7 +674,7 @@ export function UniversitiesPage() {
                 {t<string>("universities.listing.trendingNow")}
               </span>
             </div>
-            <div className="flex gap-4 overflow-x-auto pb-3 scrollbar-none snap-x snap-mandatory">
+            <div className="grid grid-flow-col auto-cols-[190px] 3xl:auto-cols-[220px] 4xl:auto-cols-[250px] gap-4 3xl:gap-5 overflow-x-auto pb-3 scrollbar-none snap-x snap-mandatory">
               {trendingUniversities.map((uni, idx) => (
                 <div key={uni.id} className="snap-start">
                   <TrendingUniversityCard university={uni} index={idx} />
@@ -685,7 +685,7 @@ export function UniversitiesPage() {
         </section>
 
         {/* RESULTS */}
-        <section id="universities-results" className="relative py-10 md:py-14">
+        <section id="universities-results" className="relative py-10 md:py-14 3xl:py-20">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -left-20 top-24 w-60 h-60 rounded-full bg-accent-tech/7 blur-[80px]" />
             <div className="absolute -right-16 bottom-24 w-72 h-72 rounded-full bg-accent-primary/7 blur-[100px]" />
@@ -847,7 +847,7 @@ export function UniversitiesPage() {
 
             {/* Grid / Skeleton / Empty */}
             {isLoading ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 gap-6 3xl:gap-7 4xl:gap-8 mb-12 3xl:mb-16">
                 {Array.from({ length: 9 }).map((_, i) => (
                   <UniversityCardSkeleton key={`skel-${i}`} />
                 ))}
@@ -868,7 +868,7 @@ export function UniversitiesPage() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-5 gap-6 3xl:gap-7 4xl:gap-8 mb-12 3xl:mb-16"
                   >
                     {paginatedUniversities.map((university, index) => (
                       <UniversityDiscoveryCard

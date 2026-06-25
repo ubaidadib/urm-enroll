@@ -16,7 +16,7 @@ export function HomeFinalCtaBanner() {
 
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Grid */}
       <div
@@ -28,7 +28,7 @@ export function HomeFinalCtaBanner() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
+      <div className="content-shell mx-auto px-[var(--content-gutter)] w-full relative z-10">
         <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function HomeFinalCtaBanner() {
             style={{ width: 280, height: 280, background: "rgba(0,184,217,0.08)" }}
           />
 
-          <div className="relative z-10 grid lg:grid-cols-[1fr_300px] gap-12 items-center">
+          <div className="relative z-10 grid lg:grid-cols-[1fr_300px] 3xl:grid-cols-[1fr_420px] 4xl:grid-cols-[1fr_520px] gap-12 3xl:gap-16 items-center">
             {/* Left */}
             <div>
               <p

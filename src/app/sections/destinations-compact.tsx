@@ -82,7 +82,7 @@ export function DestinationsCompact() {
   return (
     <section
       dir={dir}
-      className="relative py-16 sm:py-24 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -91,7 +91,7 @@ export function DestinationsCompact() {
         <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10 space-y-10 sm:space-y-16">
+      <div className="content-shell mx-auto px-[var(--content-gutter)] w-full relative z-10 space-y-10 sm:space-y-16 3xl:space-y-20">
 
         {/* ── Section Header ── */}
         <m.div
@@ -158,7 +158,7 @@ export function DestinationsCompact() {
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
         >
-          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 3xl:grid-cols-3 4xl:grid-cols-6 gap-3 sm:gap-4 3xl:gap-5">
+          <div className="grid grid-cols-1 min-[420px]:grid-cols-2 md:grid-cols-3 3xl:grid-cols-4 4xl:grid-cols-6 gap-3 sm:gap-4 3xl:gap-5">
             {sortedDestinations.map((dest, i) => (
               <m.div
                 key={dest.code}

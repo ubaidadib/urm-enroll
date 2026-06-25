@@ -159,10 +159,10 @@ export function Header({ isCompact = false }: HeaderProps) {
             : "bg-bg-surface/72 backdrop-blur-xl border-b border-border/40"
         } ${
           isCompact
-            ? "h-14 xl:h-[4.5rem]"
+            ? "h-14 xl:h-[4.5rem] 3xl:h-[5rem]"
             : isScrolled
-              ? "h-14 xl:h-[5.5rem]"
-              : "h-14 xl:h-[6.25rem]"
+              ? "h-14 xl:h-[5.5rem] 3xl:h-[6rem]"
+              : "h-14 xl:h-[6.25rem] 3xl:h-[7rem]"
         }`}
       >
         <div className="content-shell-header h-full flex items-center justify-between gap-2 sm:gap-3 2xl:gap-6">
@@ -172,17 +172,17 @@ export function Header({ isCompact = false }: HeaderProps) {
               src="/img/logo-mark.png"
               alt=""
               aria-hidden="true"
-              className="h-8 w-8 sm:h-9 sm:w-9 xl:h-10 xl:w-10 object-contain block dark:hidden"
+              className="h-8 w-8 sm:h-9 sm:w-9 xl:h-10 xl:w-10 3xl:h-12 3xl:w-12 object-contain block dark:hidden"
               draggable={false}
             />
             <img
               src="/img/logo-mark-light.png"
               alt=""
               aria-hidden="true"
-              className="h-8 w-8 sm:h-9 sm:w-9 xl:h-10 xl:w-10 object-contain hidden dark:block"
+              className="h-8 w-8 sm:h-9 sm:w-9 xl:h-10 xl:w-10 3xl:h-12 3xl:w-12 object-contain hidden dark:block"
               draggable={false}
             />
-            <span className="text-[13px] sm:text-[15px] xl:text-[18px] font-extrabold tracking-tight leading-none text-[#15233F] dark:text-white truncate">
+            <span className="text-[13px] sm:text-[15px] xl:text-[18px] 3xl:text-[21px] font-extrabold tracking-tight leading-none text-[#15233F] dark:text-white truncate">
               URM <span className="text-accent-primary">ENROLL</span>
             </span>
           </Link>
@@ -194,7 +194,7 @@ export function Header({ isCompact = false }: HeaderProps) {
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`inline-flex items-center whitespace-nowrap rounded-full px-3 py-2 text-[13.5px] font-medium transition-all ${
+                  className={`inline-flex items-center whitespace-nowrap rounded-full px-3 3xl:px-4 py-2 3xl:py-2.5 text-[13.5px] 3xl:text-[15px] font-medium transition-all ${
                     isActive
                       ? "bg-background-hover text-text-primary"
                       : "text-text-secondary hover:bg-background-hover hover:text-text-primary"
@@ -233,7 +233,7 @@ export function Header({ isCompact = false }: HeaderProps) {
 
             <Link
               to="/partnerships"
-              className="btn-header-cta whitespace-nowrap gap-1.5 px-4 py-2 rounded-full text-[13px] font-semibold"
+              className="btn-header-cta whitespace-nowrap gap-1.5 px-4 3xl:px-5 py-2 3xl:py-2.5 rounded-full text-[13px] 3xl:text-[15px] font-semibold"
             >
               {t<string>("header.cta")}
               <Sparkles className="w-3.5 h-3.5 shrink-0" />

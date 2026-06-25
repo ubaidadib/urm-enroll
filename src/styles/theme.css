@@ -18,12 +18,16 @@
   --text-5xl: clamp(3rem, 2.1rem + 2.8vw, 4.5rem);
   --text-6xl: clamp(3.6rem, 2.46rem + 3.7vw, 5.8rem);
 
-  /* Layout shells — wide on 4K (minimal side gutters) */
-  --content-gutter: 1rem;
+  /* Layout shells */
+  --content-gutter: clamp(1rem, 2vw, 1.5rem);
   --content-max: min(82rem, calc(100vw - var(--content-gutter) * 2));
   --content-max-narrow: min(60rem, calc(100vw - var(--content-gutter) * 2));
   --content-max-wide: min(96.25rem, calc(100vw - var(--content-gutter) * 2));
   --content-max-header: min(101.25rem, calc(100vw - var(--content-gutter) * 2));
+  --section-y: clamp(3rem, 6vw, 6rem);
+  --hero-y: clamp(3.5rem, 6.4vw, 7.5rem);
+  --card-padding: clamp(1rem, 1.4vw, 1.5rem);
+  --grid-gap: clamp(1rem, 1.35vw, 1.5rem);
 
   /* Premium Luxury Brand Palette */
   /* Primary Navy (#0B1530) - Deep, authoritative, premium */
@@ -252,15 +256,35 @@
   }
 }
 
-/* ── QHD / large desktop (1920px+) ─────────────────────────────────────── */
+/* 2K / large desktop (1536px+) */
+@media (min-width: 1536px) {
+  :root {
+    --font-size: 16.5px;
+    --content-gutter: clamp(1.5rem, 2.2vw, 2.25rem);
+    --content-max: min(92rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-narrow: min(66rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-wide: min(108rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-header: min(112rem, calc(100vw - var(--content-gutter) * 2));
+    --section-y: clamp(4rem, 5.6vw, 7rem);
+    --hero-y: clamp(4.25rem, 6vw, 8rem);
+    --card-padding: clamp(1.15rem, 1.25vw, 1.75rem);
+    --grid-gap: clamp(1.15rem, 1.15vw, 1.75rem);
+  }
+}
+
+/* QHD / large desktop (1920px+) */
 @media (min-width: 1920px) {
   :root {
     --font-size: 17px;
-    --content-gutter: 1.75rem;
-    --content-max: min(2280px, calc(100vw - var(--content-gutter) * 2));
-    --content-max-narrow: min(1680px, calc(100vw - var(--content-gutter) * 2));
-    --content-max-wide: min(2360px, calc(100vw - var(--content-gutter) * 2));
-    --content-max-header: min(2400px, calc(100vw - var(--content-gutter) * 2));
+    --content-gutter: clamp(2rem, 2.6vw, 3rem);
+    --content-max: min(108rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-narrow: min(76rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-wide: min(126rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-header: min(132rem, calc(100vw - var(--content-gutter) * 2));
+    --section-y: clamp(5rem, 5.2vw, 8.25rem);
+    --hero-y: clamp(5rem, 5.8vw, 9.5rem);
+    --card-padding: clamp(1.25rem, 1.2vw, 2rem);
+    --grid-gap: clamp(1.25rem, 1.15vw, 2rem);
     --text-lg: clamp(1.18rem, 1.06rem + 0.42vw, 1.42rem);
     --text-xl: clamp(1.42rem, 1.2rem + 0.68vw, 1.78rem);
     --text-2xl: clamp(1.72rem, 1.38rem + 1vw, 2.24rem);
@@ -275,11 +299,15 @@
 @media (min-width: 2560px) {
   :root {
     --font-size: 18px;
-    --content-gutter: 2rem;
-    --content-max: min(2520px, calc(100vw - var(--content-gutter) * 2));
-    --content-max-narrow: min(1840px, calc(100vw - var(--content-gutter) * 2));
-    --content-max-wide: min(2520px, calc(100vw - var(--content-gutter) * 2));
-    --content-max-header: min(2520px, calc(100vw - var(--content-gutter) * 2));
+    --content-gutter: clamp(2.5rem, 3vw, 4.5rem);
+    --content-max: min(120rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-narrow: min(84rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-wide: min(144rem, calc(100vw - var(--content-gutter) * 2));
+    --content-max-header: min(148rem, calc(100vw - var(--content-gutter) * 2));
+    --section-y: clamp(6rem, 5vw, 10rem);
+    --hero-y: clamp(6rem, 5.4vw, 11rem);
+    --card-padding: clamp(1.5rem, 1.05vw, 2.35rem);
+    --grid-gap: clamp(1.5rem, 1vw, 2.4rem);
     --text-lg: clamp(1.22rem, 1.08rem + 0.45vw, 1.5rem);
     --text-xl: clamp(1.48rem, 1.24rem + 0.72vw, 1.88rem);
     --text-2xl: clamp(1.78rem, 1.42rem + 1.05vw, 2.36rem);
@@ -537,12 +565,19 @@
     max-width: min(64rem, calc(100vw - var(--content-gutter) * 2)) !important;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1536px) {
+    .max-w-7xl,
     .max-w-6xl,
     .max-w-5xl {
       max-width: var(--content-max) !important;
     }
 
+    .max-w-4xl {
+      max-width: var(--content-max-narrow) !important;
+    }
+  }
+
+  @media (min-width: 1920px) {
     .max-w-4xl {
       max-width: min(80rem, calc(100vw - var(--content-gutter) * 2)) !important;
     }
@@ -601,11 +636,11 @@
   }
 
   .page-section-y {
-    padding-block: 3rem;
+    padding-block: var(--section-y);
   }
 
   .page-section-header-gap {
-    margin-bottom: 2rem;
+    margin-bottom: clamp(2rem, 3vw, 4rem);
   }
 
   @media (min-width: 640px) {
@@ -613,7 +648,7 @@
     .page-hero-offset-listing { padding-top: 5.5rem; }
     .page-hero-pb { padding-bottom: 3rem; }
     .page-hero-pb-compact { padding-bottom: 2.5rem; }
-    .page-section-y { padding-block: 4rem; }
+    .page-section-y { padding-block: var(--section-y); }
   }
 
   @media (min-width: 1024px) {
@@ -621,19 +656,30 @@
     .page-hero-pb-compact { padding-bottom: 2.75rem; }
     .page-hero-crumb-gap { margin-bottom: 1rem; }
     .page-hero-badge-gap { margin-bottom: 0.75rem; }
-    .page-section-y { padding-block: 3.5rem; }
-    .page-section-header-gap { margin-bottom: 2.5rem; }
+    .page-section-y { padding-block: var(--section-y); }
+    .page-section-header-gap { margin-bottom: clamp(2.5rem, 3vw, 4rem); }
   }
 
   @media (min-width: 1280px) {
     .page-hero-offset,
     .page-hero-offset-listing { padding-top: 5.5rem; }
-    .page-section-y { padding-block: 4rem; }
+    .page-section-y { padding-block: var(--section-y); }
+  }
+
+  @media (min-width: 1536px) {
+    .page-hero-offset,
+    .page-hero-offset-listing { padding-top: 6rem; }
+    .page-hero-pb { padding-bottom: clamp(3.5rem, 3vw, 5.25rem); }
+    .page-hero-pb-compact { padding-bottom: clamp(3rem, 2.5vw, 4.5rem); }
+    .page-container,
+    .page-container-narrow,
+    .page-gutter { padding-inline: 2.25rem; }
   }
 
   @media (min-width: 1920px) {
     .page-hero-offset,
-    .page-hero-offset-listing { padding-top: 6rem; }
+    .page-hero-offset-listing { padding-top: 6.75rem; }
+    .page-hero-grid { gap: clamp(2.75rem, 3vw, 4.5rem); }
   }
 
   /* Shared 12-column hero layout — desktop balance */
@@ -645,7 +691,7 @@
   @media (min-width: 1024px) {
     .page-hero-grid {
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 2rem;
+      gap: var(--grid-gap);
       align-items: start;
     }
 
@@ -662,7 +708,7 @@
 
   @media (min-width: 1280px) {
     .page-hero-grid {
-      gap: 2.25rem;
+      gap: clamp(2.25rem, 2vw, 3.25rem);
     }
   }
 
@@ -706,6 +752,21 @@
     .text-8xl { font-size: 2.05rem; line-height: 1.05; }
   }
 
+
+  @media (min-width: 1536px) {
+    .text-xs { font-size: 0.82rem; line-height: 1.4; }
+    .text-sm { font-size: 0.96rem; line-height: 1.5; }
+    .text-base { font-size: 1.08rem; line-height: 1.58; }
+    .text-lg { font-size: 1.16rem; }
+    .text-xl { font-size: 1.34rem; }
+    .text-2xl { font-size: 1.62rem; }
+    .text-3xl { font-size: 1.98rem; }
+    .text-4xl { font-size: 2.38rem; }
+    .text-5xl { font-size: 2.88rem; }
+    .text-6xl { font-size: 3.45rem; }
+    .text-7xl { font-size: 4rem; }
+    .text-8xl { font-size: 4.6rem; }
+  }
   /* Tailwind text utilities — 4K upscale */
   @media (min-width: 1920px) {
     .text-lg { font-size: 1.2rem; }
@@ -729,6 +790,57 @@
     .text-6xl { font-size: 4.05rem; }
     .text-7xl { font-size: 4.7rem; }
     .text-8xl { font-size: 5.4rem; }
+  }
+
+
+  /* Consistent large-screen behavior for legacy Tailwind-only layouts. */
+  @media (min-width: 1536px) {
+    .page-hero-inner h1 {
+      max-width: min(14ch, 100%);
+      font-size: clamp(4rem, 4vw, 5.4rem) !important;
+      line-height: 1.06 !important;
+    }
+
+    .page-hero-inner p {
+      max-width: min(78rem, 100%);
+    }
+
+    section[class*="py-16"],
+    section[class*="py-20"],
+    section[class*="py-24"],
+    section[class*="py-32"] {
+      padding-block: var(--section-y) !important;
+    }
+
+    section[class*="px-6"] {
+      padding-inline: var(--content-gutter) !important;
+    }
+
+    .grid.lg\:grid-cols-3,
+    .grid.xl\:grid-cols-3 {
+      grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+      gap: var(--grid-gap) !important;
+    }
+
+    .grid.xl\:grid-cols-4 {
+      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+      gap: var(--grid-gap) !important;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    .page-hero-inner h1 {
+      font-size: clamp(5rem, 3.8vw, 6.6rem) !important;
+    }
+
+    .grid.lg\:grid-cols-3,
+    .grid.xl\:grid-cols-3 {
+      grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+    }
+
+    .grid.xl\:grid-cols-4 {
+      grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    }
   }
 
   .motion-fast { transition-duration: var(--duration-fast); transition-timing-function: var(--ease-primary); }
@@ -1201,6 +1313,28 @@
   }
 }
 
+
+  @media (min-width: 1536px) {
+    p, label, button, input, textarea, select { line-height: 1.6; }
+
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    select {
+      min-height: 3.1rem;
+    }
+
+    td,
+    th {
+      padding: 1.05rem 1.2rem;
+    }
+
+    .premium-stat-card,
+    .surface-card,
+    .surface-card-elevated,
+    .surface-glass,
+    .surface-glass-subtle {
+      border-radius: clamp(1.25rem, 0.9vw, 1.75rem);
+    }
+  }
 @layer components {
   .premium-hero-surface {
     background:
