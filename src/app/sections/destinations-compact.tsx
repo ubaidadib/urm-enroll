@@ -142,11 +142,11 @@ export function DestinationsCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 + i * 0.07 }}
-              className="p-3 sm:p-5 rounded-xl sm:rounded-2xl transition-all duration-300 surface-glass-subtle"
+              className="premium-stat-card p-4 sm:p-5 rounded-xl sm:rounded-2xl transition-all duration-300"
             >
               <Icon className="w-4 h-4 sm:w-5 sm:h-5 mb-2 sm:mb-3" style={{ color }} />
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
-              <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide mt-0.5 sm:mt-1 text-text-disabled leading-tight">{label}</div>
+              <div className="text-2xl sm:text-3xl font-black tabular-nums" style={{ color: "rgb(212,175,55)" }}>{value}</div>
+              <div className="text-[10px] sm:text-xs font-bold uppercase tracking-wide mt-1 text-text-muted leading-tight">{label}</div>
             </m.div>
           ))}
         </m.div>

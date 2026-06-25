@@ -175,7 +175,7 @@ export function NursingCompact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.25 + i * 0.07 }}
-                    className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-white/4 border border-slate-100 dark:border-white/5 hover:border-slate-200 dark:hover:border-white/10 hover:shadow-sm transition-all"
+                    className="premium-stat-card flex items-center justify-between gap-4 p-4 rounded-2xl transition-all"
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -184,11 +184,11 @@ export function NursingCompact() {
                       >
                         <Icon className="w-4 h-4" style={{ color }} />
                       </div>
-                      <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+                      <span className="text-sm font-bold text-text-secondary">
                         {stat.label}
                       </span>
                     </div>
-                    <span className="text-lg font-black text-slate-900 dark:text-white">
+                    <span className="text-xl font-black tabular-nums text-text-primary">
                       {stat.value}
                     </span>
                   </m.div>
@@ -217,7 +217,7 @@ export function NursingCompact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mt-14 flex flex-wrap items-center justify-between gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-white/4 border border-slate-200/60 dark:border-white/6"
+          className="mt-14 flex flex-wrap items-center justify-between gap-4 px-6 py-4 rounded-2xl surface-card"
         >
           <div className="flex flex-wrap items-center gap-8">
             {[

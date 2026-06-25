@@ -218,17 +218,20 @@ export function SocialProof() {
             return (
               <div
                 key={stat.key}
-                className="glass-card-light rounded-2xl p-5 flex items-center gap-4"
+                className="premium-stat-card rounded-2xl p-5 sm:p-6 flex items-start gap-4"
               >
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${stat.bgClass}`}>
+                <div className={`w-11 h-11 rounded-xl border border-current/10 flex items-center justify-center shrink-0 ${stat.bgClass}`}>
                   <Icon className={`w-5 h-5 ${stat.colorClass}`} strokeWidth={2} />
                 </div>
                 <div className="min-w-0">
-                  <div className={`text-2xl font-black ${stat.colorClass} leading-none`}>
+                  <div className={`text-3xl font-black tabular-nums ${stat.colorClass} leading-none`}>
                     {stat.value}
                   </div>
-                  <div className="text-xs font-semibold text-[var(--color-text-secondary)] mt-0.5 leading-tight">
+                  <div className="text-xs font-bold text-[var(--color-text-primary)] mt-1 leading-tight">
                     {stat.label}
+                  </div>
+                  <div className="mt-1 text-[11px] font-medium leading-snug text-[var(--color-text-muted)]">
+                    {stat.note}
                   </div>
                 </div>
               </div>

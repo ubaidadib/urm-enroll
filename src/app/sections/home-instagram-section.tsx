@@ -157,18 +157,18 @@ export function HomeInstagramSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.3 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-8 rounded-2xl border border-border bg-bg-surface dark:border-white/[0.07] dark:bg-white/[0.03] py-6 px-8"
+          className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6 rounded-2xl surface-card-elevated py-5 px-5 sm:py-6 sm:px-8"
         >
           {STATS.map((stat) => {
             const StatIcon = stat.icon;
             return (
-              <div key={stat.label} className="flex items-center gap-3">
+              <div key={stat.label} className="premium-stat-card flex min-w-[12rem] items-center gap-3 rounded-xl px-4 py-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-primary/15 text-accent-primary">
                   <StatIcon className="h-4 w-4" />
                 </div>
                 <div>
-                  <p className="text-lg font-black text-text-primary dark:text-white leading-none">{stat.value}</p>
-                  <p className="text-[11px] text-text-muted mt-0.5">{stat.label}</p>
+                  <p className="text-xl font-black tabular-nums text-text-primary dark:text-white leading-none">{stat.value}</p>
+                  <p className="text-[11px] font-semibold text-text-muted mt-1">{stat.label}</p>
                 </div>
               </div>
             );
