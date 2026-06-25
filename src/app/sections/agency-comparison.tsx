@@ -62,7 +62,7 @@ export function AgencyComparison() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border shadow-sm text-text-primary text-xs font-bold uppercase tracking-widest mb-4"
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border shadow-sm text-text-primary text-xs font-bold uppercase tracking-widest mb-4">
             <Shield className="w-4 h-4 text-accent-tech" />
             {t<string>("agencyComparison.badge")}
           </div>
