@@ -10,7 +10,7 @@ export function ChancenkarteSuccessStoriesPage() {
   const { t, dir } = useLanguage();
   const localizedPath = useLocalizedPath();
   return (
-    <main dir={dir} className="bg-slate-50 dark:bg-slate-950">
+    <main dir={dir} className="bg-bg-primary">
       <SeoManager path="/chancenkarte/success-stories" pageKey="chancenkarteSuccessStories" />
       <section className="page-hero-offset page-hero-pb-compact px-[var(--content-gutter)]">
         <div className="page-hero-inner">
@@ -26,16 +26,16 @@ export function ChancenkarteSuccessStoriesPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-tech">
             {t<string>("chancenkarte.successStories.badge")}
           </p>
-          <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white tracking-tight">
+          <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-bold text-text-primary tracking-tight">
             {t<string>("chancenkarte.successStories.title")}
           </h1>
-          <p className="mt-4 max-w-2xl lg:max-w-3xl text-slate-600 dark:text-slate-400 leading-relaxed">
+          <p className="mt-4 max-w-2xl lg:max-w-3xl text-text-secondary leading-relaxed">
             {t<string>("chancenkarte.successStories.description")}
           </p>
         </div>
       </section>
 
-      <section className="py-12 px-6 bg-white dark:bg-slate-900">
+      <section className="py-12 px-6 bg-bg-surface">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-5">
           {GERMANY_TESTIMONIALS.map((tt, i) => (
             <SuccessStoryCard key={tt.id} testimonial={tt} index={i} />

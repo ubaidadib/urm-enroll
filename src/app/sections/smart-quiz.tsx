@@ -170,15 +170,15 @@ export function SmartQuiz() {
       className={`p-5 rounded-2xl border-2 text-left transition-all duration-300 group relative overflow-hidden ${
         formData[field] === value
           ? 'border-accent-tech bg-accent-tech/5 ring-1 ring-accent-tech'
-          : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
+          : 'border-border/50 bg-bg-surface hover:border-border'
       }`}
     >
       <div className="flex justify-between items-center relative z-10">
-        <span className={`font-bold ${formData[field] === value ? 'text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}`}>
+        <span className={`font-bold ${formData[field] === value ? 'text-text-primary' : 'text-text-secondary'}`}>
           {label}
         </span>
         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
-          formData[field] === value ? 'border-accent-tech bg-accent-tech' : 'border-slate-200 dark:border-slate-700'
+          formData[field] === value ? 'border-accent-tech bg-accent-tech' : 'border-border/50'
         }`}>
           {formData[field] === value && <CheckCircle className="w-3 h-3 text-white" />}
         </div>
@@ -187,7 +187,7 @@ export function SmartQuiz() {
   );
 
   return (
-    <section className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <section className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 right-0 w-150 h-150 bg-accent-tech/5 rounded-full blur-[120px]" />
@@ -196,18 +196,18 @@ export function SmartQuiz() {
 
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm text-slate-900 dark:text-white text-xs font-bold uppercase tracking-widest mb-6">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border/50 shadow-sm text-text-primary text-xs font-bold uppercase tracking-widest mb-6">
             <Sparkles className="w-4 h-4 text-accent-tech" /> {t<string>('quiz.badge')}
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-black text-text-primary mb-6 tracking-tight">
             {t<string>('quiz.title')}
           </h2>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
             {t<string>('quiz.description')}
           </p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] shadow-2xl overflow-hidden min-h-[550px] flex flex-col">
+        <div className="bg-bg-surface border border-border/50 rounded-[2.5rem] shadow-2xl overflow-hidden min-h-[550px] flex flex-col">
           
           <AnimatePresence mode="wait">
             {!isCalculating && !showResult && !isInterimCalculating ? (
@@ -220,13 +220,13 @@ export function SmartQuiz() {
                 <div className="flex items-center justify-between mb-12">
                   <button 
                     onClick={handleBack} disabled={step === 1}
-                    className="flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-0 transition-all"
+                    className="flex items-center gap-2 text-sm font-bold text-text-muted hover:text-text-primary disabled:opacity-0 transition-all"
                   >
                     <ChevronLeft className="w-4 h-4" /> {t<string>('quiz.back')}
                   </button>
                   <div className="flex flex-col items-end gap-1">
-                    <span aria-live="polite" className="text-[10px] font-black uppercase tracking-widest text-slate-400">{t<string>('quiz.stepLabel')} {step} {t<string>('quiz.of')} {totalSteps}</span>
-                    <div className="w-32 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <span aria-live="polite" className="text-[10px] font-black uppercase tracking-widest text-text-muted">{t<string>('quiz.stepLabel')} {step} {t<string>('quiz.of')} {totalSteps}</span>
+                    <div className="w-32 h-1.5 bg-bg-secondary rounded-full overflow-hidden">
                       <m.div 
                         className="h-full bg-accent-tech"
                         initial={{ width: 0 }}
@@ -238,7 +238,7 @@ export function SmartQuiz() {
 
                 {/* Question Area */}
                 <div className="flex-grow">
-                  <h3 id="quiz-question" className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                  <h3 id="quiz-question" className="text-2xl md:text-3xl font-bold text-text-primary mb-8">
                     {step === 1 && t<string>('quiz.questions.destination')}
                     {step === 2 && t<string>('quiz.questions.studyLevel')}
                     {step === 3 && t<string>('quiz.questions.field')}
@@ -266,7 +266,7 @@ export function SmartQuiz() {
                   </m.div>
                 )}
                 
-                <div className="mt-12 flex justify-center text-slate-400 text-xs gap-4 font-medium uppercase tracking-widest">
+                <div className="mt-12 flex justify-center text-text-muted text-xs gap-4 font-medium uppercase tracking-widest">
                    <div className="flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5" /> {t<string>('quiz.dataSecure')}</div>
                 </div>
               </m.div>
@@ -276,10 +276,10 @@ export function SmartQuiz() {
                   <div className="absolute inset-0 bg-accent-tech/20 blur-3xl rounded-full animate-pulse" />
                   <Loader2 className="w-16 h-16 text-accent-tech animate-spin relative z-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                <h3 className="text-2xl font-bold text-text-primary mb-2">
                   {isInterimCalculating ? t<string>('quiz.probabilityDelay') : t<string>('quiz.calculatingTitle')}
                 </h3>
-                <p className="text-slate-500">{t<string>('quiz.calculatingSubtitle')}</p>
+                <p className="text-text-muted">{t<string>('quiz.calculatingSubtitle')}</p>
               </m.div>
             ) : (
               // --- RESULTS VIEW ---
@@ -290,7 +290,7 @@ export function SmartQuiz() {
                   <div className="lg:col-span-5 flex flex-col items-center">
                     <div className="relative w-64 h-64">
                       <svg className="w-full h-full transform -rotate-90">
-                        <circle cx="128" cy="128" r="110" fill="none" stroke="currentColor" strokeWidth="12" className="text-slate-100 dark:text-slate-800" />
+                        <circle cx="128" cy="128" r="110" fill="none" stroke="currentColor" strokeWidth="12" className="text-border/40" />
                         <m.circle 
                           cx="128" cy="128" r="110" fill="none" stroke="url(#resultGrad)" 
                           strokeWidth="12" strokeDasharray="691"
@@ -307,8 +307,8 @@ export function SmartQuiz() {
                         </defs>
                       </svg>
                       <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <span className="text-6xl font-black text-slate-900 dark:text-white tracking-tighter">{matchScore}%</span>
-                        <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{t<string>('quiz.resultLabel')}</span>
+                        <span className="text-6xl font-black text-text-primary tracking-tighter">{matchScore}%</span>
+                        <span className="text-[10px] font-bold text-text-muted uppercase tracking-widest">{t<string>('quiz.resultLabel')}</span>
                       </div>
                     </div>
                   </div>
@@ -318,20 +318,20 @@ export function SmartQuiz() {
                     <div className="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-black uppercase tracking-widest rounded-md mb-6">
                       <Zap className="w-3 h-3" /> {t<string>('quiz.resultBadge')}
                     </div>
-                    <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">{t<string>('quiz.resultTitle')}</h3>
-                    <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
+                    <h3 className="text-3xl font-bold text-text-primary mb-4">{t<string>('quiz.resultTitle')}</h3>
+                    <p className="text-text-secondary mb-8 leading-relaxed">
                       {t<string>('quiz.resultDescription')}
                     </p>
 
                     <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                       <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
-                          <p className="text-[10px] font-bold text-slate-500 uppercase mb-1">{t<string>('quiz.visaProcessing')}</p>
-                          <p className="text-lg font-bold text-slate-900 dark:text-white">{visaEstimator}</p>
+                       <div className="p-4 rounded-2xl bg-bg-secondary/60 border border-border/30">
+                          <p className="text-[10px] font-bold text-text-muted uppercase mb-1">{t<string>('quiz.visaProcessing')}</p>
+                          <p className="text-lg font-bold text-text-primary">{visaEstimator}</p>
                        </div>
                        {isNursing && (
-                         <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800">
-                            <p className="text-[10px] font-bold text-slate-500 uppercase mb-1">{t<string>('quiz.recognition')}</p>
-                            <p className="text-lg font-bold text-slate-900 dark:text-white">{recognitionScore}%</p>
+                         <div className="p-4 rounded-2xl bg-bg-secondary/60 border border-border/30">
+                            <p className="text-[10px] font-bold text-text-muted uppercase mb-1">{t<string>('quiz.recognition')}</p>
+                            <p className="text-lg font-bold text-text-primary">{recognitionScore}%</p>
                          </div>
                        )}
                     </div>
@@ -356,7 +356,7 @@ export function SmartQuiz() {
                       </button>
                       <button 
                         onClick={() => { setStep(1); setShowResult(false); }}
-                        className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-xl font-bold text-sm"
+                        className="px-8 py-4 bg-bg-secondary text-text-secondary rounded-xl font-bold text-sm"
                       >
                         {t<string>('quiz.restart')}
                       </button>

@@ -51,7 +51,7 @@ export function NursingCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.07 }}
-              className="font-black text-slate-900 dark:text-white leading-[0.95] tracking-tight mb-6"
+              className="font-black text-text-primary leading-[0.95] tracking-tight mb-6"
               style={{ fontSize: "clamp(2.6rem, 5vw, 4.5rem)" }}
             >
               {tx("workforce.compact.headline1", "Germany needs")}<br />
@@ -66,7 +66,7 @@ export function NursingCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.13 }}
-              className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed max-w-lg mb-10"
+              className="text-lg text-text-muted leading-relaxed max-w-lg mb-10"
             >
               {tx(
                 "workforce.description",
@@ -85,12 +85,12 @@ export function NursingCompact() {
               {steps.map((step, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-50 dark:bg-white/4 border border-slate-100 dark:border-white/6"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-bg-secondary dark:bg-white/4 border border-border/30 dark:border-white/6"
                 >
                   <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-500/15 flex items-center justify-center shrink-0">
                     <span className="text-[9px] font-black text-emerald-600 dark:text-emerald-400">{i + 1}</span>
                   </div>
-                  <span className="text-xs font-semibold text-slate-600 dark:text-slate-300 leading-tight">
+                  <span className="text-xs font-semibold text-text-secondary leading-tight">
                     {step}
                   </span>
                 </div>
@@ -115,7 +115,7 @@ export function NursingCompact() {
 
               <Link
                 to="/nursing#eligibility"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-slate-100 dark:bg-white/6 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-white text-sm font-bold transition-all"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-bg-secondary dark:bg-white/6 hover:bg-bg-secondary/80 dark:hover:bg-white/10 text-text-primary dark:text-white text-sm font-bold transition-all"
               >
                 <ShieldCheck className="w-4 h-4 text-emerald-500" />
                 <span>{tx("workforce.ctaSecondary", "Check Eligibility")}</span>
@@ -140,16 +140,16 @@ export function NursingCompact() {
               <div className="h-1 w-full bg-linear-to-r from-emerald-400 to-teal-400" />
 
               {/* Card header */}
-              <div className="flex items-center justify-between px-7 py-5 border-b border-slate-100 dark:border-white/6">
+              <div className="flex items-center justify-between px-7 py-5 border-b border-border/30 dark:border-white/6">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-emerald-500 flex items-center justify-center text-white font-black text-xs shadow-md shadow-emerald-200 dark:shadow-emerald-900/40">
                     DE
                   </div>
                   <div>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    <div className="text-[10px] font-bold text-text-muted uppercase tracking-widest">
                       {tx("workforce.card.target", "Target Market")}
                     </div>
-                    <div className="text-sm font-black text-slate-900 dark:text-white">
+                    <div className="text-sm font-black text-text-primary">
                       {tx("workforce.card.country", "Germany")}
                     </div>
                   </div>
@@ -175,7 +175,7 @@ export function NursingCompact() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.25 + i * 0.07 }}
-                    className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-white/4 border border-slate-100 dark:border-white/5 hover:border-slate-200 dark:hover:border-white/10 hover:shadow-sm transition-all"
+                    className="flex items-center justify-between p-4 rounded-2xl bg-bg-secondary dark:bg-white/4 border border-border/30 dark:border-white/5 hover:border-border/50 dark:hover:border-white/10 hover:shadow-sm transition-all"
                   >
                     <div className="flex items-center gap-3">
                       <div
@@ -184,11 +184,11 @@ export function NursingCompact() {
                       >
                         <Icon className="w-4 h-4" style={{ color }} />
                       </div>
-                      <span className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+                      <span className="text-sm font-semibold text-text-secondary">
                         {stat.label}
                       </span>
                     </div>
-                    <span className="text-lg font-black text-slate-900 dark:text-white">
+                    <span className="text-lg font-black text-text-primary">
                       {stat.value}
                     </span>
                   </m.div>
@@ -217,7 +217,7 @@ export function NursingCompact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="mt-14 flex flex-wrap items-center justify-between gap-4 px-6 py-4 rounded-2xl bg-slate-50 dark:bg-white/4 border border-slate-200/60 dark:border-white/6"
+          className="mt-14 flex flex-wrap items-center justify-between gap-4 px-6 py-4 rounded-2xl bg-bg-secondary dark:bg-white/4 border border-border/40 dark:border-white/6"
         >
           <div className="flex flex-wrap items-center gap-8">
             {[
@@ -227,7 +227,7 @@ export function NursingCompact() {
             ].map(({ icon: Icon, text, color }, i) => (
               <div key={i} className="flex items-center gap-2">
                 <Icon className="w-4 h-4 shrink-0" style={{ color }} />
-                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{text}</span>
+                <span className="text-xs font-semibold text-text-muted">{text}</span>
               </div>
             ))}
           </div>

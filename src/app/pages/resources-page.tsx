@@ -129,10 +129,10 @@ export function ResourcesPage() {
           {copy.cards.map((card) => (
             <article
               key={card.slug}
-              className="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm hover:border-accent-tech/30 hover:shadow-lg transition-all"
+              className="group rounded-2xl border border-border/50 bg-bg-surface p-6 shadow-sm hover:border-accent-tech/30 hover:shadow-lg transition-all"
             >
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white tracking-tight">{card.title}</h2>
-              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{card.excerpt}</p>
+              <h2 className="text-xl font-bold text-text-primary tracking-tight">{card.title}</h2>
+              <p className="mt-3 text-sm text-text-secondary leading-relaxed">{card.excerpt}</p>
               <Link
                 to={`${base}/resources/${card.slug}`}
                 className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-accent-tech group-hover:gap-2.5 transition-all"

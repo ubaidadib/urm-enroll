@@ -78,7 +78,7 @@ export function FounderVision() {
           >
             <div className="relative group">
               {/* Image Container with Depth */}
-              <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800">
+              <div className="relative aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none border border-border/50">
                 <ImageWithFallback
                   src="/img/ubaidadib-founder.JPEG"
                   alt={t<string>('founder.imageAlt')}
@@ -121,7 +121,7 @@ export function FounderVision() {
               {/* Location Tag */}
               <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-black/50 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
                 <MapPin className="w-4 h-4 text-accent-primary" />
-                <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wide">
+                <span className="text-xs font-bold text-text-primary uppercase tracking-wide">
                   {t<string>('founder.originLabel')} → {t<string>('founder.londonLabel')}
                 </span>
               </div>
@@ -141,18 +141,18 @@ export function FounderVision() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-light"
+                  className="text-lg md:text-xl text-text-secondary leading-relaxed font-light"
                 >
                   {paragraph}
                 </m.p>
               ))}
             </div>
 
-            <div className="h-px bg-slate-200 dark:bg-slate-800 w-full" />
+            <div className="h-px bg-border/40 w-full" />
 
             {/* Highlights Grid */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-8 flex items-center gap-2">
+              <h3 className="text-sm font-bold text-text-primary uppercase tracking-widest mb-8 flex items-center gap-2">
                 <span className="w-8 h-px bg-accent-primary" />
                 {t<string>('founder.sections.highlights')}
               </h3>
@@ -169,7 +169,7 @@ export function FounderVision() {
                     <div className="mt-1.5 p-1 rounded-full bg-accent-primary/10">
                       <div className="w-2 h-2 rounded-full bg-accent-primary" />
                     </div>
-                    <span className="text-slate-700 dark:text-slate-300 font-medium leading-relaxed">
+                    <span className="text-text-primary font-medium leading-relaxed">
                       {item}
                     </span>
                   </m.div>
@@ -179,14 +179,14 @@ export function FounderVision() {
 
             {/* Skills Tag Cloud */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-6">
+              <h3 className="text-sm font-bold text-text-primary uppercase tracking-widest mb-6">
                 {t<string>('founder.sections.skills')}
               </h3>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (
                   <span 
                     key={index}
-                    className="px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs font-bold border border-slate-200 dark:border-slate-700"
+                    className="px-4 py-2 rounded-lg bg-bg-secondary text-text-secondary text-xs font-bold border border-border/50"
                   >
                     {skill}
                   </span>
@@ -200,7 +200,7 @@ export function FounderVision() {
                 href="https://www.linkedin.com/in/ubaidadib/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-slate-900 dark:text-white font-bold hover:text-accent-primary transition-colors group"
+                className="inline-flex items-center gap-3 text-text-primary font-bold hover:text-accent-primary transition-colors group"
               >
                 <Linkedin className="w-5 h-5" />
                 <span>{t<string>('founder.linkedinCta')}</span>

@@ -120,7 +120,7 @@ export function CaseStudies() {
 
                   {/* Impact Footer (Heavy Contrast) */}
                   <div className="mt-auto pt-8 border-t" style={{ borderColor: "rgba(212,175,55,0.12)" }}>
-                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">
+                    <div className="text-[10px] font-bold text-text-muted uppercase tracking-[0.2em] mb-3">
                       {t<string>("caseStudies.coreOutcome")}
                     </div>
                     <div className={`text-xl font-black ${visual.color} tracking-tight`}>
@@ -145,10 +145,10 @@ export function CaseStudies() {
           className="mt-20 pt-10 flex flex-wrap justify-center gap-12 opacity-30 hover:opacity-80 transition-all duration-700"
           style={{ borderTop: "1px solid rgba(212,175,55,0.12)" }}
         >
-          <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-text-muted text-xs font-black uppercase tracking-widest">
             <Briefcase className="w-4 h-4" /> {t<string>("caseStudies.trustVerified")}
           </div>
-          <div className="flex items-center gap-2 text-slate-400 text-xs font-black uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-text-muted text-xs font-black uppercase tracking-widest">
             <Target className="w-4 h-4" /> {t<string>("caseStudies.trustAudited")}
           </div>
         </m.div>

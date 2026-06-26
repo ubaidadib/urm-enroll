@@ -161,7 +161,7 @@ function TrendingUniversityCard({ university, index }: { university: University;
       transition={{ delay: 0.08 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -3, scale: 1.015 }}
       className="group relative flex-shrink-0 w-[190px] overflow-hidden rounded-2xl cursor-pointer
-        bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800
+        bg-bg-surface border border-border/30
         shadow-[0_2px_10px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.14)]
         transition-all duration-400 text-left"
     >
@@ -187,10 +187,10 @@ function TrendingUniversityCard({ university, index }: { university: University;
         </div>
       </div>
       <div className="p-3">
-        <p className="text-[12.5px] font-bold text-slate-900 dark:text-white line-clamp-2 leading-snug">
+        <p className="text-[12.5px] font-bold text-text-primary line-clamp-2 leading-snug">
           {university.name}
         </p>
-        <p className="mt-1 text-[11px] text-slate-500 dark:text-slate-400">{flag} {university.country}</p>
+        <p className="mt-1 text-[11px] text-text-muted">{flag} {university.country}</p>
       </div>
     </m.button>
   );
@@ -229,7 +229,7 @@ function UniversityDiscoveryCard({
       onClick={() => navigate(`/universities/${university.id}`)}
       className={`group relative overflow-hidden rounded-2xl cursor-pointer
         bg-white dark:bg-[#0d1829]
-        border border-slate-200/80 dark:border-[#1a2a45]
+        border border-border/50 dark:border-[#1a2a45]
         shadow-[0_1px_4px_rgba(8,21,48,0.06),0_4px_20px_rgba(8,21,48,0.06)]
         dark:shadow-[0_1px_4px_rgba(0,0,0,0.4),0_4px_20px_rgba(0,0,0,0.3)]
         hover:border-accent-tech/40 dark:hover:border-accent-tech/30
@@ -278,10 +278,10 @@ function UniversityDiscoveryCard({
                 src={university.logo}
                 alt=""
                 className="w-8 h-8 object-contain"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).replaceWith(Object.assign(document.createElement("span"), { textContent: initials, className: "text-[9px] font-black text-slate-700" })); }}
+                onError={(e) => { (e.currentTarget as HTMLImageElement).replaceWith(Object.assign(document.createElement("span"), { textContent: initials, className: "text-[9px] font-black text-text-secondary" })); }}
               />
             ) : (
-              <span className="text-[9px] font-black text-slate-700">{initials}</span>
+              <span className="text-[9px] font-black text-text-secondary">{initials}</span>
             )}
           </div>
           {/* Programs count */}
@@ -296,12 +296,12 @@ function UniversityDiscoveryCard({
       {/* Card body */}
       <div className="relative z-10 p-4">
         {/* Name */}
-        <h3 className="font-bold text-[0.95rem] leading-snug text-slate-900 dark:text-white line-clamp-2 group-hover:text-accent-tech transition-colors duration-300 mb-2">
+        <h3 className="font-bold text-[0.95rem] leading-snug text-text-primary line-clamp-2 group-hover:text-accent-tech transition-colors duration-300 mb-2">
           {university.name}
         </h3>
 
         {/* Location */}
-        <div className="flex items-center gap-1.5 text-[12px] text-slate-500 dark:text-slate-400 mb-3">
+        <div className="flex items-center gap-1.5 text-[12px] text-text-muted mb-3">
           <MapPin className="w-3 h-3 shrink-0" />
           <span className="truncate">{[university.city, university.country].filter(Boolean).join(", ")}</span>
           <span className="ml-0.5">{flag}</span>
@@ -314,7 +314,7 @@ function UniversityDiscoveryCard({
               ✓ {t<string>("universities.listing.card.coursesAvailable")}
             </span>
           ) : (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-bg-secondary text-text-muted">
               {t<string>("universities.listing.card.noActiveCourses")}
             </span>
           )}
@@ -333,8 +333,8 @@ function UniversityDiscoveryCard({
         </div>
 
         {/* Footer CTA */}
-        <div className="flex items-center justify-between border-t border-slate-100 dark:border-[#1a2a45] pt-3.5">
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
+        <div className="flex items-center justify-between border-t border-border/30 dark:border-[#1a2a45] pt-3.5">
+          <p className="text-[11px] text-text-muted font-medium">
             {university.city || university.country || t<string>("common.global")}
           </p>
           <button
@@ -503,7 +503,7 @@ export function UniversitiesPage() {
       <main className="relative min-h-screen overflow-x-hidden bg-bg-primary">
 
         {/* HERO */}
-        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+        <section className="relative overflow-hidden page-hero-offset-listing page-hero-pb-compact px-[var(--content-gutter)] border-b border-border/50 bg-bg-secondary">
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute top-0 right-0 w-[32rem] h-[32rem] rounded-full bg-accent-tech/8 blur-[120px]" />
             <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] rounded-full bg-accent-primary/8 blur-[120px]" />
@@ -519,11 +519,11 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full
-                    border border-slate-200 dark:border-slate-700/80
-                    bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl page-hero-badge-gap"
+                    border border-border/50
+                    bg-bg-surface/80 backdrop-blur-xl page-hero-badge-gap"
                 >
                   <Sparkles className="w-4 h-4 text-accent-tech" />
-                  <span className="text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+                  <span className="text-xs font-bold uppercase tracking-widest text-text-muted">
                     {t<string>("universities.listing.hero.badge")}
                   </span>
                 </m.div>
@@ -532,7 +532,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 22 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-text-primary"
                 >
                   {t<string>("universities.listing.hero.title")}
                 </m.h1>
@@ -541,7 +541,7 @@ export function UniversitiesPage() {
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  className="mt-3 lg:mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed"
+                  className="mt-3 lg:mt-3 text-base sm:text-lg text-text-secondary leading-relaxed"
                 >
                   {t<string>("universities.listing.hero.subtitle")}
                 </m.p>
@@ -553,30 +553,30 @@ export function UniversitiesPage() {
                   className="mt-5 lg:mt-5"
                 >
                   <div className="relative flex items-center gap-3
-                    rounded-2xl border border-slate-200 dark:border-slate-700/80
-                    bg-white dark:bg-slate-900/90 backdrop-blur-xl
+                    rounded-2xl border border-border/50
+                    bg-bg-surface/90 backdrop-blur-xl
                     shadow-[0_4px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.3)]
                     focus-within:border-accent-tech/60
                     focus-within:shadow-[0_4px_32px_rgba(0,0,0,0.1),0_0_0_3px_rgba(32,168,231,0.14)]
                     dark:focus-within:shadow-[0_4px_32px_rgba(0,0,0,0.4),0_0_0_3px_rgba(32,168,231,0.18)]
                     transition-all duration-300 px-4 py-3"
                   >
-                    <Search className="w-5 h-5 text-slate-400 flex-shrink-0" />
+                    <Search className="w-5 h-5 text-text-muted flex-shrink-0" />
                     <input
                       type="search"
                       value={searchQuery}
                       onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                       placeholder={t<string>("search.placeholder.universities")}
                       aria-label={t<string>("search.placeholder.universities")}
-                      className="flex-1 bg-transparent text-slate-900 dark:text-white placeholder:text-slate-400 text-[15px] outline-none min-w-0"
+                      className="flex-1 bg-transparent text-text-primary placeholder:text-text-muted text-[15px] outline-none min-w-0"
                     />
                     {searchQuery && (
                       <button
                         type="button"
                         onClick={() => { setSearchQuery(""); setCurrentPage(1); }}
                         aria-label={t<string>("search.clear")}
-                        className="w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center
-                          text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors flex-shrink-0"
+                        className="w-6 h-6 rounded-full bg-bg-secondary flex items-center justify-center
+                          text-text-muted hover:text-text-primary transition-colors flex-shrink-0"
                       >
                         <X className="w-3.5 h-3.5" />
                       </button>
@@ -600,7 +600,7 @@ export function UniversitiesPage() {
                   transition={{ delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
                   className="mt-5 flex flex-wrap items-center gap-2"
                 >
-                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                  <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted">
                     <TrendingUp className="w-3.5 h-3.5" /> {t<string>("universities.listing.search.trending")}:
                   </span>
                   {trendingCountries.map((country) => (
@@ -615,7 +615,7 @@ export function UniversitiesPage() {
                       className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200
                         ${selectedCountry === country
                           ? "bg-accent-tech text-white shadow-sm"
-                          : "bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 text-slate-600 dark:text-slate-300 hover:border-accent-tech/50"
+                          : "bg-bg-surface border border-border/50 text-text-secondary hover:border-accent-tech/50"
                         }`}
                     >
                       {getCountryFlag(country, countryCodeByName.get(country))} {country}
@@ -630,34 +630,34 @@ export function UniversitiesPage() {
                 transition={{ delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
                 className="page-hero-aside grid gap-3"
               >
-                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-bg-surface/80 border border-border/50 shadow-sm">
                   <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
                     <GraduationCap className="w-5 h-5 text-accent-tech" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-lg font-black text-slate-900 dark:text-white">{UNIVERSITIES.length}+</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("universities.listing.hero.stats.verified")}</p>
+                    <p className="text-lg font-black text-text-primary">{UNIVERSITIES.length}+</p>
+                    <p className="text-sm text-text-muted">{t<string>("universities.listing.hero.stats.verified")}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl p-4 text-center bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="rounded-2xl p-4 text-center bg-bg-surface/80 border border-border/50 shadow-sm">
                     <Globe2 className="w-5 h-5 mx-auto text-accent-primary mb-1.5" />
-                    <p className="text-lg font-black text-slate-900 dark:text-white">{countries.length}+</p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("universities.listing.hero.stats.countries")}</p>
+                    <p className="text-lg font-black text-text-primary">{countries.length}+</p>
+                    <p className="text-xs font-medium text-text-muted mt-0.5">{t<string>("universities.listing.hero.stats.countries")}</p>
                   </div>
-                  <div className="rounded-2xl p-4 text-center bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                  <div className="rounded-2xl p-4 text-center bg-bg-surface/80 border border-border/50 shadow-sm">
                     <MapPin className="w-5 h-5 mx-auto text-accent-steel mb-1.5" />
-                    <p className="text-lg font-black text-slate-900 dark:text-white">{citiesCount}+</p>
-                    <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("universities.listing.hero.stats.cities")}</p>
+                    <p className="text-lg font-black text-text-primary">{citiesCount}+</p>
+                    <p className="text-xs font-medium text-text-muted mt-0.5">{t<string>("universities.listing.hero.stats.cities")}</p>
                   </div>
                 </div>
-                <div className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm">
+                <div className="rounded-2xl p-4 flex items-center gap-3 bg-bg-surface/80 border border-border/50 shadow-sm">
                   <div className="w-9 h-9 shrink-0 rounded-xl bg-amber-500/15 flex items-center justify-center">
                     <Zap className="w-4 h-4 text-amber-500" />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-slate-900 dark:text-white">{t<string>("universities.listing.hero.aiMatch.title")}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{t<string>("universities.listing.hero.aiMatch.subtitle")}</p>
+                    <p className="text-sm font-bold text-text-primary">{t<string>("universities.listing.hero.aiMatch.title")}</p>
+                    <p className="text-xs text-text-muted">{t<string>("universities.listing.hero.aiMatch.subtitle")}</p>
                   </div>
                 </div>
               </m.div>
@@ -666,11 +666,11 @@ export function UniversitiesPage() {
         </section>
 
         {/* TRENDING CAROUSEL */}
-        <section className="relative py-8 border-t border-slate-100 dark:border-slate-800/60">
+        <section className="relative py-8 border-t border-border/30">
           <div className="content-shell-wide mx-auto w-full px-4 sm:px-6 lg:px-8 3xl:px-10 4xl:px-12">
             <div className="flex items-center gap-3 mb-5">
               <Flame className="w-4 h-4 text-amber-500" />
-              <span className="text-sm font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+              <span className="text-sm font-black uppercase tracking-[0.2em] text-text-muted">
                 {t<string>("universities.listing.trendingNow")}
               </span>
             </div>
@@ -698,20 +698,20 @@ export function UniversitiesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
               className="sticky top-[72px] z-20 mb-8 -mx-5 sm:-mx-8 lg:-mx-12 px-5 sm:px-8 lg:px-12
-                py-3 bg-slate-50/95 dark:bg-[#080c14]/95 backdrop-blur-xl
-                border-b border-slate-200/60 dark:border-slate-800/60"
+                py-3 bg-bg-secondary/95 dark:bg-[#080c14]/95 backdrop-blur-xl
+                border-b border-border/50"
             >
               <div className="content-shell-wide mx-auto flex items-center gap-3 flex-wrap xl:flex-nowrap">
                 <div className="relative hidden xl:flex items-center gap-2 flex-shrink-0">
-                  <Search className="absolute left-3 w-4 h-4 text-slate-400 pointer-events-none" />
+                  <Search className="absolute left-3 w-4 h-4 text-text-muted pointer-events-none" />
                   <input
                     type="search"
                     value={searchQuery}
                     onChange={(e) => { setSearchQuery(e.target.value); setCurrentPage(1); }}
                     placeholder={t<string>("search.placeholder.quick")}
                     aria-label={t<string>("search.placeholder.universities")}
-                    className="h-9 w-48 pl-9 pr-3 rounded-xl border border-slate-200 dark:border-slate-700/80
-                      bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-white placeholder:text-slate-400
+                    className="h-9 w-48 pl-9 pr-3 rounded-xl border border-border/50
+                      bg-bg-surface text-sm text-text-primary placeholder:text-text-muted
                       outline-none focus:border-accent-tech/60 transition-colors"
                   />
                 </div>
@@ -725,7 +725,7 @@ export function UniversitiesPage() {
                         transition-all duration-200 whitespace-nowrap flex-shrink-0
                         ${!hasActiveFilters
                           ? "chip-active shadow-sm"
-                          : "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-slate-400 dark:hover:border-slate-600"
+                          : "border border-border/50 bg-bg-surface text-text-secondary hover:border-border"
                         }`}
                     >
                       {t<string>("common.all")}
@@ -742,7 +742,7 @@ export function UniversitiesPage() {
                             transition-all duration-200 whitespace-nowrap flex-shrink-0
                             ${active
                               ? "bg-accent-tech text-white shadow-sm"
-                              : "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-accent-tech/50"
+                              : "border border-border/50 bg-bg-surface text-text-secondary hover:border-accent-tech/50"
                             }`}
                         >
                           {getCountryFlag(country, countryCodeByName.get(country))} {country}
@@ -750,7 +750,7 @@ export function UniversitiesPage() {
                       );
                     })}
 
-                    <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 flex-shrink-0 mx-1" />
+                    <div className="w-px h-6 bg-border/50 flex-shrink-0 mx-1" />
 
                     {types.map((type) => {
                       const active = selectedType === type;
@@ -763,7 +763,7 @@ export function UniversitiesPage() {
                             transition-all duration-200 whitespace-nowrap flex-shrink-0
                             ${active
                               ? "bg-accent-primary text-white shadow-sm"
-                              : "border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-accent-primary/50"
+                              : "border border-border/50 bg-bg-surface text-text-secondary hover:border-accent-primary/50"
                             }`}
                         >
                           {type}
@@ -788,8 +788,8 @@ export function UniversitiesPage() {
                     value={sortBy}
                     onChange={(e) => { setSortBy(e.target.value as typeof sortBy); setCurrentPage(1); }}
                     aria-label={t<string>("common.aria.sortUniversities")}
-                    className="h-9 px-3 rounded-xl border border-slate-200 dark:border-slate-700/80
-                      bg-white dark:bg-slate-900 text-xs font-semibold text-slate-700 dark:text-slate-300
+                    className="h-9 px-3 rounded-xl border border-border/50
+                      bg-bg-surface text-xs font-semibold text-text-primary
                       outline-none focus:border-accent-tech/60 transition-colors cursor-pointer"
                   >
                     <option value="name">{t<string>("universities.listing.sort.name")}</option>
@@ -807,15 +807,15 @@ export function UniversitiesPage() {
               className="mb-7 flex items-center justify-between gap-4"
             >
               <div>
-                <h2 className="inline-flex items-center gap-2 text-lg font-black text-slate-900 dark:text-white">
+                <h2 className="inline-flex items-center gap-2 text-lg font-black text-text-primary">
                   <Building2 className="w-5 h-5 text-accent-tech" />
                   {filteredUniversities.length} {filteredUniversities.length !== 1 ? t<string>("universities.listing.results.universityPlural") : t<string>("universities.listing.results.universitySingular")}
                   {hasActiveFilters && (
-                    <span className="text-sm font-medium text-slate-400 dark:text-slate-500 ml-1">{t<string>("universities.listing.results.matched")}</span>
+                    <span className="text-sm font-medium text-text-muted ml-1">{t<string>("universities.listing.results.matched")}</span>
                   )}
                 </h2>
                 {!isLoading && (
-                  <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+                  <p className="mt-0.5 text-sm text-text-muted">
                     {t<string>("universities.listing.results.showingCount")
                       .replace("{{start}}", String(paginatedUniversities.length === 0 ? 0 : (currentPage - 1) * ITEMS_PER_PAGE + 1))
                       .replace("{{end}}", String(Math.min(filteredUniversities.length, currentPage * ITEMS_PER_PAGE)))
@@ -830,8 +830,8 @@ export function UniversitiesPage() {
                 onClick={() => setIsMobileFilterOpen(true)}
                 aria-label={t<string>("common.aria.openFilters")}
                 className="xl:hidden inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
-                  border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900
-                  text-sm font-semibold text-slate-700 dark:text-slate-300
+                  border border-border/50 bg-bg-surface
+                  text-sm font-semibold text-text-primary
                   hover:border-accent-tech/60 transition-colors shadow-sm"
               >
                 <SlidersHorizontal className="w-4 h-4" />
@@ -895,8 +895,8 @@ export function UniversitiesPage() {
                       disabled={currentPage === 1}
                       aria-label={t<string>("common.aria.previousPage")}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
-                        border border-slate-200 dark:border-slate-700/80
-                        bg-white dark:bg-slate-900 text-sm font-semibold text-slate-700 dark:text-slate-300
+                        border border-border/50
+                        bg-bg-surface text-sm font-semibold text-text-primary
                         hover:border-accent-tech/60 hover:text-accent-tech transition-all duration-200
                         disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                     >
@@ -922,7 +922,7 @@ export function UniversitiesPage() {
                             className={`w-10 h-10 rounded-xl text-sm font-bold transition-all duration-200
                               ${isActive
                                 ? "chip-active shadow-md scale-105"
-                                : "border border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:border-accent-tech/60 hover:text-accent-tech"
+                                : "border border-border/50 bg-bg-surface text-text-secondary hover:border-accent-tech/60 hover:text-accent-tech"
                               }`}
                           >
                             {page}
@@ -937,8 +937,8 @@ export function UniversitiesPage() {
                       disabled={currentPage === totalPages}
                       aria-label={t<string>("common.aria.nextPage")}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
-                        border border-slate-200 dark:border-slate-700/80
-                        bg-white dark:bg-slate-900 text-sm font-semibold text-slate-700 dark:text-slate-300
+                        border border-border/50
+                        bg-bg-surface text-sm font-semibold text-text-primary
                         hover:border-accent-tech/60 hover:text-accent-tech transition-all duration-200
                         disabled:opacity-40 disabled:cursor-not-allowed shadow-sm"
                     >
@@ -1017,16 +1017,16 @@ export function UniversitiesPage() {
           clearAllLabel={t<string>("universities.listing.filters.clearAll")}
         >
           <div className="relative mb-4">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
             <input
               type="search"
               aria-label={t<string>("universities.listing.filters.title")}
               value={filterSearchQuery}
               onChange={(e) => setFilterSearchQuery(e.target.value)}
               placeholder={t<string>("search.placeholder.global")}
-              className="h-10 w-full rounded-xl border border-slate-200 dark:border-slate-700
-                bg-white dark:bg-slate-900 pl-9 pr-3 text-sm text-slate-900 dark:text-white
-                placeholder:text-slate-400 outline-none focus:border-accent-tech/60 transition-colors"
+              className="h-10 w-full rounded-xl border border-border/50
+                bg-bg-surface pl-9 pr-3 text-sm text-text-primary
+                placeholder:text-text-muted outline-none focus:border-accent-tech/60 transition-colors"
             />
           </div>
           <FilterPanel

@@ -43,7 +43,7 @@ export function HomeHowItWorks() {
 
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div

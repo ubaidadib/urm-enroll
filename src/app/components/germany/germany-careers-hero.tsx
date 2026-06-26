@@ -13,7 +13,7 @@ export function GermanyCareersHero() {
   return (
     <section
       dir={dir}
-      className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500"
+      className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-bg-primary border-b border-border/50 transition-colors duration-500"
     >
       {/* Ambient background */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -29,10 +29,10 @@ export function GermanyCareersHero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm"
+          className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/50 bg-bg-surface shadow-sm"
         >
           <Sparkles className="w-4 h-4 text-accent-tech" />
-          <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+          <span className="text-xs font-bold uppercase tracking-widest text-text-primary">
             {t<string>("germany.hero.badge")}
           </span>
         </m.div>
@@ -46,7 +46,7 @@ export function GermanyCareersHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className="mt-3 lg:mt-4 text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white"
+              className="mt-3 lg:mt-4 text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] tracking-tight text-text-primary"
             >
               {t<string>("germany.hero.title")}{" "}
               <span className="bg-linear-to-r from-accent-primary to-accent-tech bg-clip-text text-transparent">
@@ -57,7 +57,7 @@ export function GermanyCareersHero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="mt-4 lg:mt-4 max-w-2xl text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed"
+              className="mt-4 lg:mt-4 max-w-2xl text-lg md:text-xl text-text-secondary leading-relaxed"
             >
               {t<string>("germany.hero.description")}
             </m.p>
@@ -77,7 +77,7 @@ export function GermanyCareersHero() {
               </Link>
               <Link
                 to={localizedPath("/contact")}
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:border-accent-tech/40 shadow-sm transition-all font-semibold"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border/50 bg-bg-surface text-text-primary hover:border-accent-tech/40 shadow-sm transition-all font-semibold"
               >
                 <Compass className="w-4 h-4 text-accent-tech" />
                 {t<string>("germany.hero.secondaryCta")}
@@ -94,9 +94,9 @@ export function GermanyCareersHero() {
             <HeroStat label={t<string>("germany.hero.stat1Label")} value={t<string>("germany.hero.stat1Value")} />
             <HeroStat label={t<string>("germany.hero.stat2Label")} value={t<string>("germany.hero.stat2Value")} />
             <HeroStat label={t<string>("germany.hero.stat3Label")} value={t<string>("germany.hero.stat3Value")} />
-            <div className="mt-2 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md shadow-sm flex items-center gap-3">
+            <div className="mt-2 p-4 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md shadow-sm flex items-center gap-3">
               <ShieldCheck className="w-5 h-5 text-accent-tech shrink-0" />
-              <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+              <p className="text-xs leading-relaxed text-text-secondary">
                 {t<string>("germany.trustBar.title")} · BAMF-aligned · Anabin · GDPR
               </p>
             </div>
@@ -113,9 +113,9 @@ export function GermanyCareersHero() {
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md shadow-sm hover:border-accent-tech/30 transition-all">
-      <p className="text-xs uppercase tracking-widest text-slate-500">{label}</p>
-      <p className="mt-1 text-2xl font-black text-slate-900 dark:text-white">{value}</p>
+    <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md shadow-sm hover:border-accent-tech/30 transition-all">
+      <p className="text-xs uppercase tracking-widest text-text-muted">{label}</p>
+      <p className="mt-1 text-2xl font-black text-text-primary">{value}</p>
     </div>
   );
 }

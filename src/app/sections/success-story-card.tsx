@@ -36,7 +36,7 @@ export function SuccessStoryCard({ story, isInstagramSource }: SuccessStoryCardP
     : ((story as InstagramStory).caption || t<string>('successStories.instagramCaptionFallback'));
 
   return (
-    <article className="h-full rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-[var(--color-bg-surface)] overflow-hidden shadow-[0_2px_8px_rgba(8,21,48,0.06)] hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] transition-shadow">
+    <article className="h-full rounded-2xl border border-border/50 bg-[var(--color-bg-surface)] overflow-hidden shadow-[0_2px_8px_rgba(8,21,48,0.06)] hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] transition-shadow">
       <div className="aspect-[9/12] bg-[var(--color-bg-secondary)]">
         {isPlaceholder ? (
           <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-[var(--color-bg-tertiary)] to-[var(--color-bg-secondary)]">

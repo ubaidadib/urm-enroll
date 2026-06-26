@@ -50,7 +50,7 @@ export function ComparePage() {
         path="/compare"
       />
 
-      <main className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+      <main className="min-h-screen bg-bg-primary transition-colors duration-500">
         <ContextualPageHeader
           variant="listing"
           badge={t<string>("comparison.hero.badge")}
@@ -78,11 +78,11 @@ export function ComparePage() {
               />
             ) : (
               <>
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-x-auto">
+              <div className="rounded-2xl border border-border/50 bg-bg-surface shadow-sm overflow-x-auto">
                 <table className="min-w-[900px] w-full">
                   <thead>
-                    <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60">
-                      <th className="p-4 text-left text-xs font-bold uppercase tracking-widest text-slate-500">{t<string>("comparison.table.criteria")}</th>
+                    <tr className="border-b border-border/50 bg-bg-primary/60">
+                      <th className="p-4 text-left text-xs font-bold uppercase tracking-widest text-text-muted">{t<string>("comparison.table.criteria")}</th>
                       {items.map((item) => (
                         <th key={item.id} className="p-4 text-left">
                           <ProgramCardModern
@@ -130,8 +130,8 @@ export function ComparePage() {
                     <ComparisonRow label={rowLabels.deadline} values={items.map((item) => item.deadline || t<string>("comparison.table.defaultDeadline"))}/>
                     <ComparisonRow label={rowLabels.rating} values={items.map((item) => `${(item.rating || 4.6).toFixed(1)} / 5`)} />
 
-                    <tr className="border-t border-slate-200 dark:border-slate-800">
-                      <td className="p-4 text-xs font-bold uppercase tracking-widest text-slate-500">{t<string>("comparison.table.actions")}</td>
+                    <tr className="border-t border-border/50">
+                      <td className="p-4 text-xs font-bold uppercase tracking-widest text-text-muted">{t<string>("comparison.table.actions")}</td>
                       {items.map((item) => (
                         <td key={`actions-${item.id}`} className="p-4">
                           <div className="flex flex-col gap-2">
@@ -143,7 +143,7 @@ export function ComparePage() {
                             </Link>
                             <button
                               onClick={() => removeFromComparison(item.id)}
-                              className="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                              className="px-4 py-2 rounded-lg border border-border/50 text-sm font-semibold text-text-secondary hover:bg-bg-secondary transition-colors"
                             >
                               {t<string>("comparison.table.remove")}
                             </button>
@@ -157,7 +157,7 @@ export function ComparePage() {
 
               <div className="mt-6 grid grid-cols-1 gap-4 md:hidden">
                 {items.map((item) => (
-                  <article key={`mobile-${item.id}`} className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4">
+                  <article key={`mobile-${item.id}`} className="rounded-xl border border-border/50 bg-bg-surface shadow-sm p-4">
                     <div className="mb-4 flex items-start justify-between gap-3">
                       <div className="flex items-start gap-3">
                         <img
@@ -166,14 +166,14 @@ export function ComparePage() {
                           className="h-11 w-11 rounded-lg object-cover"
                         />
                         <div>
-                          <p className="font-bold text-slate-900 dark:text-white">{item.name}</p>
-                          <p className="text-xs text-slate-500 dark:text-slate-400">{item.universityName}</p>
+                          <p className="font-bold text-text-primary">{item.name}</p>
+                          <p className="text-xs text-text-muted">{item.universityName}</p>
                         </div>
                       </div>
                       <button
                         type="button"
                         onClick={() => removeFromComparison(item.id)}
-                        className="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                        className="rounded-lg border border-border/50 px-3 py-1.5 text-xs font-semibold text-text-secondary hover:bg-bg-secondary transition-colors"
                       >
                         {t<string>("comparison.table.remove")}
                       </button>
@@ -205,13 +205,13 @@ export function ComparePage() {
                 {items.length === 1 ? (
                   <Link
                     to="/programs"
-                    className="inline-flex min-h-[220px] flex-col items-center justify-center rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-100/60 dark:bg-slate-900/40 p-6 text-center hover:border-accent-tech/40 transition-colors"
+                    className="inline-flex min-h-[220px] flex-col items-center justify-center rounded-xl border border-dashed border-border/50 bg-bg-secondary/60 p-6 text-center hover:border-accent-tech/40 transition-colors"
                   >
-                    <span className="mb-3 inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-white dark:bg-slate-800 text-accent-tech">
+                    <span className="mb-3 inline-flex min-h-11 min-w-11 items-center justify-center rounded-full bg-bg-surface text-accent-tech">
                       <Plus className="h-5 w-5" />
                     </span>
-                    <p className="font-bold text-slate-900 dark:text-white">{t<string>("comparison.partialState.title")}</p>
-                    <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{t<string>("comparison.partialState.description")}</p>
+                    <p className="font-bold text-text-primary">{t<string>("comparison.partialState.title")}</p>
+                    <p className="mt-2 text-sm text-text-muted dark:text-text-muted">{t<string>("comparison.partialState.description")}</p>
                   </Link>
                 ) : null}
               </div>
@@ -227,8 +227,8 @@ export function ComparePage() {
 function MobileRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{label}</p>
-      <p className="mt-1 text-sm text-slate-900 dark:text-white">{value}</p>
+      <p className="text-[11px] font-bold uppercase tracking-widest text-text-muted">{label}</p>
+      <p className="mt-1 text-sm text-text-primary">{value}</p>
     </div>
   );
 }
@@ -243,8 +243,8 @@ function ComparisonRow({
   highlightIndexes?: number[];
 }) {
   return (
-    <tr className="border-t border-slate-200 dark:border-slate-800">
-      <td className="p-4 text-xs font-bold uppercase tracking-widest text-slate-500 align-top">{label}</td>
+    <tr className="border-t border-border/50">
+      <td className="p-4 text-xs font-bold uppercase tracking-widest text-text-muted align-top">{label}</td>
       {values.map((value, index) => {
         const highlighted = highlightIndexes.includes(index);
         return (
@@ -253,7 +253,7 @@ function ComparisonRow({
               className={`text-sm ${
                 highlighted
                   ? "px-2 py-1 rounded bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold"
-                  : "text-slate-900 dark:text-white"
+                  : "text-text-primary"
               }`}
             >
               {value}

@@ -124,7 +124,7 @@ export function ReelEmbed({ permalink, thumbnail, className = '', height = 220, 
             <ImageWithFallback src={thumbnail} alt="Instagram reel" className="w-full h-full object-cover rounded-md" />
           </a>
         ) : (
-          <div className="w-full h-full bg-slate-100 rounded-md flex items-center justify-center">
+          <div className="w-full h-full bg-bg-secondary rounded-md flex items-center justify-center">
             <a href={permalink ?? '#'} target="_blank" rel="noopener noreferrer" className="text-sm font-medium">
               View on Instagram
             </a>

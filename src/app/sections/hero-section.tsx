@@ -383,7 +383,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 md:gap-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-0"
           >
             {STATS.map((stat, i) => (
               <div

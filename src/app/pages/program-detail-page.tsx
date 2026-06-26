@@ -405,9 +405,9 @@ export function ProgramDetailPage() {
         path={`/programs/${program.id}`}
       />
 
-      <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <main className="min-h-screen bg-bg-primary">
         {/* Breadcrumbs */}
-        <div className="border-b border-slate-200 dark:border-slate-800 px-[var(--content-gutter)] pb-6 page-hero-offset">
+        <div className="border-b border-border/50 px-[var(--content-gutter)] pb-6 page-hero-offset">
           <div className="max-w-7xl mx-auto">
             <Breadcrumb
               items={[
@@ -435,16 +435,16 @@ export function ProgramDetailPage() {
                     {(program.level as Record<string, unknown>)?.name as string || program.degreeLevel.charAt(0).toUpperCase() + program.degreeLevel.slice(1)}
                   </span>
                   {typeof (program.pathway as Record<string, unknown> | null)?.name === "string" && (
-                    <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                    <span className="inline-flex items-center rounded-full border border-border/50 bg-bg-surface px-3 py-1 text-sm font-medium text-text-secondary shadow-sm">
                       {(program.pathway as Record<string, string>).name}
                     </span>
                   )}
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-border/50 bg-bg-surface px-3 py-1 text-sm font-medium text-text-secondary shadow-sm">
                     {COUNTRY_FLAGS[university.country] ?? ""} {university.country}
                   </span>
                 </div>
 
-                <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-slate-900 dark:text-white md:text-4xl lg:text-5xl">
+                <h1 className="mb-4 sm:mb-6 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-text-primary md:text-4xl lg:text-5xl">
                   {program.name}
                 </h1>
 
@@ -454,7 +454,7 @@ export function ProgramDetailPage() {
                       src={university.logo}
                       alt=""
                       onError={() => setLogoError(true)}
-                      className="h-10 w-10 rounded-lg border border-slate-200 bg-white object-contain p-1 shadow-sm dark:border-slate-700"
+                      className="h-10 w-10 rounded-lg border border-border/50 bg-bg-surface object-contain p-1 shadow-sm"
                     />
                   ) : (
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent-tech/10 text-[11px] font-bold text-accent-tech dark:bg-accent-tech/15 dark:text-accent-tech">
@@ -471,18 +471,18 @@ export function ProgramDetailPage() {
 
                 <div className="flex flex-wrap gap-2">
                   {durationFromReqs && (
-                    <div className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                    <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-bg-surface px-3 py-1.5 text-sm font-medium text-text-secondary shadow-sm">
                       <Clock className="h-4 w-4 text-accent-tech" /> {durationFromReqs}
                     </div>
                   )}
                   {languageFromReqs && (
-                    <div className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                    <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-bg-surface px-3 py-1.5 text-sm font-medium text-text-secondary shadow-sm">
                       <Globe className="h-4 w-4 text-accent-tech" /> {languageFromReqs}
                     </div>
                   )}
-                  <div className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold shadow-sm dark:border-slate-700 dark:bg-slate-800">
+                  <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-bg-surface px-3 py-1.5 text-sm font-bold shadow-sm">
                     <DollarSign className="h-4 w-4 text-accent-primary" />
-                    <span className={resolvedFeesLabel ? "text-slate-900 dark:text-white" : "text-slate-400 dark:text-slate-500"}>
+                    <span className={resolvedFeesLabel ? "text-text-primary" : "text-text-muted"}>
                       {resolvedFeesLabel ? `${resolvedFeesLabel}/yr` : "Contact for fees"}
                     </span>
                   </div>
@@ -490,7 +490,7 @@ export function ProgramDetailPage() {
               </div>
 
               <div className="lg:w-72 xl:w-80">
-                <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_8px_32px_rgba(8,21,48,0.10)] dark:border-slate-700/60 dark:bg-slate-900">
+                <div className="rounded-2xl border border-border/50 bg-bg-surface p-6 shadow-[0_8px_32px_rgba(8,21,48,0.10)]">
                   <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-accent-primary dark:text-accent-primary">Ready to apply?</p>
                   <div className="flex flex-col gap-3">
                     <button
@@ -521,7 +521,7 @@ export function ProgramDetailPage() {
                           rating: 4.6,
                         });
                       }}
-                      className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${selectedForCompare ? "border-accent-tech/40 bg-accent-tech/8 text-accent-tech dark:border-accent-tech/40 dark:bg-accent-tech/12 dark:text-accent-tech" : "border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"}`}
+                      className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${selectedForCompare ? "border-accent-tech/40 bg-accent-tech/8 text-accent-tech dark:border-accent-tech/40 dark:bg-accent-tech/12 dark:text-accent-tech" : "border-border/50 text-text-secondary hover:bg-bg-secondary"}`}
                     >
                       {selectedForCompare ? "✓ Added to Compare" : t<string>("card.program.compare")}
                     </button>
@@ -547,7 +547,7 @@ export function ProgramDetailPage() {
                           universityLogo: university.logo,
                         });
                       }}
-                      className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${programSaved ? "border-accent-primary/40 bg-accent-primary/8 text-amber-700 dark:border-accent-primary/40 dark:bg-accent-primary/12 dark:text-accent-primary" : "border-slate-200 text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300"}`}
+                      className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${programSaved ? "border-accent-primary/40 bg-accent-primary/8 text-amber-700 dark:border-accent-primary/40 dark:bg-accent-primary/12 dark:text-accent-primary" : "border-border/50 text-text-secondary hover:bg-bg-secondary"}`}
                     >
                       {programSaved ? "♥ Saved" : t<string>("programs.detail.saveProgram")}
                     </button>
@@ -586,15 +586,15 @@ export function ProgramDetailPage() {
                   {overviewParagraphs.length > 0 ? (
                     <div className="space-y-4">
                       {overviewParagraphs.map((paragraph, index) => (
-                        <p key={index} className="text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+                        <p key={index} className="text-lg leading-relaxed text-text-secondary">
                           {paragraph}
                         </p>
                       ))}
                     </div>
                   ) : (
-                    <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center dark:border-slate-700">
-                      <p className="text-slate-500">{t<string>("programs.detail.empty.description")}</p>
-                      <p className="mt-2 text-sm text-slate-400">
+                    <div className="rounded-2xl border border-dashed border-border/50 p-10 text-center">
+                      <p className="text-text-muted">{t<string>("programs.detail.empty.description")}</p>
+                      <p className="mt-2 text-sm text-text-muted">
                         {t<string>("programs.detail.empty.contactUniversity").replace("{{university}}", university.name)}
                       </p>
                     </div>
@@ -621,9 +621,9 @@ export function ProgramDetailPage() {
                     ]
                       .filter((item): item is { label: string; value: string } => Boolean(item))
                       .map((item) => (
-                        <div key={item.label} className="rounded-xl border border-slate-100 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/60">
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{item.label}</p>
-                          <p className="mt-1 text-sm font-semibold text-slate-900 dark:text-white">{item.value}</p>
+                        <div key={item.label} className="rounded-xl border border-border/30 bg-bg-secondary/80 p-4">
+                          <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted">{item.label}</p>
+                          <p className="mt-1 text-sm font-semibold text-text-primary">{item.value}</p>
                         </div>
                       ))}
                   </div>
@@ -642,10 +642,10 @@ export function ProgramDetailPage() {
                 transition={{ duration: 0.3 }}
               >
                 <h2 className="mb-6 text-3xl font-bold">{t<string>("programs.detail.sections.curriculumTitle")}</h2>
-                <div className="rounded-2xl border border-dashed border-slate-300 p-12 text-center dark:border-slate-700">
-                  <BookOpen className="mx-auto mb-4 h-12 w-12 text-slate-300 dark:text-slate-600" />
-                  <p className="font-semibold text-slate-700 dark:text-slate-300">{t<string>("programs.detail.sections.curriculumEmpty")}</p>
-                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                <div className="rounded-2xl border border-dashed border-border/50 p-12 text-center">
+                  <BookOpen className="mx-auto mb-4 h-12 w-12 text-text-disabled" />
+                  <p className="font-semibold text-text-primary">{t<string>("programs.detail.sections.curriculumEmpty")}</p>
+                  <p className="mt-2 text-sm text-text-muted">
                     {t<string>("programs.detail.sections.curriculumContact").replace("{{university}}", university.name)}
                   </p>
                 </div>
@@ -666,13 +666,13 @@ export function ProgramDetailPage() {
                   {/* Intake dates section — from rich Nexus dates/seasons data */}
                   {(intakeLabels.length > 0 || seasonLabels.length > 0) && (
                     <div>
-                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">{t<string>("programs.detail.sections.intakesDates")}</h2>
-                      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
+                      <h2 className="text-2xl font-bold text-text-primary mb-5">{t<string>("programs.detail.sections.intakesDates")}</h2>
+                      <div className="rounded-2xl border border-border/50 bg-bg-surface p-6">
                         <ul className="space-y-2">
                           {[...intakeLabels, ...seasonLabels].map((label, idx) => (
                             <li key={idx} className="flex items-center gap-3">
                               <Calendar className="h-4 w-4 shrink-0 text-accent-tech" />
-                              <span className="text-slate-700 dark:text-slate-300 font-medium">{label}</span>
+                              <span className="text-text-primary font-medium">{label}</span>
                             </li>
                           ))}
                         </ul>
@@ -682,28 +682,28 @@ export function ProgramDetailPage() {
 
                   {/* Admission requirements */}
                   <div>
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">{t<string>("programs.detail.sections.admissionRequirements")}</h2>
+                    <h2 className="text-2xl font-bold text-text-primary mb-5">{t<string>("programs.detail.sections.admissionRequirements")}</h2>
                     {requirementBlocks.length === 0 ? (
-                      <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center">
-                        <p className="text-slate-500">{t<string>("programs.detail.sections.noRequirements")}</p>
-                        <p className="mt-2 text-sm text-slate-400">{t<string>("programs.detail.sections.contactUniversity")}</p>
+                      <div className="rounded-2xl border border-dashed border-border/50 p-10 text-center">
+                        <p className="text-text-muted">{t<string>("programs.detail.sections.noRequirements")}</p>
+                        <p className="mt-2 text-sm text-text-muted">{t<string>("programs.detail.sections.contactUniversity")}</p>
                       </div>
                     ) : (
                       <div className="space-y-6">
                         {requirementBlocks.map((block, index) => (
-                          <div key={index} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
+                          <div key={index} className="rounded-2xl border border-border/50 bg-bg-surface p-6">
                             {block.heading && (
-                              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{block.heading}</h3>
+                              <h3 className="text-lg font-bold text-text-primary mb-4">{block.heading}</h3>
                             )}
                             {block.paragraphs.map((paragraph, paragraphIndex) => (
-                              <p key={paragraphIndex} className="text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">{paragraph}</p>
+                              <p key={paragraphIndex} className="text-text-secondary mb-3 leading-relaxed">{paragraph}</p>
                             ))}
                             {block.bullets.length > 0 && (
                               <ul className="space-y-2 mt-2">
                                 {block.bullets.map((bullet, bulletIndex) => (
                                   <li key={bulletIndex} className="flex items-start gap-3">
                                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-tech" />
-                                    <span className="text-slate-600 dark:text-slate-400">{bullet}</span>
+                                    <span className="text-text-secondary">{bullet}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -717,19 +717,19 @@ export function ProgramDetailPage() {
                   {/* Additional info */}
                   {(program.toefl_score || program.address) && (
                     <div>
-                      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-5">{t<string>("programs.detail.sections.additionalInfo")}</h2>
-                      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
+                      <h2 className="text-2xl font-bold text-text-primary mb-5">{t<string>("programs.detail.sections.additionalInfo")}</h2>
+                      <div className="rounded-2xl border border-border/50 bg-bg-surface p-6">
                         <dl className="space-y-3">
                           {program.toefl_score && program.toefl_score > 0 && (
                             <div className="flex items-center gap-3">
-                              <dt className="text-[11px] font-bold uppercase tracking-widest text-slate-400 w-28 shrink-0">{t<string>("programs.detail.minToefl")}</dt>
-                              <dd className="text-sm font-semibold text-slate-900 dark:text-white">{program.toefl_score}</dd>
+                              <dt className="text-[11px] font-bold uppercase tracking-widest text-text-muted w-28 shrink-0">{t<string>("programs.detail.minToefl")}</dt>
+                              <dd className="text-sm font-semibold text-text-primary">{program.toefl_score}</dd>
                             </div>
                           )}
                           {program.address && (
                             <div className="flex items-center gap-3">
-                              <dt className="text-[11px] font-bold uppercase tracking-widest text-slate-400 w-28 shrink-0">{t<string>("programs.detail.sections.campus")}</dt>
-                              <dd className="text-sm font-semibold text-slate-900 dark:text-white">{program.address}</dd>
+                              <dt className="text-[11px] font-bold uppercase tracking-widest text-text-muted w-28 shrink-0">{t<string>("programs.detail.sections.campus")}</dt>
+                              <dd className="text-sm font-semibold text-text-primary">{program.address}</dd>
                             </div>
                           )}
                         </dl>
@@ -751,10 +751,10 @@ export function ProgramDetailPage() {
                 transition={{ duration: 0.3 }}
               >
                 <h2 className="text-3xl font-bold mb-6">{t<string>("programs.detail.sections.careerOutcomesTitle")}</h2>
-                <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-12 text-center">
-                  <Briefcase className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-4" />
-                  <p className="font-semibold text-slate-700 dark:text-slate-300">{t<string>("programs.detail.sections.careerOutcomesEmpty")}</p>
-                  <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Visit {university.name}'s website for graduate employment statistics.</p>
+                <div className="rounded-2xl border border-dashed border-border/50 p-12 text-center">
+                  <Briefcase className="w-12 h-12 text-text-disabled mx-auto mb-4" />
+                  <p className="font-semibold text-text-primary">{t<string>("programs.detail.sections.careerOutcomesEmpty")}</p>
+                  <p className="mt-2 text-sm text-text-muted">Visit {university.name}'s website for graduate employment statistics.</p>
                 </div>
               </m.div>
             )}
@@ -770,10 +770,10 @@ export function ProgramDetailPage() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="mb-8">
-                  <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-1">
+                  <h2 className="text-2xl font-black text-text-primary mb-1">
                     Apply to <span className="text-accent-tech">{university.name}</span>
                   </h2>
-                  <p className="text-sm text-slate-500 dark:text-slate-400">{t<string>("apply.form.helper.completeSteps")}</p>
+                  <p className="text-sm text-text-muted">{t<string>("apply.form.helper.completeSteps")}</p>
                 </div>
 
                 {submitStatus === "success" ? (
@@ -805,17 +805,17 @@ export function ProgramDetailPage() {
                               ? "bg-accent-tech text-white"
                               : applicationStep === num
                                 ? "bg-brand-navy-800 text-white shadow-[0_0_0_4px_rgba(79,107,138,0.2)]"
-                                : "bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-600"
+                                : "bg-bg-secondary text-text-muted"
                           }`}>
                             {applicationStep > num ? <Check className="h-4 w-4" /> : num}
                           </div>
                           <span className={`text-[10px] font-semibold uppercase tracking-wider hidden sm:block ${
-                            applicationStep === num ? "text-brand-navy-700 dark:text-accent-tech" : "text-slate-400"
+                            applicationStep === num ? "text-brand-navy-700 dark:text-accent-tech" : "text-text-muted"
                           }`}>{label}</span>
                         </div>
                         {idx < 3 && (
                           <div className={`flex-1 h-0.5 mx-2 rounded-full transition-all duration-500 ${
-                            applicationStep > num ? "bg-accent-tech" : "bg-slate-200 dark:bg-slate-800"
+                            applicationStep > num ? "bg-accent-tech" : "bg-border/40"
                           }`} />
                         )}
                       </div>
@@ -873,7 +873,7 @@ export function ProgramDetailPage() {
         </section>
 
         {/* Related Programs */}
-        <section className="py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
+        <section className="py-12 md:py-16 border-t border-border/50">
           <div className="page-container">
             <m.div
               initial={{ opacity: 0, y: 20 }}
@@ -881,7 +881,7 @@ export function ProgramDetailPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+              <h2 className="text-3xl font-bold text-text-primary mb-8">
                 {t<string>("programs.detail.sections.relatedTitle")}
               </h2>
               {relatedProgramsLoading ? (
@@ -926,8 +926,8 @@ export function ProgramDetailPage() {
 }
 
 /** Shared input style for the apply form */
-const inputCls = "w-full px-4 py-3.5 rounded-xl border-2 border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900/80 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm font-medium focus:border-accent-primary focus:outline-none focus:ring-4 focus:ring-accent-primary/10 transition-all duration-200";
-const labelCls = "block text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-slate-500 mb-2";
+const inputCls = "w-full px-4 py-3.5 rounded-xl border-2 border-border/50 bg-bg-surface/80 text-text-primary placeholder:text-text-muted text-sm font-medium focus:border-accent-primary focus:outline-none focus:ring-4 focus:ring-accent-primary/10 transition-all duration-200";
+const labelCls = "block text-[11px] font-bold uppercase tracking-[0.14em] text-text-muted mb-2";
 
 /**
  * Application Step Components
@@ -948,13 +948,13 @@ function ApplicationStep1({
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+      <div className="flex items-center gap-3 pb-4 border-b border-border/30">
         <div className="w-10 h-10 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 flex items-center justify-center shrink-0">
           <User className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.personalInfoTitle")}</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("apply.form.steps.personalInfoSubtitle")}</p>
+          <h3 className="text-lg font-bold text-text-primary">{t<string>("apply.form.steps.personalInfoTitle")}</h3>
+          <p className="text-xs text-text-muted mt-0.5">{t<string>("apply.form.steps.personalInfoSubtitle")}</p>
         </div>
       </div>
 
@@ -996,7 +996,7 @@ function ApplicationStep1({
                 <option key={n} value={n}>{n}</option>
               ))}
             </select>
-            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
           </div>
         </div>
         <div>
@@ -1013,7 +1013,7 @@ function ApplicationStep1({
       </div>
 
       <div className="flex gap-3 pt-2">
-        <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
+        <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all">
           {t<string>("apply.form.saveDraft")}
         </button>
         <button
@@ -1047,13 +1047,13 @@ function ApplicationStep2({
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+      <div className="flex items-center gap-3 pb-4 border-b border-border/30">
         <div className="w-10 h-10 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 flex items-center justify-center shrink-0">
           <GraduationCapIcon className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.academicBackgroundTitle")}</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("apply.form.steps.academicBackgroundSubtitle")}</p>
+          <h3 className="text-lg font-bold text-text-primary">{t<string>("apply.form.steps.academicBackgroundTitle")}</h3>
+          <p className="text-xs text-text-muted mt-0.5">{t<string>("apply.form.steps.academicBackgroundSubtitle")}</p>
         </div>
       </div>
 
@@ -1073,7 +1073,7 @@ function ApplicationStep2({
             <option value="PhD / Doctorate">{t<string>("apply.form.degreeOptions.phd")}</option>
             <option value="Professional Degree (MD/JD/etc.)">Professional Degree (MD / JD / etc.)</option>
           </select>
-          <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+          <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
         </div>
       </div>
 
@@ -1087,7 +1087,7 @@ function ApplicationStep2({
             onChange={(e) => onChange("gpa", e.target.value)}
             className={inputCls}
           />
-          <p className="mt-1.5 text-[11px] text-slate-400">{t<string>("apply.form.gpaHint")}</p>
+          <p className="mt-1.5 text-[11px] text-text-muted">{t<string>("apply.form.gpaHint")}</p>
         </div>
         <div>
           <label className={labelCls}>{t<string>("apply.form.fields.graduationYear")}</label>
@@ -1103,16 +1103,16 @@ function ApplicationStep2({
               ))}
               <option value="Not yet graduated">{t<string>("apply.form.degreeOptions.notGraduated")}</option>
             </select>
-            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
           </div>
         </div>
       </div>
 
       <div className="flex gap-3 pt-2">
-        <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
+        <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all">
           {t<string>("apply.form.saveDraft")}
         </button>
-        <button onClick={onPrev} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
+        <button onClick={onPrev} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all">
           ← {t<string>("leadForm.nav.back")}
         </button>
         <button
@@ -1160,13 +1160,13 @@ function ApplicationStep3({
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+      <div className="flex items-center gap-3 pb-4 border-b border-border/30">
         <div className="w-10 h-10 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 flex items-center justify-center shrink-0">
           <Upload className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.uploadDocumentsTitle")}</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">PDF, JPG or PNG · max 10 MB each</p>
+          <h3 className="text-lg font-bold text-text-primary">{t<string>("apply.form.steps.uploadDocumentsTitle")}</h3>
+          <p className="text-xs text-text-muted mt-0.5">PDF, JPG or PNG · max 10 MB each</p>
         </div>
       </div>
 
@@ -1177,27 +1177,27 @@ function ApplicationStep3({
             className={`group flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
               value
                 ? "border-accent-tech bg-accent-tech/5 dark:bg-accent-tech/10"
-                : "border-slate-200 dark:border-slate-700/80 bg-white dark:bg-slate-900/60 hover:border-accent-primary/50"
+                : "border-border/50 bg-bg-surface/60 hover:border-accent-primary/50"
             }`}
           >
             <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-              value ? "bg-accent-tech/20" : "bg-slate-100 dark:bg-slate-800"
+              value ? "bg-accent-tech/20" : "bg-bg-secondary"
             }`}>
               {value
                 ? <CheckCircle2 className="w-6 h-6 text-accent-tech" />
-                : <Icon className="w-6 h-6 text-slate-400" />
+                : <Icon className="w-6 h-6 text-text-muted" />
               }
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-bold text-slate-900 dark:text-white">{label}</p>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              <p className="text-sm font-bold text-text-primary">{label}</p>
+              <p className="text-xs text-text-muted mt-0.5">
                 {value ? <span className="text-accent-tech font-semibold truncate block">{value}</span> : hint}
               </p>
             </div>
             <div className={`shrink-0 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
               value
                 ? "bg-accent-tech/20 text-accent-tech"
-                : "bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-accent-primary/10 group-hover:text-accent-primary"
+                : "bg-bg-secondary text-text-muted group-hover:bg-accent-primary/10 group-hover:text-accent-primary"
             }`}>
               {value ? t<string>("apply.form.documents.change") : t<string>("apply.form.documents.browse")}
             </div>
@@ -1219,10 +1219,10 @@ function ApplicationStep3({
       </div>
 
       <div className="flex gap-3 pt-2">
-        <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
+        <button onClick={onSaveDraft} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all">
           {t<string>("apply.form.saveDraft")}
         </button>
-        <button onClick={onPrev} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all">
+        <button onClick={onPrev} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all">
           ← {t<string>("leadForm.nav.back")}
         </button>
         <button
@@ -1275,25 +1275,25 @@ function ApplicationStep4({
 
   return (
     <div className="space-y-5">
-      <div className="flex items-center gap-3 pb-4 border-b border-slate-100 dark:border-slate-800">
+      <div className="flex items-center gap-3 pb-4 border-b border-border/30">
         <div className="w-10 h-10 rounded-xl bg-brand-navy-800 dark:bg-brand-navy-700 flex items-center justify-center shrink-0">
           <Send className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white">{t<string>("apply.form.steps.reviewSummary")}</h3>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{t<string>("apply.form.steps.reviewSubtitle")}</p>
+          <h3 className="text-lg font-bold text-text-primary">{t<string>("apply.form.steps.reviewSummary")}</h3>
+          <p className="text-xs text-text-muted mt-0.5">{t<string>("apply.form.steps.reviewSubtitle")}</p>
         </div>
       </div>
 
-      <div className="rounded-xl border border-slate-200 dark:border-slate-700/80 overflow-hidden">
-        <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-800/60">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">{t<string>("apply.form.steps.applicationSummary")}</p>
+      <div className="rounded-xl border border-border/50 overflow-hidden">
+        <div className="px-4 py-2.5 bg-bg-secondary/80">
+          <p className="text-[11px] font-bold uppercase tracking-widest text-text-muted">{t<string>("apply.form.steps.applicationSummary")}</p>
         </div>
-        <div className="divide-y divide-slate-100 dark:divide-slate-800">
+        <div className="divide-y divide-border/30">
           {reviewRows.map(({ label, value }) => (
             <div key={label} className="flex items-start gap-3 px-4 py-3">
-              <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 w-28 shrink-0 pt-0.5">{label}</span>
-              <span className="text-sm font-medium text-slate-800 dark:text-slate-200 flex-1 break-all">{value || "—"}</span>
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-text-muted w-28 shrink-0 pt-0.5">{label}</span>
+              <span className="text-sm font-medium text-text-primary flex-1 break-all">{value || "—"}</span>
             </div>
           ))}
         </div>
@@ -1301,7 +1301,7 @@ function ApplicationStep4({
 
       {turnstileSiteKey && (
         <div className="space-y-2">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{t<string>("apply.form.steps.securityCheck")}</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-text-muted">{t<string>("apply.form.steps.securityCheck")}</p>
           <TurnstileWidget siteKey={turnstileSiteKey} onTokenChange={onTurnstileChange} />
         </div>
       )}
@@ -1314,10 +1314,10 @@ function ApplicationStep4({
       )}
 
       <div className="flex gap-3 pt-2">
-        <button onClick={onSaveDraft} disabled={isSubmitting} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all disabled:opacity-40">
+        <button onClick={onSaveDraft} disabled={isSubmitting} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all disabled:opacity-40">
           {t<string>("apply.form.saveDraft")}
         </button>
-        <button onClick={onPrev} disabled={isSubmitting} className="px-5 py-3 rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 text-sm font-semibold hover:border-slate-300 dark:hover:border-slate-600 transition-all disabled:opacity-40">
+        <button onClick={onPrev} disabled={isSubmitting} className="px-5 py-3 rounded-xl border-2 border-border/50 text-text-secondary text-sm font-semibold hover:border-border transition-all disabled:opacity-40">
           ← {t<string>("leadForm.nav.back")}
         </button>
         <button

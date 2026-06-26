@@ -491,7 +491,7 @@ export function StudentVisaGermanyGuidePage() {
   }, [dir]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="min-h-screen bg-bg-primary">
       <SeoManager
         title={content.title}
         description={content.description}
@@ -505,7 +505,7 @@ export function StudentVisaGermanyGuidePage() {
       />
 
       {/* Hero */}
-      <div className="page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+      <div className="page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-bg-surface border-b border-border/50">
         <div className="max-w-4xl mx-auto">
           <div className="page-hero-crumb-gap">
           <Breadcrumbs
@@ -521,11 +521,11 @@ export function StudentVisaGermanyGuidePage() {
               <Shield className="w-3.5 h-3.5" />
               {content.heroTagline}
             </span>
-            <h1 className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight mb-3">
+            <h1 className="text-2xl md:text-4xl font-black text-text-primary tracking-tight mb-3">
               {content.title}
             </h1>
-            <p className="text-base text-slate-600 dark:text-slate-400 mb-5 max-w-2xl">{content.description}</p>
-            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
+            <p className="text-base text-text-secondary mb-5 max-w-2xl">{content.description}</p>
+            <div className="flex flex-wrap items-center gap-4 text-xs text-text-muted">
               <span className="flex items-center gap-1.5">
                 <Timer className="w-3.5 h-3.5" />
                 {content.readTime}
@@ -549,22 +549,22 @@ export function StudentVisaGermanyGuidePage() {
           {/* Sidebar ToC */}
           <aside className="lg:w-60 shrink-0">
             <div className="sticky top-24 space-y-1">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 px-3">
+              <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-3 px-3">
                 {content.tocLabel}
               </p>
               {TOC_IDS.map((id) => (
                 <a
                   key={id}
                   href={`#${id}`}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-accent-success/40 shrink-0" />
                   {tocLabels[id]}
                 </a>
               ))}
               <div className="mt-6 p-4 rounded-2xl bg-accent-success/5 border border-accent-success/15">
-                <p className="text-xs font-bold text-slate-900 dark:text-white mb-2">{content.needHelp}</p>
-                <p className="text-xs text-slate-400 mb-3">{content.ctaNote}</p>
+                <p className="text-xs font-bold text-text-primary mb-2">{content.needHelp}</p>
+                <p className="text-xs text-text-muted mb-3">{content.ctaNote}</p>
                 <Link
                   to={`${base}/contact`}
                   className="flex items-center gap-1.5 text-xs font-bold text-accent-success hover:underline"
@@ -599,11 +599,11 @@ export function StudentVisaGermanyGuidePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4 }}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
+              className="rounded-2xl border border-border/50 bg-bg-surface p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
             >
               <div>
-                <p className="font-black text-slate-900 dark:text-white text-lg">{content.cta}</p>
-                <p className="text-sm text-slate-400 mt-1">{content.ctaNote}</p>
+                <p className="font-black text-text-primary text-lg">{content.cta}</p>
+                <p className="text-sm text-text-muted mt-1">{content.ctaNote}</p>
               </div>
               <Link
                 to={`${base}/contact`}

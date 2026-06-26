@@ -70,7 +70,7 @@ const itemVariants = {
 
 export function HomeInstagramSection() {
   return (
-    <section className="relative overflow-hidden bg-bg-secondary dark:bg-slate-950 py-20 md:py-24 transition-colors duration-500">
+    <section className="relative overflow-hidden bg-bg-secondary py-20 md:py-24 transition-colors duration-500">
       {/* Background accents */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-32 right-0 h-96 w-96 rounded-full bg-rose-500/8 blur-[120px]" />

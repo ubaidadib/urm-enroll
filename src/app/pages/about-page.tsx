@@ -27,8 +27,8 @@ export function AboutPage() {
       {/* --- Section 1: Hero --- */}
       <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
-          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
+          <div className="absolute top-1/4 left-1/4 w-[37.5rem] h-[37.5rem] rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
+          <div className="absolute bottom-1/4 right-1/4 w-[31.25rem] h-[31.25rem] rounded-full blur-[150px] opacity-[0.08]" style={{ background: "rgb(212,175,55)" }} />
           <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
@@ -137,9 +137,7 @@ export function AboutPage() {
       </div>
 
       {/* --- Section 2: The Mission & Pillars (Grid Only) --- */}
-      <div className="-mt-12">
-        <AboutOverview />
-      </div>
+      <AboutOverview />
       
       {/* --- Section 3: The Leadership (Editorial Style) --- */}
       <FounderVision />

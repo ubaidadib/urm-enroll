@@ -182,7 +182,7 @@ function FormInput({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        className={`w-full px-4 py-3 rounded-xl border text-sm bg-white dark:bg-slate-900 text-text-primary placeholder:text-text-secondary/50 transition-all duration-200 focus:outline-none ${
+        className={`w-full px-4 py-3 rounded-xl border text-sm bg-bg-surface text-text-primary placeholder:text-text-secondary/50 transition-all duration-200 focus:outline-none ${
           error
             ? "border-red-400 ring-2 ring-red-400/20"
             : active
@@ -237,7 +237,7 @@ function FormSelect({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        className={`w-full px-4 py-3 rounded-xl border text-sm bg-white dark:bg-slate-900 text-text-primary transition-all duration-200 focus:outline-none appearance-none ${
+        className={`w-full px-4 py-3 rounded-xl border text-sm bg-bg-surface text-text-primary transition-all duration-200 focus:outline-none appearance-none ${
           error
             ? "border-red-400 ring-2 ring-red-400/20"
             : active
@@ -420,7 +420,7 @@ export function SmartLeadForm() {
 
   if (status === "success") {
     return (
-      <section dir={dir} className="relative py-20 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+      <section dir={dir} className="relative py-20 px-6 overflow-hidden bg-bg-primary transition-colors duration-500">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute -top-48 -right-48 w-200 h-200 rounded-full bg-emerald-500/10 dark:bg-emerald-500/5 blur-[160px]" />
         </div>
@@ -453,7 +453,7 @@ export function SmartLeadForm() {
   return (
     <section
       dir={dir}
-      className="relative py-20 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+      className="relative py-20 px-6 overflow-hidden bg-bg-primary transition-colors duration-500"
       aria-label={t<string>("leadForm.ariaLabel")}
       id="lead-form"
     >
@@ -490,7 +490,7 @@ export function SmartLeadForm() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="rounded-2xl border border-border/30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm shadow-xl overflow-hidden"
+          className="rounded-2xl border border-border/30 bg-bg-surface/80 backdrop-blur-sm shadow-xl overflow-hidden"
         >
           {/* Progress Bar */}
           <div className="px-6 pt-6 pb-4">
@@ -504,7 +504,7 @@ export function SmartLeadForm() {
                 {Math.round((step / TOTAL_STEPS) * 100)}%
               </span>
             </div>
-            <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+            <div className="w-full h-1.5 bg-bg-secondary rounded-full overflow-hidden">
               <m.div
                 className="h-full bg-linear-to-r from-accent-primary to-accent-primary-strong rounded-full"
                 animate={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
@@ -612,7 +612,7 @@ export function SmartLeadForm() {
                       }`}
                     >
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
-                        formData.userType === "student" ? "bg-accent-primary/10" : "bg-slate-100 dark:bg-slate-800"
+                        formData.userType === "student" ? "bg-accent-primary/10" : "bg-bg-secondary"
                       }`}>
                         <GraduationCap className={`w-6 h-6 ${formData.userType === "student" ? "text-accent-primary" : "text-text-secondary"}`} />
                       </div>
@@ -647,7 +647,7 @@ export function SmartLeadForm() {
                       }`}
                     >
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
-                        formData.userType === "agent" ? "bg-accent-primary/10" : "bg-slate-100 dark:bg-slate-800"
+                        formData.userType === "agent" ? "bg-accent-primary/10" : "bg-bg-secondary"
                       }`}>
                         <Building2 className={`w-6 h-6 ${formData.userType === "agent" ? "text-accent-primary" : "text-text-secondary"}`} />
                       </div>
@@ -887,7 +887,7 @@ export function SmartLeadForm() {
                   <p className="text-sm text-text-secondary">{t<string>("leadForm.step5.subtitle")}</p>
 
                   {/* Summary */}
-                  <div className="rounded-xl bg-slate-50 dark:bg-slate-800/50 p-4 space-y-2">
+                  <div className="rounded-xl bg-bg-secondary/60 p-4 space-y-2">
                     <div className="flex items-center gap-2 text-sm">
                       <User className="w-4 h-4 text-text-secondary" />
                       <span className="font-medium text-text-primary">{formData.fullName}</span>
@@ -945,7 +945,7 @@ export function SmartLeadForm() {
                     <div className="absolute inset-0 flex items-center">
                       <div className="w-full border-t border-border/30" />
                     </div>
-                    <span className="relative bg-white dark:bg-slate-900 px-4 text-xs text-text-secondary font-medium">
+                    <span className="relative bg-bg-surface px-4 text-xs text-text-secondary font-medium">
                       {t<string>("leadForm.step5.or")}
                     </span>
                   </div>
@@ -983,7 +983,7 @@ export function SmartLeadForm() {
                   <button
                     type="button"
                     onClick={goBack}
-                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-all ${isRtl ? "flex-row-reverse" : ""}`}
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-all ${isRtl ? "flex-row-reverse" : ""}`}
                   >
                     <ArrowLeft className="w-4 h-4" />
                     {t<string>("leadForm.nav.back")}
@@ -1016,7 +1016,7 @@ export function SmartLeadForm() {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="max-w-sm w-full rounded-2xl bg-white dark:bg-slate-900 p-6 shadow-2xl space-y-4 text-center"
+                className="max-w-sm w-full rounded-2xl bg-bg-surface p-6 shadow-2xl space-y-4 text-center"
               >
                 <MessageCircle className="w-10 h-10 text-[#25D366] mx-auto" />
                 <h3 className="text-lg font-bold text-text-primary">{t<string>("leadForm.exitIntent.title")}</h3>
@@ -1034,7 +1034,7 @@ export function SmartLeadForm() {
                 <button
                   type="button"
                   onClick={() => setShowExitIntent(false)}
-                  className="w-full px-6 py-3 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  className="w-full px-6 py-3 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors"
                 >
                   {t<string>("leadForm.exitIntent.dismiss")}
                 </button>

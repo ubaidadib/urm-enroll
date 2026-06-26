@@ -50,7 +50,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
     >
       <Link
         to={`/destinations/${dest.slug}`}
-        className="block rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-accent-tech/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-tech"
+        className="block rounded-2xl overflow-hidden border border-border/50 bg-bg-surface shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-accent-tech/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-tech"
         aria-label={`Explore ${dest.name[lang]}`}
       >
         {/* Hero image */}
@@ -89,26 +89,26 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
           {/* Quick stats */}
           <div className="grid grid-cols-3 gap-2 mb-4">
             <div className="text-center">
-              <div className="text-lg font-black text-slate-900 dark:text-white">
+              <div className="text-lg font-black text-text-primary">
                 {displayUnis}
               </div>
-              <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">
+              <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold">
                 Universities
               </div>
             </div>
-            <div className="text-center border-x border-slate-200 dark:border-slate-800">
-              <div className="text-lg font-black text-slate-900 dark:text-white">
+            <div className="text-center border-x border-border/40">
+              <div className="text-lg font-black text-text-primary">
                 {progCount > 0 ? progCount : "—"}
               </div>
-              <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">
+              <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold">
                 Programs
               </div>
             </div>
             <div className="text-center">
-              <div className="text-base font-black text-slate-900 dark:text-white leading-tight">
+              <div className="text-base font-black text-text-primary leading-tight">
                 {(dest.avgTuitionFee.split("–")[0] ?? dest.avgTuitionFee).trim()}
               </div>
-              <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">
+              <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold">
                 Avg. Tuition
               </div>
             </div>
@@ -119,7 +119,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
             {dest.languageLevels.map((level) => (
               <span
                 key={level}
-                className="px-2 py-0.5 rounded-md text-[10px] font-black border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 tracking-wide"
+                className="px-2 py-0.5 rounded-md text-[10px] font-black border bg-bg-secondary border-border/50 text-text-secondary tracking-wide"
               >
                 {level}
               </span>
@@ -139,11 +139,11 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
           </div>
 
           {/* CTA */}
-          <div className="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800">
+          <div className="flex items-center justify-between pt-2 border-t border-border/50">
             <span className="text-sm font-black text-accent-tech group-hover:underline">
               Explore {dest.name[lang]}
             </span>
-            <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-accent-tech group-hover:translate-x-1 transition-all" />
+            <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-accent-tech group-hover:translate-x-1 transition-all" />
           </div>
         </div>
       </Link>
@@ -310,7 +310,7 @@ export function DestinationsPage() {
       />
 
       {/* Sticky filter bar */}
-      <div className="sticky top-16 z-20 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 py-4">
+      <div className="sticky top-16 z-20 bg-bg-secondary/95 backdrop-blur-md border-b border-border/50 py-4">
         <div className="page-container">
           <div className="flex flex-col md:flex-row gap-3 items-start md:items-center">
             {/* Pills */}
@@ -327,7 +327,7 @@ export function DestinationsPage() {
               >
                 Scholarship Available
               </button>
-              <div className="w-px h-8 self-center bg-slate-200 dark:bg-slate-800 hidden md:block" />
+              <div className="w-px h-8 self-center bg-border/50 hidden md:block" />
               <button
                 className={`${pillBase} ${langFilter === "all" ? pillActive : pillInactive}`}
                 onClick={() => setLangFilter("all")}
@@ -346,7 +346,7 @@ export function DestinationsPage() {
               >
                 German
               </button>
-              <div className="w-px h-8 self-center bg-slate-200 dark:bg-slate-800 hidden md:block" />
+              <div className="w-px h-8 self-center bg-border/50 hidden md:block" />
               <button
                 className={`${pillBase} ${regionFilter === "all" ? pillActive : pillInactive}`}
                 onClick={() => setRegionFilter("all")}
@@ -373,10 +373,10 @@ export function DestinationsPage() {
               </button>
             </div>
           </div>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          <p className="text-xs text-text-muted mt-2">
             Showing{" "}
-            <strong className="text-slate-900 dark:text-white">{filtered.length}</strong> of{" "}
-            <strong className="text-slate-900 dark:text-white">{DESTINATIONS.length}</strong>{" "}
+            <strong className="text-text-primary">{filtered.length}</strong> of{" "}
+            <strong className="text-text-primary">{DESTINATIONS.length}</strong>{" "}
             destinations
           </p>
         </div>
@@ -386,11 +386,11 @@ export function DestinationsPage() {
       <div className="page-container py-12">
         {filtered.length === 0 ? (
           <div className="text-center py-12 sm:py-20">
-            <Globe2 className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-2">
+            <Globe2 className="w-12 h-12 text-text-muted mx-auto mb-4" />
+            <h3 className="text-xl font-black text-text-primary mb-2">
               No destinations match
             </h3>
-            <p className="text-slate-600 dark:text-slate-400 mb-6">
+            <p className="text-text-secondary mb-6">
               Try adjusting or clearing your filters.
             </p>
             <button

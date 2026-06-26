@@ -173,7 +173,7 @@ export function DestinationsCompact() {
                   className={`group relative block rounded-2xl overflow-hidden border transition-all duration-300 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] hover:-translate-y-1 ${
                     dest.featured
                       ? "md:col-span-1 border-transparent shadow-[0_2px_8px_rgba(8,21,48,0.06)]"
-                      : "border-slate-200/80 dark:border-slate-800 shadow-[0_2px_8px_rgba(8,21,48,0.06)]"
+                      : "border-border/50 shadow-[0_2px_8px_rgba(8,21,48,0.06)]"
                   }`}
                 >
                   {/* Image */}

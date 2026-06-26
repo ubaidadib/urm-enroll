@@ -111,7 +111,7 @@ export function StudentJourneySteps() {
 
                 {/* Connector dot (visible on lg for non-last items) */}
                 {index < steps.length - 1 && (
-                  <div className={`hidden lg:block absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-4" : "-right-4"} w-2 h-2 rounded-full bg-slate-300 dark:bg-slate-600 z-20`} />
+                  <div className={`hidden lg:block absolute top-1/2 -translate-y-1/2 ${isRtl ? "-left-4" : "-right-4"} w-2 h-2 rounded-full bg-border/60 z-20`} />
                 )}
               </m.div>
             );

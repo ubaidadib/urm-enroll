@@ -97,7 +97,7 @@ export function ScrollTriggeredCTA() {
           className="fixed bottom-0 inset-x-0 z-40 p-4 pointer-events-none"
           dir={dir}
         >
-          <div className="pointer-events-auto max-w-3xl mx-auto rounded-2xl border border-border/30 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-2xl shadow-black/10 p-5 sm:p-6">
+          <div className="pointer-events-auto max-w-3xl mx-auto rounded-2xl border border-border/30 bg-bg-surface/95 backdrop-blur-md shadow-2xl shadow-black/10 p-5 sm:p-6">
             <div className="flex items-start sm:items-center gap-4">
               {/* Icon */}
               <div className="shrink-0 w-10 h-10 rounded-xl bg-accent-primary/10 flex items-center justify-center">
@@ -127,7 +127,7 @@ export function ScrollTriggeredCTA() {
                 <button
                   type="button"
                   onClick={dismiss}
-                  className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  className="p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-colors"
                   aria-label={t<string>("funnelCta.scrollBanner.dismiss")}
                 >
                   <X className="w-4 h-4" />

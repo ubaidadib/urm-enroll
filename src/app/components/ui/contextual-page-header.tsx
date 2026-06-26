@@ -40,7 +40,7 @@ export function ContextualPageHeader({
 
   return (
     <section
-      className="relative px-[var(--content-gutter)] page-hero-offset page-hero-pb-compact border-b border-slate-200 dark:border-slate-800 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+      className="relative px-[var(--content-gutter)] page-hero-offset page-hero-pb-compact border-b border-border/50 overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* Ambient atmosphere */}
       <div className="absolute inset-0 pointer-events-none">
@@ -61,10 +61,10 @@ export function ContextualPageHeader({
             <m.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm page-hero-badge-gap`}
+              className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/50 bg-bg-surface shadow-sm page-hero-badge-gap`}
             >
               <Sparkles className="w-4 h-4 text-accent-tech" />
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-900 dark:text-white">
+              <span className="text-xs font-bold uppercase tracking-widest text-text-primary">
                 {badge}
               </span>
             </m.div>
@@ -73,7 +73,7 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className={`font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1] ${
+              className={`font-bold text-text-primary tracking-tight leading-[1.1] ${
                 isListing
                   ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl"
                   : "text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
@@ -86,7 +86,7 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.12 }}
-              className={`${isListing ? "mt-2 sm:mt-3" : "mt-3 sm:mt-4 lg:mt-4"} text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl lg:max-w-none leading-relaxed`}
+              className={`${isListing ? "mt-2 sm:mt-3" : "mt-3 sm:mt-4 lg:mt-4"} text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl lg:max-w-none leading-relaxed`}
             >
               {description}
             </m.p>
@@ -96,7 +96,7 @@ export function ContextualPageHeader({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.16 }}
-                className={isListing ? "mt-4 lg:mt-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4" : "mt-5 lg:mt-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-4"}
+                className={isListing ? "mt-4 lg:mt-5 rounded-2xl border border-border/50 bg-bg-surface shadow-sm p-4" : "mt-5 lg:mt-6 rounded-2xl border border-border/50 bg-bg-surface shadow-sm p-4"}
               >
                 {searchSlot}
               </m.div>
@@ -117,14 +117,14 @@ export function ContextualPageHeader({
                 return (
                   <div
                     key={`${stat.label}-${stat.value}`}
-                    className="rounded-2xl p-4 flex items-center gap-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 transition-all shadow-sm"
+                    className="rounded-2xl p-4 flex items-center gap-3 bg-bg-surface/80 backdrop-blur-md border border-border/50 hover:border-accent-tech/30 transition-all shadow-sm"
                   >
                     <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-tech/10 border border-accent-tech/20 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-accent-tech" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-lg font-black text-slate-900 dark:text-white">{stat.value}</p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 truncate">{stat.label}</p>
+                      <p className="text-lg font-black text-text-primary">{stat.value}</p>
+                      <p className="text-sm text-text-muted truncate">{stat.label}</p>
                     </div>
                   </div>
                 );

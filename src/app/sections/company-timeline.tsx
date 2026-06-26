@@ -158,14 +158,14 @@ export function CompanyTimeline() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="mt-32 pt-16 text-center" style={{ borderTop: "1px solid rgba(212,175,55,0.12)" }}
         >
-          <h3 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-10">
+          <h3 className="text-sm font-bold text-text-muted uppercase tracking-widest mb-10">
             {t<string>('timeline.mediaTitle')}
           </h3>
           
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 hover:opacity-100 transition-all duration-500">
             {MEDIA_LOGOS.map((media, index) => (
               <div key={index} className="flex items-center gap-3 group cursor-default">
-                <media.icon className="w-8 h-8 text-slate-400 group-hover:text-accent-primary transition-colors" />
+                <media.icon className="w-8 h-8 text-text-muted group-hover:text-accent-primary transition-colors" />
                 <span className="text-lg font-bold transition-colors text-text-disabled">
                   {media.name}
                 </span>

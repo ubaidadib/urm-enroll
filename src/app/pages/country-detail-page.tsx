@@ -45,21 +45,21 @@ function UniversityCard({ uni }: { uni: University }) {
     >
       <Link
         to={`/universities/${uni.id}`}
-        className="block p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-md hover:-translate-y-0.5 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
+        className="block p-5 rounded-2xl border border-border/50 bg-bg-surface hover:shadow-md hover:-translate-y-0.5 transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-primary"
       >
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-bg-secondary border border-border/50 flex items-center justify-center">
             {uni.logo ? (
               <img src={uni.logo} alt={uni.name} className="w-full h-full object-contain p-1" loading="lazy" />
             ) : (
-              <Building2 className="w-6 h-6 text-slate-400" />
+              <Building2 className="w-6 h-6 text-text-muted" />
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-black text-slate-900 dark:text-white text-base leading-tight mb-1 group-hover:text-accent-primary transition-colors">
+            <h3 className="font-black text-text-primary text-base leading-tight mb-1 group-hover:text-accent-primary transition-colors">
               {uni.name}
             </h3>
-            <p className="text-xs text-slate-400 mb-3 flex items-center gap-1">
+            <p className="text-xs text-text-muted mb-3 flex items-center gap-1">
               <Globe2 className="w-3 h-3" />
               {uni.city}{uni.country ? `, ${uni.country}` : ""}
             </p>
@@ -73,13 +73,13 @@ function UniversityCard({ uni }: { uni: University }) {
                 </span>
               ))}
               {uni.programs.length > 4 && (
-                <span className="px-2 py-0.5 rounded-full text-[10px] bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-400 font-semibold">
+                <span className="px-2 py-0.5 rounded-full text-[10px] bg-bg-secondary border border-border/50 text-text-muted font-semibold">
                   +{uni.programs.length - 4} more
                 </span>
               )}
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-accent-primary group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+          <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-accent-primary group-hover:translate-x-1 transition-all shrink-0 mt-1" />
         </div>
       </Link>
     </m.div>
@@ -88,18 +88,18 @@ function UniversityCard({ uni }: { uni: University }) {
 
 function ProgramRow({ prog }: { prog: Program & { universityName: string } }) {
   return (
-    <div className="flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:shadow-sm transition-shadow">
+    <div className="flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-bg-surface hover:shadow-sm transition-shadow">
       <div className="shrink-0 w-10 h-10 rounded-xl bg-accent-primary/10 flex items-center justify-center">
         <GraduationCap className="w-5 h-5 text-accent-primary" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="font-black text-slate-900 dark:text-white text-sm leading-tight">{prog.name}</p>
-        <p className="text-xs text-slate-400 truncate">{prog.universityName}</p>
+        <p className="font-black text-text-primary text-sm leading-tight">{prog.name}</p>
+        <p className="text-xs text-text-muted truncate">{prog.universityName}</p>
       </div>
       <div className="shrink-0 text-end">
-        <p className="text-xs font-bold text-slate-600 dark:text-slate-400">{prog.duration}</p>
+        <p className="text-xs font-bold text-text-secondary">{prog.duration}</p>
         {prog.tuitionPerYear > 0 && (
-          <p className="text-[10px] text-slate-400">{prog.tuitionCurrency} {prog.tuitionPerYear.toLocaleString()}/yr</p>
+          <p className="text-[10px] text-text-muted">{prog.tuitionCurrency} {prog.tuitionPerYear.toLocaleString()}/yr</p>
         )}
       </div>
     </div>
@@ -249,7 +249,7 @@ export function CountryDetailPage() {
             {/* Key benefits */}
             <div className="lg:col-span-2 space-y-6">
               <section>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">
+                <h2 className="text-2xl font-black text-text-primary mb-4">
                   Why Study in {dest.name[lang]}?
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -259,10 +259,10 @@ export function CountryDetailPage() {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className="flex items-start gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900"
+                      className="flex items-start gap-3 p-4 rounded-xl border border-border/50 bg-bg-surface"
                     >
                       <CheckCircle2 className="w-5 h-5 text-accent-success shrink-0 mt-0.5" />
-                      <span className="text-sm text-slate-600 dark:text-slate-400 font-medium">{benefit}</span>
+                      <span className="text-sm text-text-secondary font-medium">{benefit}</span>
                     </m.div>
                   ))}
                 </div>
@@ -270,7 +270,7 @@ export function CountryDetailPage() {
 
               {/* Top programs preview */}
               <section>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white mb-3">{t<string>("destinations.detail.topPrograms")}</h2>
+                <h2 className="text-xl font-black text-text-primary mb-3">{t<string>("destinations.detail.topPrograms")}</h2>
                 <div className="flex flex-wrap gap-2">
                   {dest.topPrograms.map((prog) => (
                     <span
@@ -288,36 +288,36 @@ export function CountryDetailPage() {
                 <h2 className="text-sm font-black text-accent-tech uppercase tracking-wide mb-2">
                   Best For
                 </h2>
-                <p className="text-slate-600 dark:text-slate-400 text-sm">{dest.recommendedFor[lang]}</p>
+                <p className="text-text-secondary text-sm">{dest.recommendedFor[lang]}</p>
               </section>
             </div>
 
             {/* Visa insights sidebar */}
             <div className="space-y-4">
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+              <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
                 <div className="flex items-center gap-2 mb-3">
                   <Shield className="w-5 h-5 text-accent-primary" />
-                  <h3 className="font-black text-slate-900 dark:text-white">{t<string>("destinations.detail.visaInsights")}</h3>
+                  <h3 className="font-black text-text-primary">{t<string>("destinations.detail.visaInsights")}</h3>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                <p className="text-sm text-text-secondary leading-relaxed mb-4">
                   {dest.visaInsights[lang]}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  <div className="text-center p-3 rounded-xl bg-bg-secondary border border-border/50">
                     <div className="text-lg font-black text-accent-primary">{dest.visaTimeline}</div>
-                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">{t<string>("destinations.detail.processing")}</div>
+                    <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold mt-0.5">{t<string>("destinations.detail.processing")}</div>
                   </div>
-                  <div className="text-center p-3 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800">
+                  <div className="text-center p-3 rounded-xl bg-bg-secondary border border-border/50">
                     <div className="text-lg font-black text-accent-success">{dest.successRate}%</div>
-                    <div className="text-[10px] uppercase tracking-wide text-slate-400 font-semibold mt-0.5">{t<string>("destinations.detail.approvals")}</div>
+                    <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold mt-0.5">{t<string>("destinations.detail.approvals")}</div>
                   </div>
                 </div>
               </div>
 
-              <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+              <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
                 <div className="flex items-center gap-2 mb-3">
                   <Languages className="w-5 h-5 text-accent-tech" />
-                  <h3 className="font-black text-slate-900 dark:text-white">{t<string>("destinations.detail.languageLevels")}</h3>
+                  <h3 className="font-black text-text-primary">{t<string>("destinations.detail.languageLevels")}</h3>
                 </div>
                 <div className="flex flex-wrap gap-2 mb-3">
                   {dest.languageLevels.map((level) => (
@@ -329,7 +329,7 @@ export function CountryDetailPage() {
                     </span>
                   ))}
                 </div>
-                <p className="text-xs text-slate-400">{dest.complianceCheckpoint[lang]}</p>
+                <p className="text-xs text-text-muted">{dest.complianceCheckpoint[lang]}</p>
               </div>
 
               {/* CTA */}
@@ -341,7 +341,7 @@ export function CountryDetailPage() {
               </Link>
               <button
                 onClick={() => setActiveTab("universities")}
-                className="block w-full text-center px-6 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold text-sm hover:border-accent-primary hover:text-accent-primary transition-colors"
+                className="block w-full text-center px-6 py-3 rounded-2xl border border-border/50 bg-bg-surface text-text-primary font-bold text-sm hover:border-accent-primary hover:text-accent-primary transition-colors"
               >
                 Browse Universities
               </button>
@@ -353,11 +353,11 @@ export function CountryDetailPage() {
         {activeTab === "universities" && (
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+              <h2 className="text-2xl font-black text-text-primary">
                 Universities in {dest.name[lang]}
               </h2>
               {universities.length === 0 && (
-                <span className="text-sm text-slate-400">
+                <span className="text-sm text-text-muted">
                   {dest.universities} universities available via our network
                 </span>
               )}
@@ -385,12 +385,12 @@ export function CountryDetailPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl">
-                <Building2 className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">
+              <div className="text-center py-16 border border-dashed border-border/50 rounded-2xl">
+                <Building2 className="w-12 h-12 text-text-muted mx-auto mb-4" />
+                <h3 className="text-lg font-black text-text-primary mb-2">
                   {dest.universities}+ Universities Available
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                <p className="text-text-secondary mb-6 max-w-md mx-auto">
                   Access {dest.directAgreements} direct agreements and {dest.platformAccess} platform universities in {dest.name[lang]}.
                 </p>
                 <Link
@@ -408,7 +408,7 @@ export function CountryDetailPage() {
         {activeTab === "programs" && (
           <div>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+              <h2 className="text-2xl font-black text-text-primary">
                 Programs in {dest.name[lang]}
               </h2>
             </div>
@@ -436,12 +436,12 @@ export function CountryDetailPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-16 border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl">
-                <BookOpen className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">
+              <div className="text-center py-16 border border-dashed border-border/50 rounded-2xl">
+                <BookOpen className="w-12 h-12 text-text-muted mx-auto mb-4" />
+                <h3 className="text-lg font-black text-text-primary mb-2">
                   Programs Available via Network
                 </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md mx-auto">
+                <p className="text-text-secondary mb-6 max-w-md mx-auto">
                   Access hundreds of programs across {dest.topPrograms.join(", ")} and more.
                 </p>
                 <Link
@@ -459,12 +459,12 @@ export function CountryDetailPage() {
         {activeTab === "requirements" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <section>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-black text-text-primary mb-4">
                 Admission Requirements
               </h2>
               <div className="space-y-4">
-                <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                  <h3 className="font-black text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
+                  <h3 className="font-black text-text-primary mb-2 flex items-center gap-2">
                     <Languages className="w-4 h-4 text-accent-tech" />
                     Language Levels Required
                   </h3>
@@ -479,34 +479,34 @@ export function CountryDetailPage() {
                     ))}
                   </div>
                 </div>
-                <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                  <h3 className="font-black text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
+                  <h3 className="font-black text-text-primary mb-2 flex items-center gap-2">
                     <Shield className="w-4 h-4 text-accent-primary" />
                     Compliance Checkpoint
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">{dest.complianceCheckpoint[lang]}</p>
+                  <p className="text-sm text-text-secondary">{dest.complianceCheckpoint[lang]}</p>
                 </div>
               </div>
             </section>
 
             <section>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-black text-text-primary mb-4">
                 Visa Process
               </h2>
               <div className="space-y-4">
-                <div className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
+                  <p className="text-sm text-text-secondary leading-relaxed">
                     {dest.visaInsights[lang]}
                   </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
+                  <div className="p-4 rounded-2xl border border-border/50 bg-bg-surface text-center">
                     <div className="text-2xl font-black text-accent-primary mb-1">{dest.visaTimeline}</div>
-                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">{t<string>("destinations.detail.visaTime")}</div>
+                    <div className="text-xs text-text-muted uppercase tracking-wide font-semibold">{t<string>("destinations.detail.visaTime")}</div>
                   </div>
-                  <div className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center">
+                  <div className="p-4 rounded-2xl border border-border/50 bg-bg-surface text-center">
                     <div className="text-2xl font-black text-accent-success mb-1">{dest.successRate}%</div>
-                    <div className="text-xs text-slate-400 uppercase tracking-wide font-semibold">{t<string>("destinations.detail.successRate")}</div>
+                    <div className="text-xs text-text-muted uppercase tracking-wide font-semibold">{t<string>("destinations.detail.successRate")}</div>
                   </div>
                 </div>
                 <Link

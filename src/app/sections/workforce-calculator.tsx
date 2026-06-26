@@ -87,7 +87,7 @@ function OptionButton({
       className={`px-4 py-2.5 rounded-xl text-sm font-bold border-2 transition-all duration-200 ${
         active
           ? "border-emerald-500 bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 shadow-sm"
-          : "border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-600"
+          : "border-border/50 text-text-secondary hover:border-border"
       }`}
     >
       {children}
@@ -121,13 +121,13 @@ function ResultCard({
         style={{ backgroundColor: accent }}
       />
       <Icon className="w-4 h-4 mb-3" style={{ color: accent }} />
-      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">
+      <div className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-1">
         {label}
       </div>
-      <div className="text-2xl font-black text-slate-900 dark:text-white leading-tight">
+      <div className="text-2xl font-black text-text-primary leading-tight">
         {value}
       </div>
-      <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">{sub}</div>
+      <div className="text-xs text-text-muted mt-1">{sub}</div>
     </m.div>
   );
 }
@@ -196,10 +196,10 @@ export function WorkforceCalculator() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border/50 rounded-full mb-6"
           >
             <Calculator className="w-4 h-4 text-emerald-500" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+            <span className="text-xs font-bold uppercase tracking-widest text-text-secondary">
               {t<string>("workforceCalculator.badge")}
             </span>
           </m.div>
@@ -210,7 +210,7 @@ export function WorkforceCalculator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-black text-text-primary mb-6 tracking-tight"
           >
             {t<string>("workforceCalculator.title")}
           </m.h2>
@@ -220,7 +220,7 @@ export function WorkforceCalculator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
           >
             {t<string>("workforceCalculator.description")}
           </m.p>
@@ -235,10 +235,10 @@ export function WorkforceCalculator() {
           className="grid lg:grid-cols-12 gap-8"
         >
           {/* ── INPUT PANEL ── */}
-          <div className="lg:col-span-5 space-y-8 p-8 rounded-3xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+          <div className="lg:col-span-5 space-y-8 p-8 rounded-3xl bg-bg-secondary/60 border border-border/50">
             {/* Language Level */}
             <div>
-              <label className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-slate-400 mb-4">
+              <label className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-text-muted mb-4">
                 <Languages className="w-3.5 h-3.5" />
                 {t<string>("workforceCalculator.inputs.language")}
               </label>
@@ -257,7 +257,7 @@ export function WorkforceCalculator() {
 
             {/* Experience */}
             <div>
-              <label className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-slate-400 mb-4">
+              <label className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-text-muted mb-4">
                 <Briefcase className="w-3.5 h-3.5" />
                 {t<string>("workforceCalculator.inputs.experience")}
               </label>
@@ -276,7 +276,7 @@ export function WorkforceCalculator() {
 
             {/* Specialty */}
             <div>
-              <label className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-slate-400 mb-4">
+              <label className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-text-muted mb-4">
                 <GraduationCap className="w-3.5 h-3.5" />
                 {t<string>("workforceCalculator.inputs.specialty")}
               </label>
@@ -342,7 +342,7 @@ export function WorkforceCalculator() {
               animate={{ opacity: 1, y: 0 }}
               className="p-6 rounded-2xl surface-card shadow-sm"
             >
-              <h4 className="text-[11px] font-black uppercase tracking-widest text-slate-400 mb-5">
+              <h4 className="text-[11px] font-black uppercase tracking-widest text-text-muted mb-5">
                 {t<string>("workforceCalculator.timeline.title")}
               </h4>
 
@@ -369,14 +369,14 @@ export function WorkforceCalculator() {
                 ].map((phase) => (
                   <div key={phase.label}>
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      <span className="text-sm font-semibold text-text-primary">
                         {phase.label}
                       </span>
-                      <span className="text-xs font-bold text-slate-500 tabular-nums">
+                      <span className="text-xs font-bold text-text-muted tabular-nums">
                         {phase.months} {t<string>("workforceCalculator.results.months")}
                       </span>
                     </div>
-                    <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-2 bg-bg-secondary rounded-full overflow-hidden">
                       <m.div
                         className="h-full rounded-full"
                         style={{ backgroundColor: phase.color }}
@@ -390,14 +390,14 @@ export function WorkforceCalculator() {
               </div>
 
               {/* Investment breakdown */}
-              <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+              <div className="mt-6 pt-5 border-t border-border/30 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  <span className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                  <span className="text-sm font-bold text-text-primary">
                     {t<string>("workforceCalculator.results.totalInvestment")}
                   </span>
                 </div>
-                <span className="text-lg font-black text-slate-900 dark:text-white tabular-nums">
+                <span className="text-lg font-black text-text-primary tabular-nums">
                   {formatEuro(results.totalInvestment)}
                 </span>
               </div>
