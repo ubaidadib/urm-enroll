@@ -19,7 +19,7 @@ export const quiz = {
   reassuranceNote: "Daten werden verschlüsselt ubertragen und nur für die Beratung genutzt.",
   calculatingTitle: "Profilanalyse",
   calculatingSubtitle: "Verarbeitung von 200+ Datenpunkten...",
-  resultLabel: "Match Score",
+  resultLabel: "Match-Wertung",
   resultBadge: "Ausgezeichnetes Match",
   resultTitle: "Bereit für Erfolg",
   resultDescription: "Basierend auf Ihrem Profil haben wir passende institutionelle Pfade identifiziert.",
@@ -90,7 +90,7 @@ export const quiz = {
     },
     {
       value: "Foundation",
-      label: "Foundation/Pathway",
+      label: "Grundlagen-/Pathway-Programm",
     },
   ],
   fields: [
@@ -288,12 +288,12 @@ export const institutional = {
       note: "Bestatigung institutioneller Anfrage",
     },
     {
-      label: "Onboarding",
+      label: "Einführung",
       value: "2-4 Wochen",
       note: "Compliance- und Datenabstimmung",
     },
     {
-      label: "Reporting",
+      label: "Berichte",
       value: "Monatlich",
       note: "Governance-fahige Dashboards",
     },
@@ -389,7 +389,7 @@ export const institutional = {
       },
       {
         value: "global",
-        label: "Global",
+        label: "Weltweit",
       },
     ],
     partnershipTypes: [

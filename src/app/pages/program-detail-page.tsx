@@ -483,7 +483,7 @@ export function ProgramDetailPage() {
                   <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-bg-surface px-3 py-1.5 text-sm font-bold shadow-sm">
                     <DollarSign className="h-4 w-4 text-accent-primary" />
                     <span className={resolvedFeesLabel ? "text-text-primary" : "text-text-muted"}>
-                      {resolvedFeesLabel ? `${resolvedFeesLabel}/yr` : "Contact for fees"}
+                      {resolvedFeesLabel ? `${resolvedFeesLabel}${t<string>("apply.form.perYearSuffix")}` : t<string>("apply.form.contactForFees")}
                     </span>
                   </div>
                 </div>
@@ -491,7 +491,7 @@ export function ProgramDetailPage() {
 
               <div className="lg:w-72 xl:w-80">
                 <div className="rounded-2xl border border-border/50 bg-bg-surface p-6 shadow-[0_8px_32px_rgba(8,21,48,0.10)]">
-                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-accent-primary dark:text-accent-primary">Ready to apply?</p>
+                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-accent-primary dark:text-accent-primary">{t<string>("apply.form.readyPrompt")}</p>
                   <div className="flex flex-col gap-3">
                     <button
                       onClick={() => setActiveTab("apply")}
@@ -523,7 +523,7 @@ export function ProgramDetailPage() {
                       }}
                       className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${selectedForCompare ? "border-accent-tech/40 bg-accent-tech/8 text-accent-tech dark:border-accent-tech/40 dark:bg-accent-tech/12 dark:text-accent-tech" : "border-border/50 text-text-secondary hover:bg-bg-secondary"}`}
                     >
-                      {selectedForCompare ? "✓ Added to Compare" : t<string>("card.program.compare")}
+                      {selectedForCompare ? t<string>("apply.form.addedToCompare") : t<string>("card.program.compare")}
                     </button>
                     <button
                       onClick={() => {
@@ -549,7 +549,7 @@ export function ProgramDetailPage() {
                       }}
                       className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${programSaved ? "border-accent-primary/40 bg-accent-primary/8 text-amber-700 dark:border-accent-primary/40 dark:bg-accent-primary/12 dark:text-accent-primary" : "border-border/50 text-text-secondary hover:bg-bg-secondary"}`}
                     >
-                      {programSaved ? "♥ Saved" : t<string>("programs.detail.saveProgram")}
+                      {programSaved ? t<string>("apply.form.savedState") : t<string>("programs.detail.saveProgram")}
                     </button>
                   </div>
                 </div>
@@ -566,7 +566,7 @@ export function ProgramDetailPage() {
           tabs={tabs}
           activeTab={activeTab}
           onChange={(tabId) => setActiveTab(tabId as Tab)}
-          ariaLabel="Program detail sections"
+          ariaLabel={t<string>("apply.form.sectionsAriaLabel")}
         />
 
         {/* Tab Content */}
@@ -1065,13 +1065,13 @@ function ApplicationStep2({
             onChange={(e) => onChange("lastDegree", e.target.value)}
             className={`${inputCls} appearance-none cursor-pointer pr-10`}
           >
-            <option value="">Select your highest degree…</option>
+            <option value="">{t<string>("apply.form.placeholders.selectHighestDegree")}</option>
             <option value="High School Diploma">{t<string>("apply.form.degreeOptions.highSchool")}</option>
             <option value="Associate Degree">{t<string>("apply.form.degreeOptions.associate")}</option>
             <option value="Bachelor's Degree">{t<string>("apply.form.degreeOptions.bachelor")}</option>
             <option value="Master's Degree">{t<string>("apply.form.degreeOptions.master")}</option>
             <option value="PhD / Doctorate">{t<string>("apply.form.degreeOptions.phd")}</option>
-            <option value="Professional Degree (MD/JD/etc.)">Professional Degree (MD / JD / etc.)</option>
+            <option value="Professional Degree (MD/JD/etc.)">{t<string>("apply.form.degreeOptions.professional")}</option>
           </select>
           <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
         </div>
@@ -1097,7 +1097,7 @@ function ApplicationStep2({
               onChange={(e) => onChange("graduationYear", e.target.value)}
               className={`${inputCls} appearance-none cursor-pointer pr-10`}
             >
-              <option value="">Select year…</option>
+              <option value="">{t<string>("apply.form.placeholders.selectYear")}</option>
               {Array.from({ length: 20 }, (_, i) => currentYear - i).map((y) => (
                 <option key={y} value={String(y)}>{y}</option>
               ))}
@@ -1145,14 +1145,14 @@ function ApplicationStep3({
     {
       field: "passportFile" as const,
       label: t<string>("apply.form.documents.passport"),
-      hint: "Colour scan, valid for at least 6 months",
+      hint: t<string>("apply.form.documents.passportHint"),
       icon: FileText,
       value: formData.passportFile,
     },
     {
       field: "transcriptFile" as const,
       label: t<string>("apply.form.documents.transcript"),
-      hint: "Official or certified copy from your institution",
+      hint: t<string>("apply.form.documents.transcriptHint"),
       icon: GraduationCapIcon,
       value: formData.transcriptFile,
     },
@@ -1166,7 +1166,7 @@ function ApplicationStep3({
         </div>
         <div>
           <h3 className="text-lg font-bold text-text-primary">{t<string>("apply.form.steps.uploadDocumentsTitle")}</h3>
-          <p className="text-xs text-text-muted mt-0.5">PDF, JPG or PNG · max 10 MB each</p>
+          <p className="text-xs text-text-muted mt-0.5">{t<string>("apply.form.documents.uploadRequirements")}</p>
         </div>
       </div>
 
@@ -1269,8 +1269,8 @@ function ApplicationStep4({
     { label: t<string>("apply.form.fields.highestDegree"), value: formData.lastDegree },
     { label: t<string>("apply.form.fields.gpa"), value: formData.gpa || "—" },
     { label: t<string>("apply.form.fields.graduationYear"), value: formData.graduationYear || "—" },
-    { label: t<string>("apply.form.documents.passport"), value: formData.passportFile || "To be provided" },
-    { label: t<string>("apply.form.documents.transcript"), value: formData.transcriptFile || "To be provided" },
+    { label: t<string>("apply.form.documents.passport"), value: formData.passportFile || t<string>("apply.form.documents.toBeProvided") },
+    { label: t<string>("apply.form.documents.transcript"), value: formData.transcriptFile || t<string>("apply.form.documents.toBeProvided") },
   ];
 
   return (
@@ -1357,16 +1357,16 @@ function ApplicationSuccess({ programName, onBackToProgram }: { programName: str
           </div>
           <h3 className="text-2xl font-black text-white mb-2">{t<string>("apply.form.applicationSent")} 🎉</h3>
           <p className="text-brand-steel-200 dark:text-brand-steel-300 mb-1 text-sm">
-            Your application for <strong className="text-white">{programName}</strong> has been received.
+            {t<string>("apply.form.applicationReceived").replace("{{program}}", programName)}
           </p>
           <p className="text-brand-steel-400 mb-6 text-xs">
-            A confirmation email is on its way. Expect a response within 2–5 business days.
+            {t<string>("apply.form.confirmationTimeline")}
           </p>
           <button
             onClick={onBackToProgram}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-bold transition-all"
           >
-            ← Apply to Another Program
+            {t<string>("apply.form.applyAnotherProgram")}
           </button>
         </div>
       </div>

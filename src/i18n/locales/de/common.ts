@@ -25,7 +25,7 @@ export const common = {
   skipToContent: "Zum Hauptinhalt springen",
   all: "Alle",
   any: "Beliebig",
-  global: "Global",
+  global: "Weltweit",
   viewAll: "Alle ansehen",
   continue: "Weiter",
   retry: "Erneut versuchen",
@@ -267,6 +267,7 @@ export const leadForm = {
   error: {
     submit: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
     turnstile: "Bitte schließen Sie die Sicherheitsüberprüfung ab.",
+    turnstileNotConfigured: "Turnstile ist nicht konfiguriert. Bitte setzen Sie",
     required: "Dieses Feld ist erforderlich.",
     invalidEmail: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
   },
@@ -337,6 +338,57 @@ export const icef = {
 export const trust = {
   title: "Vertraut nach internationalen Standards",
   subtitle: "Wir halten die höchsten Standards in der internationalen Studierendenberatung und -betreuung ein.",
+  trustedWorldwide: "Weltweit vertraut",
+  icef: {
+    goldStandard: "Goldstandard",
+    title: "ICEF IAS akkreditiert",
+    description: "Weltweit anerkannter Qualitätsstandard für internationale Studentenvermittlungsagenturen — ein Vertrauenssignal, dem Universitäten und Studenten in 120+ Ländern vertrauen.",
+    memberBadge: "IAS-Mitglied #6507",
+    viewCertificate: "Zertifikat ansehen",
+  },
+  gdpr: {
+    title: "DSGVO-konform",
+    description: "Ihre Daten sind nach den höchsten europäischen Datenschutzstandards mit Ende-zu-Ende-Verschlüsselung geschützt.",
+    badge: "Zertifizierter Schutz",
+  },
+  global: {
+    title: "Globales Netzwerk",
+    description: "Tätig in 12+ Ländern mit lokaler Expertise, mehrsprachiger Unterstützung und regionalen Einblicken.",
+    badge: "Weltweite Präsenz",
+  },
+  uk: {
+    title: "Im Vereinigten Königreich registriertes Unternehmen",
+    description: "URM ENROLL LTD ist ein registriertes britisches Unternehmen, das unter strenger Finanz- und Regulierungsaufsicht tätig ist.",
+    badge: "Bei Companies House registriert",
+  },
+} as const;
+
+export const social = {
+  badge: "Werde Teil unserer Community",
+  heading: "Folge",
+  headingHighlight: "unserer Geschichte",
+  description: "Tausende von Studierenden teilen täglich ihre internationalen Bildungsreisen mit uns. Beteilige dich am Gespräch auf deiner Lieblingsplattform.",
+  stats: {
+    followers: "Aktive Follower",
+    posts: "Posts & Reels",
+    stories: "Studentengeschichten",
+  },
+  instagram: {
+    description: "Studentenreisen, Campusleben und Erfolgsgeschichten aus aller Welt.",
+    stat: "Tägliche Stories",
+  },
+  tiktok: {
+    description: "Kurzvideos über Auslandsstudium, Visatipps und Studentenleben.",
+    stat: "Reels & Tipps",
+  },
+  facebook: {
+    description: "Community-Gruppen, Webinare und Ankündigungen für unsere Studierenden.",
+    stat: "Community-Gruppen",
+  },
+  linkedin: {
+    description: "Berufliche Einblicke, Partnerschaften und Karrieremöglichkeiten.",
+    stat: "Berufliches Netzwerk",
+  },
 } as const;
 
 export const booking = {

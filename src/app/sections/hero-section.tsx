@@ -146,6 +146,7 @@ function FloatingParticles({ shouldReduceMotion }: { shouldReduceMotion: boolean
 
 function DestinationCycler({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
   const [idx, setIdx] = useState(0);
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (shouldReduceMotion) return;
@@ -162,7 +163,7 @@ function DestinationCycler({ shouldReduceMotion }: { shouldReduceMotion: boolean
     >
       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hero-live-badge">
         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-        <span className="text-xs text-text-muted font-medium">Enrolling in</span>
+        <span className="text-xs text-text-muted font-medium">{t<string>("hero.enrollingIn")}</span>
         <div className="relative overflow-hidden" style={{ height: "1.15em", width: "6rem" }}>
           <AnimatePresence mode="wait">
             <m.span
@@ -465,7 +466,7 @@ export function HeroSection() {
             className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-accent-primary/30 bg-bg-secondary/90 text-accent-primary text-xs font-medium whitespace-nowrap"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[rgb(0,184,217)] animate-pulse" />
-            10,000+ programs across 4 destinations
+            {t<string>("hero.programsAcrossDestinations")}
           </m.div>
         </m.div>
       </div>

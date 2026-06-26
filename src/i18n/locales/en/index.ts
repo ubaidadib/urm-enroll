@@ -1,4 +1,4 @@
-import { languageLabel, languageNative, preloader, cookieBanner, common, globalCta, leadForm, funnelCta, agencyComparison, trust, icef, booking } from './common';
+import { languageLabel, languageNative, preloader, cookieBanner, common, globalCta, leadForm, funnelCta, agencyComparison, trust, icef, booking, social } from './common';
 import { header } from './nav';
 import { hero } from './hero';
 import { contact } from './contact';
@@ -58,6 +58,7 @@ export const en = {
   trust,
   icef,
   booking,
+  social,
   nursingAssessment: {
     pageTitle: "Germany Nursing Assessment | URM Enroll",
     description: "Comprehensive assessment of your knowledge of nursing program requirements in Germany",
@@ -287,6 +288,8 @@ export const en = {
         items: "programs",
         noProgramsFound: "No programs found",
         footerNote: "Intake dates, fees, and location are sourced directly from the university. Contact the university for the most up-to-date details.",
+        previous: "Previous",
+        next: "Next",
       },
       empty: {
         title: "No programs found",
@@ -474,6 +477,15 @@ export const en = {
       successMessage: "Thank you for your application. We've sent a confirmation email to your address.",
       continue: "Continue",
       applicationSent: "Application Sent!",
+      readyPrompt: "Ready to apply?",
+      contactForFees: "Contact for fees",
+      perYearSuffix: "/yr",
+      addedToCompare: "✓ Added to Compare",
+      savedState: "♥ Saved",
+      sectionsAriaLabel: "Program detail sections",
+      applicationReceived: "Your application for {{program}} has been received.",
+      confirmationTimeline: "A confirmation email is on its way. Expect a response within 2–5 business days.",
+      applyAnotherProgram: "← Apply to Another Program",
       helper: {
         completeSteps: "Complete all steps to submit your application",
       },
@@ -511,6 +523,8 @@ export const en = {
         email: "your@email.com",
         gpa: "e.g. 3.8 / 4.0",
         selectNationality: "Select nationality…",
+        selectHighestDegree: "Select your highest degree…",
+        selectYear: "Select year…",
       },
       degreeOptions: {
         highSchool: "High School Diploma",
@@ -518,6 +532,7 @@ export const en = {
         bachelor: "Bachelor's Degree",
         master: "Master's Degree",
         phd: "PhD / Doctorate",
+        professional: "Professional Degree (MD / JD / etc.)",
         notGraduated: "Not yet graduated",
       },
       gpaHint: "Leave blank if not applicable",
@@ -527,6 +542,10 @@ export const en = {
         cv: "CV / Resume",
         change: "Change",
         browse: "Browse",
+        uploadRequirements: "PDF, JPG or PNG · max 10 MB each",
+        passportHint: "Colour scan, valid for at least 6 months",
+        transcriptHint: "Official or certified copy from your institution",
+        toBeProvided: "To be provided",
         laterNote: "Documents can also be sent later. The admissions team will contact you with exact requirements after reviewing your initial application.",
       },
     },

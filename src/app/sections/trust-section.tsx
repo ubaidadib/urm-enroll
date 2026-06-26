@@ -10,10 +10,9 @@ const TRUST_ITEMS = [
     iconColor: "rgb(0,184,217)",
     borderColor: "rgba(0,184,217,0.18)",
     glowColor: "rgba(0,184,217,0.08)",
-    title: "GDPR Compliant",
-    description:
-      "Your data is protected under the highest European privacy standards with end-to-end encryption.",
-    badge: "Certified Protection",
+    titleKey: "trust.gdpr.title",
+    descriptionKey: "trust.gdpr.description",
+    badgeKey: "trust.gdpr.badge",
   },
   {
     id: "global",
@@ -21,10 +20,9 @@ const TRUST_ITEMS = [
     iconColor: "rgb(212,175,55)",
     borderColor: "rgba(212,175,55,0.18)",
     glowColor: "rgba(212,175,55,0.08)",
-    title: "Global Network",
-    description:
-      "Operating in 12+ countries with local expertise, multilingual support, and regional insights.",
-    badge: "Worldwide Presence",
+    titleKey: "trust.global.title",
+    descriptionKey: "trust.global.description",
+    badgeKey: "trust.global.badge",
   },
 ] as const;
 
@@ -74,7 +72,7 @@ export function TrustSection() {
           className="text-center page-section-header-gap"
         >
           <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-3 sm:mb-4" style={{ color: "rgb(0,184,217)" }}>
-            Trusted Worldwide
+            {t<string>("trust.trustedWorldwide")}
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl 3xl:text-5xl font-bold leading-tight mb-3 sm:mb-4 text-text-primary">
             {t<string>("trust.title")}
@@ -109,10 +107,10 @@ export function TrustSection() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider mb-0.5" style={{ color: "rgb(212,175,55)" }}>
-                      Gold Standard
+                      {t<string>("trust.icef.goldStandard")}
                     </p>
                     <h3 className="text-xl font-bold text-text-primary">
-                      ICEF IAS Accredited
+                      {t<string>("trust.icef.title")}
                     </h3>
                   </div>
                 </div>
@@ -125,7 +123,7 @@ export function TrustSection() {
               </div>
 
               <p className="leading-relaxed text-text-muted">
-                Globally recognized quality standard for international student recruitment agencies — a mark of credibility trusted by universities and students across 120+ countries.
+                {t<string>("trust.icef.description")}
               </p>
 
               {/* Badge embed */}
@@ -137,7 +135,7 @@ export function TrustSection() {
               <div className="flex items-center justify-between mt-auto pt-2">
                 <div className="flex items-center gap-2" style={{ color: "rgb(212,175,55)" }}>
                   <CheckCircle className="w-4 h-4" />
-                  <span className="text-sm font-medium">IAS Member #6507</span>
+                  <span className="text-sm font-medium">{t<string>("trust.icef.memberBadge")}</span>
                 </div>
                 <a
                   href="https://www.icef.com/agency/001bG00000AsuZ0QAJ"
@@ -146,7 +144,7 @@ export function TrustSection() {
                   className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
                   style={{ color: "rgb(0,184,217)" }}
                 >
-                  View certificate
+                  {t<string>("trust.icef.viewCertificate")}
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </div>
@@ -176,14 +174,14 @@ export function TrustSection() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-bold mb-1.5 text-text-primary">
-                          {item.title}
+                          {t<string>(item.titleKey)}
                         </h3>
                         <p className="text-sm leading-relaxed mb-3 text-text-muted">
-                          {item.description}
+                          {t<string>(item.descriptionKey)}
                         </p>
                         <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: item.iconColor }}>
                           <CheckCircle className="w-3.5 h-3.5" />
-                          {item.badge}
+                          {t<string>(item.badgeKey)}
                         </div>
                       </div>
                     </div>
@@ -209,14 +207,14 @@ export function TrustSection() {
                   </div>
                   <div>
                     <h3 className="text-base font-bold mb-1.5 text-text-primary">
-                      UK-Incorporated Entity
+                      {t<string>("trust.uk.title")}
                     </h3>
                     <p className="text-sm leading-relaxed mb-3 text-text-muted">
-                      URM ENROLL LTD is a registered UK company operating under strict financial and regulatory oversight.
+                      {t<string>("trust.uk.description")}
                     </p>
                     <div className="inline-flex items-center gap-1.5 text-xs font-semibold" style={{ color: "rgb(79,107,138)" }}>
                       <CheckCircle className="w-3.5 h-3.5" />
-                      Companies House Registered
+                      {t<string>("trust.uk.badge")}
                     </div>
                   </div>
                 </div>

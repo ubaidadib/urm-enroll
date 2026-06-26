@@ -3,7 +3,7 @@ export const footer = {
   services: "Leistungen",
   destinations: "Ziele",
   contact: "Kontakt",
-  supportTitle: "Support",
+  supportTitle: "Unterstützung",
   exploreTitle: "Entdecken",
   resourcesTitle: "Ressourcen",
   accreditationTitle: "Akkreditierung",

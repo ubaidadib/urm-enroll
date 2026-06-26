@@ -31,8 +31,13 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
   const progCount = getProgramsForCountry(dest.code);
   const displayUnis = uniCount > 0 ? uniCount : dest.universities;
 
+  const { t: tCountry } = useLanguage();
   const tierLabel =
-    dest.tier === 1 ? "Top Pick" : dest.tier === 2 ? "Growth" : "Fast Track";
+    dest.tier === 1
+      ? tCountry<string>("destinations.listing.tierTop")
+      : dest.tier === 2
+      ? tCountry<string>("destinations.listing.tierGrowth")
+      : tCountry<string>("destinations.listing.tierFast");
   const tierStyle =
     dest.tier === 1
       ? "bg-accent-success/20 border-accent-success/30 text-accent-success"
@@ -51,7 +56,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
       <Link
         to={`/destinations/${dest.slug}`}
         className="block rounded-2xl overflow-hidden border border-border/50 bg-bg-surface shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-accent-tech/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-tech"
-        aria-label={`Explore ${dest.name[lang]}`}
+        aria-label={`${tCountry<string>("destinations.listing.cardExplore")} ${dest.name[lang]}`}
       >
         {/* Hero image */}
         <div className="relative h-48 overflow-hidden">
@@ -93,7 +98,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
                 {displayUnis}
               </div>
               <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold">
-                Universities
+                {tCountry<string>("destinations.listing.cardUniversities")}
               </div>
             </div>
             <div className="text-center border-x border-border/40">
@@ -101,7 +106,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
                 {progCount > 0 ? progCount : "—"}
               </div>
               <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold">
-                Programs
+                {tCountry<string>("destinations.listing.cardPrograms")}
               </div>
             </div>
             <div className="text-center">
@@ -109,7 +114,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
                 {(dest.avgTuitionFee.split("–")[0] ?? dest.avgTuitionFee).trim()}
               </div>
               <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold">
-                Avg. Tuition
+                {tCountry<string>("destinations.listing.cardTuition")}
               </div>
             </div>
           </div>
@@ -141,7 +146,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
           {/* CTA */}
           <div className="flex items-center justify-between pt-2 border-t border-border/50">
             <span className="text-sm font-black text-accent-tech group-hover:underline">
-              Explore {dest.name[lang]}
+              {tCountry<string>("destinations.listing.cardExplore")} {dest.name[lang]}
             </span>
             <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-accent-tech group-hover:translate-x-1 transition-all" />
           </div>
@@ -266,7 +271,7 @@ export function DestinationsPage() {
 
       <ContextualPageHeader
         variant="listing"
-        badge="Study Destinations"
+        badge={tx("destinations.listing.badge", "Study Destinations")}
         title={tx(
           "destinations.listing.headline",
           "Choose Your Study Destination"
@@ -293,7 +298,7 @@ export function DestinationsPage() {
           {
             icon: GraduationCap,
             value: totalPrograms > 0 ? `${totalPrograms}+` : "500+",
-            label: "Programs",
+            label: tx("destinations.listing.statsPrograms", "Programs"),
           },
         ]}
         searchSlot={
@@ -319,20 +324,20 @@ export function DestinationsPage() {
                 className={`${pillBase} ${accessFilter === "all" ? pillActive : pillInactive}`}
                 onClick={() => setAccessFilter("all")}
               >
-                All
+                {tx("destinations.listing.filterAll", "All")}
               </button>
               <button
                 className={`${pillBase} ${accessFilter === "scholarship" ? pillActive : pillInactive}`}
                 onClick={() => setAccessFilter("scholarship")}
               >
-                Scholarship Available
+                {tx("destinations.listing.filterScholarship", "Scholarship Available")}
               </button>
               <div className="w-px h-8 self-center bg-border/50 hidden md:block" />
               <button
                 className={`${pillBase} ${langFilter === "all" ? pillActive : pillInactive}`}
                 onClick={() => setLangFilter("all")}
               >
-                All Languages
+                {tx("destinations.listing.filterAllLanguages", "All Languages")}
               </button>
               <button
                 className={`${pillBase} ${langFilter === "English" ? pillActive : pillInactive}`}
@@ -344,40 +349,40 @@ export function DestinationsPage() {
                 className={`${pillBase} ${langFilter === "German" ? pillActive : pillInactive}`}
                 onClick={() => setLangFilter("German")}
               >
-                German
+                Deutsch
               </button>
               <div className="w-px h-8 self-center bg-border/50 hidden md:block" />
               <button
                 className={`${pillBase} ${regionFilter === "all" ? pillActive : pillInactive}`}
                 onClick={() => setRegionFilter("all")}
               >
-                All Regions
+                {tx("destinations.listing.filterAllRegions", "All Regions")}
               </button>
               <button
                 className={`${pillBase} ${regionFilter === "Europe" ? pillActive : pillInactive}`}
                 onClick={() => setRegionFilter("Europe")}
               >
-                Europe
+                {tx("destinations.listing.filterEurope", "Europe")}
               </button>
               <button
                 className={`${pillBase} ${regionFilter === "Americas" ? pillActive : pillInactive}`}
                 onClick={() => setRegionFilter("Americas")}
               >
-                Americas
+                {tx("destinations.listing.filterAmericas", "Americas")}
               </button>
               <button
                 className={`${pillBase} ${regionFilter === "Caucasus" ? pillActive : pillInactive}`}
                 onClick={() => setRegionFilter("Caucasus")}
               >
-                Caucasus
+                {tx("destinations.listing.filterCaucasus", "Caucasus")}
               </button>
             </div>
           </div>
           <p className="text-xs text-text-muted mt-2">
-            Showing{" "}
-            <strong className="text-text-primary">{filtered.length}</strong> of{" "}
+            {tx("destinations.listing.showing", "Showing")}{" "}
+            <strong className="text-text-primary">{filtered.length}</strong> {tx("destinations.listing.of", "of")}{" "}
             <strong className="text-text-primary">{DESTINATIONS.length}</strong>{" "}
-            destinations
+            {tx("destinations.listing.destinationsLabel", "destinations")}
           </p>
         </div>
       </div>
@@ -388,10 +393,10 @@ export function DestinationsPage() {
           <div className="text-center py-12 sm:py-20">
             <Globe2 className="w-12 h-12 text-text-muted mx-auto mb-4" />
             <h3 className="text-xl font-black text-text-primary mb-2">
-              No destinations match
+              {tx("destinations.listing.noMatch", "No destinations match")}
             </h3>
             <p className="text-text-secondary mb-6">
-              Try adjusting or clearing your filters.
+              {tx("destinations.listing.tryAdjusting", "Try adjusting or clearing your filters.")}
             </p>
             <button
               onClick={() => {
@@ -402,7 +407,7 @@ export function DestinationsPage() {
               }}
               className="px-6 py-3 rounded-xl btn-gold-primary font-black text-sm hover:-translate-y-0.5 hover:shadow-xl transition-all"
             >
-              Clear Filters
+              {tx("destinations.listing.clearFilters", "Clear Filters")}
             </button>
           </div>
         ) : (

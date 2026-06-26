@@ -716,7 +716,7 @@ export function ContactPage() {
                 </span>
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-3 tracking-tight">
-                {t<string>("contact.form.subject") === "Subject" ? "Send Us a Message" : t<string>("contact.form.submit")}
+                {t<string>("contact.form.title")}
               </h2>
             </div>
 

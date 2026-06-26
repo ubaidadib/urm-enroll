@@ -651,14 +651,14 @@ export function ProgramsPage() {
               <div className="flex flex-col gap-3 border-b border-border/50 pb-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-text-secondary">
-                    Showing {showingStart}-{showingEnd} of {filteredListings.length} programs
+                    {t<string>("programs.listing.results.showing")} {showingStart}-{showingEnd} {t<string>("programs.listing.results.of")} {filteredListings.length} {t<string>("programs.listing.results.items")}
                   </p>
                   <h2 className="mt-1 text-3xl font-black text-text-primary capitalize">
-                    {filteredListings.length === 0 ? "No programs found" : fieldFilter ? `${fieldFilter.replace(/-/g, " ")} Programs` : "Programs"}
+                    {filteredListings.length === 0 ? t<string>("programs.listing.results.noProgramsFound") : fieldFilter ? `${fieldFilter.replace(/-/g, " ")} ${t<string>("programs.listing.results.items")}` : t<string>("programs.listing.results.items")}
                   </h2>
                 </div>
                 <p className="max-w-xl text-sm text-text-muted">
-                  Intake dates, fees, and location are sourced directly from the university. Contact the university for the most up-to-date details.
+                  {t<string>("programs.listing.results.footerNote")}
                 </p>
               </div>
 
@@ -715,7 +715,7 @@ export function ProgramsPage() {
                         className="inline-flex h-11 items-center justify-center rounded-xl border border-border/60 px-4 text-sm font-semibold text-text-secondary transition-colors hover:border-border-strong hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-40"
                       >
                         <ChevronLeft className="h-4 w-4" />
-                        Previous
+                        {t<string>("programs.listing.results.previous")}
                       </button>
 
                       {paginationItems.map((item, index) =>
@@ -745,7 +745,7 @@ export function ProgramsPage() {
                         disabled={safeCurrentPage === totalPages}
                         className="inline-flex h-11 items-center justify-center rounded-xl border border-border/60 px-4 text-sm font-semibold text-text-secondary transition-colors hover:border-border-strong hover:text-text-primary disabled:cursor-not-allowed disabled:opacity-40"
                       >
-                        Next
+                        {t<string>("programs.listing.results.next")}
                         <ChevronRight className="h-4 w-4" />
                       </button>
                     </div>

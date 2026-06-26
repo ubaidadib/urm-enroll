@@ -860,7 +860,7 @@ export function InstitutionalPartnershipPage() {
                           />
                         ) : (
                           <p className="text-xs font-semibold text-red-500">
-                            Turnstile is not configured. Please set `VITE_TURNSTILE_SITE_KEY`.
+                            {t<string>("leadForm.error.turnstileNotConfigured")} <code>VITE_TURNSTILE_SITE_KEY</code>.
                           </p>
                         )}
                       </div>

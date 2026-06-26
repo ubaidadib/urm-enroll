@@ -919,7 +919,7 @@ export function SmartLeadForm() {
                     />
                   ) : (
                     <p className="text-xs text-yellow-600 dark:text-yellow-400">
-                      Turnstile is not configured. Please set <code>VITE_TURNSTILE_SITE_KEY</code>.
+                      {t<string>("leadForm.error.turnstileNotConfigured")} <code>VITE_TURNSTILE_SITE_KEY</code>.
                     </p>
                   )}
 

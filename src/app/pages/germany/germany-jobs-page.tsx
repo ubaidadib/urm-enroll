@@ -26,7 +26,7 @@ export function GermanyJobsPage() {
           <Breadcrumbs
             items={[
               { label: t<string>("common.home"), href: localizedPath("/") },
-              { label: "Germany Jobs", href: localizedPath("/germany-jobs") },
+              { label: t<string>("germany.jobs.breadcrumb"), href: localizedPath("/germany-jobs") },
             ]}
           />
           </div>
@@ -56,7 +56,7 @@ export function GermanyJobsPage() {
         <div className="max-w-4xl mx-auto p-6 md:p-8 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md shadow-sm">
           <div className="flex items-center gap-3 text-text-primary">
             <MapPin className="w-5 h-5 text-accent-tech" />
-            <h2 className="text-xl font-bold">Berlin · Munich · Hamburg · Stuttgart · Frankfurt</h2>
+            <h2 className="text-xl font-bold">{t<string>("germany.jobs.cityList")}</h2>
           </div>
           <p className="mt-3 text-text-secondary leading-relaxed">
             {t<string>("germany.jobs.fitDescription")}

@@ -36,6 +36,7 @@ function getAllPrograms(universities: University[]): Array<Program & { universit
 
 // ── sub-components ───────────────────────────────────────────────────────────
 function UniversityCard({ uni }: { uni: University }) {
+  const { t } = useLanguage();
   return (
     <m.div
       initial={{ opacity: 0, y: 12 }}
@@ -74,7 +75,7 @@ function UniversityCard({ uni }: { uni: University }) {
               ))}
               {uni.programs.length > 4 && (
                 <span className="px-2 py-0.5 rounded-full text-[10px] bg-bg-secondary border border-border/50 text-text-muted font-semibold">
-                  +{uni.programs.length - 4} more
+                  +{uni.programs.length - 4} {t<string>("destinations.detail.more")}
                 </span>
               )}
             </div>
@@ -132,21 +133,21 @@ export function CountryDetailPage() {
   };
 
   const tabs = [
-    { id: "overview", label: "Overview" },
-    { id: "universities", label: `Universities (${universities.length > 0 ? universities.length : dest.universities})` },
-    { id: "programs", label: `Programs (${allPrograms.length > 0 ? allPrograms.length : "—"})` },
-    { id: "requirements", label: "Requirements" },
+    { id: "overview", label: tx("destinations.detail.overview", "Overview") },
+    { id: "universities", label: `${tx("destinations.detail.universities", "Universities")} (${universities.length > 0 ? universities.length : dest.universities})` },
+    { id: "programs", label: `${tx("destinations.detail.programs", "Programs")} (${allPrograms.length > 0 ? allPrograms.length : "—"})` },
+    { id: "requirements", label: tx("destinations.detail.requirements", "Requirements") },
   ];
 
   const stats = [
     {
       icon: Building2,
       value: universities.length > 0 ? String(universities.length) : String(dest.universities),
-      label: "Universities",
+      label: tx("destinations.detail.universities", "Universities"),
     },
-    { icon: Clock, value: dest.visaTimeline, label: "Visa Timeline" },
-    { icon: TrendingUp, value: `${dest.successRate}%`, label: "Success Rate" },
-    { icon: GraduationCap, value: dest.avgTuitionFee, label: "Avg. Tuition" },
+    { icon: Clock, value: dest.visaTimeline, label: tx("destinations.detail.visaTimeline", "Visa Timeline") },
+    { icon: TrendingUp, value: `${dest.successRate}%`, label: tx("destinations.detail.successRate", "Success Rate") },
+    { icon: GraduationCap, value: dest.avgTuitionFee, label: tx("destinations.detail.avgTuition", "Avg. Tuition") },
   ];
 
   return (
@@ -192,7 +193,7 @@ export function CountryDetailPage() {
             className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-semibold mb-8 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            All Destinations
+            {tx("destinations.detail.allDestinations", "All Destinations")}
           </Link>
 
           {/* Country header */}
@@ -250,7 +251,7 @@ export function CountryDetailPage() {
             <div className="lg:col-span-2 space-y-6">
               <section>
                 <h2 className="text-2xl font-black text-text-primary mb-4">
-                  Why Study in {dest.name[lang]}?
+                  {tx("destinations.detail.whyStudy", "Why Study in")} {dest.name[lang]}?
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {dest.keyBenefits[lang].map((benefit, i) => (
@@ -286,7 +287,7 @@ export function CountryDetailPage() {
               {/* Recommended for */}
               <section className="p-5 rounded-2xl border border-accent-tech/30 bg-accent-tech/5">
                 <h2 className="text-sm font-black text-accent-tech uppercase tracking-wide mb-2">
-                  Best For
+                  {tx("destinations.detail.bestFor", "Best For")}
                 </h2>
                 <p className="text-text-secondary text-sm">{dest.recommendedFor[lang]}</p>
               </section>
@@ -337,13 +338,13 @@ export function CountryDetailPage() {
                 to="/contact"
                 className="block w-full text-center px-6 py-4 rounded-2xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
               >
-                Start Application →
+                {tx("destinations.detail.startApplication", "Start Application")} →
               </Link>
               <button
                 onClick={() => setActiveTab("universities")}
                 className="block w-full text-center px-6 py-3 rounded-2xl border border-border/50 bg-bg-surface text-text-primary font-bold text-sm hover:border-accent-primary hover:text-accent-primary transition-colors"
               >
-                Browse Universities
+                {tx("destinations.detail.browseUniversities", "Browse Universities")}
               </button>
             </div>
           </div>
@@ -354,11 +355,11 @@ export function CountryDetailPage() {
           <div>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-black text-text-primary">
-                Universities in {dest.name[lang]}
+                {tx("destinations.detail.universitiesIn", "Universities in")} {dest.name[lang]}
               </h2>
               {universities.length === 0 && (
                 <span className="text-sm text-text-muted">
-                  {dest.universities} universities available via our network
+                  {dest.universities} {tx("destinations.detail.universitiesViaNetwork", "universities available via our network")}
                 </span>
               )}
             </div>
@@ -388,7 +389,7 @@ export function CountryDetailPage() {
               <div className="text-center py-16 border border-dashed border-border/50 rounded-2xl">
                 <Building2 className="w-12 h-12 text-text-muted mx-auto mb-4" />
                 <h3 className="text-lg font-black text-text-primary mb-2">
-                  {dest.universities}+ Universities Available
+                  {dest.universities}+ {tx("destinations.detail.universitiesAvailable", "Universities Available")}
                 </h3>
                 <p className="text-text-secondary mb-6 max-w-md mx-auto">
                   Access {dest.directAgreements} direct agreements and {dest.platformAccess} platform universities in {dest.name[lang]}.
@@ -397,7 +398,7 @@ export function CountryDetailPage() {
                   to="/universities"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
                 >
-                  Browse All Universities <ChevronRight className="w-4 h-4" />
+                  {tx("destinations.detail.browseAllUniversities", "Browse All Universities")} <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
             )}
@@ -409,7 +410,7 @@ export function CountryDetailPage() {
           <div>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-black text-text-primary">
-                Programs in {dest.name[lang]}
+                {tx("destinations.detail.programsIn", "Programs in")} {dest.name[lang]}
               </h2>
             </div>
             {allPrograms.length > 0 ? (
@@ -439,16 +440,16 @@ export function CountryDetailPage() {
               <div className="text-center py-16 border border-dashed border-border/50 rounded-2xl">
                 <BookOpen className="w-12 h-12 text-text-muted mx-auto mb-4" />
                 <h3 className="text-lg font-black text-text-primary mb-2">
-                  Programs Available via Network
+                  {tx("destinations.detail.programsViaNetwork", "Programs Available via Network")}
                 </h3>
                 <p className="text-text-secondary mb-6 max-w-md mx-auto">
-                  Access hundreds of programs across {dest.topPrograms.join(", ")} and more.
+                  {tx("destinations.detail.programsViaNetworkDesc", "Access hundreds of programs and more.")}
                 </p>
                 <Link
                   to="/programs"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
                 >
-                  Browse All Programs <ChevronRight className="w-4 h-4" />
+                  {tx("destinations.detail.browseAllPrograms", "Browse All Programs")} <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
             )}
@@ -460,13 +461,13 @@ export function CountryDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <section>
               <h2 className="text-2xl font-black text-text-primary mb-4">
-                Admission Requirements
+                {tx("destinations.detail.admissionRequirements", "Admission Requirements")}
               </h2>
               <div className="space-y-4">
                 <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
                   <h3 className="font-black text-text-primary mb-2 flex items-center gap-2">
                     <Languages className="w-4 h-4 text-accent-tech" />
-                    Language Levels Required
+                    {tx("destinations.detail.languageLevelsRequired", "Language Levels Required")}
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {dest.languageLevels.map((level) => (
@@ -482,7 +483,7 @@ export function CountryDetailPage() {
                 <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
                   <h3 className="font-black text-text-primary mb-2 flex items-center gap-2">
                     <Shield className="w-4 h-4 text-accent-primary" />
-                    Compliance Checkpoint
+                    {tx("destinations.detail.compliance", "Compliance Checkpoint")}
                   </h3>
                   <p className="text-sm text-text-secondary">{dest.complianceCheckpoint[lang]}</p>
                 </div>
@@ -491,7 +492,7 @@ export function CountryDetailPage() {
 
             <section>
               <h2 className="text-2xl font-black text-text-primary mb-4">
-                Visa Process
+                {tx("destinations.detail.visaProcess", "Visa Process")}
               </h2>
               <div className="space-y-4">
                 <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
@@ -513,7 +514,7 @@ export function CountryDetailPage() {
                   to="/contact"
                   className="block w-full text-center px-6 py-4 rounded-2xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
                 >
-                  Get Visa Support →
+                  {tx("destinations.detail.getVisaSupport", "Get Visa Support")} →
                 </Link>
               </div>
             </section>

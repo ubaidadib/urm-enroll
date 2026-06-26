@@ -1,4 +1,4 @@
-import { languageLabel, languageNative, preloader, cookieBanner, common, globalCta, leadForm, funnelCta, agencyComparison, trust, icef, booking } from './common';
+import { languageLabel, languageNative, preloader, cookieBanner, common, globalCta, leadForm, funnelCta, agencyComparison, trust, icef, booking, social } from './common';
 import { header } from './nav';
 import { hero } from './hero';
 import { contact } from './contact';
@@ -58,6 +58,7 @@ export const de = {
   trust,
   icef,
   booking,
+  social,
   nursingAssessment: {
     pageTitle: "Deutschland Pflegeassessment | URM Enroll",
     description: "Umfassende Bewertung Ihrer Kenntnisse der Anforderungen des Pflegeprogramms in Deutschland",
@@ -71,7 +72,7 @@ export const de = {
       easy: "Einfach",
       medium: "Mittel",
       hard: "Schwer",
-      mc: "Multiple Choice",
+      mc: "Mehrfachauswahl",
       tf: "Richtig / Falsch",
       scenario: "Szenario"
     },
@@ -183,12 +184,12 @@ export const de = {
         totalPrograms: "Studiengänge",
         languages: "Sprachen",
         type: "Universitätstyp",
-        ranking: "Ranking",
+        ranking: "Rangliste",
       },
       tabs: {
         overview: "Überblick",
         programs: "Programme",
-        campus: "Campus",
+        campus: "Standortbereich",
         requirements: "Voraussetzungen",
         location: "Standort",
       },
@@ -219,7 +220,7 @@ export const de = {
           universities: "Universitaeten",
           fields: "Fachbereiche",
           countriesAvailable: "Laender verfuegbar",
-          smartMatch: "Smart Match",
+          smartMatch: "Intelligente Übereinstimmung",
           aiMatching: "KI-gestuetztes Matching",
           fromTopInstitutions: "von Top-Institutionen",
         },
@@ -252,7 +253,7 @@ export const de = {
         searchPrograms: "Programme suchen",
         extendedPlaceholder: "Suche nach Programmname, Universitaet, Stadt, Land…",
         programTypes: {
-          global: "Global",
+          global: "Weltweit",
           internships: "Praktika",
           scholarships: "Stipendien",
           research: "Forschung",
@@ -287,6 +288,8 @@ export const de = {
         items: "Programme",
         noProgramsFound: "Keine Programme gefunden",
         footerNote: "Zulassungstermine, Gebuehren und Standort stammen direkt von der Universitaet. Kontaktieren Sie die Universitaet fuer die aktuellsten Details.",
+        previous: "Zurück",
+        next: "Weiter",
       },
       empty: {
         title: "Keine Programme gefunden",
@@ -310,7 +313,7 @@ export const de = {
       degreeLevel: "Abschlussniveau",
       pathway: "Pfad",
       nextIntake: "Naechste Zulassung",
-      minToefl: "Min. TOEFL",
+      minToefl: "Mindest-TOEFL",
       keyInfo: {
         tuition: "Studiengebühr pro Jahr",
         duration: "Programmdauer",
@@ -321,7 +324,7 @@ export const de = {
       },
       tabs: {
         overview: "Überblick",
-        curriculum: "Curriculum",
+        curriculum: "Lehrplan",
         requirements: "Voraussetzungen",
         careerOutcomes: "Karrierechancen",
         apply: "Bewerben",
@@ -375,9 +378,9 @@ export const de = {
         aria: "KI-gestützte Programmsuche",
         subtitle: "Intelligentes Query-Verständnis mit dynamischem Karriere-Matching",
         voice: "Sprachsuche",
-        submit: "Match",
+        submit: "Abgleichen",
         shortcut: "Cmd K",
-        trending: "Trending",
+        trending: "Im Trend",
       },
       suggestions: {
         title: "KI-Vorschläge",
@@ -474,6 +477,15 @@ export const de = {
       successMessage: "Vielen Dank. Wir haben eine Bestätigungs-E-Mail gesendet.",
       continue: "Weiter",
       applicationSent: "Bewerbung gesendet!",
+      readyPrompt: "Bereit für die Bewerbung?",
+      contactForFees: "Gebühren anfragen",
+      perYearSuffix: "/Jahr",
+      addedToCompare: "✓ Zum Vergleich hinzugefügt",
+      savedState: "♥ Gespeichert",
+      sectionsAriaLabel: "Abschnitte der Programmdetails",
+      applicationReceived: "Ihre Bewerbung für {{program}} ist eingegangen.",
+      confirmationTimeline: "Eine Bestätigungs-E-Mail ist unterwegs. Rechnen Sie mit einer Antwort innerhalb von 2–5 Werktagen.",
+      applyAnotherProgram: "← Für ein weiteres Programm bewerben",
       helper: {
         completeSteps: "Schliessen Sie alle Schritte ab, um Ihre Bewerbung einzureichen",
       },
@@ -511,13 +523,16 @@ export const de = {
         email: "ihre@email.de",
         gpa: "z. B. 3,8 / 4,0",
         selectNationality: "Nationalität wählen…",
+        selectHighestDegree: "Höchsten Abschluss wählen…",
+        selectYear: "Jahr wählen…",
       },
       degreeOptions: {
         highSchool: "Abitur / Sekundarabschluss",
-        associate: "Associate Degree",
+        associate: "Associate-Abschluss",
         bachelor: "Bachelor-Abschluss",
         master: "Master-Abschluss",
         phd: "Promotion / Doktorat",
+        professional: "Berufsabschluss (MD / JD / etc.)",
         notGraduated: "Noch nicht abgeschlossen",
       },
       gpaHint: "Leer lassen, falls nicht zutreffend",
@@ -527,6 +542,10 @@ export const de = {
         cv: "Lebenslauf",
         change: "Ändern",
         browse: "Durchsuchen",
+        uploadRequirements: "PDF, JPG oder PNG · max. 10 MB pro Datei",
+        passportHint: "Farbscan, mindestens 6 Monate gültig",
+        transcriptHint: "Offizielle oder beglaubigte Kopie Ihrer Institution",
+        toBeProvided: "Wird nachgereicht",
         laterNote: "Dokumente können auch später gesendet werden. Das Zulassungsteam kontaktiert Sie mit den genauen Anforderungen nach Prüfung Ihrer Erstbewerbung.",
       },
     },

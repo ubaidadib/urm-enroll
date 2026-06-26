@@ -10,6 +10,8 @@ export const hero = {
   social_proof: "انضم إلى أكثر من 500 طالب خطوا هذه الخطوة بالفعل",
   trust_ticker: "ثقة 500+ طالب · 20+ جامعة شريكة · استشارات ألمانيا أولاً · معتمد من ICEF رقم 6507",
   icef_label: "وكالة معتمدة من ICEF",
+  enrollingIn: "التسجيل في",
+  programsAcrossDestinations: "أكثر من 10,000 برنامج عبر 4 وجهات",
   stats: {
     students_label: "طلاب حول العالم",
     universities_label: "جامعات شريكة",

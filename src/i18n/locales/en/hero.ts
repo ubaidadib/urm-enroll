@@ -10,6 +10,8 @@ export const hero = {
   social_proof: "Join 500+ students who've already made the move",
   trust_ticker: "Trusted by 500+ students · 20+ partner universities · Germany-first consultancy · ICEF Accredited #6507",
   icef_label: "ICEF Accredited Agency",
+  enrollingIn: "Enrolling in",
+  programsAcrossDestinations: "10,000+ programs across 4 destinations",
   stats: {
     students_label: "Students Worldwide",
     universities_label: "Partner Universities",

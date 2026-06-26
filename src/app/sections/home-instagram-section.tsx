@@ -1,46 +1,47 @@
 import { m } from "motion/react";
 import { Instagram, Facebook, Linkedin, ArrowUpRight, Users, Heart, MessageCircle } from "lucide-react";
+import { useLanguage } from "@/i18n/language-context";
 
 const SOCIAL_LINKS = [
   {
     platform: "Instagram",
     handle: "@urmenroll",
     url: "https://www.instagram.com/urmenroll",
-    description: "Student journeys, campus life & success stories from around the world.",
+    descriptionKey: "social.instagram.description",
     icon: Instagram,
     gradient: "from-rose-500 via-pink-500 to-orange-400",
     glow: "group-hover:shadow-rose-500/20",
-    stat: "Daily Stories",
+    statKey: "social.instagram.stat",
   },
   {
     platform: "TikTok",
     handle: "@urm.enroll.ltd",
     url: "https://www.tiktok.com/@urm.enroll.ltd",
-    description: "Short videos on studying abroad, visa tips, and student life.",
-    icon: null, // custom TikTok SVG below
+    descriptionKey: "social.tiktok.description",
+    icon: null,
     gradient: "from-slate-900 via-slate-800 to-slate-700",
     glow: "group-hover:shadow-slate-500/20",
-    stat: "Reels & Tips",
+    statKey: "social.tiktok.stat",
   },
   {
     platform: "Facebook",
     handle: "URMENROLL",
     url: "https://www.facebook.com/URMENROLL",
-    description: "Community groups, webinars, and announcements for our students.",
+    descriptionKey: "social.facebook.description",
     icon: Facebook,
     gradient: "from-blue-600 via-blue-500 to-sky-500",
     glow: "group-hover:shadow-blue-500/20",
-    stat: "Community Groups",
+    statKey: "social.facebook.stat",
   },
   {
     platform: "LinkedIn",
     handle: "urm-enroll",
     url: "https://www.linkedin.com/company/urm-enroll",
-    description: "Professional insights, partnerships, and career opportunities.",
+    descriptionKey: "social.linkedin.description",
     icon: Linkedin,
     gradient: "from-sky-700 via-sky-600 to-blue-500",
     glow: "group-hover:shadow-sky-500/20",
-    stat: "Professional Network",
+    statKey: "social.linkedin.stat",
   },
 ];
 
@@ -53,9 +54,9 @@ function TikTokIcon({ className }: { className?: string }) {
 }
 
 const STATS = [
-  { icon: Users, label: "Active Followers", value: "50K+" },
-  { icon: Heart, label: "Posts & Reels", value: "1,200+" },
-  { icon: MessageCircle, label: "Student Stories", value: "500+" },
+  { icon: Users, labelKey: "social.stats.followers", value: "50K+" },
+  { icon: Heart, labelKey: "social.stats.posts", value: "1,200+" },
+  { icon: MessageCircle, labelKey: "social.stats.stories", value: "500+" },
 ];
 
 const containerVariants = {
@@ -69,6 +70,8 @@ const itemVariants = {
 };
 
 export function HomeInstagramSection() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative overflow-hidden bg-bg-secondary py-20 md:py-24 transition-colors duration-500">
       {/* Background accents */}
@@ -89,17 +92,16 @@ export function HomeInstagramSection() {
         >
           <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface/80 dark:border-white/10 dark:bg-white/5 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-text-muted">
             <Instagram className="h-3.5 w-3.5 text-rose-400" />
-            Join Our Community
+            {t<string>("social.badge")}
           </p>
           <h2 className="text-3xl font-black tracking-tight text-text-primary dark:text-white md:text-5xl">
-            Follow{" "}
+            {t<string>("social.heading")}{" "}
             <span className="bg-linear-to-r from-rose-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-              Our Story
+              {t<string>("social.headingHighlight")}
             </span>
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-text-muted">
-            Thousands of students share their global education journeys with us every day.
-            Join the conversation on your favourite platform.
+            {t<string>("social.description")}
           </p>
         </m.div>
 
@@ -137,12 +139,12 @@ export function HomeInstagramSection() {
                   {social.platform}
                 </p>
                 <p className="text-base font-bold text-text-primary dark:text-white mb-2">{social.handle}</p>
-                <p className="text-sm leading-relaxed text-text-muted flex-1">{social.description}</p>
+                <p className="text-sm leading-relaxed text-text-muted flex-1">{t<string>(social.descriptionKey)}</p>
 
                 {/* Stat label */}
                 <div className="mt-5 flex items-center justify-between">
                   <span className="rounded-full bg-bg-secondary dark:bg-white/[0.06] border border-border dark:border-white/[0.08] px-3 py-1 text-[11px] font-semibold text-text-muted">
-                    {social.stat}
+                    {t<string>(social.statKey)}
                   </span>
                   <ArrowUpRight className="h-4 w-4 text-text-muted transition-all duration-200 group-hover:text-text-primary dark:group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
@@ -162,13 +164,13 @@ export function HomeInstagramSection() {
           {STATS.map((stat) => {
             const StatIcon = stat.icon;
             return (
-              <div key={stat.label} className="flex items-center gap-3">
+              <div key={stat.labelKey} className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-primary/15 text-accent-primary">
                   <StatIcon className="h-4 w-4" />
                 </div>
                 <div>
                   <p className="text-lg font-black text-text-primary dark:text-white leading-none">{stat.value}</p>
-                  <p className="text-[11px] text-text-muted mt-0.5">{stat.label}</p>
+                  <p className="text-[11px] text-text-muted mt-0.5">{t<string>(stat.labelKey)}</p>
                 </div>
               </div>
             );
