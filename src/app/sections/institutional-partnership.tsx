@@ -245,7 +245,7 @@ export function InstitutionalPartnershipPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-bg-primary transition-colors duration-500" dir={dir}>
+    <div className="min-h-screen section-gradient transition-colors duration-500" dir={dir}>
       <SeoManager
         title={tx("seo.sections.institutional.title", "Institutional Partnerships – URM Enroll")}
         description={tx("seo.sections.institutional.description", "A compliance-first partnership framework for universities, hospitals, and agencies.")}
@@ -257,13 +257,13 @@ export function InstitutionalPartnershipPage() {
       />
 
       {/* ── Hero ── */}
-      <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden border-b border-border/20">
+      <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
 
         {/* Ambient */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 left-1/4 w-[700px] h-[700px] rounded-full bg-blue-50 dark:bg-blue-500/5 blur-[160px]" />
-          <div className="absolute -bottom-40 right-1/4 w-[37.5rem] h-[37.5rem] rounded-full bg-accent-tech/5 dark:bg-accent-tech/4 blur-[140px]" />
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000004_1px,transparent_1px),linear-gradient(to_bottom,#00000004_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-size-[32px_32px]" />
+          <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
+          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
+          <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
         <div className="page-hero-inner">
