@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { m, useReducedMotion, useInView } from "motion/react";
+import { m, AnimatePresence, useReducedMotion, useInView } from "motion/react";
 import { useLanguage } from "@/i18n/language-context";
 import { ArrowRight, Award, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -27,6 +27,25 @@ interface StatItem {
 }
 
 // ─── Data ────────────────────────────────────────────────────────────────────
+
+const ROTATING_COUNTRIES = [
+  { flag: "🇩🇪", name: "Germany" },
+  { flag: "🇬🇧", name: "UK" },
+  { flag: "🇹🇷", name: "Turkey" },
+  { flag: "🇨🇦", name: "Canada" },
+];
+
+const PARTICLES = [
+  { size: 3, x: 12, y: 18, delay: 0,    dur: 6.2 },
+  { size: 2, x: 24, y: 72, delay: 1.4,  dur: 7.8 },
+  { size: 4, x: 38, y: 38, delay: 0.6,  dur: 5.5 },
+  { size: 2, x: 62, y: 15, delay: 2.2,  dur: 8.4 },
+  { size: 3, x: 78, y: 68, delay: 0.9,  dur: 6.8 },
+  { size: 2, x: 88, y: 45, delay: 1.7,  dur: 7.3 },
+  { size: 3, x: 52, y: 88, delay: 0.2,  dur: 5.9 },
+  { size: 4, x: 6,  y: 55, delay: 2.8,  dur: 9.1 },
+  { size: 2, x: 93, y: 80, delay: 1.1,  dur: 7.0 },
+];
 
 const DESTINATIONS: DestinationCard[] = [
   { flag: "🇩🇪", country: "Germany",   programs: "3,200+ programs", rotation: -2,  floatDelay: 0,   floatDuration: 3.4, offset: { x: 0,   y: 0   } },
@@ -108,6 +127,62 @@ function DestinationCardItem({ card, index, shouldReduceMotion }: {
   );
 }
 
+function FloatingParticles({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+  if (shouldReduceMotion) return null;
+  return (
+    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+      {PARTICLES.map((p, i) => (
+        <m.div
+          key={i}
+          className="absolute rounded-full hero-particle"
+          style={{ width: p.size, height: p.size, left: `${p.x}%`, top: `${p.y}%` }}
+          animate={{ y: [-8, 8, -8], opacity: [0.2, 0.55, 0.2] }}
+          transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: "easeInOut" }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function DestinationCycler({ shouldReduceMotion }: { shouldReduceMotion: boolean | null }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (shouldReduceMotion) return;
+    const t = setInterval(() => setIdx(i => (i + 1) % ROTATING_COUNTRIES.length), 2200);
+    return () => clearInterval(t);
+  }, [shouldReduceMotion]);
+
+  return (
+    <m.div
+      initial={shouldReduceMotion ? {} : { opacity: 0, y: -6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.05, duration: 0.35 }}
+      className="inline-flex items-center gap-2 mb-4 lg:mb-5"
+    >
+      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hero-live-badge">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+        <span className="text-xs text-text-muted font-medium">Enrolling in</span>
+        <div className="relative overflow-hidden" style={{ height: "1.15em", width: "6rem" }}>
+          <AnimatePresence mode="wait">
+            <m.span
+              key={idx}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={shouldReduceMotion ? {} : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="absolute left-0 top-0 text-xs font-semibold text-text-primary flex items-center gap-1 whitespace-nowrap"
+            >
+              <span>{ROTATING_COUNTRIES[idx]?.flag}</span>
+              <span>{ROTATING_COUNTRIES[idx]?.name}</span>
+            </m.span>
+          </AnimatePresence>
+        </div>
+      </div>
+    </m.div>
+  );
+}
+
 // ─── Main Component ──────────────────────────────────────────────────────────
 
 export function HeroSection() {
@@ -148,7 +223,7 @@ export function HeroSection() {
       aria-labelledby="hero-title"
       className="relative flex flex-col overflow-hidden section-gradient-hero"
     >
-      {/* Radial glow blobs */}
+      {/* Radial glow blobs + particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
         <div
           className="absolute rounded-full hero-ambient-gold"
@@ -171,6 +246,7 @@ export function HeroSection() {
           }}
         />
         <div className="absolute inset-0 hero-grid-overlay" />
+        <FloatingParticles shouldReduceMotion={shouldReduceMotion} />
       </div>
 
       {/* ── 1. Trust Bar ─────────────────────────────────────────────────── */}
@@ -225,6 +301,9 @@ export function HeroSection() {
         {/* Left Column */}
         <div className={isRtl ? "text-right" : "text-left"}>
 
+          {/* Destination cycler badge */}
+          <DestinationCycler shouldReduceMotion={shouldReduceMotion} />
+
           {/* Eyebrow */}
           <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
@@ -249,7 +328,7 @@ export function HeroSection() {
               <span className="block">
                 {headlineParts[0]}
                 <span className="relative inline-block">
-                  <span className="text-accent-primary">{countryWord}</span>
+                  <span className="hero-shimmer-text">{countryWord}</span>
                   {/* Animated underline */}
                   <m.span
                     aria-hidden="true"
@@ -346,6 +425,24 @@ export function HeroSection() {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none hero-pulse-ring"
               style={{ width: 300, height: 300 }}
             />
+          )}
+
+          {/* Orbit ring decorations */}
+          {!shouldReduceMotion && (
+            <>
+              <m.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
+                className="hero-orbit-ring pointer-events-none"
+                style={{ width: 370, height: 370, top: "50%", left: "50%", marginTop: -185, marginLeft: -185 }}
+              />
+              <m.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 48, repeat: Infinity, ease: "linear" }}
+                className="hero-orbit-ring-inner pointer-events-none"
+                style={{ width: 240, height: 240, top: "50%", left: "50%", marginTop: -120, marginLeft: -120 }}
+              />
+            </>
           )}
 
           {/* Card grid */}
