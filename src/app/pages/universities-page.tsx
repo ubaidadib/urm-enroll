@@ -697,9 +697,7 @@ export function UniversitiesPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="sticky top-[72px] z-20 mb-8 -mx-5 sm:-mx-8 lg:-mx-12 px-5 sm:px-8 lg:px-12
-                py-3 bg-bg-secondary/95 dark:bg-[#080c14]/95 backdrop-blur-xl
-                border-b border-border/50"
+              className="sticky top-[72px] z-20 mb-8 py-3"
             >
               <div className="content-shell-wide mx-auto flex items-center gap-3 flex-wrap xl:flex-nowrap">
                 <div className="relative hidden xl:flex items-center gap-2 flex-shrink-0">
