@@ -28,8 +28,8 @@ export function ChancenkartePage() {
 
       <section className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-bg-primary border-b border-border/50 transition-colors duration-500">
         <div className="absolute inset-0 -z-10 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-primary/6 rounded-full blur-[130px]" />
+          <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-tech/6 rounded-full blur-[130px]" />
           <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
           </div>
@@ -46,9 +46,9 @@ export function ChancenkartePage() {
 
           <div className="page-hero-grid">
             <div className="page-hero-main">
-              <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/50 bg-bg-surface shadow-sm page-hero-badge-gap">
-                <Sparkles className="w-4 h-4 text-accent-tech" />
-                <span className="text-xs font-bold uppercase tracking-widest text-text-primary">
+              <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm page-hero-badge-gap">
+                <Sparkles className="w-3.5 h-3.5 text-accent-primary" />
+                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
                   {t<string>("chancenkarte.hub.badge")}
                 </span>
               </span>
@@ -57,7 +57,7 @@ export function ChancenkartePage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem] font-bold leading-[1.08] tracking-tight text-text-primary"
+                className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold leading-[1.08] tracking-tight text-text-primary"
               >
                 {t<string>("chancenkarte.hub.title")}
               </m.h1>
@@ -88,7 +88,7 @@ export function ChancenkartePage() {
               {(["validity", "minPoints", "workAllowance", "familyJoin"] as const).map((k) => (
                 <div
                   key={k}
-                  className="p-5 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md shadow-sm hover:border-accent-tech/30 transition-all"
+                  className="p-5 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md shadow-sm hover:border-accent-primary/30 hover:shadow-md transition-all duration-200"
                 >
                   <p className="text-[10px] uppercase tracking-widest text-text-muted">
                     {t<string>(`chancenkarte.hub.quickFacts.${k}.label`)}

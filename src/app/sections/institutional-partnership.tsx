@@ -295,8 +295,7 @@ export function InstitutionalPartnershipPage() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.07 }}
-                className="font-black text-text-primary leading-[0.95] tracking-tight mb-5 lg:mb-5"
-                style={{ fontSize: "clamp(2.25rem, 5vw, 4rem)" }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold text-text-primary leading-[1.08] tracking-tight mb-5 lg:mb-5"
               >
                 {tx("institutional.title", "Built for Institutions\nthat Move Fast.")}
               </m.h1>

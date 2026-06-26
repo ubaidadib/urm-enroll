@@ -62,7 +62,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4.5rem] 4xl:text-[5rem] font-bold mb-4 sm:mb-5 lg:mb-4 leading-[1.08] tracking-tight text-text-primary"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold mb-4 sm:mb-5 lg:mb-4 leading-[1.08] tracking-tight text-text-primary"
               >
                 {t<string>("about.title")}
               </m.h1>

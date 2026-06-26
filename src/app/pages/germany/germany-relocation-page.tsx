@@ -16,8 +16,8 @@ export function GermanyRelocationPage() {
       <SeoManager path="/germany-relocation" pageKey="germanyRelocation" />
       <section className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden bg-bg-primary border-b border-border/50 transition-colors duration-500">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
+          <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-primary/6 rounded-full blur-[130px]" />
+          <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-tech/6 rounded-full blur-[130px]" />
           <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:48px_48px]" />
           </div>
@@ -31,11 +31,11 @@ export function GermanyRelocationPage() {
             ]}
           />
           </div>
-          <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/50 bg-bg-surface shadow-sm text-xs font-bold uppercase tracking-widest text-text-primary page-hero-badge-gap">
-            <Plane className="w-4 h-4 text-accent-tech" />
+          <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm text-xs font-bold uppercase tracking-widest text-accent-primary page-hero-badge-gap">
+            <Plane className="w-3.5 h-3.5 text-accent-primary" />
             {t<string>("germany.relocation.hero.badge")}
           </span>
-          <h1 className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem] font-bold tracking-tight leading-[1.08] text-text-primary">
+          <h1 className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold tracking-tight leading-[1.08] text-text-primary">
             {t<string>("germany.relocation.hero.title")}
           </h1>
           <p className="mt-4 lg:mt-4 max-w-3xl lg:max-w-none text-xl text-text-secondary leading-relaxed">

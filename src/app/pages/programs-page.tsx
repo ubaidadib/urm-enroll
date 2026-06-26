@@ -423,7 +423,7 @@ export function ProgramsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.05 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem] font-bold tracking-tight leading-[1.08] text-text-primary"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold tracking-tight leading-[1.08] text-text-primary"
                 >
                   {t<string>("programs.listing.hero.title")}
                 </m.h1>

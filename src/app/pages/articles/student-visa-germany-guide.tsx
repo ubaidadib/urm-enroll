@@ -521,7 +521,7 @@ export function StudentVisaGermanyGuidePage() {
               <Shield className="w-3.5 h-3.5" />
               {content.heroTagline}
             </span>
-            <h1 className="text-2xl md:text-4xl font-black text-text-primary tracking-tight mb-3">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] font-bold text-text-primary tracking-tight leading-[1.08] mb-3">
               {content.title}
             </h1>
             <p className="text-base text-text-secondary mb-5 max-w-2xl">{content.description}</p>

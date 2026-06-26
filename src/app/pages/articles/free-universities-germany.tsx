@@ -92,7 +92,7 @@ export function FreeUniversitiesGermanyPage() {
         />
         </div>
         <article className="rounded-2xl border border-border/50 bg-bg-surface p-8 md:p-12">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-text-primary tracking-tight">{copy.title}</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] font-bold text-text-primary tracking-tight leading-[1.08]">{copy.title}</h1>
           <p className="mt-4 text-lg text-text-secondary">{copy.description}</p>
           <div className="mt-8 space-y-5 text-text-secondary leading-relaxed">
             {copy.paragraphs.map((paragraph) => (
