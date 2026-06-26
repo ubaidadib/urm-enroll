@@ -647,7 +647,7 @@ export function ProgramsPage() {
 
         <div className="relative z-10 px-[var(--content-gutter)]">
           <div className="mx-auto max-w-7xl">
-            <section className="mt-10">
+            <section className="mt-10 pb-12">
               <div className="flex flex-col gap-3 border-b border-border/50 pb-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-text-secondary">
