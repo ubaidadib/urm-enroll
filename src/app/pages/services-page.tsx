@@ -75,7 +75,7 @@ export function ServicesPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 lg:mb-5 tracking-tight leading-[1.1] text-text-primary"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem] font-bold mb-4 lg:mb-5 tracking-tight leading-[1.08] text-text-primary"
               >
                 {t<string>("services.title")}
               </m.h1>

@@ -32,7 +32,7 @@ export function FeaturedUniversitiesCarousel() {
 
   const visible = useMemo(() => {
     if (featured.length === 0) return [];
-    const count = Math.min(3, featured.length);
+    const count = Math.min(4, featured.length);
     return Array.from({ length: count }, (_, i) => featured[(currentIndex + i) % featured.length])
       .filter((university): university is (typeof featured)[number] => Boolean(university));
   }, [featured, currentIndex]);
@@ -54,19 +54,19 @@ export function FeaturedUniversitiesCarousel() {
   }
 
   return (
-    <section className="relative py-14 sm:py-20 md:py-24 overflow-hidden section-gradient">
+    <section className="relative page-section-y overflow-hidden section-gradient">
       <div className="absolute inset-0 pointer-events-none opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       <div className="absolute -top-20 -right-16 w-[24rem] h-[24rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(212,175,55,0.06)" }} />
       <div className="absolute -bottom-20 -left-10 w-[20rem] h-[20rem] rounded-full blur-[100px] pointer-events-none" style={{ background: "rgba(0,184,217,0.06)" }} />
 
       <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
-        <div className="mb-9 flex items-end justify-between gap-4">
+        <div className="page-section-header-gap flex items-end justify-between gap-4">
           <div>
             <p className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase mb-3 font-semibold" style={{ color: "rgb(212,175,55)" }}>
               <Sparkles className="w-3.5 h-3.5" />
               {t<string>("home.featuredUniversities.badge")}
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-text-primary">{t<string>("home.featuredUniversities.title")}</h2>
+            <h2 className="text-3xl md:text-4xl 3xl:text-5xl font-bold tracking-tight text-text-primary">{t<string>("home.featuredUniversities.title")}</h2>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
@@ -106,7 +106,7 @@ export function FeaturedUniversitiesCarousel() {
               animate="center"
               exit="exit"
               transition={SLIDE_TRANSITION}
-              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"
+              className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-5"
             >
               {visible.map((university) => (
                 <UniversityCardModern

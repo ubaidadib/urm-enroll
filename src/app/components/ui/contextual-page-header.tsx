@@ -73,10 +73,10 @@ export function ContextualPageHeader({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.05 }}
-              className={`font-bold text-text-primary tracking-tight leading-[1.1] ${
+              className={`font-bold text-text-primary tracking-tight leading-[1.08] ${
                 isListing
-                  ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl"
-                  : "text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl"
+                  ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem]"
+                  : "text-3xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 3xl:text-[4.5rem] 4xl:text-[5.5rem]"
               }`}
             >
               {title}

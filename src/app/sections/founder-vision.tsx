@@ -52,11 +52,11 @@ export function FounderVision() {
             </span>
           </m.div>
           
-          <m.h2 
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-5xl font-bold mb-6 tracking-tight leading-[1.1] text-text-primary"
+            className="text-4xl md:text-5xl lg:text-5xl 3xl:text-6xl font-bold mb-6 tracking-tight leading-[1.08] text-text-primary"
           >
             {t<string>('founder.titleLine1')} <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-primary to-accent-tech">
@@ -95,7 +95,7 @@ export function FounderVision() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className={`absolute -bottom-8 ${dir === 'rtl' ? '-left-8' : '-right-8'} backdrop-blur-xl rounded-3xl p-8 shadow-2xl max-w-xs`}
+                className={`absolute -bottom-6 ${dir === 'rtl' ? '-left-4 lg:-left-8' : '-right-4 lg:-right-8'} backdrop-blur-xl rounded-3xl p-6 lg:p-8 shadow-2xl max-w-[260px] lg:max-w-xs`}
                 style={{ background: "rgba(8,14,28,0.85)", border: "1.5px solid rgba(212,175,55,0.2)" }}
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">

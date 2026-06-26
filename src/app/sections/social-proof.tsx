@@ -125,7 +125,7 @@ export function SocialProof() {
     <section
       id="social-proof"
       ref={sectionRef}
-      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
+      className="relative page-section-y px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
       dir={dir}
     >
       {/* Ambient glows — static, no animation */}
@@ -163,7 +163,7 @@ export function SocialProof() {
                 </span>
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] tracking-tight mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl 3xl:text-5xl font-bold text-[var(--color-text-primary)] tracking-tight mb-3">
                 {t<string>("socialProof.title")}
               </h2>
 

@@ -60,7 +60,7 @@ export function AboutOverview() {
                       <div className="mt-1 p-0.5 rounded-full bg-emerald-500/20">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                       </div>
-                      <span className="font-medium text-sm" style={{ color: "rgb(212,224,239)" }}>{point}</span>
+                      <span className="font-medium text-sm text-text-secondary">{point}</span>
                     </li>
                   ))}
                 </ul>
@@ -104,7 +104,7 @@ export function AboutOverview() {
                       <div className="mt-1 p-0.5 rounded-full bg-indigo-500/20">
                         <Zap className="w-4 h-4 text-indigo-500" />
                       </div>
-                      <span className="font-medium text-sm" style={{ color: "rgb(212,224,239)" }}>{point}</span>
+                      <span className="font-medium text-sm text-text-secondary">{point}</span>
                     </li>
                   ))}
                 </ul>

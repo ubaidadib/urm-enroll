@@ -82,7 +82,7 @@ export function DestinationsCompact() {
   return (
     <section
       dir={dir}
-      className="relative py-16 sm:py-24 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -91,7 +91,7 @@ export function DestinationsCompact() {
         <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
       </div>
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10 space-y-10 sm:space-y-16">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] w-full relative z-10 space-y-10 sm:space-y-16 3xl:space-y-20">
 
         {/* ── Section Header ── */}
         <m.div
@@ -107,7 +107,7 @@ export function DestinationsCompact() {
                 {tx("destinations.badge", "Global Access")}
               </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold leading-tight tracking-tight text-text-primary">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-5xl 4xl:text-6xl font-bold leading-tight tracking-tight text-text-primary">
               {tx("destinations.compact.title", "Study Destinations.")}
             </h2>
             <p className="mt-2 sm:mt-3 text-sm sm:text-base md:text-lg max-w-lg leading-relaxed text-text-muted">
@@ -142,11 +142,11 @@ export function DestinationsCompact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 + i * 0.07 }}
-              className="p-3 sm:p-5 rounded-xl sm:rounded-2xl transition-all duration-300 surface-glass-subtle"
+              className="p-3 sm:p-5 3xl:p-6 rounded-xl sm:rounded-2xl transition-all duration-300 surface-glass-subtle"
             >
               <Icon className="w-4 h-4 sm:w-5 sm:h-5 mb-2 sm:mb-3" style={{ color }} />
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
-              <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-wide mt-0.5 sm:mt-1 text-text-disabled leading-tight">{label}</div>
+              <div className="text-xl sm:text-2xl md:text-3xl 3xl:text-4xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
+              <div className="text-[10px] sm:text-xs 3xl:text-sm font-semibold uppercase tracking-wide mt-0.5 sm:mt-1 text-text-disabled leading-tight">{label}</div>
             </m.div>
           ))}
         </m.div>

@@ -16,7 +16,7 @@ export function HomeFinalCtaBanner() {
 
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Grid */}
       <div
@@ -28,13 +28,13 @@ export function HomeFinalCtaBanner() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] w-full relative z-10">
         <m.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-3xl p-8 md:p-12 lg:p-16 surface-card-elevated"
+          className="relative overflow-hidden rounded-3xl p-8 md:p-12 lg:p-14 3xl:p-16 surface-card-elevated"
         >
           {/* Blobs */}
           <div
@@ -46,7 +46,7 @@ export function HomeFinalCtaBanner() {
             style={{ width: 280, height: 280, background: "rgba(0,184,217,0.08)" }}
           />
 
-          <div className="relative z-10 grid lg:grid-cols-[1fr_300px] gap-12 items-center">
+          <div className="relative z-10 grid lg:grid-cols-[1fr_320px] xl:grid-cols-[1fr_360px] 3xl:grid-cols-[1fr_400px] gap-10 lg:gap-14 3xl:gap-16 items-center">
             {/* Left */}
             <div>
               <p
@@ -57,7 +57,7 @@ export function HomeFinalCtaBanner() {
               </p>
 
               <h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-6xl font-bold tracking-tight leading-[1.08] mb-5 text-text-primary"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 3xl:text-5xl 4xl:text-6xl font-bold tracking-tight leading-[1.08] mb-5 text-text-primary"
               >
                 {t<string>("home.finalCta.titleLead")}{" "}
                 <span style={{ color: "rgb(212,175,55)" }}>{t<string>("home.finalCta.titleHighlight")}</span>

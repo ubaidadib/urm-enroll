@@ -94,7 +94,7 @@ export function GermanyWorkforceModule() {
   return (
     <section
       id="germany-workforce"
-      className="relative py-16 sm:py-24 md:py-32 lg:py-20 xl:py-24 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
+      className="relative page-section-y px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* --- 1. Architectural Background --- */}
       <div className="absolute inset-0 pointer-events-none">

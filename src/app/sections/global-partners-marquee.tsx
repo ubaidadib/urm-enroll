@@ -29,7 +29,7 @@ export function GlobalPartnersMarquee() {
       />
 
       {/* Header */}
-      <div className={`max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full mb-10 sm:mb-14 text-center ${dir === "rtl" ? "rtl-text" : ""}`}>
+      <div className={`max-w-7xl mx-auto px-[var(--content-gutter)] w-full page-section-header-gap text-center ${dir === "rtl" ? "rtl-text" : ""}`}>
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +48,7 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-4xl font-bold mb-4 tracking-tight text-text-primary"
+          className="text-3xl md:text-4xl 3xl:text-5xl font-bold mb-4 tracking-tight text-text-primary"
         >
           {t<string>("globalPartners.title")}
         </m.h2>
@@ -58,7 +58,7 @@ export function GlobalPartnersMarquee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-lg max-w-2xl mx-auto leading-relaxed text-text-muted"
+          className="text-lg 3xl:text-xl max-w-2xl 3xl:max-w-3xl mx-auto leading-relaxed text-text-muted"
         >
           {t<string>("globalPartners.description")}
         </m.p>

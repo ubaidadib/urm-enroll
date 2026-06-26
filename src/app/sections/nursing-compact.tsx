@@ -19,7 +19,7 @@ export function NursingCompact() {
   return (
     <section
       dir={dir}
-      className="relative py-16 sm:py-24 bg-bg-primary overflow-hidden transition-colors duration-500"
+      className="relative page-section-y bg-bg-primary overflow-hidden transition-colors duration-500"
     >
       {/* Ambient — very light, no visible borders */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

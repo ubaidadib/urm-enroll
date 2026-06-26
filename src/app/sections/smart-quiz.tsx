@@ -187,7 +187,7 @@ export function SmartQuiz() {
   );
 
   return (
-    <section className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500">
+    <section className="relative page-section-y px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500">
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 right-0 w-150 h-150 bg-accent-tech/5 rounded-full blur-[120px]" />

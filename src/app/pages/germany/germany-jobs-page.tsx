@@ -34,7 +34,7 @@ export function GermanyJobsPage() {
             <Briefcase className="w-4 h-4 text-accent-tech" />
             {t<string>("germany.jobs.hero.badge")}
           </span>
-          <h1 className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight leading-[1.1] text-text-primary">
+          <h1 className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem] font-bold tracking-tight leading-[1.08] text-text-primary">
             {t<string>("germany.jobs.hero.title")}
           </h1>
           <p className="mt-4 lg:mt-4 max-w-3xl lg:max-w-none text-xl text-text-secondary leading-relaxed">

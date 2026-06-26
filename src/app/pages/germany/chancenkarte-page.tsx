@@ -57,7 +57,7 @@ export function ChancenkartePage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35 }}
-                className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold leading-[1.1] tracking-tight text-text-primary"
+                className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl 3xl:text-[4rem] 4xl:text-[5rem] font-bold leading-[1.08] tracking-tight text-text-primary"
               >
                 {t<string>("chancenkarte.hub.title")}
               </m.h1>

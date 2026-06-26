@@ -87,7 +87,7 @@ export function AgentPortalShowcase() {
 
   return (
     <section
-      className="py-16 sm:py-28 bg-bg-primary relative overflow-hidden transition-colors duration-500"
+      className="page-section-y bg-bg-primary relative overflow-hidden transition-colors duration-500"
       aria-labelledby="agent-portal-heading"
     >
       {/* Ambient */}

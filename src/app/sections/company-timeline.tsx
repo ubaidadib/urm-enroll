@@ -47,7 +47,7 @@ export function CompanyTimeline() {
   return (
     <section
       id="timeline"
-      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       {/* --- Ambient Background (Matches Destinations Page) --- */}
       <div className="absolute inset-0 pointer-events-none">

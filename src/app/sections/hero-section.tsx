@@ -97,13 +97,13 @@ function DestinationCardItem({ card, index, shouldReduceMotion }: {
         x: { delay: 0.5 + index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] },
       }}
       style={{ transform: `translate(${card.offset.x}px, ${card.offset.y}px) rotate(${card.rotation}deg)` }}
-      className="surface-glass hero-destination-card rounded-2xl p-4 hover:border-accent-primary/40 transition-colors duration-300"
+      className="surface-glass hero-destination-card rounded-2xl p-4 3xl:p-5 hover:border-accent-primary/40 transition-colors duration-300"
     >
-      <div className="flex items-center gap-3 mb-1">
-        <span className="text-2xl leading-none">{card.flag}</span>
-        <span className="text-text-primary font-semibold text-sm">{card.country}</span>
+      <div className="flex items-center gap-3 mb-1.5">
+        <span className="text-2xl 3xl:text-3xl leading-none">{card.flag}</span>
+        <span className="text-text-primary font-semibold text-sm 3xl:text-base">{card.country}</span>
       </div>
-      <p className="text-text-muted text-xs">{card.programs}</p>
+      <p className="text-text-muted text-xs 3xl:text-sm">{card.programs}</p>
     </m.div>
   );
 }
@@ -220,7 +220,7 @@ export function HeroSection() {
       </div>
 
       {/* ── 2. Main Hero Content ──────────────────────────────────────────── */}
-      <div className="relative z-10 max-w-7xl mx-auto px-[var(--content-gutter)] pt-10 sm:pt-14 md:pt-20 lg:pt-12 xl:pt-14 3xl:pt-16 pb-10 sm:pb-14 md:pb-20 lg:pb-12 xl:pb-14 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-8 xl:gap-10 items-center min-w-0 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-[var(--content-gutter)] pt-10 sm:pt-14 md:pt-20 lg:pt-12 xl:pt-14 3xl:pt-20 4xl:pt-24 pb-10 sm:pb-14 md:pb-20 lg:pb-12 xl:pb-14 3xl:pb-20 4xl:pb-24 grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 xl:gap-14 3xl:gap-16 items-center min-w-0 w-full">
 
         {/* Left Column */}
         <div className={isRtl ? "text-right" : "text-left"}>
@@ -243,7 +243,7 @@ export function HeroSection() {
           >
             <h1
               id="hero-title"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.25rem] font-bold leading-[1.1] tracking-tight mb-4 lg:mb-4 text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold leading-[1.08] tracking-tight mb-4 lg:mb-4 text-text-primary"
             >
               {/* Line 1 with gold country word */}
               <span className="block">
@@ -329,7 +329,7 @@ export function HeroSection() {
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35, duration: 0.6 }}
-          className="hidden lg:block relative w-full max-w-md justify-self-end"
+          className="hidden lg:flex relative w-full max-w-[420px] xl:max-w-[480px] 3xl:max-w-[560px] justify-self-end items-center justify-center"
           aria-hidden="true"
         >
           {/* Glow background */}
@@ -349,7 +349,7 @@ export function HeroSection() {
           )}
 
           {/* Card grid */}
-          <div className="relative grid grid-cols-2 gap-3 p-4">
+          <div className="relative grid grid-cols-2 gap-3 sm:gap-4 p-4 w-full">
             {DESTINATIONS.map((card, i) => (
               <DestinationCardItem
                 key={card.country}
@@ -378,23 +378,21 @@ export function HeroSection() {
         ref={statsRef}
         className="relative z-10 border-t stats-bar-surface"
       >
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 py-6 sm:py-8 md:py-10 lg:py-7 xl:py-8 w-full">
+        <div className="max-w-7xl mx-auto px-[var(--content-gutter)] py-7 sm:py-9 md:py-10 lg:py-8 xl:py-9 3xl:py-11 w-full">
           <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={statsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-0"
+            className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-7 md:gap-0"
           >
             {STATS.map((stat, i) => (
               <div
                 key={stat.labelKey}
-                className={`flex flex-col items-center text-center px-4 border-accent-primary/15 ${
+                className={`flex flex-col items-center text-center px-4 xl:px-6 border-accent-primary/15 ${
                   i < STATS.length - 1 ? "md:border-r" : ""
                 }`}
               >
-                <span
-                  className="text-3xl sm:text-4xl font-bold tabular-nums mb-1 text-accent-primary"
-                >
+                <span className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 3xl:text-5xl font-bold tabular-nums mb-1.5 text-accent-primary">
                   <CountUp
                     target={stat.value}
                     suffix={stat.suffix}
@@ -402,7 +400,7 @@ export function HeroSection() {
                     shouldReduceMotion={shouldReduceMotion}
                   />
                 </span>
-                <span className="text-xs sm:text-sm font-medium text-text-disabled">
+                <span className="text-xs sm:text-sm 3xl:text-base font-medium text-text-disabled">
                   {t<string>(stat.labelKey)}
                 </span>
               </div>

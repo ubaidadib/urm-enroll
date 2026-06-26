@@ -31,7 +31,7 @@ export function CaseStudies() {
   return (
     <section
       id="case-studies"
-      className="relative overflow-hidden section-gradient page-section-y px-[var(--content-gutter)]"
+      className="relative overflow-hidden section-gradient page-section-y"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -44,7 +44,7 @@ export function CaseStudies() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] relative z-10">
         
         {/* --- Section Header --- */}
         <m.div
