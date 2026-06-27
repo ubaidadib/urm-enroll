@@ -113,26 +113,51 @@ const run = async () => {
     headless: true,
     ...(chromePath ? { executablePath: chromePath } : {}),
   });
-  const page = await browser.newPage();
+
+  const failures = [];
 
   try {
     for (const route of routes) {
       const url = `http://${host}:${port}${route}`;
-      await page.goto(url, { waitUntil: "networkidle2", timeout: 45000 });
-      await waitForRenderedContent(page);
+      // Fresh page per route so a single stalled route cannot poison shared
+      // browser state for the rest of the run.
+      const page = await browser.newPage();
+      try {
+        // "domcontentloaded" (not "networkidle2") so a slow third-party embed
+        // (Instagram, Calendly, GA) cannot hang the navigation indefinitely;
+        // waitForRenderedContent confirms the SPA actually hydrated.
+        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
+        await waitForRenderedContent(page);
 
-      const html = await page.content();
-      writeRouteHtml(route, html);
-      console.log(`[prerender] ${route}`);
+        const html = await page.content();
+        writeRouteHtml(route, html);
+        console.log(`[prerender] ${route}`);
+      } catch (error) {
+        // Degrade gracefully: ship the SPA shell for this route and keep going
+        // rather than failing the entire build on one flaky route.
+        failures.push({ route, message: error?.message || String(error) });
+        writeRouteHtml(route, fallbackHtml);
+        console.warn(`[prerender] WARN ${route} fell back to SPA shell: ${error?.message || error}`);
+      } finally {
+        await page.close().catch(() => {});
+      }
     }
   } finally {
     await browser.close();
     server.close();
   }
+
+  if (failures.length > 0) {
+    console.warn(
+      `[prerender] completed with ${failures.length}/${routes.length} route(s) using the SPA-shell fallback.`,
+    );
+  } else {
+    console.log(`[prerender] all ${routes.length} routes prerendered successfully.`);
+  }
 };
 
 run().catch((error) => {
-  console.error("[prerender] failed", error);
+  console.error("[prerender] fatal", error);
   server.close();
   process.exit(1);
 });
