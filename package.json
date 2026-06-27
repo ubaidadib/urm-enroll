@@ -67,6 +67,6 @@
     "basic-ftp": "^5.2.3"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   }
 }
