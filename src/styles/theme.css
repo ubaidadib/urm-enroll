@@ -116,7 +116,9 @@
   --text-primary: 11 21 48;
   --text-secondary: 31 41 55;
   --text-muted: 79 107 138;
-  --text-disabled: 137 156 184;
+  /* #647795 = 4.55:1 on near-white. This token is widely used as a subtle
+     LABEL color (not just for disabled controls), so it must meet AA. */
+  --text-disabled: 100 119 149;
   --border-default: 212 224 239;
   --border-strong: 171 192 218;
   --border-interactive: 79 107 138;

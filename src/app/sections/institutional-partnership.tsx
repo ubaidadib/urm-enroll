@@ -430,7 +430,7 @@ export function InstitutionalPartnershipPage() {
                     >
                       <Icon
                         className="w-4 h-4 transition-colors"
-                        style={{ color: isActive ? color : "#94a3b8" }}
+                        style={{ color: isActive ? color : "#647795" }}
                       />
                     </div>
                     <div className={`text-sm font-black leading-tight ${isActive ? "text-text-primary" : "text-text-muted"}`}>
@@ -663,7 +663,7 @@ export function InstitutionalPartnershipPage() {
                             style={
                               isDone   ? { backgroundColor: "#10b981", borderColor: "#10b981", color: "#fff" } :
                               isActive ? { backgroundColor: "#3b82f6", borderColor: "#3b82f6", color: "#fff" } :
-                                         { borderColor: "#475569", color: "#94a3b8" }
+                                         { borderColor: "#475569", color: "#647795" }
                             }
                           >
                             {isDone ? <CheckCircle2 className="w-3.5 h-3.5" /> : stepNum}

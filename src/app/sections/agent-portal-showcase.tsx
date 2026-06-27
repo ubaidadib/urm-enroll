@@ -32,7 +32,7 @@ const COMMISSION_TIERS: Tier[] = [
     name: { en: "Starter", ar: "مبتدئ", de: "Starter" },
     volume: { en: "1–10 students / yr", ar: "١–١٠ طلاب / سنة", de: "1–10 Studenten / Jahr" },
     commission: "8%",
-    color: "#94a3b8",
+    color: "#647795",
     features: {
       en: ["Basic dashboard", "Email support", "Monthly reports"],
       ar: ["لوحة تحكم أساسية", "دعم بريد إلكتروني", "تقارير شهرية"],
