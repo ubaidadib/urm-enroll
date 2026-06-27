@@ -27,7 +27,8 @@
     "check:page-style": "node scripts/check-page-style-consistency.mjs",
     "security:audit": "bash scripts/security-audit.sh",
     "check:responsive": "node scripts/responsive-audit.mjs",
-    "check:ui-tokens": "node scripts/ui-token-guard.mjs"
+    "check:ui-tokens": "node scripts/ui-token-guard.mjs",
+    "check:a11y": "node scripts/a11y-audit.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.1",
@@ -50,6 +51,7 @@
     "@types/react": "18.3.18",
     "@types/react-dom": "18.3.5",
     "@vitejs/plugin-react": "4.7.0",
+    "axe-core": "^4.12.1",
     "puppeteer": "24.43.0",
     "rollup-plugin-visualizer": "6.0.11",
     "tailwindcss": "^4.3.0",
