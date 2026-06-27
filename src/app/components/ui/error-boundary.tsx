@@ -1,5 +1,6 @@
 import { Component, type ContextType, type ErrorInfo, type ReactNode } from "react";
 import { LanguageContext } from "@/i18n/language-context-value";
+import { logger } from "@/lib/logger";
 
 type ErrorBoundaryProps = {
   children: ReactNode;
@@ -19,8 +20,34 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     return { hasError: true };
   }
 
-  componentDidCatch(_error: Error, _info: ErrorInfo) {
-    // Intentionally left blank to avoid leaking stack traces in production.
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    // Report the crash so it is not invisible. Stack traces are still never
+    // rendered to the UI — they only go to the (redacting) logger and the
+    // server-side monitoring sink.
+    logger.error({ message: "ErrorBoundary caught a crash", context: { name: error?.name } });
+
+    if (typeof window === "undefined") return;
+
+    const payload = JSON.stringify({
+      message: String(error?.message || "").slice(0, 500),
+      name: String(error?.name || "").slice(0, 120),
+      componentStack: String(info?.componentStack || "").slice(0, 4000),
+      url: window.location?.href?.slice(0, 2000),
+      userAgent: navigator.userAgent?.slice(0, 500),
+    });
+
+    try {
+      // keepalive so the report survives the navigation/unmount during a crash.
+      void fetch("/api/client-error", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+        credentials: "omit",
+        keepalive: true,
+      }).catch(() => {});
+    } catch {
+      // Reporting must never throw from within the boundary.
+    }
   }
 
   render() {
