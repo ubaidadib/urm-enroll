@@ -708,20 +708,19 @@ Config: [`src/data/quiz-config.ts`](src/data/quiz-config.ts).
 
 ## API Endpoints (Serverless)
 
-All endpoints live in `api/` and are composed with `withSecurity()` from `middleware/security.js`. None of them require auth — they exist to receive validated, rate-limited, anonymous form submissions.
+The API is **resource-oriented and consolidated to 7 Serverless Functions** (Vercel Hobby caps deployments at 12). Same-resource handlers share one function via Vercel dynamic `[param]` filename routing; business logic lives in `lib/` and routes stay thin (`withSecurity()` + dispatch).
 
-| Endpoint | Method | Purpose | Notes |
+| Function (file) | Public path(s) | Method | Purpose |
 | --- | --- | --- | --- |
-| [`/api/lead`](api/lead.js) | POST | Lead capture (smart-lead-form + Chancenkarte quiz). | zod-validated, Turnstile, CSRF, origin, `maxBodyBytes 10KB`, 20/15min rate limit, per-email throttle 3/24h. Returns 204. |
-| [`/api/contact`](api/contact.js) | POST | Contact form. | Sends transactional email via SMTP/nodemailer. |
-| [`/api/partner`](api/partner.js) | POST | Partnership intake (institutions, agents). | Same hardening stack as `/api/lead`. |
-| [`/api/instagram-feed`](api/instagram-feed.js) | GET | Public Instagram feed with normalized thumbnails and stale-cache fallback. | Backed by `lib/instagram-feed.js`; supports `?limit=1..30`. |
-| [`/api/instagram`](api/instagram.js) | GET | Backward-compatible alias for the public Instagram feed. | Re-exports `api/instagram-feed.js`. |
-| [`/api/health`](api/health.js) | GET | Liveness probe (build info + timestamp). | Used by uptime monitoring. |
+| [`api/forms/[type].js`](api/forms/[type].js) | `/api/forms/{lead,contact,partner,application}` — and legacy `/api/{lead,contact,partner,application}` via rewrite | POST | All public form submissions. Handlers in [`lib/forms/`](lib/forms); shared email helpers in [`lib/email.js`](lib/email.js). zod-validated, Turnstile, CSRF, origin, per-email throttle, durable store + delivery audit. |
+| [`api/catalog/[resource].js`](api/catalog/[resource].js) | `/api/catalog/{universities,courses}` | GET | Read-only catalog from Supabase. |
+| [`api/internal/[action].js`](api/internal/[action].js) | `/api/internal/{sync,sync-cron,instagram-feed-refresh}` | GET/POST | Privileged ops. `sync` = worker-secret header; `sync-cron` + `instagram-feed-refresh` = `Bearer CRON_SECRET`/`ENROLL_SYNC_WORKER_SECRET`. Auth helpers in [`lib/api-auth.js`](lib/api-auth.js). |
+| [`api/instagram-feed.js`](api/instagram-feed.js) | `/api/instagram-feed` | GET | Public Instagram feed (`?limit=1..30`), stale-cache fallback. |
+| [`api/media/image.js`](api/media/image.js) | `/api/media/image` | GET | SSRF-guarded image proxy. |
+| [`api/health.js`](api/health.js) | `/api/health` | GET/HEAD | Readiness probe (status + uptime + optional DB check → 503 if DB down). |
+| [`api/client-error.js`](api/client-error.js) | `/api/client-error` | POST | Client crash-report sink (from the React ErrorBoundary). |
 
-Internal-only refresh endpoint:
-
-- [`/api/internal/instagram-feed-refresh`](api/internal/instagram-feed-refresh.js) — secured cron/on-demand refresh route authorized by `CRON_SECRET` or `ENROLL_SYNC_WORKER_SECRET`.
+> **Consolidation history:** 14 → 7 functions. Forms (4→1), catalog (2→1), internal (3→1), and a dead `api/instagram.js` re-export removed. The Vercel cron target `/api/internal/sync-cron` is unchanged (it resolves to `[action]=sync-cron`).
 
 ### `withSecurity()` options reference
 
