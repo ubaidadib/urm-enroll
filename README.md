@@ -986,7 +986,8 @@ The current baseline:
 | `TURNSTILE_SECRET_KEY` | yes | Server-side Turnstile verification secret. |
 | `INSTAGRAM_ACCESS_TOKEN` | optional | Instagram Graph API access token. |
 | `INSTAGRAM_BUSINESS_ACCOUNT_ID` | optional | IG Business Account ID. |
-| `KV_REST_API_URL` / `KV_REST_API_TOKEN` | optional | Vercel KV — enables durable per-email throttling across regions. |
+| `KV_REST_API_URL` / `KV_REST_API_TOKEN` | optional | Vercel KV — backs the per-email **and** generic per-IP rate limiters across serverless instances. Without it, limiters fall back to per-instance in-memory counts. |
+| `DATABASE_URL` | optional (recommended) | Postgres connection. Also enables durable storage of form submissions (`form_submissions` table, migration `003`) with an email-delivery audit; without it, submissions are email-only. |
 | `NODE_ENV` | yes | `production` in deployed environments. |
 
 ---

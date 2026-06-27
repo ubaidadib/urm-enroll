@@ -9,6 +9,11 @@ import {
 import { logError } from "../middleware/errorHandler.js";
 import { withSecurity } from "../middleware/security.js";
 import { verifyTurnstileToken } from "../middleware/turnstile.js";
+import {
+  hashIp,
+  markSubmissionDelivered,
+  recordSubmission,
+} from "../lib/form-submission-store.js";
 
 const payloadSchema = z.object({
   fullName: z.string().trim().min(1).max(120).optional(),
@@ -121,14 +126,36 @@ async function handler(request, response) {
     replyTo: safeEmail || undefined,
   };
 
+  // Persist first so the lead is durable even if SMTP delivery later fails.
+  const submissionId = await recordSubmission({
+    formType: "lead",
+    email: safeEmail || null,
+    fullName: safeName || null,
+    destination: safeDestination || null,
+    language: safeLanguage || null,
+    source: safeSource || null,
+    ipHash: hashIp(getClientIp(request)),
+    fields: {
+      studyLevel: safeStudyLevel,
+      field: safeField,
+      budget: safeBudget,
+      timeline: safeTimeline,
+      matchScore: safeMatchScore,
+    },
+  });
+
   try {
     await transporter.sendMail(mailOptions);
+    await markSubmissionDelivered(submissionId, { delivered: true });
     if (email) {
       await recordSuccessfulEmailSubmission(email, { windowMs: 24 * 60 * 60 * 1000 });
     }
     response.status(204).end();
   } catch (error) {
+    await markSubmissionDelivered(submissionId, { delivered: false, error: error?.message });
     logError(error, request, { endpoint: "api/lead" });
+    // The lead is already persisted; surface failure so the client can retry,
+    // but it is not lost.
     response.status(500).json({ error: "Lead delivery failed" });
   }
 }
