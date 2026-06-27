@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { m, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
+import { m, AnimatePresence, useScroll, useMotionValueEvent, useReducedMotion } from "motion/react";
 import {
   Menu,
   X,
   Globe2,
+  Check,
   ChevronRight,
   Sparkles,
   Heart,
@@ -22,6 +23,13 @@ import { hasSavedLanguageChoice } from "@/i18n/detectLanguage";
 import { SEO_EVENTS } from "@/lib/analytics";
 import { useFavorites } from "@/app/context/favorites-context";
 import { NavDropdown } from "../ui/nav-dropdown";
+
+// Endonyms shown in the language menu so each option reads in its own language.
+const LANGUAGE_NATIVE_NAMES: Record<string, string> = {
+  en: "English",
+  ar: "العربية",
+  de: "Deutsch",
+};
 
 const DESKTOP_PRIMARY_ITEMS = [
   { href: "/universities", labelKey: "header.nav.universities" },
@@ -61,6 +69,7 @@ export function Header({ isCompact = false }: HeaderProps) {
   const { themeSource, setTheme } = useTheme();
   const { totalFavoritesCount } = useFavorites();
   const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -261,56 +270,102 @@ export function Header({ isCompact = false }: HeaderProps) {
             </div>
 
             <div className="relative">
-              <button
+              <m.button
                 onClick={() => setIsLanguageOpen((v) => !v)}
+                whileTap={reduceMotion ? undefined : { scale: 0.94 }}
                 aria-haspopup="listbox"
                 aria-expanded={isLanguageOpen}
                 aria-label={`${t<string>("header.selectLanguage")}: ${language.toUpperCase()}`}
                 title={`${t<string>("header.selectLanguage")}: ${language.toUpperCase()}`}
-                className="h-10 w-10 rounded-full border border-border/65 bg-background-surface/92 hover:bg-background-hover hover:border-border transition-all flex items-center justify-center"
+                className="group h-10 ps-2.5 pe-3 rounded-full border border-border/65 bg-background-surface/92 hover:bg-background-hover hover:border-border transition-all flex items-center gap-1.5"
               >
-                <Globe2 className="w-3.5 h-3.5 text-text-secondary" />
+                <Globe2 className="w-3.5 h-3.5 text-text-secondary group-hover:text-accent-primary transition-colors" />
+                {/* Current language code with an animated swap on change. */}
+                <span className="relative inline-grid h-4 w-6 place-items-center overflow-hidden" aria-hidden="true">
+                  <AnimatePresence initial={false} mode="wait">
+                    <m.span
+                      key={language}
+                      initial={reduceMotion ? false : { y: 8, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={reduceMotion ? { opacity: 0 } : { y: -8, opacity: 0 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="absolute inset-0 grid place-items-center text-[11px] font-bold tracking-wide text-text-primary"
+                    >
+                      {language.toUpperCase()}
+                    </m.span>
+                  </AnimatePresence>
+                </span>
                 <span className="sr-only">{language.toUpperCase()}</span>
-              </button>
+              </m.button>
 
               <AnimatePresence>
                 {isLanguageOpen && (
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setIsLanguageOpen(false)} />
                     <m.div
-                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.97 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                      className="absolute right-0 top-full mt-3 w-56 p-2 rounded-2xl border border-border/70 glass-card-medium z-50"
+                      exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.97 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute end-0 top-full mt-3 w-60 p-2 rounded-2xl border border-border/70 glass-card-medium z-50"
                       role="listbox"
                       aria-label={t<string>("header.selectLanguage")}
                     >
                       <p className="px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-text-muted">
                         {t<string>("header.selectLanguage")}
                       </p>
-                      {languageOptions.map((option) => (
-                        <button
-                          key={option.code}
-                          role="option"
-                          aria-selected={language === option.code}
-                          onClick={() => {
-                            setLanguage(option.code);
-                            SEO_EVENTS.LANGUAGE_SWITCHED(option.code);
-                            setIsLanguageOpen(false);
-                          }}
-                          className={`w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                            language === option.code
-                              ? "bg-background-hover text-text-primary"
-                              : "text-text-secondary hover:bg-background-hover hover:text-text-primary"
-                          }`}
-                        >
-                          {option.nativeLabel}
-                        </button>
-                      ))}
+                      {languageOptions.map((option, index) => {
+                        const isActive = language === option.code;
+                        return (
+                          <m.button
+                            key={option.code}
+                            role="option"
+                            aria-selected={isActive}
+                            onClick={() => {
+                              setLanguage(option.code);
+                              SEO_EVENTS.LANGUAGE_SWITCHED(option.code);
+                              setIsLanguageOpen(false);
+                            }}
+                            initial={reduceMotion ? false : { opacity: 0, x: dir === "rtl" ? -8 : 8 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.18, delay: reduceMotion ? 0 : 0.04 + index * 0.05 }}
+                            className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-xl text-start transition-colors ${
+                              isActive
+                                ? "bg-background-hover text-text-primary border border-accent-primary/45"
+                                : "text-text-secondary hover:bg-background-hover hover:text-text-primary border border-transparent"
+                            }`}
+                          >
+                            <span
+                              className={`flex items-center justify-center min-w-9 h-7 px-1.5 rounded-lg text-[11px] font-bold tracking-wide border transition-colors ${
+                                isActive
+                                  ? "bg-accent-primary/12 border-accent-primary/40 text-accent-primary"
+                                  : "bg-background-surface border-border/50 text-text-muted"
+                              }`}
+                            >
+                              {option.label}
+                            </span>
+                            <span className="flex-1 text-sm font-medium" dir="auto">
+                              {LANGUAGE_NATIVE_NAMES[option.code] ?? option.nativeLabel}
+                            </span>
+                            <AnimatePresence initial={false}>
+                              {isActive && (
+                                <m.span
+                                  initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  exit={{ scale: 0, opacity: 0 }}
+                                  transition={{ duration: 0.18, ease: "easeOut" }}
+                                >
+                                  <Check className="w-4 h-4 text-accent-primary" />
+                                </m.span>
+                              )}
+                            </AnimatePresence>
+                          </m.button>
+                        );
+                      })}
                       {hasSavedPreferences && (
                         <button
                           onClick={handleResetToSystemDefaults}
-                          className="w-full mt-1 pt-2 border-t border-border/60 px-3 py-2.5 rounded-xl text-left text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary transition-all"
+                          className="w-full mt-1 pt-2 border-t border-border/60 px-3 py-2.5 rounded-xl text-start text-sm text-text-secondary hover:bg-background-hover hover:text-text-primary transition-all"
                         >
                           {t<string>("header.useSystemDefaults")}
                         </button>
