@@ -12,7 +12,7 @@ export type ContactPayload = {
   csrfToken?: string;
 };
 
-const endpoints = ["/api/contact", "/.netlify/functions/contact"];
+const endpoints = ["/api/contact"];
 
 export const secureSubmitContact = async (payload: ContactPayload) => {
   if (typeof window === "undefined") {

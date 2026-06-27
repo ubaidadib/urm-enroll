@@ -16,7 +16,7 @@ export type LeadPayload = {
   csrfToken?: string;
 };
 
-const endpoints = ["/api/lead", "/.netlify/functions/lead"];
+const endpoints = ["/api/lead"];
 
 export const secureSubmitLead = async (payload: LeadPayload) => {
   if (typeof window === "undefined") {

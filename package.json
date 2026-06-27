@@ -63,5 +63,8 @@
   },
   "overrides": {
     "basic-ftp": "^5.2.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

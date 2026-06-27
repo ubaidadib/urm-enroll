@@ -18,7 +18,7 @@ export type PartnerPayload = {
   csrfToken?: string;
 };
 
-const endpoints = ["/api/partner", "/.netlify/functions/partner"];
+const endpoints = ["/api/partner"];
 
 export const secureSubmitPartner = async (payload: PartnerPayload) => {
   const controller = new AbortController();
