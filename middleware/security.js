@@ -4,6 +4,35 @@ import { handleApiError } from "./errorHandler.js";
 
 const apiRateBuckets = new Map();
 
+// Shared key/value store (Vercel KV / Upstash) so rate limits hold across
+// stateless serverless instances. When unconfigured, callers fall back to the
+// in-memory Map below — correct for a single long-lived process (local/dev),
+// best-effort on serverless.
+const getKvConfig = () => {
+  const url = process.env.KV_REST_API_URL || process.env.VERCEL_KV_REST_API_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.VERCEL_KV_REST_API_TOKEN;
+  if (!url || !token) return null;
+  return { url: url.replace(/\/$/, ""), token };
+};
+
+// Atomic INCR with a TTL set on first hit. Returns the post-increment count.
+const kvIncrWithTtl = async (kv, key, windowMs) => {
+  const res = await fetch(`${kv.url}/incr/${encodeURIComponent(key)}`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${kv.token}` },
+  });
+  if (!res.ok) throw new Error(`KV incr failed with status ${res.status}`);
+  const count = Number((await res.json())?.result || 0);
+  if (count === 1) {
+    const ttlSeconds = Math.max(1, Math.ceil(windowMs / 1000));
+    await fetch(`${kv.url}/expire/${encodeURIComponent(key)}/${ttlSeconds}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${kv.token}` },
+    });
+  }
+  return count;
+};
+
 const envSchema = z.object({
   URM_ALLOWED_ORIGINS: z.string().optional(),
   VITE_PUBLIC_SITE_URL: z.string().optional(),
@@ -166,7 +195,7 @@ export const enforceCors = (request, response) => {
   return true;
 };
 
-export const enforceRateLimit = (
+export const enforceRateLimit = async (
   request,
   response,
   { key = "default", windowMs = 15 * 60 * 1000, max = 100 } = {},
@@ -174,22 +203,38 @@ export const enforceRateLimit = (
   const ip = getClientIp(request);
   const now = Date.now();
   const bucketKey = `${key}:${ip}`;
-  const record = apiRateBuckets.get(bucketKey) || { count: 0, resetAt: now + windowMs };
 
-  if (now > record.resetAt) {
-    record.count = 0;
-    record.resetAt = now + windowMs;
+  let count;
+  let resetAt = now + windowMs;
+  const kv = getKvConfig();
+
+  if (kv) {
+    try {
+      count = await kvIncrWithTtl(kv, `ratelimit:${bucketKey}`, windowMs);
+    } catch {
+      // KV unreachable — fall through to the in-memory limiter below.
+      count = undefined;
+    }
   }
 
-  record.count += 1;
-  apiRateBuckets.set(bucketKey, record);
+  if (count === undefined) {
+    const record = apiRateBuckets.get(bucketKey) || { count: 0, resetAt: now + windowMs };
+    if (now > record.resetAt) {
+      record.count = 0;
+      record.resetAt = now + windowMs;
+    }
+    record.count += 1;
+    apiRateBuckets.set(bucketKey, record);
+    count = record.count;
+    resetAt = record.resetAt;
+  }
 
-  const retrySeconds = Math.max(1, Math.ceil((record.resetAt - now) / 1000));
+  const retrySeconds = Math.max(1, Math.ceil((resetAt - now) / 1000));
   response.setHeader("X-RateLimit-Limit", String(max));
-  response.setHeader("X-RateLimit-Remaining", String(Math.max(0, max - record.count)));
-  response.setHeader("X-RateLimit-Reset", String(Math.ceil(record.resetAt / 1000)));
+  response.setHeader("X-RateLimit-Remaining", String(Math.max(0, max - count)));
+  response.setHeader("X-RateLimit-Reset", String(Math.ceil(resetAt / 1000)));
 
-  if (record.count > max) {
+  if (count > max) {
     response.setHeader("Retry-After", String(retrySeconds));
     response.status(429).json({ error: "Too many attempts, please try again later." });
     return false;
@@ -261,7 +306,7 @@ export const withSecurity = (handler, options = {}) => {
         return;
       }
 
-      if (!enforceRateLimit(request, response, rateLimit)) {
+      if (!(await enforceRateLimit(request, response, rateLimit))) {
         return;
       }
 
