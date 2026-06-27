@@ -10,6 +10,11 @@ import {
 import { logError } from "../middleware/errorHandler.js";
 import { withSecurity } from "../middleware/security.js";
 import { verifyTurnstileToken } from "../middleware/turnstile.js";
+import {
+  hashIp,
+  markSubmissionDelivered,
+  recordSubmission,
+} from "../lib/form-submission-store.js";
 
 const payloadSchema = z.object({
   fullName: z.string().trim().min(1).max(120),
@@ -115,11 +120,22 @@ async function handler(req, res) {
     `,
   };
 
+  const submissionId = await recordSubmission({
+    formType: "contact",
+    email: safeEmail || null,
+    fullName: safeFullName || null,
+    source: safeTopic || null,
+    ipHash: hashIp(getClientIp(req)),
+    fields: { phone: safePhone, topic: safeTopic, subject: safeSubject, message: safeMessage },
+  });
+
   try {
     await Promise.all([transporter.sendMail(mailOptions), transporter.sendMail(confirmationMailOptions)]);
+    await markSubmissionDelivered(submissionId, { delivered: true });
     await recordSuccessfulEmailSubmission(email, { windowMs: 24 * 60 * 60 * 1000 });
     return res.status(200).json({ success: true });
   } catch (error) {
+    await markSubmissionDelivered(submissionId, { delivered: false, error: error?.message });
     logError(error, req, { endpoint: "api/contact" });
     return res.status(500).json({ error: "Failed to send message. Please try again later." });
   }

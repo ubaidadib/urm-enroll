@@ -8,6 +8,11 @@ import {
 } from "../middleware/email-rate-limit.js";
 import { logError } from "../middleware/errorHandler.js";
 import { withSecurity } from "../middleware/security.js";
+import {
+  hashIp,
+  markSubmissionDelivered,
+  recordSubmission,
+} from "../lib/form-submission-store.js";
 
 /**
  * Application submission endpoint.
@@ -113,6 +118,25 @@ async function handler(request, response) {
   const safeProgramName = sanitize(data.programName || "");
   const safeUniName    = sanitize(data.universityName || "");
 
+  // Persist first so the application is durable regardless of the email path.
+  const submissionId = await recordSubmission({
+    formType: "application",
+    email: safeEmail || null,
+    fullName: safeName || null,
+    source: safeProgramName || null,
+    ipHash: hashIp(getClientIp(request)),
+    fields: {
+      phone: safePhone,
+      nationality: safeNation,
+      lastDegree: safeDegree,
+      gpa: safeGpa,
+      graduationYear: safeGradYear,
+      programId: safeProgramId,
+      programName: safeProgramName,
+      universityName: safeUniName,
+    },
+  });
+
   // If SMTP is not configured (e.g. local dev) — log and acknowledge without sending
   if (!hasSmtp()) {
     console.info("[api/application] SMTP not configured — application acknowledged without email:", {
@@ -120,6 +144,10 @@ async function handler(request, response) {
       email: safeEmail,
       programName: safeProgramName,
       universityName: safeUniName,
+    });
+    await markSubmissionDelivered(submissionId, {
+      delivered: false,
+      error: "SMTP not configured",
     });
     await recordSuccessfulEmailSubmission(data.email, { windowMs: 24 * 60 * 60 * 1000 });
     response.status(200).json({ success: true, dev: true });
@@ -172,9 +200,11 @@ async function handler(request, response) {
       }),
     ]);
 
+    await markSubmissionDelivered(submissionId, { delivered: true });
     await recordSuccessfulEmailSubmission(data.email, { windowMs: 24 * 60 * 60 * 1000 });
     response.status(200).json({ success: true });
   } catch (error) {
+    await markSubmissionDelivered(submissionId, { delivered: false, error: error?.message });
     logError(error, request, { endpoint: "api/application" });
     response.status(500).json({ error: "Failed to send application. Please try again or contact us directly." });
   }

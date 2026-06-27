@@ -5,6 +5,11 @@ import {
 } from "../middleware/email-rate-limit.js";
 import { withSecurity } from "../middleware/security.js";
 import { verifyTurnstileToken } from "../middleware/turnstile.js";
+import {
+  hashIp,
+  markSubmissionDelivered,
+  recordSubmission,
+} from "../lib/form-submission-store.js";
 
 const payloadSchema = z.object({
   organizationType: z.string().trim().min(1).max(120),
@@ -56,6 +61,27 @@ async function handler(request, response) {
     response.status(429).json({ error: "Email submission limit reached for the last 24 hours" });
     return;
   }
+
+  // NOTE: this endpoint does not send any notification email — persistence is
+  // the ONLY capture channel for partner enquiries, so storing here is what
+  // prevents the lead from being lost. (A notification email is a follow-up.)
+  const { contactName, organizationType, organizationName, roleTitle, organizationSize,
+    geographicScope, partnershipType, budgetAuthority, candidateVolume, complianceTimeline,
+    notes } = parsed.data;
+
+  const submissionId = await recordSubmission({
+    formType: "partner",
+    email: contactEmail || null,
+    fullName: contactName || null,
+    source: partnershipType || null,
+    ipHash: hashIp(getClientIp(request)),
+    fields: {
+      organizationType, organizationName, roleTitle, organizationSize, geographicScope,
+      partnershipType, budgetAuthority, candidateVolume, complianceTimeline, notes,
+    },
+  });
+  // No email channel here, so a persisted row IS the successful capture.
+  await markSubmissionDelivered(submissionId, { delivered: true });
 
   await recordSuccessfulEmailSubmission(contactEmail, { windowMs: 24 * 60 * 60 * 1000 });
 
