@@ -5,6 +5,7 @@ import {
   X,
   Globe2,
   Check,
+  ChevronDown,
   ChevronRight,
   Sparkles,
   Heart,
@@ -277,11 +278,14 @@ export function Header({ isCompact = false }: HeaderProps) {
                 aria-expanded={isLanguageOpen}
                 aria-label={`${t<string>("header.selectLanguage")}: ${language.toUpperCase()}`}
                 title={`${t<string>("header.selectLanguage")}: ${language.toUpperCase()}`}
-                className="group h-10 ps-2.5 pe-3 rounded-full border border-border/65 bg-background-surface/92 hover:bg-background-hover hover:border-border transition-all flex items-center gap-1.5"
+                className="group h-10 ps-1.5 pe-3 rounded-full border border-border/65 bg-background-surface/92 hover:bg-background-hover hover:border-border transition-all flex items-center gap-2"
               >
-                <Globe2 className="w-3.5 h-3.5 text-text-secondary group-hover:text-accent-primary transition-colors" />
-                {/* Current language code with an animated swap on change. */}
-                <span className="relative inline-grid h-4 w-6 place-items-center overflow-hidden" aria-hidden="true">
+                {/* Code badge */}
+                <span className="flex items-center justify-center min-w-7 h-7 px-1.5 rounded-full bg-bg-secondary/70 border border-border/50 text-[11px] font-bold tracking-wide text-text-secondary group-hover:text-text-primary transition-colors">
+                  {language.toUpperCase()}
+                </span>
+                {/* Native language name with an animated swap on change */}
+                <span className="relative h-4 min-w-[3.5rem] overflow-hidden hidden sm:block" aria-hidden="true">
                   <AnimatePresence initial={false} mode="wait">
                     <m.span
                       key={language}
@@ -289,13 +293,18 @@ export function Header({ isCompact = false }: HeaderProps) {
                       animate={{ y: 0, opacity: 1 }}
                       exit={reduceMotion ? { opacity: 0 } : { y: -8, opacity: 0 }}
                       transition={{ duration: 0.18, ease: "easeOut" }}
-                      className="absolute inset-0 grid place-items-center text-[11px] font-bold tracking-wide text-text-primary"
+                      className="absolute inset-0 flex items-center text-[13px] font-semibold text-text-primary whitespace-nowrap"
+                      dir="auto"
                     >
-                      {language.toUpperCase()}
+                      {LANGUAGE_NATIVE_NAMES[language] ?? language.toUpperCase()}
                     </m.span>
                   </AnimatePresence>
                 </span>
-                <span className="sr-only">{language.toUpperCase()}</span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 text-text-muted transition-transform duration-200 ${isLanguageOpen ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+                <span className="sr-only">{LANGUAGE_NATIVE_NAMES[language] ?? language.toUpperCase()}</span>
               </m.button>
 
               <AnimatePresence>
