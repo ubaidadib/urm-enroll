@@ -27,8 +27,8 @@ export function AboutPage() {
       {/* --- Section 1: Hero --- */}
       <div className="relative page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] overflow-hidden" style={{ borderBottom: "1px solid rgba(212,175,55,0.12)" }}>
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-150 h-150 rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
-          <div className="absolute bottom-1/4 right-1/4 w-125 h-125 rounded-full blur-[150px] opacity-8" style={{ background: "rgb(212,175,55)" }} />
+          <div className="absolute top-1/4 left-1/4 w-[37.5rem] h-[37.5rem] rounded-full blur-[150px] opacity-10" style={{ background: "rgb(0,184,217)" }} />
+          <div className="absolute bottom-1/4 right-1/4 w-[31.25rem] h-[31.25rem] rounded-full blur-[150px] opacity-[0.08]" style={{ background: "rgb(212,175,55)" }} />
           <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.2) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
         </div>
 
@@ -62,7 +62,7 @@ export function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 sm:mb-5 lg:mb-4 leading-[1.1] tracking-tight text-text-primary"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold mb-4 sm:mb-5 lg:mb-5 leading-[1.08] tracking-tight text-text-primary"
               >
                 {t<string>("about.title")}
               </m.h1>
@@ -92,7 +92,7 @@ export function AboutPage() {
                     key={i}
                     className="p-5 rounded-2xl surface-glass-subtle transition-all duration-300"
                   >
-                    <Icon className="w-4 h-4 mb-2" style={{ color }} />
+                    <Icon className={`w-4 h-4 mb-2 ${color}`} />
                     <div className="text-2xl font-bold" style={{ color: "rgb(212,175,55)" }}>{value}</div>
                     <div className="text-[10px] font-semibold uppercase tracking-wide mt-0.5 line-clamp-2 text-text-disabled">{label}</div>
                   </div>
@@ -137,9 +137,7 @@ export function AboutPage() {
       </div>
 
       {/* --- Section 2: The Mission & Pillars (Grid Only) --- */}
-      <div className="-mt-12">
-        <AboutOverview />
-      </div>
+      <AboutOverview />
       
       {/* --- Section 3: The Leadership (Editorial Style) --- */}
       <FounderVision />

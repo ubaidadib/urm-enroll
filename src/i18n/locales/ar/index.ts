@@ -1,4 +1,4 @@
-import { languageLabel, languageNative, preloader, cookieBanner, common, globalCta, leadForm, funnelCta, agencyComparison, trust, icef, booking } from './common';
+import { languageLabel, languageNative, preloader, cookieBanner, common, globalCta, leadForm, funnelCta, agencyComparison, trust, icef, booking, social } from './common';
 import { header } from './nav';
 import { hero } from './hero';
 import { contact } from './contact';
@@ -58,6 +58,7 @@ export const ar = {
   trust,
   icef,
   booking,
+  social,
   nursingAssessment: {
     pageTitle: "تقييم برنامج التمريض في ألمانيا | URM Enroll",
     description: "تقييم شامل لمعرفتك بمتطلبات برنامج التمريض في ألمانيا",
@@ -287,6 +288,8 @@ export const ar = {
         items: "البرامج",
         noProgramsFound: "لم يتم العثور على برامج",
         footerNote: "تواريخ القبول والرسوم والموقع مأخوذة مباشرة من الجامعة. تواصل مع الجامعة للحصول على أحدث التفاصيل.",
+        previous: "السابق",
+        next: "التالي",
       },
       empty: {
         title: "لم يتم العثور على برامج",
@@ -474,6 +477,15 @@ export const ar = {
       successMessage: "شكرًا لك. أرسلنا رسالة تأكيد إلى بريدك الإلكتروني.",
       continue: "متابعة",
       applicationSent: "تم إرسال الطلب!",
+      readyPrompt: "هل أنت جاهز للتقديم؟",
+      contactForFees: "تواصل لمعرفة الرسوم",
+      perYearSuffix: "/سنة",
+      addedToCompare: "✓ تمت الإضافة للمقارنة",
+      savedState: "♥ محفوظ",
+      sectionsAriaLabel: "أقسام تفاصيل البرنامج",
+      applicationReceived: "تم استلام طلبك لبرنامج {{program}}.",
+      confirmationTimeline: "رسالة التأكيد في طريقها إلى بريدك. توقع رداً خلال 2–5 أيام عمل.",
+      applyAnotherProgram: "← التقديم لبرنامج آخر",
       helper: {
         completeSteps: "أكمل جميع الخطوات لإرسال طلبك",
       },
@@ -511,6 +523,8 @@ export const ar = {
         email: "your@email.com",
         gpa: "مثال: 3.8 / 4.0",
         selectNationality: "اختر الجنسية…",
+        selectHighestDegree: "اختر أعلى مؤهل…",
+        selectYear: "اختر السنة…",
       },
       degreeOptions: {
         highSchool: "شهادة الثانوية",
@@ -518,6 +532,7 @@ export const ar = {
         bachelor: "درجة البكالوريوس",
         master: "درجة الماجستير",
         phd: "دكتوراه",
+        professional: "درجة مهنية (MD / JD / إلخ)",
         notGraduated: "لم أتخرج بعد",
       },
       gpaHint: "اتركه فارغاً إن لم ينطبق",
@@ -527,6 +542,10 @@ export const ar = {
         cv: "السيرة الذاتية",
         change: "تغيير",
         browse: "استعراض",
+        uploadRequirements: "PDF أو JPG أو PNG · بحد أقصى 10 ميغابايت لكل ملف",
+        passportHint: "نسخة ملونة صالحة لمدة 6 أشهر على الأقل",
+        transcriptHint: "نسخة رسمية أو مصدقة من مؤسستك",
+        toBeProvided: "سيتم تقديمه لاحقاً",
         laterNote: "يمكن إرسال المستندات لاحقاً. سيتواصل معك فريق القبول بالمتطلبات الدقيقة بعد مراجعة طلبك الأولي.",
       },
     },

@@ -52,7 +52,7 @@ export function HomeTestimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08, duration: 0.4 }}
-              className="rounded-2xl border border-border/80 bg-bg-surface p-6 shadow-[0_2px_8px_rgba(8,21,48,0.06)] transition-shadow hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)]"
+              className="rounded-2xl border border-border/50 bg-bg-surface p-6 shadow-[0_2px_8px_rgba(8,21,48,0.06)] hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] transition-shadow"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-11 h-11 rounded-full bg-accent-tech/15 text-accent-tech font-bold flex items-center justify-center">

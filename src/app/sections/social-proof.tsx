@@ -125,7 +125,7 @@ export function SocialProof() {
     <section
       id="social-proof"
       ref={sectionRef}
-      className="relative py-16 sm:py-24 px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
+      className="relative page-section-y px-[var(--content-gutter)] overflow-hidden bg-[var(--color-bg-primary)]"
       dir={dir}
     >
       {/* Ambient glows — static, no animation */}
@@ -163,7 +163,7 @@ export function SocialProof() {
                 </span>
               </div>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] tracking-tight mb-3">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl 3xl:text-5xl font-bold text-[var(--color-text-primary)] tracking-tight mb-3">
                 {t<string>("socialProof.title")}
               </h2>
 
@@ -260,14 +260,14 @@ export function SocialProof() {
             {Array.from({ length: 3 }).map((_, i) => (
               <div
                 key={`sk-${i}`}
-                className="shrink-0 w-[min(86vw,380px)] md:w-[360px] lg:w-[380px] h-[520px] rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-[var(--color-bg-surface)] animate-pulse"
+                className="shrink-0 w-[min(86vw,380px)] md:w-[360px] lg:w-[380px] h-[520px] rounded-2xl border border-border/50 bg-[var(--color-bg-surface)] animate-pulse"
               />
             ))}
           </div>
         )}
 
         {!instagramLoading && stories.length === 0 && (
-          <div className="rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-[var(--color-bg-surface)] p-6 text-center">
+          <div className="rounded-2xl border border-border/50 bg-[var(--color-bg-surface)] p-6 text-center">
             <p className="text-[var(--color-text-secondary)]">{t<string>("successStories.emptyDescription")}</p>
           </div>
         )}

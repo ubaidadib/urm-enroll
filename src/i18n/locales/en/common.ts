@@ -267,6 +267,7 @@ export const leadForm = {
   error: {
     submit: "Something went wrong. Please try again.",
     turnstile: "Please complete the security verification.",
+    turnstileNotConfigured: "Turnstile is not configured. Please set",
     required: "This field is required.",
     invalidEmail: "Please enter a valid email address.",
   },
@@ -337,6 +338,57 @@ export const icef = {
 export const trust = {
   title: "Trusted by International Standards",
   subtitle: "We maintain the highest standards in international student recruitment and counseling.",
+  trustedWorldwide: "Trusted Worldwide",
+  icef: {
+    goldStandard: "Gold Standard",
+    title: "ICEF IAS Accredited",
+    description: "Globally recognized quality standard for international student recruitment agencies — a mark of credibility trusted by universities and students across 120+ countries.",
+    memberBadge: "IAS Member #6507",
+    viewCertificate: "View certificate",
+  },
+  gdpr: {
+    title: "GDPR Compliant",
+    description: "Your data is protected under the highest European privacy standards with end-to-end encryption.",
+    badge: "Certified Protection",
+  },
+  global: {
+    title: "Global Network",
+    description: "Operating in 12+ countries with local expertise, multilingual support, and regional insights.",
+    badge: "Worldwide Presence",
+  },
+  uk: {
+    title: "UK-Incorporated Entity",
+    description: "URM ENROLL LTD is a registered UK company operating under strict financial and regulatory oversight.",
+    badge: "Companies House Registered",
+  },
+} as const;
+
+export const social = {
+  badge: "Join Our Community",
+  heading: "Follow",
+  headingHighlight: "Our Story",
+  description: "Thousands of students share their global education journeys with us every day. Join the conversation on your favourite platform.",
+  stats: {
+    followers: "Active Followers",
+    posts: "Posts & Reels",
+    stories: "Student Stories",
+  },
+  instagram: {
+    description: "Student journeys, campus life & success stories from around the world.",
+    stat: "Daily Stories",
+  },
+  tiktok: {
+    description: "Short videos on studying abroad, visa tips, and student life.",
+    stat: "Reels & Tips",
+  },
+  facebook: {
+    description: "Community groups, webinars, and announcements for our students.",
+    stat: "Community Groups",
+  },
+  linkedin: {
+    description: "Professional insights, partnerships, and career opportunities.",
+    stat: "Professional Network",
+  },
 } as const;
 
 export const booking = {

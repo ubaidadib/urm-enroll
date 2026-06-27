@@ -72,7 +72,7 @@ export function StickyCTABar() {
             className="fixed bottom-0 inset-x-0 z-40 md:hidden"
             dir={dir}
           >
-            <div className="flex items-center gap-2 px-4 py-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-border/30 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+            <div className="flex items-center gap-2 px-4 py-3 bg-bg-surface/95 backdrop-blur-md border-t border-border/30 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
               <div className="flex-1">
                 <BookConsultationButton
                   variant="primary"
@@ -112,7 +112,7 @@ export function StickyCTABar() {
             style={{ [dir === "rtl" ? "left" : "right"]: "2rem" }}
             dir={dir}
           >
-            <div className="relative flex items-center gap-3 px-5 py-3 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-border/30 shadow-2xl shadow-black/10">
+            <div className="relative flex items-center gap-3 px-5 py-3 rounded-2xl bg-bg-surface/95 backdrop-blur-md border border-border/30 shadow-2xl shadow-black/10">
               <BookConsultationButton
                 variant="primary"
                 size="sm"
@@ -139,7 +139,7 @@ export function StickyCTABar() {
               <button
                 type="button"
                 onClick={dismiss}
-                className="absolute -top-2 -right-2 min-w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 text-text-secondary hover:text-text-primary flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary"
+                className="absolute -top-2 -right-2 min-w-6 h-6 rounded-full bg-border/40 text-text-secondary hover:text-text-primary flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-primary"
                 aria-label={t<string>("funnelCta.sticky.dismiss")}
               >
                 <X className="w-3 h-3" />

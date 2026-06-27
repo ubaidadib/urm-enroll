@@ -35,16 +35,16 @@ export function AgencyComparison() {
       return value ? (
         <CheckCircle2 className="w-5 h-5 text-emerald-500 mx-auto" />
       ) : (
-        <XCircle className="w-5 h-5 text-slate-300 dark:text-slate-600 mx-auto" />
+        <XCircle className="w-5 h-5 text-text-disabled mx-auto" />
       );
     }
-    return <span className="text-xs font-medium text-slate-600 dark:text-slate-400">{value}</span>;
+    return <span className="text-xs font-medium text-text-secondary">{value}</span>;
   }
 
   return (
     <section
       dir={dir}
-      className="relative py-20 px-6 overflow-hidden bg-bg-primary transition-colors duration-500"
+      className="relative py-20 px-6 overflow-hidden bg-bg-surface transition-colors duration-500"
       aria-label={t<string>("agencyComparison.ariaLabel")}
     >
       {/* Background */}
@@ -62,7 +62,7 @@ export function AgencyComparison() {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border shadow-sm text-text-primary text-xs font-bold uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-bg-surface border border-border/50 shadow-sm text-text-primary text-xs font-bold uppercase tracking-widest mb-4">
             <Shield className="w-4 h-4 text-accent-tech" />
             {t<string>("agencyComparison.badge")}
           </div>
@@ -80,11 +80,11 @@ export function AgencyComparison() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="overflow-x-auto rounded-2xl border border-border bg-bg-surface/80 backdrop-blur-sm shadow-xl"
+          className="overflow-x-auto rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-sm shadow-xl"
         >
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-slate-200 dark:border-slate-800/30">
+              <tr className="border-b border-border/50">
                 <th className="text-start px-6 py-4 text-xs font-semibold text-text-secondary uppercase tracking-wider">
                   {t<string>("agencyComparison.table.feature")}
                 </th>
@@ -103,7 +103,7 @@ export function AgencyComparison() {
             </thead>
             <tbody>
               {Array.isArray(features) && features.map((row, i) => (
-                <tr key={i} className={`border-b border-border/20 ${i % 2 === 0 ? "bg-bg-secondary/50" : ""}`}>
+                <tr key={i} className={`border-b border-border/30 ${i % 2 === 0 ? "bg-bg-secondary/40" : ""}`}>
                   <td className="px-6 py-4 text-sm font-medium text-text-primary">{row.feature}</td>
                   <td className="px-6 py-4 text-center">{renderCell(row.urm)}</td>
                   <td className="px-6 py-4 text-center">{renderCell(row.competitor1)}</td>
@@ -125,7 +125,7 @@ export function AgencyComparison() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.15 + i * 0.08 }}
-                className="p-5 rounded-2xl border border-border/60 bg-bg-surface/60 backdrop-blur-sm"
+                className="p-5 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-sm"
               >
                 <div className="w-10 h-10 rounded-xl bg-accent-primary/10 flex items-center justify-center mb-3">
                   <Icon className="w-5 h-5 text-accent-primary" />

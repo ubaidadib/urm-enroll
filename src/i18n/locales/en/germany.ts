@@ -86,6 +86,8 @@ export const germany = {
     whatsapp: "Chat on WhatsApp",
   },
   jobs: {
+    breadcrumb: "Germany Jobs",
+    cityList: "Berlin · Munich · Hamburg · Stuttgart · Frankfurt",
     hero: {
       badge: "Germany jobs",
       title: "Live opportunities, structured shortlists.",

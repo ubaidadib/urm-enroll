@@ -102,7 +102,7 @@ export function NursingAssessmentPage() {
     const breakdown = getDifficultyBreakdown();
 
     return (
-      <main dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language} className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+      <main dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language} className="min-h-screen bg-bg-primary transition-colors duration-500">
         <SeoManager
           title={t('nursingAssessment.pageTitle')}
           description={t('nursingAssessment.description')}
@@ -111,10 +111,10 @@ export function NursingAssessmentPage() {
 
         <div className="page-container-narrow py-16">
           <div className="text-center mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-text-primary mb-4">
               {t('nursingAssessment.results.title')}
             </h1>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
+            <p className="text-lg text-text-secondary">
               {t('nursingAssessment.heading')}
             </p>
           </div>
@@ -124,7 +124,7 @@ export function NursingAssessmentPage() {
             <div className="relative w-48 h-48">
               <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
                 <circle cx="18" cy="18" r="15" fill="none" stroke="currentColor"
-                  className="text-slate-200 dark:text-slate-800" strokeWidth="2.5" />
+                  className="text-border/40" strokeWidth="2.5" />
                 <circle cx="18" cy="18" r="15" fill="none"
                   stroke="currentColor" strokeWidth="2.5"
                   strokeLinecap="round"
@@ -133,10 +133,10 @@ export function NursingAssessmentPage() {
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-text-primary">
                     {score}/{TOTAL_QUESTIONS}
                   </div>
-                  <div className="text-sm text-slate-400">
+                  <div className="text-sm text-text-muted">
                     {Math.round((score / TOTAL_QUESTIONS) * 100)}%
                   </div>
                 </div>
@@ -145,11 +145,11 @@ export function NursingAssessmentPage() {
           </div>
 
           {/* Verdict */}
-          <div className={`p-6 rounded-2xl ${verdict.bg} border border-slate-200 dark:border-slate-800 mb-8`}>
+          <div className={`p-6 rounded-2xl ${verdict.bg} border border-border/50 mb-8`}>
             <h2 className={`text-2xl font-black ${verdict.color} mb-2`}>
               {verdict.text}
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
+            <p className="text-text-secondary">
               {t('nursingAssessment.results.verdictDescription')}
             </p>
           </div>
@@ -157,11 +157,11 @@ export function NursingAssessmentPage() {
           {/* Breakdown */}
           <div className="grid md:grid-cols-3 gap-4 mb-12">
             {Object.entries(breakdown).map(([level, correct]) => (
-              <div key={level} className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-                <div className="text-sm font-bold text-slate-400 uppercase mb-2">
+              <div key={level} className="p-4 rounded-xl bg-bg-surface border border-border/50">
+                <div className="text-sm font-bold text-text-muted uppercase mb-2">
                   {level === 'easy' ? t('nursingAssessment.results.easyLabel') : level === 'medium' ? t('nursingAssessment.results.mediumLabel') : t('nursingAssessment.results.hardLabel')}
                 </div>
-                <div className="text-2xl font-black text-slate-900 dark:text-white">
+                <div className="text-2xl font-black text-text-primary">
                   {correct}/{nursingQuestions.filter(q => q.level === level).length}
                 </div>
               </div>
@@ -178,7 +178,7 @@ export function NursingAssessmentPage() {
             </button>
             <Link
               to="/contact?topic=nursing&action=application&destination=Germany#contact-form"
-              className="px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl font-bold border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-center"
+              className="px-8 py-4 bg-bg-surface text-text-primary rounded-xl font-bold border border-border/50 hover:bg-bg-secondary transition-colors text-center"
             >
               {t('nursingAssessment.results.contact')}
             </Link>
@@ -189,7 +189,7 @@ export function NursingAssessmentPage() {
   }
 
   return (
-    <main dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language} className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+    <main dir={language === 'ar' ? 'rtl' : 'ltr'} lang={language} className="min-h-screen bg-bg-primary transition-colors duration-500">
       <SeoManager
         title={t('nursingAssessment.pageTitle')}
         description={t('nursingAssessment.description')}
@@ -200,24 +200,24 @@ export function NursingAssessmentPage() {
       <div className="page-container-narrow py-16">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-text-primary mb-4">
             {t('nursingAssessment.heading')}
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
+          <p className="text-lg text-text-secondary">
             {t('nursingAssessment.subheading')}
           </p>
         </div>
         {/* Progress */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-4">
-            <span className="text-sm font-bold text-slate-400">
+            <span className="text-sm font-bold text-text-muted">
               {t('nursingAssessment.progress.question')} {current + 1} / {TOTAL_QUESTIONS}
             </span>
-            <span className="text-sm font-bold text-slate-400">
+            <span className="text-sm font-bold text-text-muted">
               {Math.round(progress)}{t('nursingAssessment.progress.percent')}
             </span>
           </div>
-          <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2">
+          <div className="w-full bg-border/40 rounded-full h-2">
             <div
               className="bg-emerald-500 h-2 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
@@ -226,19 +226,19 @@ export function NursingAssessmentPage() {
         </div>
 
         {/* Question Card */}
-        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 mb-8">
+        <div className="bg-bg-surface rounded-2xl border border-border/50 p-8 mb-8">
           {/* Badges */}
           <div className="flex gap-2 mb-6">
             <span className={`px-3 py-1 rounded-full text-xs font-bold border ${DIFFICULTY_COLORS[question.level]}`}>
               {t(`nursingAssessment.badges.${question.level}`)}
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-bg-surface text-text-secondary border border-border/50">
               {t(`nursingAssessment.badges.${question.type}`)}
             </span>
           </div>
 
           {/* Question */}
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-8 leading-relaxed">
+          <h2 className="text-2xl font-black text-text-primary mb-8 leading-relaxed">
             {q}
           </h2>
 
@@ -257,12 +257,12 @@ export function NursingAssessmentPage() {
                   className={`w-full p-4 rounded-xl border text-right transition-all ${
                     isAnswered && isCorrect ? 'bg-green-50 border-green-300 text-green-800' :
                     isWrong ? 'bg-red-50 border-red-300 text-red-800' :
-                    isAnswered ? 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400' :
-                    'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-900 dark:text-white'
+                    isAnswered ? 'bg-bg-surface border-border/50 text-text-muted' :
+                    'bg-bg-surface border-border/50 hover:bg-bg-secondary text-text-primary'
                   }`}
                 >
                   <div className={`flex items-center gap-4 ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <span className="text-lg font-bold text-slate-400 shrink-0">
+                    <span className="text-lg font-bold text-text-muted shrink-0">
                       {question.type === 'tf' ? opt : t(`nursingAssessment.options.${String.fromCharCode(97 + i)}`)}
                     </span>
                     <span className="flex-1 text-left">{opt}</span>
@@ -274,8 +274,8 @@ export function NursingAssessmentPage() {
 
           {/* Feedback */}
           {showFeedback && (
-            <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-              <p className="text-slate-600 dark:text-slate-400 font-medium">
+            <div className="p-4 rounded-xl bg-bg-surface border border-border/50">
+              <p className="text-text-secondary font-medium">
                 {question.ans === answered[current] ? t('nursingAssessment.feedback.correct') : t('nursingAssessment.feedback.wrong')}{fb}
               </p>
             </div>
@@ -287,7 +287,7 @@ export function NursingAssessmentPage() {
           <button
             onClick={handlePrevious}
             disabled={current === 0}
-            className="px-6 py-3 bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="px-6 py-3 bg-bg-secondary text-text-secondary rounded-xl font-bold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-bg-secondary transition-colors"
           >
             {t('nursingAssessment.nav.previous')}
           </button>

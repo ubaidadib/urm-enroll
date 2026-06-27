@@ -11,7 +11,7 @@ export const header = {
     about: "لماذا URM",
     contact: "تحدث مع مستشار",
     jobsInGermany: "اعمل في ألمانيا",
-    chancenkarte: "Chancenkarte",
+    chancenkarte: "بطاقة الفرص",
     chatWithUs: "تحدث معنا الآن",
     quickLinks: "ابدأ من هنا",
     exploreMore: "استكشف",

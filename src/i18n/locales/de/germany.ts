@@ -4,7 +4,7 @@ export const germany = {
     tagline: "URM Enroll Deutschland-Division",
   },
   hero: {
-    badge: "Germany Careers Division",
+    badge: "Deutschland-Karrierebereich",
     eyebrow: "Chancenkarte • Fachkräfteeinwanderung • Arbeitsvisum",
     title: "Bauen Sie Ihre Karriere in Deutschland auf.",
     titleHighlight: "Mit Substanz, nicht mit Hoffnung.",
@@ -70,6 +70,8 @@ export const germany = {
     whatsapp: "WhatsApp-Chat",
   },
   jobs: {
+    breadcrumb: "Jobs in Deutschland",
+    cityList: "Berlin · München · Hamburg · Stuttgart · Frankfurt",
     hero: {
       badge: "Stellen in Deutschland",
       title: "Echte Stellen, geprüfte Shortlists.",

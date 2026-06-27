@@ -18,7 +18,7 @@ export function NexusLaunch() {
   return (
     <section
       id="nexus-launch"
-      className="relative py-32 px-6 overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-500"
+      className="relative py-32 px-6 overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* --- Ambient Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -34,10 +34,10 @@ export function NexusLaunch() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border/50 rounded-full mb-6"
           >
             <Sparkles className="w-4 h-4 text-accent-tech" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+            <span className="text-xs font-bold uppercase tracking-widest text-text-secondary">
               {t<string>("nexusLaunch.badge")}
             </span>
           </m.div>
@@ -46,7 +46,7 @@ export function NexusLaunch() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tight max-w-4xl mx-auto"
+            className="text-4xl md:text-6xl font-black text-text-primary mb-6 tracking-tight max-w-4xl mx-auto"
           >
             {t<string>("nexusLaunch.title")}
           </m.h2>
@@ -55,7 +55,7 @@ export function NexusLaunch() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-text-muted max-w-2xl mx-auto leading-relaxed"
           >
             {t<string>("nexusLaunch.description")}
           </m.p>
@@ -79,11 +79,11 @@ export function NexusLaunch() {
               <div className="absolute inset-0 bg-linear-to-br from-slate-50 to-transparent dark:from-slate-800/50 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10 flex flex-col items-center text-center">
-                <div className="w-20 h-20 rounded-3xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform duration-500 border border-slate-200 dark:border-slate-700">
-                  <item.icon className="w-10 h-10 text-slate-900 dark:text-white" strokeWidth={1.5} />
+                <div className="w-20 h-20 rounded-3xl bg-bg-secondary flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform duration-500 border border-border/50">
+                  <item.icon className="w-10 h-10 text-text-primary" strokeWidth={1.5} />
                 </div>
                 <div className="text-sm font-bold text-accent-tech uppercase tracking-widest mb-2">{item.sub}</div>
-                <h3 className="text-3xl font-black text-slate-900 dark:text-white">{item.label}</h3>
+                <h3 className="text-3xl font-black text-text-primary">{item.label}</h3>
               </div>
             </m.div>
           ))}
@@ -92,7 +92,7 @@ export function NexusLaunch() {
         {/* --- Capabilities Grid --- */}
         <div className="relative">
           <div className={`flex items-center justify-between mb-12 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+            <h3 className="text-2xl font-bold text-text-primary">
               {t<string>("nexusLaunch.capabilitiesTitle")}
             </h3>
             <div className="px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
@@ -114,12 +114,12 @@ export function NexusLaunch() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + (index * 0.1) }}
                   whileHover={{ y: -5 }}
-                  className="p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 glass-card-light hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] transition-all duration-300 group"
+                  className="p-6 rounded-2xl border border-border/50 glass-card-light hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] transition-all duration-300 group"
                 >
                   <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${visual.bg} border ${visual.border}`}>
                     <Icon className={`w-6 h-6 ${visual.color}`} />
                   </div>
-                  <div className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-accent-tech transition-colors">
+                  <div className="text-lg font-bold text-text-primary group-hover:text-accent-tech transition-colors">
                     {capability}
                   </div>
                 </m.div>

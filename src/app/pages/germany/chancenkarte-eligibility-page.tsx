@@ -186,7 +186,7 @@ export function ChancenkarteEligibilityPage() {
   /* ---------------------------------------------------------------- */
 
   return (
-    <main dir={dir} className="bg-slate-50 dark:bg-slate-950">
+    <main dir={dir} className="bg-bg-primary">
       <SeoManager
         path="/chancenkarte/eligibility"
         pageKey="chancenkarteEligibility"
@@ -197,7 +197,7 @@ export function ChancenkarteEligibilityPage() {
         ]}
       />
 
-      <section className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-500">
+      <section className="relative isolate overflow-hidden page-hero-offset page-hero-pb-compact px-[var(--content-gutter)] bg-bg-primary border-b border-border/50 transition-colors duration-500">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -218,23 +218,23 @@ export function ChancenkarteEligibilityPage() {
 
           {phase !== "intro" && (
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.quizFormat")}</p>
-                <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
+              <div className="rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">{t<string>("eligibilityQuiz.intro.quizFormat")}</p>
+                <p className="mt-2 flex items-center gap-2 text-base font-black text-text-primary">
                   <Sparkles className="h-4 w-4 text-accent-primary-strong" />
                   {isVariantB ? t<string>("eligibilityQuiz.intro.missionCheckpoints") : t<string>("eligibilityQuiz.intro.quickTaps")}
                 </p>
               </div>
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.time")}</p>
-                <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
+              <div className="rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">{t<string>("eligibilityQuiz.intro.time")}</p>
+                <p className="mt-2 flex items-center gap-2 text-base font-black text-text-primary">
                   <Clock3 className="h-4 w-4 text-accent-primary-strong" />
                   {t<string>("eligibilityQuiz.intro.estimatedTime")}
                 </p>
               </div>
-              <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-500">{t<string>("eligibilityQuiz.intro.scoreModel")}</p>
-                <p className="mt-2 flex items-center gap-2 text-base font-black text-slate-900 dark:text-white">
+              <div className="rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md px-5 py-4 shadow-sm hover:border-accent-tech/30 transition-all">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">{t<string>("eligibilityQuiz.intro.scoreModel")}</p>
+                <p className="mt-2 flex items-center gap-2 text-base font-black text-text-primary">
                   <BarChart3 className="h-4 w-4 text-accent-primary-strong" />
                   {t<string>("eligibilityQuiz.intro.realPointsLogic")}
                 </p>
@@ -268,24 +268,24 @@ export function ChancenkarteEligibilityPage() {
                   currentPhase={phase}
                 />
 
-                <div className="mt-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 p-6 shadow-sm backdrop-blur">
+                <div className="mt-6 rounded-3xl border border-border/50 bg-bg-surface/60 p-6 shadow-sm backdrop-blur">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-tech">
                         {t<string>(`eligibilityQuiz.stepNames.${currentStep}`)}
                       </p>
-                      <p className="mt-2 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                      <p className="mt-2 text-sm text-text-secondary leading-relaxed">
                         {t<string>(`eligibilityQuiz.stepIntros.${currentStep}`)}
                       </p>
                     </div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-border/50 bg-bg-surface px-3 py-1.5 text-xs font-semibold text-text-secondary whitespace-nowrap">
                       <CircleCheck className="h-3.5 w-3.5 text-emerald-500" />
                       <span>
                         {answeredQuestionsInStep}/{totalQuestionsInStep}
                       </span>
                     </div>
                   </div>
-                  <div className="mt-4 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800">
+                  <div className="mt-4 h-1.5 rounded-full bg-border/40">
                     <div
                       className="h-full rounded-full bg-[linear-gradient(120deg,#f3d678,#d4af37_55%,#8f6b13)] transition-all duration-300"
                       style={{
@@ -317,7 +317,7 @@ export function ChancenkarteEligibilityPage() {
                   <button
                     type="button"
                     onClick={goBack}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all rtl:flex-row-reverse"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-text-secondary hover:text-text-primary hover:bg-bg-secondary transition-all rtl:flex-row-reverse"
                   >
                     <ArrowLeft className="w-4 h-4" />
                     {t<string>("eligibilityQuiz.nav.back")}
@@ -395,7 +395,7 @@ export function ChancenkarteEligibilityPage() {
                 )}
 
                 <div className="mt-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-text-muted">
                     {t<string>("eligibilityQuiz.result.ctaHelper")}
                   </p>
                   <div className="mt-3 flex flex-col sm:flex-row gap-3">
@@ -434,7 +434,7 @@ export function ChancenkarteEligibilityPage() {
                     <button
                       type="button"
                       onClick={retake}
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-border/50 text-text-primary font-semibold hover:bg-bg-secondary transition-all"
                     >
                       <RefreshCcw className="w-4 h-4" />
                       {t<string>("eligibilityQuiz.result.cta.retake")}
@@ -532,10 +532,10 @@ function IntroPanel({
       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-primary-strong">
         {variant === "B" ? "Mission mode" : t<string>("eligibilityQuiz.intro.badge")}
       </p>
-      <h1 className="mt-3 text-[2rem] leading-[1.04] sm:text-[2.7rem] md:text-[3.2rem] font-black tracking-[-0.03em] text-slate-900 dark:text-white">
+      <h1 className="mt-3 text-[2rem] leading-[1.04] sm:text-[2.7rem] md:text-[3.2rem] font-black tracking-[-0.03em] text-text-primary">
         {title}
       </h1>
-      <p className="mt-3 max-w-2xl text-[0.98rem] text-slate-600 dark:text-slate-400 leading-relaxed">
+      <p className="mt-3 max-w-2xl text-[0.98rem] text-text-secondary leading-relaxed">
         {t<string>("eligibilityQuiz.intro.subtitle")}
       </p>
 
@@ -544,7 +544,7 @@ function IntroPanel({
           bullets.map((b) => (
             <li
               key={b}
-              className="rounded-2xl border border-white/50 bg-white dark:bg-slate-900/40 px-3 py-2.5 text-sm font-medium text-slate-900 backdrop-blur dark:border-white/10 dark:text-white"
+              className="rounded-2xl border border-white/50 bg-bg-surface/40 px-3 py-2.5 text-sm font-medium text-text-primary backdrop-blur dark:border-white/10"
             >
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent-primary align-middle" /> {" "}
               {b}
@@ -561,7 +561,7 @@ function IntroPanel({
           {variant === "B" ? "Launch mission" : t<string>("eligibilityQuiz.intro.cta")}
           <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
         </button>
-        <span className="rounded-full border border-black/10 bg-white/65 px-3 py-1 text-xs text-slate-400 dark:border-white/15 dark:bg-white/5">
+        <span className="rounded-full border border-black/10 bg-white/65 px-3 py-1 text-xs text-text-muted dark:border-white/15 dark:bg-white/5">
           {t<string>("eligibilityQuiz.intro.estimatedTime")}
         </span>
       </div>

@@ -15,13 +15,13 @@ export function LegalNotFound() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm text-center"
+          className="p-8 rounded-2xl bg-bg-surface border border-border/50 shadow-sm text-center"
         >
           <div className="w-12 h-12 rounded-xl bg-accent-success/20 border border-accent-success/30 flex items-center justify-center mx-auto mb-4">
             <AlertTriangle className="w-6 h-6 text-accent-success" />
           </div>
-          <h1 className="text-slate-900 dark:text-white text-2xl sm:text-3xl font-bold tracking-tight mb-3">{t<string>("notFound.title")}</h1>
-          <p className="text-slate-600 dark:text-slate-400 mb-6">
+          <h1 className="text-text-primary text-2xl sm:text-3xl font-bold tracking-tight mb-3">{t<string>("notFound.title")}</h1>
+          <p className="text-text-secondary mb-6">
             {t<string>("notFound.description")}
           </p>
           <Link

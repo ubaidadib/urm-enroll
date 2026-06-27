@@ -4,6 +4,7 @@ export const contact = {
   description: "Haben Sie eine Frage zum Studium im Ausland? Unser Expertenteam begleitet Sie bei jedem Schritt.",
   heroSubtitle: "Kontaktieren Sie uns über jeden Kanal — wir antworten innerhalb von 24 Stunden.",
   form: {
+    title: "Senden Sie uns eine Nachricht",
     fullName: "Vollständiger Name",
     fullNamePlaceholder: "Ihr vollständiger Name",
     email: "E-Mail",
@@ -80,13 +81,13 @@ export const contact = {
     },
   },
   counselors: {
-    title: "Meet the Experts Behind URM ENROLL’s Success",
-    subtitle: "Our team is the heart of URM ENROLL. With years of experience and an unwavering dedication to student success, our education consultants guide students through every step of their study abroad journey.",
+    title: "Lernen Sie die Experten hinter dem Erfolg von URM ENROLL kennen",
+    subtitle: "Unser Team ist das Herzstück von URM ENROLL. Mit jahrelanger Erfahrung und unermüdlichem Engagement für den Studiendenerfolg begleiten unsere Bildungsberater die Studierenden bei jedem Schritt ihrer Auslandsstudienreise.",
     items: [
       {
         name: "Ubaida Dib",
-        role: "Director Manager & Team Lead Developer",
-        bio: "Ubaida leads the URM ENROLL rebranding and the URM Nexus web app, while guiding the team on product direction, partnerships, and student outcomes.",
+        role: "Direktor & Leitentwickler des Teams",
+        bio: "Ubaida leitet das Rebranding von URM ENROLL und die URM Nexus Webanwendung und berät das Team in Produktausrichtung, Partnerschaften und Studiendenerfolg.",
         email: "obaida@enrollurm.com",
         whatsapp: "+96170585052",
         calendly: "https://calendly.com/ubaidadib-enrollurm/30min",
@@ -94,8 +95,8 @@ export const contact = {
       },
       {
         name: "Ahmad Deeb",
-        role: "Photographer & Videographer",
-        bio: "Ahmad creates visual content that supports URM ENROLL's campaigns, storytelling, and brand presentation across channels.",
+        role: "Fotograf & Videograf",
+        bio: "Ahmad erstellt visuelle Inhalte, die die Kampagnen, das Storytelling und die Markenpräsentation von URM ENROLL über alle Kanäle hinweg unterstützen.",
         email: "contact@enrollurm.com",
         whatsapp: "",
         calendly: "",
@@ -103,8 +104,8 @@ export const contact = {
       },
       {
         name: "Mariam Al Sayyed",
-        role: "Admissions Secretary",
-        bio: "Mariam keeps admissions coordination organized, helping students move smoothly through document checks and next steps.",
+        role: "Zulassungssekretärin",
+        bio: "Mariam koordiniert die Zulassungsabwicklung und hilft den Studierenden, reibungslos durch Dokumentenprüfungen und nächste Schritte zu navigieren.",
         email: "contact@enrollurm.com",
         whatsapp: "",
         calendly: "",

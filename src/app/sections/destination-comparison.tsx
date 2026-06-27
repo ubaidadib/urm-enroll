@@ -62,7 +62,7 @@ const COMPARISON_DATA = DESTINATIONS.map((d) => ({
 function SuccessBar({ value, accent }: { value: number; accent: string }) {
   return (
     <div className="flex items-center gap-2">
-      <div className="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+      <div className="flex-1 h-1.5 bg-bg-secondary rounded-full overflow-hidden">
         <m.div
           className="h-full rounded-full"
           style={{ backgroundColor: accent }}
@@ -72,7 +72,7 @@ function SuccessBar({ value, accent }: { value: number; accent: string }) {
           transition={{ duration: 0.8, ease: "easeOut" }}
         />
       </div>
-      <span className="text-xs font-black text-slate-700 dark:text-slate-300 tabular-nums w-9 text-right">
+      <span className="text-xs font-black text-text-primary tabular-nums w-9 text-right">
         {value}%
       </span>
     </div>
@@ -86,7 +86,7 @@ export function DestinationComparison() {
 
   return (
     <section
-      className="py-28 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-500"
+      className="py-28 bg-bg-surface relative overflow-hidden transition-colors duration-500"
       aria-labelledby="comparison-heading"
     >
       {/* Ambient */}
@@ -102,10 +102,10 @@ export function DestinationComparison() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border/50 rounded-full mb-6"
           >
             <BarChart3 className="w-4 h-4 text-accent-tech" />
-            <span className="text-xs font-bold uppercase tracking-widest text-slate-600 dark:text-slate-400">
+            <span className="text-xs font-bold uppercase tracking-widest text-text-secondary">
               {t<string>("destinationComparison.badge")}
             </span>
           </m.div>
@@ -116,7 +116,7 @@ export function DestinationComparison() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-black text-text-primary mb-6 tracking-tight"
           >
             {t<string>("destinationComparison.title")}
           </m.h2>
@@ -126,7 +126,7 @@ export function DestinationComparison() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
           >
             {t<string>("destinationComparison.description")}
           </m.p>
@@ -143,7 +143,7 @@ export function DestinationComparison() {
           <table className="w-full min-w-[800px] border-separate border-spacing-0" role="table">
             <thead>
               <tr>
-                <th className="text-left p-4 text-[11px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 dark:bg-slate-800/50 rounded-tl-2xl sticky left-0 z-10 backdrop-blur-sm">
+                <th className="text-left p-4 text-[11px] font-black uppercase tracking-widest text-text-muted bg-bg-secondary/60 rounded-tl-2xl sticky left-0 z-10 backdrop-blur-sm">
                   {t<string>("destinationComparison.columns.country")}
                 </th>
                 {[
@@ -156,7 +156,7 @@ export function DestinationComparison() {
                 ].map(({ key, icon: Icon }, i, arr) => (
                   <th
                     key={key}
-                    className={`p-4 text-[11px] font-black uppercase tracking-widest text-slate-400 bg-slate-50 dark:bg-slate-800/50 ${
+                    className={`p-4 text-[11px] font-black uppercase tracking-widest text-text-muted bg-bg-secondary/60 ${
                       i === arr.length - 1 ? "rounded-tr-2xl" : ""
                     }`}
                   >
@@ -176,20 +176,20 @@ export function DestinationComparison() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 + index * 0.05 }}
-                  className="group hover:bg-slate-50/80 dark:hover:bg-white/3 transition-colors"
+                  className="group hover:bg-bg-secondary/40 dark:hover:bg-white/3 transition-colors"
                 >
                   {/* Country name */}
-                  <td className="p-4 sticky left-0 z-10 bg-white dark:bg-slate-900 group-hover:bg-slate-50/80 dark:group-hover:bg-white/3 transition-colors">
+                  <td className="p-4 sticky left-0 z-10 bg-bg-surface group-hover:bg-bg-secondary/40 dark:group-hover:bg-white/3 transition-colors">
                     <div className="flex items-center gap-3">
                       <div
                         className="w-2.5 h-2.5 rounded-full shrink-0"
                         style={{ backgroundColor: dest.accent }}
                       />
                       <div>
-                        <span className="font-bold text-sm text-slate-900 dark:text-white">
+                        <span className="font-bold text-sm text-text-primary">
                           {dest.name[lang]}
                         </span>
-                        <span className="ml-2 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                        <span className="ml-2 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded border border-border/50 text-text-muted">
                           {dest.tierLabel[lang]}
                         </span>
                         {dest.featured && (
@@ -203,15 +203,15 @@ export function DestinationComparison() {
 
                   {/* Universities */}
                   <td className="p-4 text-center">
-                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{dest.universities}</span>
-                    <div className="text-[10px] text-slate-400 mt-0.5">
+                    <span className="text-sm font-bold text-text-primary">{dest.universities}</span>
+                    <div className="text-[10px] text-text-muted mt-0.5">
                       {dest.directPartners} {t<string>("destinationComparison.direct")}
                     </div>
                   </td>
 
                   {/* Visa Timeline */}
                   <td className="p-4 text-center">
-                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{dest.visaTimeline}</span>
+                    <span className="text-sm font-bold text-text-primary">{dest.visaTimeline}</span>
                   </td>
 
                   {/* Success Rate */}
@@ -221,7 +221,7 @@ export function DestinationComparison() {
 
                   {/* Tuition */}
                   <td className="p-4 text-center">
-                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">{dest.tuition}</span>
+                    <span className="text-sm font-bold text-text-primary">{dest.tuition}</span>
                   </td>
 
                   {/* Language */}
@@ -230,7 +230,7 @@ export function DestinationComparison() {
                       {dest.languages.map((lvl) => (
                         <span
                           key={lvl}
-                          className="px-2 py-0.5 rounded text-[10px] font-black tracking-wider border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400"
+                          className="px-2 py-0.5 rounded text-[10px] font-black tracking-wider border border-border/50 text-text-secondary"
                         >
                           {lvl}
                         </span>
@@ -240,7 +240,7 @@ export function DestinationComparison() {
 
                   {/* Compliance */}
                   <td className="p-4 text-center">
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                    <span className="text-xs font-semibold text-text-muted">
                       {dest.compliance[lang]}
                     </span>
                   </td>
@@ -250,7 +250,7 @@ export function DestinationComparison() {
           </table>
 
           {/* Bottom divider line */}
-          <div className="h-px bg-slate-100 dark:bg-slate-800 mt-1 rounded-full" />
+          <div className="h-px bg-bg-secondary mt-1 rounded-full" />
         </m.div>
 
         {/* CTA */}

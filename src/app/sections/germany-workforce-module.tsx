@@ -58,7 +58,7 @@ const OPPORTUNITY_ICONS = [HeartPulse, ShieldCheck, Stethoscope, Users];
 
 const DEFAULT_TRACK_VISUAL = {
   icon: Briefcase,
-  color: "text-slate-500",
+  color: "text-text-muted",
   bg: "bg-slate-500/10",
   border: "border-slate-500/20",
   gradient: "from-slate-500/20 to-transparent",
@@ -94,7 +94,7 @@ export function GermanyWorkforceModule() {
   return (
     <section
       id="germany-workforce"
-      className="relative py-16 sm:py-24 md:py-32 lg:py-20 xl:py-24 px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
+      className="relative page-section-y px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500"
     >
       {/* --- 1. Architectural Background --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -113,7 +113,7 @@ export function GermanyWorkforceModule() {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-40 right-10 lg:right-40 opacity-10"
         >
-          <Building2 className="w-64 h-64 text-slate-900 dark:text-white" strokeWidth={0.5} />
+          <Building2 className="w-64 h-64 text-text-primary" strokeWidth={0.5} />
         </m.div>
       </div>
 
@@ -139,7 +139,7 @@ export function GermanyWorkforceModule() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-slate-900 dark:text-white mb-5 lg:mb-4 leading-[1.1] tracking-tight"
+              className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-text-primary mb-5 lg:mb-4 leading-[1.1] tracking-tight"
             >
               {t<string>("workforce.title")}
             </m.h2>
@@ -149,7 +149,7 @@ export function GermanyWorkforceModule() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl"
+              className="text-xl text-text-secondary leading-relaxed max-w-xl"
             >
               {t<string>("workforce.description")}
             </m.p>
@@ -170,10 +170,10 @@ export function GermanyWorkforceModule() {
                   <div className="text-3xl font-black text-text-primary mb-1 group-hover:text-accent-tech transition-colors">
                     {metric.value}
                   </div>
-                  <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                  <div className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">
                     {metric.label}
                   </div>
-                  <div className="text-[10px] text-slate-400 font-medium bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md w-fit mx-auto sm:mx-0">
+                  <div className="text-[10px] text-text-muted font-medium bg-bg-secondary px-2 py-1 rounded-md w-fit mx-auto sm:mx-0">
                     {metric.note}
                   </div>
                 </m.div>
@@ -185,16 +185,16 @@ export function GermanyWorkforceModule() {
         {/* --- 3. The "Process Highway" --- */}
         <div className="mb-32">
           <div className={`flex items-center justify-between mb-12 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+            <h3 className="text-2xl font-bold text-text-primary flex items-center gap-3">
               <Award className="w-6 h-6 text-accent-success" />
               {t<string>("workforce.tracksTitle")}
             </h3>
-            <div className="hidden md:block h-px flex-1 bg-slate-200 dark:bg-slate-800 mx-8" />
+            <div className="hidden md:block h-px flex-1 bg-border/40 mx-8" />
           </div>
 
           <div className="relative">
             {/* Connecting Line */}
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 dark:bg-slate-800 -translate-y-1/2 hidden md:block rounded-full" />
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-bg-secondary -translate-y-1/2 hidden md:block rounded-full" />
             
             <div className={`grid grid-cols-1 md:grid-cols-4 gap-6 relative ${dir === 'rtl' ? 'rtl-grid' : ''}`}>
               {tracksRaw.map((track, index) => {
@@ -214,7 +214,7 @@ export function GermanyWorkforceModule() {
                       <div className={`absolute inset-0 bg-linear-to-br ${visual.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                       
                       <div className="relative z-10 flex flex-col items-center text-center">
-                        <div className="absolute top-0 right-0 text-[100px] font-black leading-none opacity-5 text-slate-900 dark:text-white select-none">
+                        <div className="absolute top-0 right-0 text-[100px] font-black leading-none opacity-5 text-text-primary select-none">
                           {index + 1}
                         </div>
 
@@ -222,11 +222,11 @@ export function GermanyWorkforceModule() {
                           <Icon className={`w-8 h-8 ${visual.color}`} strokeWidth={1.5} />
                         </div>
 
-                        <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                        <h4 className="text-lg font-bold text-text-primary mb-2">
                           {track.label}
                         </h4>
                         
-                        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                        <p className="text-sm text-text-muted dark:text-text-muted leading-relaxed">
                           {track.description}
                         </p>
                         
@@ -244,7 +244,7 @@ export function GermanyWorkforceModule() {
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           
           <div className="lg:col-span-4 space-y-4">
-            <h3 className={`text-xl font-bold text-slate-900 dark:text-white mb-6 px-2 ${dir === 'rtl' ? 'text-right' : ''}`}>
+            <h3 className={`text-xl font-bold text-text-primary mb-6 px-2 ${dir === 'rtl' ? 'text-right' : ''}`}>
               {t<string>("workforce.opportunitiesTitle")}
             </h3>
             

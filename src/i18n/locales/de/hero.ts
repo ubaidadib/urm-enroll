@@ -10,6 +10,8 @@ export const hero = {
   social_proof: "Schließe dich 500+ Studierenden an, die bereits den Schritt gewagt haben",
   trust_ticker: "Vertrauen von 500+ Studierenden · 20+ Partneruniversitäten · Deutschland-first Beratung · ICEF akkreditiert #6507",
   icef_label: "ICEF akkreditierte Agentur",
+  enrollingIn: "Einschreibung in",
+  programsAcrossDestinations: "10.000+ Programme in 4 Studienzielen",
   stats: {
     students_label: "Studierende weltweit",
     universities_label: "Partneruniversitäten",

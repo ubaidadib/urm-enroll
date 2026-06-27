@@ -101,9 +101,9 @@ export function UniversityDetailPage() {
         path={`/universities/${university.id}`}
       />
 
-      <main className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <main className="min-h-screen bg-bg-primary">
         {/* Breadcrumbs */}
-        <div className="border-b border-slate-200 dark:border-slate-800 px-[var(--content-gutter)] pb-6 page-hero-offset">
+        <div className="border-b border-border/50 px-[var(--content-gutter)] pb-6 page-hero-offset">
           <div className="max-w-7xl mx-auto">
             <Breadcrumb
               items={[
@@ -219,12 +219,12 @@ export function UniversityDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+                <h2 className="text-3xl font-bold text-text-primary mb-6">
                   About {university.name}
                 </h2>
 
                 {/* Description */}
-                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8 max-w-3xl">
+                <p className="text-lg text-text-secondary leading-relaxed mb-8 max-w-3xl">
                   {university.description}
                 </p>
 
@@ -253,7 +253,7 @@ export function UniversityDetailPage() {
                 </div>
 
                 {/* Campus Photos */}
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+                <h3 className="text-2xl font-bold text-text-primary mb-6">
                   Campus Gallery
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -261,7 +261,7 @@ export function UniversityDetailPage() {
                     <m.div
                       key={idx}
                       whileHover={{ scale: 1.05 }}
-                      className="h-48 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-950 cursor-pointer"
+                      className="h-48 rounded-xl overflow-hidden bg-bg-primary cursor-pointer"
                     >
                       <ImageWithFallback
                         src={`https://images.unsplash.com/photo-${1506905925346 + idx}?auto=format&fit=crop&q=80&w=500`}
@@ -284,7 +284,7 @@ export function UniversityDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                <h2 className="text-3xl font-bold text-text-primary mb-8">
                   Programs Offered
                 </h2>
 
@@ -321,8 +321,8 @@ export function UniversityDetailPage() {
                     ))}
                   />
                 ) : (
-                  <div className="text-center py-12 bg-slate-50 dark:bg-slate-950 rounded-lg">
-                    <p className="text-slate-600 dark:text-slate-400">
+                  <div className="text-center py-12 bg-bg-primary rounded-lg">
+                    <p className="text-text-secondary">
                       No programs available at the moment
                     </p>
                   </div>
@@ -340,13 +340,13 @@ export function UniversityDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                <h2 className="text-3xl font-bold text-text-primary mb-8">
                   Campus Life
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                    <h3 className="text-xl font-bold text-text-primary mb-4">
                       Facilities & Resources
                     </h3>
                     <ul className="space-y-3">
@@ -360,7 +360,7 @@ export function UniversityDetailPage() {
                       ].map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-3 text-slate-600 dark:text-slate-400"
+                          className="flex items-start gap-3 text-text-secondary"
                         >
                           <Check className="w-5 h-5 text-accent-success shrink-0 mt-0.5" />
                           <span>{item}</span>
@@ -370,7 +370,7 @@ export function UniversityDetailPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                    <h3 className="text-xl font-bold text-text-primary mb-4">
                       Student Support
                     </h3>
                     <ul className="space-y-3">
@@ -384,7 +384,7 @@ export function UniversityDetailPage() {
                       ].map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-3 text-slate-600 dark:text-slate-400"
+                          className="flex items-start gap-3 text-text-secondary"
                         >
                           <Check className="w-5 h-5 text-accent-success shrink-0 mt-0.5" />
                           <span>{item}</span>
@@ -406,14 +406,14 @@ export function UniversityDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                <h2 className="text-3xl font-bold text-text-primary mb-8">
                   Admission Requirements
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   {/* Academic Requirements */}
-                  <div className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                  <div className="p-6 rounded-xl border border-border/50 bg-bg-surface">
+                    <h3 className="text-xl font-bold text-text-primary mb-6">
                       Academic Requirements
                     </h3>
                     <ul className="space-y-4">
@@ -426,7 +426,7 @@ export function UniversityDetailPage() {
                       ].map((item, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-slate-600 dark:text-slate-400"
+                          className="flex items-start gap-3 text-text-secondary"
                         >
                           <Check className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" />
                           <span>{item}</span>
@@ -436,8 +436,8 @@ export function UniversityDetailPage() {
                   </div>
 
                   {/* Language Requirements */}
-                  <div className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                  <div className="p-6 rounded-xl border border-border/50 bg-bg-surface">
+                    <h3 className="text-xl font-bold text-text-primary mb-6">
                       Language Requirements
                     </h3>
                     <ul className="space-y-4">
@@ -450,7 +450,7 @@ export function UniversityDetailPage() {
                       ].map((item, idx) => (
                         <li
                           key={idx}
-                          className="flex items-start gap-3 text-slate-600 dark:text-slate-400"
+                          className="flex items-start gap-3 text-text-secondary"
                         >
                           <Check className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" />
                           <span>{item}</span>
@@ -465,10 +465,10 @@ export function UniversityDetailPage() {
                   <div className="flex items-start gap-4 mb-4">
                     <Calendar className="w-6 h-6 text-accent-primary shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-bold text-slate-900 dark:text-white mb-2">
+                      <h4 className="font-bold text-text-primary mb-2">
                         Application Deadline
                       </h4>
-                      <p className="text-slate-600 dark:text-slate-400">
+                      <p className="text-text-secondary">
                         Spring intake: December 31 | Fall intake: June 30
                       </p>
                     </div>
@@ -492,7 +492,7 @@ export function UniversityDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                <h2 className="text-3xl font-bold text-text-primary mb-8">
                   Location & Contact
                 </h2>
 
@@ -500,11 +500,11 @@ export function UniversityDetailPage() {
                   {/* Map Placeholder */}
                   <div className="h-96 rounded-xl overflow-hidden bg-linear-to-br from-bg-secondary to-bg-tertiary flex items-center justify-center">
                     <div className="text-center">
-                      <MapPin className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                      <p className="text-slate-600 dark:text-slate-400">
+                      <MapPin className="w-16 h-16 text-text-muted mx-auto mb-4" />
+                      <p className="text-text-secondary">
                         Interactive map of {university.name}
                       </p>
-                      <p className="text-sm text-slate-400 mt-2">
+                      <p className="text-sm text-text-muted mt-2">
                         {university.city}, {university.country}
                       </p>
                     </div>
@@ -512,42 +512,42 @@ export function UniversityDetailPage() {
 
                   {/* Contact Information */}
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
+                    <h3 className="text-xl font-bold text-text-primary mb-6">
                       Get in Touch
                     </h3>
 
                     <div className="space-y-4">
-                      <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                      <div className="p-4 rounded-lg border border-border/50 flex items-start gap-4">
                         <MapPin className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
                         <div>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
+                          <p className="text-sm text-text-secondary mb-1">
                             Address
                           </p>
-                          <p className="text-slate-900 dark:text-white font-medium">
+                          <p className="text-text-primary font-medium">
                             {university.city}, {university.country}
                           </p>
                         </div>
                       </div>
 
-                      <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                      <div className="p-4 rounded-lg border border-border/50 flex items-start gap-4">
                         <Phone className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
                         <div>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
+                          <p className="text-sm text-text-secondary mb-1">
                             Phone
                           </p>
-                          <p className="text-slate-900 dark:text-white font-medium">
+                          <p className="text-text-primary font-medium">
                             +49 123 456 789
                           </p>
                         </div>
                       </div>
 
-                      <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 flex items-start gap-4">
+                      <div className="p-4 rounded-lg border border-border/50 flex items-start gap-4">
                         <Mail className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
                         <div>
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
+                          <p className="text-sm text-text-secondary mb-1">
                             Email
                           </p>
-                          <p className="text-slate-900 dark:text-white font-medium">
+                          <p className="text-text-primary font-medium">
                             admissions@{university.name.toLowerCase().replace(/\s+/g, "")}. de
                           </p>
                         </div>
@@ -558,14 +558,14 @@ export function UniversityDetailPage() {
                           href={university.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-4 rounded-lg border border-slate-200 dark:border-slate-800 flex items-start gap-4 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                          className="p-4 rounded-lg border border-border/50 flex items-start gap-4 hover:bg-bg-secondary transition-colors"
                         >
                           <Globe className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
                           <div>
-                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">
+                            <p className="text-sm text-text-secondary mb-1">
                               Website
                             </p>
-                            <p className="text-slate-900 dark:text-white font-medium hover:underline">
+                            <p className="text-text-primary font-medium hover:underline">
                               {university.website}
                             </p>
                           </div>
@@ -585,7 +585,7 @@ export function UniversityDetailPage() {
 
         {/* Related Universities */}
         {relatedUniversities.length > 0 && (
-          <section className="py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
+          <section className="py-12 md:py-16 border-t border-border/50">
             <div className="page-container">
               <m.div
                 initial={{ opacity: 0, y: 20 }}
@@ -593,7 +593,7 @@ export function UniversityDetailPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
+                <h2 className="text-3xl font-bold text-text-primary mb-8">
                   Similar Universities
                 </h2>
                 {relatedUniversitiesLoading ? (
@@ -635,7 +635,7 @@ export function UniversityDetailPage() {
         )}
 
         {/* CTA Section */}
-        <section className="bg-linear-to-r from-accent-primary/10 via-accent-tech/5 to-transparent py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
+        <section className="bg-linear-to-r from-accent-primary/10 via-accent-tech/5 to-transparent py-12 md:py-16 border-t border-border/50">
           <div className="page-container-narrow text-center">
             <m.div
               initial={{ opacity: 0, y: 10 }}
@@ -643,10 +643,10 @@ export function UniversityDetailPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+              <h3 className="text-2xl md:text-3xl font-bold text-text-primary mb-4">
                 Ready to Apply to {university.name}?
               </h3>
-              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8">
+              <p className="text-lg text-text-secondary mb-8">
                 Get personalized guidance from our admission experts to start your academic journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -661,7 +661,7 @@ export function UniversityDetailPage() {
                     href={university.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
+                    className="px-8 py-3 rounded-lg bg-bg-secondary text-text-primary font-medium hover:bg-bg-secondary transition-all flex items-center justify-center gap-2"
                   >
                     Visit Website
                     <ExternalLink className="w-4 h-4" />
@@ -691,13 +691,13 @@ function HighlightCard({
   return (
     <m.div
       whileHover={{ y: -4 }}
-      className="p-6 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-center"
+      className="p-6 rounded-xl border border-border/50 bg-bg-surface text-center"
     >
       <Icon className="w-8 h-8 text-accent-primary mx-auto mb-4" />
-      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+      <h4 className="text-lg font-bold text-text-primary mb-2">
         {title}
       </h4>
-      <p className="text-sm text-slate-600 dark:text-slate-400">{description}</p>
+      <p className="text-sm text-text-secondary">{description}</p>
     </m.div>
   );
 }

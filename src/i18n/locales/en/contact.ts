@@ -4,6 +4,7 @@ export const contact = {
   description: "Have a question about studying abroad? Our team of experts is here to guide you every step of the way.",
   heroSubtitle: "Reach out through any channel — we respond within 24 hours.",
   form: {
+    title: "Send Us a Message",
     fullName: "Full Name",
     fullNamePlaceholder: "Your full name",
     email: "Email",

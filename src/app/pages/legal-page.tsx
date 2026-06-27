@@ -24,7 +24,7 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
 
   return (
     <>
-      <section className="relative bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+      <section className="relative bg-bg-primary transition-colors duration-500">
         <SeoManager pageKey={seoKey} path={`/${pageKey}`} />
         <div className="absolute inset-0 opacity-10">
           <div
@@ -53,13 +53,13 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
                 {t<string>("legalPagesLabel")}
               </span>
             </div>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-4">
               {page.title}
             </h1>
-            <p className="text-slate-400 text-sm mb-4">
+            <p className="text-text-muted text-sm mb-4">
               {page.updated}
             </p>
-            <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+            <p className="text-text-secondary text-lg leading-relaxed">
               {page.intro}
             </p>
           </m.div>
@@ -72,12 +72,12 @@ export function LegalPage({ pageKey }: { pageKey: LegalPageKey }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 backdrop-blur-sm"
+                className="p-6 rounded-2xl bg-bg-surface border border-border/50 backdrop-blur-sm"
               >
-                <h2 className="text-slate-900 dark:text-white text-xl font-semibold mb-3">
+                <h2 className="text-text-primary text-xl font-semibold mb-3">
                   {section.title}
                 </h2>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm md:text-base">
+                <p className="text-text-secondary leading-relaxed text-sm md:text-base">
                   {section.body}
                 </p>
               </m.section>

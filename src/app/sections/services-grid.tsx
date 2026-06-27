@@ -179,14 +179,14 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
                 {compact ? (
                   <Link 
                     to="/services" 
-                    className={`w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
+                    className={`w-10 h-10 rounded-full bg-bg-secondary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}
                     aria-label={t<string>("services.viewDetails")}
                   >
-                     <ArrowRight className={`w-4 h-4 text-slate-900 dark:text-white ${isRtl ? 'rotate-180' : ''}`} />
+                     <ArrowRight className={`w-4 h-4 text-text-primary ${isRtl ? 'rotate-180' : ''}`} />
                   </Link>
                 ) : (
-                  <div className={`w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>
-                     <ArrowRight className={`w-4 h-4 text-slate-900 dark:text-white ${isRtl ? 'rotate-180' : ''}`} />
+                  <div className={`w-10 h-10 rounded-full bg-bg-secondary flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out ${isRtl ? 'group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`}>
+                     <ArrowRight className={`w-4 h-4 text-text-primary ${isRtl ? 'rotate-180' : ''}`} />
                   </div>
                 )}
               </div>

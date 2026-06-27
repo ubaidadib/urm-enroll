@@ -7,7 +7,7 @@ export function QuizPage() {
   const { t } = useLanguage();
 
   return (
-    <main className="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-500">
+    <main className="bg-bg-primary text-text-primary transition-colors duration-500">
       <SeoManager
         title={t<string>("seo.sections.quiz.title")}
         description={t<string>("seo.sections.quiz.description")}

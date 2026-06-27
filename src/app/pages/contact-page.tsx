@@ -126,10 +126,10 @@ function SelectField({
           onChange={onChange}
           disabled={disabled}
           className="w-full appearance-none rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none
-            bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-            hover:border-accent-tech/40 hover:shadow-sm
-            focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 focus:shadow-sm
-            text-slate-900 dark:text-white"
+            bg-bg-surface border border-border/50
+            hover:border-accent-tech/40
+            focus:border-accent-primary/60 focus:ring-2 focus:ring-accent-primary/10
+            text-text-primary"
         >
           <option value="">{placeholder}</option>
           {options.map((o) => (
@@ -138,7 +138,7 @@ function SelectField({
             </option>
           ))}
         </select>
-        <div className="absolute end-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+        <div className="absolute end-4 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted">
           <ChevronDown className="w-4 h-4" />
         </div>
       </div>
@@ -166,11 +166,11 @@ function FaqItem({
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className="w-full flex items-center justify-between gap-4 p-6 text-start font-bold text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+        className="w-full flex items-center justify-between gap-4 p-6 text-start font-bold text-text-primary hover:bg-background-hover transition-colors"
       >
         <span className="text-base">{question}</span>
         <ChevronDown
-          className={`w-5 h-5 shrink-0 text-slate-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-5 h-5 shrink-0 text-text-muted transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
       <AnimatePresence initial={false}>
@@ -182,7 +182,7 @@ function FaqItem({
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="px-6 pb-6 text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="px-6 pb-6 text-text-secondary leading-relaxed">
               {answer}
             </p>
           </m.div>
@@ -198,7 +198,6 @@ function FaqItem({
 export function ContactPage() {
   const { t, dir } = useLanguage();
   const location = useLocation();
-  const isRtl = dir === "rtl";
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -409,7 +408,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-4 sm:mb-5 leading-tight tracking-tight text-text-primary"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold mb-4 sm:mb-5 lg:mb-5 leading-[1.08] tracking-tight text-text-primary"
             >
               {t<string>("contact.title")}
             </m.h1>
@@ -427,7 +426,7 @@ export function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-base text-slate-400 lg:mb-0"
+              className="text-base text-text-muted lg:mb-0"
             >
               {t<string>("contact.heroSubtitle")}
             </m.p>
@@ -479,10 +478,10 @@ export function ContactPage() {
                 <MessageCircle className="w-6 h-6 text-green-600 dark:text-green-400 group-hover:text-white transition-colors" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-text-primary mb-1">
                   {t<string>("contact.quickContact.whatsapp.title")}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-text-muted leading-relaxed">
                   {t<string>("contact.quickContact.whatsapp.description")}
                 </p>
               </div>
@@ -504,10 +503,10 @@ export function ContactPage() {
                 <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-text-primary mb-1">
                   {t<string>("contact.quickContact.email.title")}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-text-muted leading-relaxed">
                   {t<string>("contact.quickContact.email.description")}
                 </p>
               </div>
@@ -531,10 +530,10 @@ export function ContactPage() {
                 <Calendar className="w-6 h-6 text-accent-tech group-hover:text-white transition-colors" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-text-primary mb-1">
                   {t<string>("contact.quickContact.call.title")}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <p className="text-sm text-text-muted leading-relaxed">
                   {t<string>("contact.quickContact.call.description")}
                 </p>
               </div>
@@ -550,7 +549,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3: MEET YOUR COUNSELORS                         */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section id="contact-form" className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
+      <section id="contact-form" className="page-section-y px-[var(--content-gutter)] border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -559,10 +558,10 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-4 tracking-tight">
               {t<string>("contact.counselors.title")}
             </h2>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
               {t<string>("contact.counselors.subtitle")}
             </p>
           </m.div>
@@ -590,13 +589,13 @@ export function ContactPage() {
                     <User className={`w-8 h-8 ${color.text}`} />
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                  <h3 className="text-xl font-bold text-text-primary mb-1">
                     {counselor.name}
                   </h3>
                   <p className={`text-sm font-semibold ${color.text} mb-4`}>
                     {counselor.role}
                   </p>
-                  <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                  <p className="text-sm text-text-muted leading-relaxed mb-6">
                     {counselor.bio}
                   </p>
 
@@ -606,7 +605,7 @@ export function ContactPage() {
                       href={`mailto:${counselor.email}`}
                       aria-label={`Email ${counselor.name}`}
                       onClick={() => SEO_EVENTS.EMAIL_CLICK(counselor.name)}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-slate-900 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface text-sm font-medium text-text-secondary hover:bg-background-hover transition-colors"
                     >
                       <Mail className="w-3.5 h-3.5" />
                       {t<string>("contact.quickContact.email.cta")}
@@ -650,7 +649,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 3.5: INLINE CALENDLY BOOKING                   */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-border/50">
         <div className="max-w-4xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -659,10 +658,10 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-3 tracking-tight">
               {t<string>("booking.heading")}
             </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
               {t<string>("booking.subheading")}
             </p>
           </m.div>
@@ -688,11 +687,11 @@ export function ContactPage() {
 
           {/* Divider */}
           <div className="flex items-center gap-4 my-12">
-            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800" />
-            <span className="text-sm font-medium text-slate-400 px-3">
+            <div className="flex-1 h-px bg-border/50" />
+            <span className="text-sm font-medium text-text-muted px-3">
               {t<string>("booking.orDivider")}
             </span>
-            <div className="flex-1 h-px bg-slate-200 dark:bg-slate-800" />
+            <div className="flex-1 h-px bg-border/50" />
           </div>
         </div>
       </section>
@@ -700,7 +699,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 4: SMART CONTACT FORM                           */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-border/50">
         <div className="max-w-4xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -716,8 +715,8 @@ export function ContactPage() {
                   {t<string>("contact.badge")}
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-3 tracking-tight">
-                {t<string>("contact.form.subject") === "Subject" ? "Send Us a Message" : t<string>("contact.form.submit")}
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-3 tracking-tight">
+                {t<string>("contact.form.title")}
               </h2>
             </div>
 
@@ -817,10 +816,10 @@ export function ContactPage() {
                   placeholder={t<string>("contact.form.messagePlaceholder")}
                   disabled={status === "submitting"}
                   className="w-full rounded-2xl px-4 py-4 font-semibold transition-all duration-300 outline-none resize-y
-                    bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-                    hover:border-accent-tech/40 hover:shadow-sm
-                    focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 focus:shadow-sm
-                    text-slate-900 dark:text-white placeholder:text-slate-400"
+                    bg-bg-surface border border-border/50
+                    hover:border-accent-tech/40
+                    focus:border-accent-primary/60 focus:ring-2 focus:ring-accent-primary/10
+                    text-text-primary placeholder:text-text-disabled"
                 />
               </div>
 
@@ -833,7 +832,7 @@ export function ContactPage() {
                   disabled={status === "submitting"}
                   className="mt-1 h-5 w-5 rounded-md border-accent-tech/40 text-emerald-500 focus:ring-emerald-500/20 transition"
                 />
-                <span className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <span className="text-sm text-text-secondary leading-relaxed">
                   {t<string>("contact.form.consent")}
                 </span>
               </label>
@@ -903,7 +902,7 @@ export function ContactPage() {
                       </>
                     )}
                   </button>
-                  <p className="text-xs text-slate-400 flex items-center gap-1.5">
+                  <p className="text-xs text-text-muted flex items-center gap-1.5">
                     <Shield className="w-3.5 h-3.5" />
                     {t<string>("contact.form.privacy")}
                   </p>
@@ -917,7 +916,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 5: FAQ STRIP                                    */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-border/50">
         <div className="max-w-3xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -926,7 +925,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
               {t<string>("contact.faqHeading")}
             </h2>
           </m.div>
@@ -955,7 +954,7 @@ export function ContactPage() {
       {/* ════════════════════════════════════════════════════════ */}
       {/* SECTION 6: OFFICES & AVAILABILITY                       */}
       {/* ════════════════════════════════════════════════════════ */}
-      <section className="page-section-y px-[var(--content-gutter)] border-t border-slate-200 dark:border-slate-800">
+      <section className="page-section-y px-[var(--content-gutter)] border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <m.div
             initial={{ opacity: 0, y: 20 }}
@@ -964,7 +963,7 @@ export function ContactPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
               {t<string>("contact.offices.title")}
             </h2>
           </m.div>
@@ -981,28 +980,28 @@ export function ContactPage() {
               <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
                 <Building2 className="w-6 h-6 text-blue-500" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+              <h3 className="text-lg font-bold text-text-primary mb-1">
                 {t<string>("contact.offices.london.label")}
               </h3>
-              <div className="space-y-3 mt-4 text-sm text-slate-400">
+              <div className="space-y-3 mt-4 text-sm text-text-muted">
                 <p className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-slate-400" />
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-text-muted" />
                   {t<string>("contact.offices.london.address")}
                 </p>
                 <p className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 shrink-0 text-slate-400" />
-                  <a href={`tel:${t<string>("contact.offices.london.phone")}`} className="hover:text-slate-900 dark:text-white transition-colors">
+                  <Phone className="w-4 h-4 shrink-0 text-text-muted" />
+                  <a href={`tel:${t<string>("contact.offices.london.phone")}`} className="hover:text-text-primary transition-colors">
                     {t<string>("contact.offices.london.phone")}
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 shrink-0 text-slate-400" />
-                  <a href={`mailto:${t<string>("contact.offices.london.email")}`} className="hover:text-slate-900 dark:text-white transition-colors">
+                  <Mail className="w-4 h-4 shrink-0 text-text-muted" />
+                  <a href={`mailto:${t<string>("contact.offices.london.email")}`} className="hover:text-text-primary transition-colors">
                     {t<string>("contact.offices.london.email")}
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <Globe2 className="w-4 h-4 shrink-0 text-slate-400" />
+                  <Globe2 className="w-4 h-4 shrink-0 text-text-muted" />
                   {t<string>("contact.offices.london.companyNumberLabel")}: {t<string>("contact.offices.london.companyNumber")}
                 </p>
               </div>
@@ -1013,23 +1012,23 @@ export function ContactPage() {
               <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-6">
                 <Building2 className="w-6 h-6 text-emerald-500" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+              <h3 className="text-lg font-bold text-text-primary mb-1">
                 {t<string>("contact.offices.lebanon.label")}
               </h3>
-              <div className="space-y-3 mt-4 text-sm text-slate-400">
+              <div className="space-y-3 mt-4 text-sm text-text-muted">
                 <p className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-slate-400" />
+                  <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-text-muted" />
                   {t<string>("contact.offices.lebanon.address")}
                 </p>
                 <p className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 shrink-0 text-slate-400" />
-                  <a href={`tel:${t<string>("contact.offices.lebanon.phone")}`} className="hover:text-slate-900 dark:text-white transition-colors">
+                  <Phone className="w-4 h-4 shrink-0 text-text-muted" />
+                  <a href={`tel:${t<string>("contact.offices.lebanon.phone")}`} className="hover:text-text-primary transition-colors">
                     {t<string>("contact.offices.lebanon.phone")}
                   </a>
                 </p>
                 <p className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 shrink-0 text-slate-400" />
-                  <a href={`mailto:${t<string>("contact.offices.lebanon.email")}`} className="hover:text-slate-900 dark:text-white transition-colors">
+                  <Mail className="w-4 h-4 shrink-0 text-text-muted" />
+                  <a href={`mailto:${t<string>("contact.offices.lebanon.email")}`} className="hover:text-text-primary transition-colors">
                     {t<string>("contact.offices.lebanon.email")}
                   </a>
                 </p>
@@ -1041,17 +1040,17 @@ export function ContactPage() {
               <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-6">
                 <Clock className="w-6 h-6 text-amber-500" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+              <h3 className="text-lg font-bold text-text-primary mb-1">
                 {t<string>("contact.businessHours.label")}
               </h3>
-              <div className="space-y-3 mt-4 text-sm text-slate-400">
+              <div className="space-y-3 mt-4 text-sm text-text-muted">
                 <p>{t<string>("contact.businessHours.weekdays")}</p>
                 <p>{t<string>("contact.businessHours.friday")}</p>
                 <p>{t<string>("contact.businessHours.saturday")}</p>
               </div>
-              <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800/50 flex items-center gap-3">
+              <div className="mt-6 pt-6 border-t border-border/50 flex items-center gap-3">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                <span className="text-sm font-medium text-text-secondary">
                   {t<string>("contact.responseTime.value")}
                 </span>
               </div>

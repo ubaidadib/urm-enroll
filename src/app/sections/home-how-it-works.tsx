@@ -43,7 +43,7 @@ export function HomeHowItWorks() {
 
   return (
     <section
-      className="relative py-24 md:py-28 overflow-hidden section-gradient"
+      className="relative page-section-y overflow-hidden section-gradient"
     >
       {/* Subtle grid */}
       <div
@@ -60,19 +60,19 @@ export function HomeHowItWorks() {
         style={{ width: 700, height: 300, background: "rgb(212,175,55)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 3xl:px-8 w-full relative z-10">
+      <div className="max-w-7xl mx-auto px-[var(--content-gutter)] w-full relative z-10">
         {/* Header */}
         <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55 }}
-          className="text-center mb-16"
+          className="text-center page-section-header-gap"
         >
           <p className="text-xs font-semibold uppercase tracking-[0.2em] mb-4" style={{ color: "rgb(0,184,217)" }}>
             {t<string>("home.howItWorks.badge")}
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary">
+          <h2 className="text-3xl md:text-4xl 3xl:text-5xl font-bold text-text-primary">
             {t<string>("home.howItWorks.title")}
           </h2>
         </m.div>
@@ -105,7 +105,7 @@ export function HomeHowItWorks() {
             }}
           />
 
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-4 gap-6 3xl:gap-10">
             {STEPS.map((step, index) => {
               const Icon = step.icon;
               return (
@@ -119,26 +119,26 @@ export function HomeHowItWorks() {
                 >
                   {/* Icon circle */}
                   <div
-                    className="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center z-10 relative transition-all duration-300 hover:scale-105"
+                    className="w-20 h-20 3xl:w-24 3xl:h-24 rounded-full mx-auto mb-6 3xl:mb-8 flex items-center justify-center z-10 relative transition-all duration-300 hover:scale-105"
                     style={{
                       background: step.accentBg,
                       border: `2px solid ${step.accentBorder}`,
                       boxShadow: `0 0 0 6px rgb(var(--bg-primary)), 0 0 0 7px ${step.accentBorder}`,
                     }}
                   >
-                    <Icon className="w-8 h-8" style={{ color: step.accentColor }} />
+                    <Icon className="w-8 h-8 3xl:w-10 3xl:h-10" style={{ color: step.accentColor }} />
                   </div>
 
                   <p
-                    className="text-xs font-bold tracking-widest mb-2"
+                    className="text-xs 3xl:text-sm font-bold tracking-widest mb-2"
                     style={{ color: step.accentColor }}
                   >
                     {t<string>("home.howItWorks.stepLabel").replace("{{number}}", step.number)}
                   </p>
-                  <h3 className="text-lg font-bold mb-2 text-text-primary">
+                  <h3 className="text-lg 3xl:text-xl font-bold mb-2 text-text-primary">
                     {t<string>(`home.howItWorks.steps.${step.key}.title`)}
                   </h3>
-                  <p className="text-sm leading-relaxed text-text-disabled">
+                  <p className="text-sm 3xl:text-base leading-relaxed text-text-disabled">
                     {t<string>(`home.howItWorks.steps.${step.key}.description`)}
                   </p>
                 </m.div>

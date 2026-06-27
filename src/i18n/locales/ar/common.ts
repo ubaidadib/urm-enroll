@@ -265,6 +265,7 @@ export const leadForm = {
   error: {
     submit: "حدث خطأ. يرجى المحاولة مرة أخرى.",
     turnstile: "يرجى إكمال التحقق الأمني.",
+    turnstileNotConfigured: "Turnstile غير مهيأ. يرجى ضبط",
     required: "هذا الحقل مطلوب.",
     invalidEmail: "يرجى إدخال بريد إلكتروني صالح.",
   },
@@ -335,6 +336,57 @@ export const icef = {
 export const trust = {
   title: "موثوق به حسب المعايير الدولية",
   subtitle: "نحن نحافظ على أعلى المعايير في الإرشاد الطلابي الدولي والتوظيف.",
+  trustedWorldwide: "موثوق به عالميًا",
+  icef: {
+    goldStandard: "المعيار الذهبي",
+    title: "معتمد من ICEF IAS",
+    description: "معيار الجودة المعترف به دوليًا لوكالات تجنيد الطلاب الدوليين — علامة مصداقية تثق بها الجامعات والطلاب في أكثر من 120 دولة.",
+    memberBadge: "عضو IAS رقم 6507",
+    viewCertificate: "عرض الشهادة",
+  },
+  gdpr: {
+    title: "متوافق مع GDPR",
+    description: "بياناتك محمية وفق أعلى معايير الخصوصية الأوروبية مع تشفير من طرف إلى طرف.",
+    badge: "حماية معتمدة",
+  },
+  global: {
+    title: "شبكة عالمية",
+    description: "نعمل في أكثر من 12 دولة بخبرة محلية ودعم متعدد اللغات ورؤى إقليمية.",
+    badge: "حضور عالمي",
+  },
+  uk: {
+    title: "شركة مسجلة في المملكة المتحدة",
+    description: "URM ENROLL LTD شركة بريطانية مسجلة تعمل وفق إشراف مالي وتنظيمي صارم.",
+    badge: "مسجل في Companies House",
+  },
+} as const;
+
+export const social = {
+  badge: "انضم إلى مجتمعنا",
+  heading: "تابع",
+  headingHighlight: "قصتنا",
+  description: "آلاف الطلاب يشاركون تجارب تعليمهم الدولي معنا يومياً. انضم إلى الحوار على منصتك المفضلة.",
+  stats: {
+    followers: "متابع نشط",
+    posts: "منشورات وريلز",
+    stories: "قصة طالب",
+  },
+  instagram: {
+    description: "رحلات الطلاب، الحياة الجامعية وقصص النجاح من حول العالم.",
+    stat: "قصص يومية",
+  },
+  tiktok: {
+    description: "فيديوهات قصيرة عن الدراسة في الخارج، نصائح التأشيرة، والحياة الطلابية.",
+    stat: "ريلز ونصائح",
+  },
+  facebook: {
+    description: "مجموعات المجتمع والندوات والإعلانات لطلابنا.",
+    stat: "مجموعات المجتمع",
+  },
+  linkedin: {
+    description: "رؤى مهنية وشراكات وفرص عمل.",
+    stat: "الشبكة المهنية",
+  },
 } as const;
 
 export const booking = {

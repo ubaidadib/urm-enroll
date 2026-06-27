@@ -9,7 +9,7 @@ export function ChancenkarteFinalCta() {
   const localizedPath = useLocalizedPath();
 
   return (
-    <section className="page-section-y px-[var(--content-gutter)] bg-slate-50 dark:bg-slate-950 relative overflow-hidden transition-colors duration-500" dir={dir}>
+    <section className="page-section-y px-[var(--content-gutter)] bg-bg-primary relative overflow-hidden transition-colors duration-500" dir={dir}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[38rem] h-[38rem] bg-accent-tech/8 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 left-0 w-[34rem] h-[34rem] bg-accent-success/8 rounded-full blur-[120px]" />
@@ -27,10 +27,10 @@ export function ChancenkarteFinalCta() {
         <p className="text-xs font-bold uppercase tracking-widest text-accent-tech">
           {t<string>("germany.meta.tagline")}
         </p>
-        <h2 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-slate-900 dark:text-white">
+        <h2 className="mt-3 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-text-primary">
           {t<string>("chancenkarte.finalCta.title")}
         </h2>
-        <p className="mt-5 text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-5 text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
           {t<string>("chancenkarte.finalCta.description")}
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -43,7 +43,7 @@ export function ChancenkarteFinalCta() {
           </Link>
           <Link
             to={localizedPath("/contact")}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:border-accent-tech/40 shadow-sm transition-all font-semibold"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border/50 bg-bg-surface text-text-primary hover:border-accent-tech/40 shadow-sm transition-all font-semibold"
           >
             <MessageCircle className="w-4 h-4 text-accent-tech" />
             {t<string>("chancenkarte.finalCta.secondary")}

@@ -34,7 +34,7 @@ export function FavoriteButton({
       className={`inline-flex items-center justify-center rounded-full border transition-all ${
         saved
           ? "border-red-500/40 bg-red-500/10 text-red-500"
-          : "border-slate-300 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 text-slate-600 dark:text-slate-300"
+          : "border-border/50 bg-bg-surface/90 text-text-secondary"
       } ${className}`}
       title={saved ? "Remove from Favorites" : "Save to Favorites"}
       aria-label={saved ? "Remove from Favorites" : "Save to Favorites"}

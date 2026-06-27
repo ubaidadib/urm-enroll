@@ -276,7 +276,7 @@ export function ProgramCardModern({
 
   if (cardSize === "compact") {
     return (
-      <article className={`group flex h-20 items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-background-surface/85 backdrop-blur-sm px-3 transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "flex-row-reverse text-right" : ""}`}>
+      <article className={`group flex h-20 items-center gap-3 rounded-2xl border border-border/50 bg-background-surface/85 backdrop-blur-sm px-3 transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "flex-row-reverse text-right" : ""}`}>
         <div className={`flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br text-white ${fieldStyle.wrapper}`}>
           <FieldIcon className="h-4 w-4" />
         </div>
@@ -329,12 +329,12 @@ export function ProgramCardModern({
               )}
               {programPath ? (
                 <Link to={programPath} className="group/link">
-                  <h2 className="line-clamp-2 text-[15px] font-bold leading-snug text-slate-900 transition-colors group-hover/link:text-accent-tech dark:text-white dark:group-hover/link:text-accent-tech">
+                  <h2 className="line-clamp-2 text-[15px] font-bold leading-snug text-text-primary transition-colors group-hover/link:text-accent-tech dark:group-hover/link:text-accent-tech">
                     {name}
                   </h2>
                 </Link>
               ) : (
-                <h2 className="line-clamp-2 text-[15px] font-bold leading-snug text-slate-900 dark:text-white">
+                <h2 className="line-clamp-2 text-[15px] font-bold leading-snug text-text-primary">
                   {name}
                 </h2>
               )}
@@ -343,7 +343,7 @@ export function ProgramCardModern({
               type="button"
               onClick={handleToggleFavorite}
               aria-label={t<string>("card.program.saveProgram")}
-              className={`shrink-0 rounded-full p-1.5 transition-colors ${saved ? "text-accent-primary dark:text-accent-primary" : "text-slate-300 hover:text-accent-primary dark:text-slate-600 dark:hover:text-accent-primary"}`}
+              className={`shrink-0 rounded-full p-1.5 transition-colors ${saved ? "text-accent-primary dark:text-accent-primary" : "text-text-disabled hover:text-accent-primary"}`}
             >
               <Heart className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
             </button>
@@ -351,14 +351,14 @@ export function ProgramCardModern({
 
           {shouldShowUniversityRow && (
             <div className={`flex items-center gap-3 ${isRtl ? "flex-row-reverse" : ""}`}>
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border/30 bg-bg-surface shadow-sm">
                 {universityLogo && !logoFailed ? (
                   <img src={universityLogo} alt="" className="h-full w-full object-contain" onError={() => setLogoFailed(true)} />
                 ) : (
                   <span className="text-[11px] font-bold text-accent-tech dark:text-accent-tech">{universityInitials(university)}</span>
                 )}
               </div>
-              <p className="min-w-0 truncate text-[13px] font-semibold text-slate-700 dark:text-slate-200">{university}</p>
+              <p className="min-w-0 truncate text-[13px] font-semibold text-text-primary">{university}</p>
             </div>
           )}
 
@@ -370,13 +370,13 @@ export function ProgramCardModern({
                 </span>
               )}
               {locationLabel && (
-                <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-400">
+                <span className="inline-flex items-center gap-1 rounded-full border border-border/50 bg-bg-secondary px-2.5 py-0.5 text-[11px] font-medium text-text-secondary">
                   <MapPin className="h-3 w-3 shrink-0" />
                   {locationLabel}
                 </span>
               )}
               {intakeLabel && (
-                <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-400">
+                <span className="inline-flex items-center gap-1 rounded-full border border-border/50 bg-bg-secondary px-2.5 py-0.5 text-[11px] font-medium text-text-secondary">
                   <CalendarDays className="h-3 w-3 shrink-0" />
                   {intakeLabel}
                 </span>
@@ -386,17 +386,17 @@ export function ProgramCardModern({
 
           <div className="flex-1" />
 
-          <div className={`flex items-center justify-between gap-3 border-t border-slate-100 pt-4 dark:border-slate-800 ${isRtl ? "flex-row-reverse" : ""}`}>
+          <div className={`flex items-center justify-between gap-3 border-t border-border/30 pt-4 ${isRtl ? "flex-row-reverse" : ""}`}>
             <div className="min-w-0">
               {displayFees ? (
                 <>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">{t<string>("common.approx")}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">{t<string>("common.approx")}</p>
                   <p className="mt-0.5 truncate text-base font-bold text-accent-primary dark:text-accent-primary">{displayFees}</p>
                 </>
               ) : (
                 <>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400">{t<string>("card.program.tuitionLabel")}</p>
-                  <p className="mt-0.5 text-sm font-semibold text-slate-400 dark:text-slate-500">{t<string>("card.program.contactUniversity")}</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">{t<string>("card.program.tuitionLabel")}</p>
+                  <p className="mt-0.5 text-sm font-semibold text-text-muted">{t<string>("card.program.contactUniversity")}</p>
                 </>
               )}
             </div>
@@ -426,7 +426,7 @@ export function ProgramCardModern({
   }
 
   return (
-    <article className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-background-surface/85 backdrop-blur-lg transition-all hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "text-right" : "text-left"}`}>
+    <article className={`group relative overflow-hidden rounded-2xl border border-border/50 bg-background-surface/85 backdrop-blur-lg transition-all hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "text-right" : "text-left"}`}>
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
         <div className="absolute -right-10 top-10 w-28 h-28 rounded-full bg-accent-primary/20 blur-2xl" />
         <div className="absolute -left-10 bottom-6 w-28 h-28 rounded-full bg-accent-tech/18 blur-2xl" />
@@ -606,7 +606,7 @@ export function UniversityCardModern({
 
   if (cardSize === "compact") {
     return (
-      <article className={`group flex h-20 items-center gap-3 rounded-2xl border border-slate-200/80 dark:border-slate-800 bg-background-surface/85 backdrop-blur-sm px-3 transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "flex-row-reverse text-right" : ""}`}>
+      <article className={`group flex h-20 items-center gap-3 rounded-2xl border border-border/50 bg-background-surface/85 backdrop-blur-sm px-3 transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(8,21,48,0.12)] ${isRtl ? "flex-row-reverse text-right" : ""}`}>
         <div className="w-10 h-10 rounded-xl border border-border/60 bg-background-primary overflow-hidden flex items-center justify-center">
           <img
             src={logo || coverPhoto || "/placeholder-image.svg"}

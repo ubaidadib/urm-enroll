@@ -51,7 +51,7 @@ export function SavedPage() {
     <>
       <SeoManager title={t<string>("favorites.title")} description={t<string>("favorites.subtitle")} path="/saved" />
 
-      <main className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
+      <main className="min-h-screen bg-bg-primary transition-colors duration-500">
         <ContextualPageHeader
           variant="listing"
           badge={t<string>("favorites.hero.badge")}
@@ -80,7 +80,7 @@ export function SavedPage() {
               <button
                 onClick={() => removeAllFavoritesByType(tab === "universities" ? "university" : "program")}
                 disabled={!hasItemsInActiveTab}
-                className="text-sm font-semibold text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="text-sm font-semibold text-text-muted hover:text-text-primary disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                 aria-label={t<string>("favorites.removeAll")}
               >
                 {t<string>("favorites.removeAll")}

@@ -20,12 +20,12 @@ import { useLanguage } from "@/i18n/language-context";
 /* ── Reusable class tokens (import where raw markup is needed) ──────────────── */
 
 export const slate = {
-  heading: "font-bold text-slate-900 dark:text-white tracking-tight leading-[1.1]",
-  body: "text-slate-600 dark:text-slate-400 leading-relaxed",
-  card: "bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm transition-all hover:border-accent-tech/30",
-  cardSolid: "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm",
-  divider: "bg-slate-200 dark:bg-slate-800",
-  label: "text-xs font-bold text-slate-500 uppercase tracking-widest",
+  heading: "font-bold text-text-primary tracking-tight leading-[1.1]",
+  body: "text-text-secondary leading-relaxed",
+  card: "bg-bg-surface/80 backdrop-blur-md border border-border/50 rounded-2xl shadow-sm transition-all hover:border-accent-tech/30",
+  cardSolid: "bg-bg-surface border border-border/50 rounded-2xl shadow-sm",
+  divider: "bg-border/40",
+  label: "text-xs font-bold text-text-muted uppercase tracking-widest",
 } as const;
 
 /* ── SectionShell ──────────────────────────────────────────────────────────── */
@@ -65,8 +65,8 @@ export function SectionShell({
 }: SectionShellProps) {
   const toneClass =
     tone === "surface"
-      ? "bg-white dark:bg-slate-900"
-      : "bg-slate-50 dark:bg-slate-950";
+      ? "bg-bg-surface"
+      : "bg-bg-primary";
 
   return (
     <section
@@ -93,7 +93,7 @@ export function SectionShell({
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-40 right-10 lg:right-40 opacity-10"
           >
-            <FloatingIcon className="w-64 h-64 text-slate-900 dark:text-white" strokeWidth={0.5} />
+            <FloatingIcon className="w-64 h-64 text-text-primary" strokeWidth={0.5} />
           </m.div>
         )}
       </div>
@@ -118,10 +118,10 @@ export function Eyebrow({ icon: Icon, children, className = "" }: EyebrowProps) 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className={`inline-flex items-center gap-3 px-5 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-sm ${className}`}
+      className={`inline-flex items-center gap-3 px-5 py-2.5 bg-bg-surface border border-border/50 rounded-full shadow-sm ${className}`}
     >
       {Icon && <Icon className="w-4 h-4 text-accent-tech" />}
-      <span className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-widest">
+      <span className="text-xs font-bold text-text-primary uppercase tracking-widest">
         {children}
       </span>
     </m.div>
@@ -168,7 +168,7 @@ export function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className={`text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-tight leading-[1.1]`}
+        className={`text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-text-primary mb-4 sm:mb-6 tracking-tight leading-[1.1]`}
       >
         {title}
       </m.h2>
@@ -179,7 +179,7 @@ export function SectionHeader({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className={`text-base sm:text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed ${
+          className={`text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed ${
             isCenter ? "mx-auto max-w-2xl" : "max-w-xl"
           }`}
         >
@@ -211,17 +211,17 @@ export function StatCard({ icon: Icon, value, label, note, index = 0, align = "l
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.3 + index * 0.1 }}
-      className={`p-6 rounded-2xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200 dark:border-slate-800 hover:border-accent-tech/30 transition-all shadow-sm group ${alignClass}`}
+      className={`p-6 rounded-2xl bg-bg-surface/80 backdrop-blur-md border border-border/50 hover:border-accent-tech/30 transition-all shadow-sm group ${alignClass}`}
     >
       {Icon && (
         <Icon className="w-5 h-5 mb-3 text-accent-tech mx-auto sm:mx-0" />
       )}
-      <div className="text-3xl font-black text-slate-900 dark:text-white mb-1 group-hover:text-accent-tech transition-colors">
+      <div className="text-3xl font-black text-text-primary mb-1 group-hover:text-accent-tech transition-colors">
         {value}
       </div>
-      <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{label}</div>
+      <div className="text-xs font-bold text-text-muted uppercase tracking-wider mb-2">{label}</div>
       {note && (
-        <div className="text-[10px] text-slate-400 font-medium bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-md w-fit mx-auto sm:mx-0">
+        <div className="text-[10px] text-text-muted font-medium bg-bg-secondary px-2 py-1 rounded-md w-fit mx-auto sm:mx-0">
           {note}
         </div>
       )}

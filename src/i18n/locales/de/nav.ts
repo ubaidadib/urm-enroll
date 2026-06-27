@@ -21,7 +21,7 @@ export const header = {
     more: "Mehr",
     studyJourney: "Studium",
     germanyJourney: "Deutschland",
-    supportJourney: "Support",
+    supportJourney: "Unterstützung",
     agentPortal: "Agentenportal",
     agentPortalTagline: "Für Privatpersonen — Provisionen verdienen",
   },

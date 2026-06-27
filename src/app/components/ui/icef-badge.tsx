@@ -21,17 +21,17 @@ export function IcefBadge({ size, className = "" }: IcefBadgeProps) {
       href="https://www.icef.com"
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2 rounded-lg border border-gold-500/20 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm transition-all hover:bg-white dark:hover:bg-slate-700 ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center gap-2 rounded-lg border border-gold-500/20 bg-bg-surface/80 backdrop-blur-sm transition-all hover:bg-bg-surface ${sizeClasses[size]} ${className}`}
       title={t<string>("icef.tooltip")}
       aria-label={`${t<string>("icef.accredited")} - ${t<string>("icef.tooltip")}`}
     >
       <Award className={`${iconSize} text-gold-500`} />
       <div className="text-center">
-        <div className="font-semibold text-slate-900 dark:text-white leading-tight">
+        <div className="font-semibold text-text-primary leading-tight">
           {t<string>("icef.accredited")}
         </div>
         {size === "md" && (
-          <div className="text-xs text-slate-600 dark:text-slate-300 leading-tight">
+          <div className="text-xs text-text-secondary leading-tight">
             {t<string>("icef.member")}
           </div>
         )}

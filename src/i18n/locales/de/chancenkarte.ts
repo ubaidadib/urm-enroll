@@ -69,7 +69,7 @@ export const chancenkarte = {
     title: "Exakt das, was Sie brauchen — nicht mehr.",
     description: "Die Chancenkarte ist papierlastig. Diese Checkliste deckt ab, was Botschaften tatsächlich verlangen.",
     mandatoryLabel: "Pflicht",
-    optionalLabel: "Optional",
+    optionalLabel: "Freiwillig",
     downloadCta: "PDF-Checkliste herunterladen",
     groups: {
       identity: "Identität",
