@@ -36,7 +36,7 @@ export function DocumentChecklist() {
                 className="p-6 rounded-2xl border border-border bg-background-surface"
               >
                 <div className="flex items-center gap-3 pb-4 border-b border-border">
-                  <span className="w-9 h-9 rounded-lg bg-accent-primary/10 text-accent-primary flex items-center justify-center">
+                  <span className="w-9 h-9 rounded-lg bg-accent-primary/10 text-accent-primary-text flex items-center justify-center">
                     <FileText className="w-4 h-4" />
                   </span>
                   <h3 className="font-bold text-text-primary">

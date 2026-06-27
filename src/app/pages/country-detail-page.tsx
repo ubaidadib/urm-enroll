@@ -57,7 +57,7 @@ function UniversityCard({ uni }: { uni: University }) {
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-black text-text-primary text-base leading-tight mb-1 group-hover:text-accent-primary transition-colors">
+            <h3 className="font-black text-text-primary text-base leading-tight mb-1 group-hover:text-accent-primary-text transition-colors">
               {uni.name}
             </h3>
             <p className="text-xs text-text-muted mb-3 flex items-center gap-1">
@@ -68,7 +68,7 @@ function UniversityCard({ uni }: { uni: University }) {
               {uni.programs.slice(0, 4).map((prog) => (
                 <span
                   key={prog.id}
-                  className="px-2 py-0.5 rounded-full text-[10px] bg-accent-primary/10 text-accent-primary border border-accent-primary/20 font-semibold"
+                  className="px-2 py-0.5 rounded-full text-[10px] bg-accent-primary/10 text-accent-primary-text border border-accent-primary/20 font-semibold"
                 >
                   {prog.name}
                 </span>
@@ -80,7 +80,7 @@ function UniversityCard({ uni }: { uni: University }) {
               )}
             </div>
           </div>
-          <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-accent-primary group-hover:translate-x-1 transition-all shrink-0 mt-1" />
+          <ChevronRight className="w-4 h-4 text-text-muted group-hover:text-accent-primary-text group-hover:translate-x-1 transition-all shrink-0 mt-1" />
         </div>
       </Link>
     </m.div>
@@ -91,7 +91,7 @@ function ProgramRow({ prog }: { prog: Program & { universityName: string } }) {
   return (
     <div className="flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-bg-surface hover:shadow-sm transition-shadow">
       <div className="shrink-0 w-10 h-10 rounded-xl bg-accent-primary/10 flex items-center justify-center">
-        <GraduationCap className="w-5 h-5 text-accent-primary" />
+        <GraduationCap className="w-5 h-5 text-accent-primary-text" />
       </div>
       <div className="flex-1 min-w-0">
         <p className="font-black text-text-primary text-sm leading-tight">{prog.name}</p>
@@ -276,7 +276,7 @@ export function CountryDetailPage() {
                   {dest.topPrograms.map((prog) => (
                     <span
                       key={prog}
-                      className="px-3 py-1.5 rounded-xl border border-accent-primary/30 bg-accent-primary/10 text-accent-primary text-sm font-bold"
+                      className="px-3 py-1.5 rounded-xl border border-accent-primary/30 bg-accent-primary/10 text-accent-primary-text text-sm font-bold"
                     >
                       {prog}
                     </span>
@@ -297,7 +297,7 @@ export function CountryDetailPage() {
             <div className="space-y-4">
               <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
                 <div className="flex items-center gap-2 mb-3">
-                  <Shield className="w-5 h-5 text-accent-primary" />
+                  <Shield className="w-5 h-5 text-accent-primary-text" />
                   <h3 className="font-black text-text-primary">{t<string>("destinations.detail.visaInsights")}</h3>
                 </div>
                 <p className="text-sm text-text-secondary leading-relaxed mb-4">
@@ -305,7 +305,7 @@ export function CountryDetailPage() {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="text-center p-3 rounded-xl bg-bg-secondary border border-border/50">
-                    <div className="text-lg font-black text-accent-primary">{dest.visaTimeline}</div>
+                    <div className="text-lg font-black text-accent-primary-text">{dest.visaTimeline}</div>
                     <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold mt-0.5">{t<string>("destinations.detail.processing")}</div>
                   </div>
                   <div className="text-center p-3 rounded-xl bg-bg-secondary border border-border/50">
@@ -342,7 +342,7 @@ export function CountryDetailPage() {
               </Link>
               <button
                 onClick={() => setActiveTab("universities")}
-                className="block w-full text-center px-6 py-3 rounded-2xl border border-border/50 bg-bg-surface text-text-primary font-bold text-sm hover:border-accent-primary hover:text-accent-primary transition-colors"
+                className="block w-full text-center px-6 py-3 rounded-2xl border border-border/50 bg-bg-surface text-text-primary font-bold text-sm hover:border-accent-primary hover:text-accent-primary-text transition-colors"
               >
                 {tx("destinations.detail.browseUniversities", "Browse Universities")}
               </button>
@@ -482,7 +482,7 @@ export function CountryDetailPage() {
                 </div>
                 <div className="p-5 rounded-2xl border border-border/50 bg-bg-surface">
                   <h3 className="font-black text-text-primary mb-2 flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-accent-primary" />
+                    <Shield className="w-4 h-4 text-accent-primary-text" />
                     {tx("destinations.detail.compliance", "Compliance Checkpoint")}
                   </h3>
                   <p className="text-sm text-text-secondary">{dest.complianceCheckpoint[lang]}</p>
@@ -502,7 +502,7 @@ export function CountryDetailPage() {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div className="p-4 rounded-2xl border border-border/50 bg-bg-surface text-center">
-                    <div className="text-2xl font-black text-accent-primary mb-1">{dest.visaTimeline}</div>
+                    <div className="text-2xl font-black text-accent-primary-text mb-1">{dest.visaTimeline}</div>
                     <div className="text-xs text-text-muted uppercase tracking-wide font-semibold">{t<string>("destinations.detail.visaTime")}</div>
                   </div>
                   <div className="p-4 rounded-2xl border border-border/50 bg-bg-surface text-center">

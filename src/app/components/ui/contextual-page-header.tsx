@@ -65,8 +65,8 @@ export function ContextualPageHeader({
               animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm page-hero-badge-gap"
             >
-              <Sparkles className="w-3.5 h-3.5 text-accent-primary" />
-              <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+              <Sparkles className="w-3.5 h-3.5 text-accent-primary-text" />
+              <span className="text-xs font-bold uppercase tracking-widest text-accent-primary-text">
                 {badge}
               </span>
             </m.div>
@@ -121,7 +121,7 @@ export function ContextualPageHeader({
                     className="group rounded-2xl p-4 flex items-center gap-3 bg-bg-surface/80 backdrop-blur-md border border-border/50 hover:border-accent-primary/30 hover:shadow-md transition-all duration-200 shadow-sm"
                   >
                     <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-primary/8 border border-accent-primary/15 flex items-center justify-center group-hover:bg-accent-primary/12 transition-colors duration-200">
-                      <Icon className="w-5 h-5 text-accent-primary" />
+                      <Icon className="w-5 h-5 text-accent-primary-text" />
                     </div>
                     <div className="min-w-0">
                       <p className="text-xl font-black text-text-primary tabular-nums">{stat.value}</p>

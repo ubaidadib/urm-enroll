@@ -13,7 +13,7 @@ import { useLanguage } from "@/i18n/language-context";
 const CASE_VISUALS = [
   { icon: Target, gradient: "from-blue-500/20 to-transparent", color: "text-blue-500" },
   { icon: BarChart3, gradient: "from-emerald-500/20 to-transparent", color: "text-emerald-500" },
-  { icon: Zap, gradient: "from-accent-primary/20 to-transparent", color: "text-accent-primary" },
+  { icon: Zap, gradient: "from-accent-primary/20 to-transparent", color: "text-accent-primary-text" },
 ];
 
 interface CaseStudyItem {

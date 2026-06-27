@@ -40,7 +40,7 @@ export function GermanyFAQ() {
                   <span className="text-sm md:text-base font-semibold text-text-primary">
                     {t<string>(`chancenkarte.faq.entries.${id}.question`)}
                   </span>
-                  <span className="w-7 h-7 rounded-full bg-accent-primary/10 text-accent-primary flex items-center justify-center shrink-0">
+                  <span className="w-7 h-7 rounded-full bg-accent-primary/10 text-accent-primary-text flex items-center justify-center shrink-0">
                     {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                   </span>
                 </button>

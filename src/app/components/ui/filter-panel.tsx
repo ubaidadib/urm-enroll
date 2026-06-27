@@ -99,7 +99,7 @@ export function FilterPanel({
                     className="w-4 h-4 rounded cursor-pointer accent-accent-primary"
                   />
                   <div className="flex-1 min-w-0">
-                    <span className="text-sm text-text-secondary group-hover:text-accent-primary transition-colors">
+                    <span className="text-sm text-text-secondary group-hover:text-accent-primary-text transition-colors">
                       {item.label}
                     </span>
                     {item.count !== undefined && (
@@ -109,7 +109,7 @@ export function FilterPanel({
                     )}
                   </div>
                   {item.icon && (
-                    <div className="flex-shrink-0 text-text-muted group-hover:text-accent-primary transition-colors">
+                    <div className="flex-shrink-0 text-text-muted group-hover:text-accent-primary-text transition-colors">
                       {item.icon}
                     </div>
                   )}
@@ -147,7 +147,7 @@ export function FilterBar({
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-all ${
           value
-            ? "border-accent-primary bg-accent-primary/5 text-accent-primary font-medium"
+            ? "border-accent-primary bg-accent-primary/5 text-accent-primary-text font-medium"
             : "border-border text-text-secondary"
         }`}
       >
@@ -174,7 +174,7 @@ export function FilterBar({
                   }}
                   className={`w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors ${
                     value === opt.value
-                      ? "bg-accent-primary/10 text-accent-primary font-medium"
+                      ? "bg-accent-primary/10 text-accent-primary-text font-medium"
                       : "text-text-secondary hover:bg-bg-surface-hover"
                   }`}
                 >

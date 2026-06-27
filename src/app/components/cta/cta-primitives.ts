@@ -26,4 +26,4 @@ export const CTA_COMPACT_ACTION_BASE =
   "group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-300";
 
 export const CTA_INLINE_BASE =
-  `group inline-flex items-center gap-1.5 text-sm font-semibold text-accent-primary hover:text-accent-primary-strong transition-colors duration-200 ${CTA_FOCUS_RING}`;
+  `group inline-flex items-center gap-1.5 text-sm font-semibold text-accent-primary-text hover:text-accent-primary-strong transition-colors duration-200 ${CTA_FOCUS_RING}`;

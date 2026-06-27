@@ -40,7 +40,7 @@ export function QuizStepper({ current, total, variant = "A", currentPhase = "qui
           {t<string>("eligibilityQuiz.progress.step")} {Math.min(current + 1, total)}{" "}
           {t<string>("eligibilityQuiz.progress.of")} {total}
         </p>
-        <p className="text-xs font-extrabold text-[#7a5b10] dark:text-accent-primary">
+        <p className="text-xs font-extrabold text-[#7a5b10] dark:text-accent-primary-text">
           {percent}
           {t<string>("eligibilityQuiz.progress.percent")}
         </p>
@@ -50,7 +50,7 @@ export function QuizStepper({ current, total, variant = "A", currentPhase = "qui
         <span
           className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] ${
             variant === "B"
-              ? "bg-accent-primary/10 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary"
+              ? "bg-accent-primary/10 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary-text"
               : "bg-accent-primary/10 text-text-primary dark:bg-white/10 dark:text-white"
           }`}
         >
@@ -113,7 +113,7 @@ export function QuizStepper({ current, total, variant = "A", currentPhase = "qui
                 done
                   ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
                   : active
-                    ? "bg-accent-primary/20 text-accent-primary-strong dark:text-accent-primary"
+                    ? "bg-accent-primary/20 text-accent-primary-strong dark:text-accent-primary-text"
                     : "bg-background-elevated text-text-secondary"
               }`}
             >

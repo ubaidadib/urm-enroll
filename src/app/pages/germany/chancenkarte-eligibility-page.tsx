@@ -459,7 +459,7 @@ export function ChancenkarteEligibilityPage() {
               >
                 <div className="flex items-start gap-3">
                   <div className="mt-0.5 rounded-full bg-accent-primary/20 p-1.5">
-                    <Flag className="h-4 w-4 text-accent-primary" />
+                    <Flag className="h-4 w-4 text-accent-primary-text" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold">{milestone.title}</p>
@@ -583,7 +583,7 @@ function StickyMissionFooter({
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-bg-surface/95 dark:border-accent-primary/20 dark:bg-[linear-gradient(120deg,rgba(11,21,48,0.94),rgba(19,41,95,0.94))] p-3 backdrop-blur md:hidden">
       <div className="mx-auto flex max-w-4xl items-center gap-3">
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary">{t<string>("eligibilityQuiz.result.missionControl")}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent-primary-text">{t<string>("eligibilityQuiz.result.missionControl")}</p>
           <p className="truncate text-sm font-semibold text-text-primary dark:text-white">
             {phase === "intro" ? t<string>("eligibilityQuiz.result.startMission") : t<string>("eligibilityQuiz.result.continueCheckpoint")}
           </p>

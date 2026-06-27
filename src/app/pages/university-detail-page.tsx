@@ -428,7 +428,7 @@ export function UniversityDetailPage() {
                           key={idx}
                           className="flex items-start gap-3 text-text-secondary"
                         >
-                          <Check className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" />
+                          <Check className="w-5 h-5 text-accent-primary-text shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -452,7 +452,7 @@ export function UniversityDetailPage() {
                           key={idx}
                           className="flex items-start gap-3 text-text-secondary"
                         >
-                          <Check className="w-5 h-5 text-accent-primary shrink-0 mt-0.5" />
+                          <Check className="w-5 h-5 text-accent-primary-text shrink-0 mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -463,7 +463,7 @@ export function UniversityDetailPage() {
                 {/* Application Info */}
                 <div className="p-6 rounded-xl bg-accent-primary/5 border border-accent-primary/20">
                   <div className="flex items-start gap-4 mb-4">
-                    <Calendar className="w-6 h-6 text-accent-primary shrink-0 mt-0.5" />
+                    <Calendar className="w-6 h-6 text-accent-primary-text shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-bold text-text-primary mb-2">
                         Application Deadline
@@ -518,7 +518,7 @@ export function UniversityDetailPage() {
 
                     <div className="space-y-4">
                       <div className="p-4 rounded-lg border border-border/50 flex items-start gap-4">
-                        <MapPin className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
+                        <MapPin className="w-5 h-5 text-accent-primary-text shrink-0 mt-1" />
                         <div>
                           <p className="text-sm text-text-secondary mb-1">
                             Address
@@ -530,7 +530,7 @@ export function UniversityDetailPage() {
                       </div>
 
                       <div className="p-4 rounded-lg border border-border/50 flex items-start gap-4">
-                        <Phone className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
+                        <Phone className="w-5 h-5 text-accent-primary-text shrink-0 mt-1" />
                         <div>
                           <p className="text-sm text-text-secondary mb-1">
                             Phone
@@ -542,7 +542,7 @@ export function UniversityDetailPage() {
                       </div>
 
                       <div className="p-4 rounded-lg border border-border/50 flex items-start gap-4">
-                        <Mail className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
+                        <Mail className="w-5 h-5 text-accent-primary-text shrink-0 mt-1" />
                         <div>
                           <p className="text-sm text-text-secondary mb-1">
                             Email
@@ -560,7 +560,7 @@ export function UniversityDetailPage() {
                           rel="noopener noreferrer"
                           className="p-4 rounded-lg border border-border/50 flex items-start gap-4 hover:bg-bg-secondary transition-colors"
                         >
-                          <Globe className="w-5 h-5 text-accent-primary shrink-0 mt-1" />
+                          <Globe className="w-5 h-5 text-accent-primary-text shrink-0 mt-1" />
                           <div>
                             <p className="text-sm text-text-secondary mb-1">
                               Website
@@ -693,7 +693,7 @@ function HighlightCard({
       whileHover={{ y: -4 }}
       className="p-6 rounded-xl border border-border/50 bg-bg-surface text-center"
     >
-      <Icon className="w-8 h-8 text-accent-primary mx-auto mb-4" />
+      <Icon className="w-8 h-8 text-accent-primary-text mx-auto mb-4" />
       <h4 className="text-lg font-bold text-text-primary mb-2">
         {title}
       </h4>

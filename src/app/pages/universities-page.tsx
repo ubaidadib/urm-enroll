@@ -286,7 +286,7 @@ function UniversityDiscoveryCard({
           </div>
           {/* Programs count */}
           <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-brand-navy-800/85 backdrop-blur-sm border border-white/10">
-            <GraduationCap className="w-3 h-3 text-accent-primary" />
+            <GraduationCap className="w-3 h-3 text-accent-primary-text" />
             <span className="text-[11px] font-bold text-white">{university.programsCount}</span>
             <span className="text-[10px] text-white/70 font-medium">{t<string>("universities.listing.card.programs")}</span>
           </div>
@@ -320,7 +320,7 @@ function UniversityDiscoveryCard({
           )}
 
           {startingTuition !== null && (
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-accent-primary/10 text-amber-700 border border-accent-primary/25 dark:text-accent-primary dark:border-accent-primary/20">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-accent-primary/10 text-amber-700 border border-accent-primary/25 dark:text-accent-primary-text dark:border-accent-primary/20">
               {t<string>("universities.listing.card.fromPerYear").replace("{{amount}}", formatMoneyCompact(startingTuition, university.startingTuitionCurrency || "EUR"))}
             </span>
           )}
@@ -641,7 +641,7 @@ export function UniversitiesPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="rounded-2xl p-4 text-center bg-bg-surface/80 border border-border/50 shadow-sm">
-                    <Globe2 className="w-5 h-5 mx-auto text-accent-primary mb-1.5" />
+                    <Globe2 className="w-5 h-5 mx-auto text-accent-primary-text mb-1.5" />
                     <p className="text-lg font-black text-text-primary">{countries.length}+</p>
                     <p className="text-xs font-medium text-text-muted mt-0.5">{t<string>("universities.listing.hero.stats.countries")}</p>
                   </div>
@@ -777,7 +777,7 @@ export function UniversitiesPage() {
                       type="button"
                       onClick={handleClearFilters}
                       className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full
-                        text-xs font-bold text-accent-primary hover:text-accent-primary/80 transition-colors"
+                        text-xs font-bold text-accent-primary-text hover:text-accent-primary-text/80 transition-colors"
                     >
                       <X className="w-3 h-3" /> {t<string>("universities.listing.filters.clearAll")}
                     </button>

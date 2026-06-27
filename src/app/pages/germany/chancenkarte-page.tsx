@@ -47,8 +47,8 @@ export function ChancenkartePage() {
           <div className="page-hero-grid">
             <div className="page-hero-main">
               <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm page-hero-badge-gap">
-                <Sparkles className="w-3.5 h-3.5 text-accent-primary" />
-                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+                <Sparkles className="w-3.5 h-3.5 text-accent-primary-text" />
+                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary-text">
                   {t<string>("chancenkarte.hub.badge")}
                 </span>
               </span>
@@ -125,7 +125,7 @@ export function ChancenkartePage() {
             <div className="mt-6 grid sm:grid-cols-3 gap-3">
               {t<readonly { title: string; body: string }[]>("chancenkarte.hub.pillars").map((p) => (
                 <div key={p.title} className="p-4 rounded-2xl border border-border/50 bg-bg-surface">
-                  <ShieldCheck className="w-4 h-4 text-accent-primary mb-2" />
+                  <ShieldCheck className="w-4 h-4 text-accent-primary-text mb-2" />
                   <p className="text-sm font-bold text-text-primary">{p.title}</p>
                   <p className="mt-1 text-xs text-text-secondary leading-relaxed">{p.body}</p>
                 </div>

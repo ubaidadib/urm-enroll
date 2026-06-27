@@ -36,8 +36,8 @@ export function ProgramsHero({
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2.5 rounded-full border border-accent-primary/25 bg-accent-primary/6 px-4 py-2"
           >
-            <Sparkles className="h-3.5 w-3.5 text-accent-primary" />
-            <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+            <Sparkles className="h-3.5 w-3.5 text-accent-primary-text" />
+            <span className="text-xs font-bold uppercase tracking-widest text-accent-primary-text">
               {t<string>("programs.listing.hero.eyebrow")}
             </span>
           </m.div>
@@ -49,7 +49,7 @@ export function ProgramsHero({
             className="max-w-3xl font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] leading-[1.08] tracking-tight text-text-primary lg:max-w-none"
           >
             {t<string>("programs.listing.hero.headline")}{" "}
-            <span className="text-accent-primary">
+            <span className="text-accent-primary-text">
               {t<string>("programs.listing.hero.headlineAccent")}
             </span>
           </m.h1>
@@ -82,7 +82,7 @@ export function ProgramsHero({
                 icon: Zap,
                 value: `${topMatchPercentage}%`,
                 label: t<string>("programs.listing.hero.stats.smartMatch"),
-                color: "text-accent-primary",
+                color: "text-accent-primary-text",
                 bg: "bg-accent-primary/8 border-accent-primary/15",
               },
               {
@@ -127,7 +127,7 @@ export function ProgramsHero({
                   {
                     label: t<string>("programs.listing.hero.insights.premiumScholarships"),
                     value: "1,200+",
-                    color: "text-accent-primary",
+                    color: "text-accent-primary-text",
                     bg: "bg-accent-primary/8 border-accent-primary/15",
                   },
                   {

@@ -28,7 +28,7 @@ export function HorizontalScrollCarousel({ title, items, viewAllHref }: Horizont
       <div className="mb-4 flex items-center justify-between gap-3">
         <h3 className="text-2xl font-bold text-text-primary">{title}</h3>
         {viewAllHref ? (
-          <Link to={viewAllHref} className="text-sm font-semibold text-accent-primary transition-colors hover:text-accent-primary-hover">
+          <Link to={viewAllHref} className="text-sm font-semibold text-accent-primary-text transition-colors hover:text-accent-primary-hover">
             View All →
           </Link>
         ) : null}

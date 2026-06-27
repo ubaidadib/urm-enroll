@@ -134,7 +134,7 @@ export function ServicesGrid({ compact = false }: ServicesGridProps) {
               </div>
               <Link 
                 to="/services" 
-                className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all active:scale-95 group surface-glass-subtle text-accent-primary"
+                className="hidden md:flex items-center gap-2.5 px-6 py-3 rounded-2xl text-sm font-bold transition-all active:scale-95 group surface-glass-subtle text-accent-primary-text"
               >
                 <span>{t<string>("services.viewAll")}</span>
                 <ArrowRight className={`w-4 h-4 transition-transform ${isRtl ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'}`} />

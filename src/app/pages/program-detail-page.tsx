@@ -481,7 +481,7 @@ export function ProgramDetailPage() {
                     </div>
                   )}
                   <div className="inline-flex items-center gap-1.5 rounded-xl border border-border/50 bg-bg-surface px-3 py-1.5 text-sm font-bold shadow-sm">
-                    <DollarSign className="h-4 w-4 text-accent-primary" />
+                    <DollarSign className="h-4 w-4 text-accent-primary-text" />
                     <span className={resolvedFeesLabel ? "text-text-primary" : "text-text-muted"}>
                       {resolvedFeesLabel ? `${resolvedFeesLabel}${t<string>("apply.form.perYearSuffix")}` : t<string>("apply.form.contactForFees")}
                     </span>
@@ -491,7 +491,7 @@ export function ProgramDetailPage() {
 
               <div className="lg:w-72 xl:w-80">
                 <div className="rounded-2xl border border-border/50 bg-bg-surface p-6 shadow-[0_8px_32px_rgba(8,21,48,0.10)]">
-                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-accent-primary dark:text-accent-primary">{t<string>("apply.form.readyPrompt")}</p>
+                  <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-accent-primary-text dark:text-accent-primary-text">{t<string>("apply.form.readyPrompt")}</p>
                   <div className="flex flex-col gap-3">
                     <button
                       onClick={() => setActiveTab("apply")}
@@ -547,7 +547,7 @@ export function ProgramDetailPage() {
                           universityLogo: university.logo,
                         });
                       }}
-                      className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${programSaved ? "border-accent-primary/40 bg-accent-primary/8 text-amber-700 dark:border-accent-primary/40 dark:bg-accent-primary/12 dark:text-accent-primary" : "border-border/50 text-text-secondary hover:bg-bg-secondary"}`}
+                      className={`w-full rounded-xl border py-3 text-sm font-semibold transition ${programSaved ? "border-accent-primary/40 bg-accent-primary/8 text-amber-700 dark:border-accent-primary/40 dark:bg-accent-primary/12 dark:text-accent-primary-text" : "border-border/50 text-text-secondary hover:bg-bg-secondary"}`}
                     >
                       {programSaved ? t<string>("apply.form.savedState") : t<string>("programs.detail.saveProgram")}
                     </button>
@@ -1197,7 +1197,7 @@ function ApplicationStep3({
             <div className={`shrink-0 px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
               value
                 ? "bg-accent-tech/20 text-accent-tech"
-                : "bg-bg-secondary text-text-muted group-hover:bg-accent-primary/10 group-hover:text-accent-primary"
+                : "bg-bg-secondary text-text-muted group-hover:bg-accent-primary/10 group-hover:text-accent-primary-text"
             }`}>
               {value ? t<string>("apply.form.documents.change") : t<string>("apply.form.documents.browse")}
             </div>
@@ -1353,7 +1353,7 @@ function ApplicationSuccess({ programName, onBackToProgram }: { programName: str
         </div>
         <div className="relative">
           <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-accent-primary/20 border border-accent-primary/30">
-            <CheckCircle2 className="h-8 w-8 text-accent-primary" />
+            <CheckCircle2 className="h-8 w-8 text-accent-primary-text" />
           </div>
           <h3 className="text-2xl font-black text-white mb-2">{t<string>("apply.form.applicationSent")} 🎉</h3>
           <p className="text-brand-steel-200 dark:text-brand-steel-300 mb-1 text-sm">

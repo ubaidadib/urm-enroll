@@ -43,7 +43,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
       ? "bg-accent-success/20 border-accent-success/30 text-accent-success"
       : dest.tier === 2
       ? "bg-accent-tech/20 border-accent-tech/30 text-accent-tech"
-      : "bg-accent-primary/20 border-accent-primary/30 text-accent-primary";
+      : "bg-accent-primary/20 border-accent-primary/30 text-accent-primary-text";
 
   return (
     <m.div
@@ -136,7 +136,7 @@ function CountryCard({ dest, lang }: { dest: Destination; lang: LangKey }) {
             {dest.topPrograms.slice(0, 3).map((prog) => (
               <span
                 key={prog}
-                className="px-2 py-0.5 rounded-full text-[10px] bg-accent-primary/10 text-accent-primary border border-accent-primary/20 font-semibold"
+                className="px-2 py-0.5 rounded-full text-[10px] bg-accent-primary/10 text-accent-primary-text border border-accent-primary/20 font-semibold"
               >
                 {prog}
               </span>

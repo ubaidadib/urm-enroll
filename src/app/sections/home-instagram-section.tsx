@@ -165,7 +165,7 @@ export function HomeInstagramSection() {
             const StatIcon = stat.icon;
             return (
               <div key={stat.labelKey} className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-primary/15 text-accent-primary">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-primary/15 text-accent-primary-text">
                   <StatIcon className="h-4 w-4" />
                 </div>
                 <div>

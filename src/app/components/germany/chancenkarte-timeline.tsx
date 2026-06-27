@@ -41,7 +41,7 @@ export function ChancenkarteTimeline() {
                 }`}
               >
                 <span
-                  className="absolute left-1.5 md:left-1/2 -translate-x-1/2 top-2 w-9 h-9 rounded-xl bg-accent-primary/10 text-accent-primary flex items-center justify-center shadow-md ring-1 ring-accent-primary/30"
+                  className="absolute left-1.5 md:left-1/2 -translate-x-1/2 top-2 w-9 h-9 rounded-xl bg-accent-primary/10 text-accent-primary-text flex items-center justify-center shadow-md ring-1 ring-accent-primary/30"
                   aria-hidden="true"
                 >
                   <Icon className="w-4 h-4" />

@@ -41,7 +41,7 @@ export function ActiveFilterChips({ chips, onRemove, onClearAll, clearAllLabel }
       <button
         type="button"
         onClick={onClearAll}
-        className="min-h-11 rounded-full px-3 py-2 text-sm font-semibold text-accent-primary transition-colors hover:text-accent-primary-hover"
+        className="min-h-11 rounded-full px-3 py-2 text-sm font-semibold text-accent-primary-text transition-colors hover:text-accent-primary-hover"
       >
         {clearAllLabel}
       </button>

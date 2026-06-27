@@ -29,7 +29,7 @@ export function GuideStep({ number, title, description, tips, icon: Icon, badge 
     >
       {/* Step indicator line */}
       <div className="flex flex-col items-center">
-        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent-primary/10 border-2 border-accent-primary text-accent-primary font-black text-sm flex-shrink-0">
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent-primary/10 border-2 border-accent-primary text-accent-primary-text font-black text-sm flex-shrink-0">
           {Icon ? <Icon className="w-4 h-4" /> : number}
         </div>
         <div className="w-px flex-1 mt-2 bg-border" />
@@ -50,7 +50,7 @@ export function GuideStep({ number, title, description, tips, icon: Icon, badge 
           <ul className="mt-3 space-y-1.5">
             {tips.map((tip, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-text-muted">
-                <ChevronRight className="w-3.5 h-3.5 text-accent-primary mt-0.5 flex-shrink-0" />
+                <ChevronRight className="w-3.5 h-3.5 text-accent-primary-text mt-0.5 flex-shrink-0" />
                 {tip}
               </li>
             ))}
@@ -90,8 +90,8 @@ const CARD_VARIANTS = {
   info: {
     bg: "bg-accent-primary/5 border-accent-primary/20",
     icon: Info,
-    iconClass: "text-accent-primary",
-    titleClass: "text-accent-primary",
+    iconClass: "text-accent-primary-text",
+    titleClass: "text-accent-primary-text",
   },
   warning: {
     bg: "bg-amber-500/5 border-amber-500/20",
@@ -265,10 +265,10 @@ export function GuideTimeline({ id, heading, items }: GuideTimelineProps) {
               <div className="hidden sm:block absolute top-5 left-[calc(50%+20px)] right-0 h-px bg-border z-0" />
             )}
             <div className="relative z-10 flex flex-col items-center text-center px-3 pb-6">
-              <div className="w-10 h-10 rounded-full bg-accent-primary/10 border-2 border-accent-primary text-accent-primary font-black text-xs flex items-center justify-center mb-2">
+              <div className="w-10 h-10 rounded-full bg-accent-primary/10 border-2 border-accent-primary text-accent-primary-text font-black text-xs flex items-center justify-center mb-2">
                 {i + 1}
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-accent-primary mb-0.5">{item.phase}</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest text-accent-primary-text mb-0.5">{item.phase}</span>
               <span className="flex items-center gap-1 text-xs text-text-muted mb-1">
                 <Clock className="w-3 h-3" />
                 {item.duration}

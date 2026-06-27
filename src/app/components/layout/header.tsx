@@ -183,7 +183,7 @@ export function Header({ isCompact = false }: HeaderProps) {
               draggable={false}
             />
             <span className="text-[13px] sm:text-[15px] xl:text-[18px] font-extrabold tracking-tight leading-none text-[#15233F] dark:text-white truncate">
-              URM <span className="text-accent-primary">ENROLL</span>
+              URM <span className="text-accent-primary-text">ENROLL</span>
             </span>
           </Link>
 
@@ -455,7 +455,7 @@ export function Header({ isCompact = false }: HeaderProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 surface-glass-subtle text-accent-primary"
+                    className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 surface-glass-subtle text-accent-primary-text"
                   >
                     <LayoutDashboard className="w-4 h-4" />
                     {t<string>("header.nav.agentPortal")}

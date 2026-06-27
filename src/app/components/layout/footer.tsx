@@ -80,8 +80,8 @@ export function Footer() {
                   draggable={false}
                 />
                 <div>
-                  <span className="block text-[15px] font-black leading-none tracking-tight text-text-primary transition-colors duration-200 group-hover:text-accent-primary">
-                    URM <span className="text-accent-primary">ENROLL</span>
+                  <span className="block text-[15px] font-black leading-none tracking-tight text-text-primary transition-colors duration-200 group-hover:text-accent-primary-text">
+                    URM <span className="text-accent-primary-text">ENROLL</span>
                   </span>
                   <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.15em] text-text-muted">
                     Your Bridge to Global Education
@@ -161,14 +161,14 @@ export function Footer() {
                 className="group flex items-start gap-3 rounded-2xl border border-accent-primary/20 bg-accent-primary/6 p-4 transition-all duration-200 hover:border-accent-primary/45 hover:bg-accent-primary/10"
               >
                 <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-primary/12">
-                  <Wallet className="h-4 w-4 text-accent-primary" />
+                  <Wallet className="h-4 w-4 text-accent-primary-text" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="mb-0.5 flex items-center gap-1.5">
                     <p className="text-sm font-semibold text-text-primary">{t<string>("header.nav.agentPortal")}</p>
-                    <ExternalLink className="h-3 w-3 text-text-muted transition-colors group-hover:text-accent-primary" />
+                    <ExternalLink className="h-3 w-3 text-text-muted transition-colors group-hover:text-accent-primary-text" />
                   </div>
-                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-accent-primary">
+                  <p className="mb-1 text-[11px] font-semibold uppercase tracking-wider text-accent-primary-text">
                     {t<string>("footer.partners.agentsAudience")}
                   </p>
                   <p className="text-xs leading-relaxed text-text-secondary">{t<string>("footer.partners.agentsDescription")}</p>

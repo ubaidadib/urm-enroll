@@ -24,7 +24,7 @@ export function ServicesPage() {
   const heroStats = [
     { label: t<string>("services.stats.successRateLabel"), value: t<string>("services.stats.successRateValue"), icon: TrendingUp, color: "text-accent-success", bg: "bg-accent-success/10", border: "border-accent-success/20" },
     { label: t<string>("services.stats.partnersLabel"), value: t<string>("services.stats.partnersValue"), icon: Globe2, color: "text-accent-tech", bg: "bg-accent-tech/10", border: "border-accent-tech/20" },
-    { label: t<string>("services.stats.speedLabel"), value: t<string>("services.stats.speedValue"), icon: Zap, color: "text-accent-primary", bg: "bg-accent-primary/10", border: "border-accent-primary/20" },
+    { label: t<string>("services.stats.speedLabel"), value: t<string>("services.stats.speedValue"), icon: Zap, color: "text-accent-primary-text", bg: "bg-accent-primary/10", border: "border-accent-primary/20" },
   ];
 
   return (

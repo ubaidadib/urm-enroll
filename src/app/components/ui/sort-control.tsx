@@ -48,7 +48,7 @@ export function SortControl({ options, value, onChange }: SortControlProps) {
                   }}
                   className={`inline-flex min-h-11 w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                     option.value === value
-                      ? "bg-accent-primary/10 font-semibold text-accent-primary"
+                      ? "bg-accent-primary/10 font-semibold text-accent-primary-text"
                       : "text-text-secondary hover:bg-bg-surface-hover hover:text-text-primary"
                   }`}
                 >

@@ -89,7 +89,7 @@ export function AgencyComparison() {
                   {t<string>("agencyComparison.table.feature")}
                 </th>
                 <th className="px-6 py-4 text-center">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-bold">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-primary/10 text-accent-primary-text text-xs font-bold">
                     {t<string>("agencyComparison.table.urm")}
                   </span>
                 </th>
@@ -128,7 +128,7 @@ export function AgencyComparison() {
                 className="p-5 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-sm"
               >
                 <div className="w-10 h-10 rounded-xl bg-accent-primary/10 flex items-center justify-center mb-3">
-                  <Icon className="w-5 h-5 text-accent-primary" />
+                  <Icon className="w-5 h-5 text-accent-primary-text" />
                 </div>
                 <h3 className="text-sm font-bold text-text-primary mb-1">{item.title}</h3>
                 <p className="text-xs text-text-secondary leading-relaxed">{item.description}</p>

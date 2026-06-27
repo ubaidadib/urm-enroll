@@ -479,7 +479,7 @@ export function HowToApplyGermanUniversityPage() {
           />
           </div>
           <m.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary text-xs font-bold mb-4">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 text-accent-primary-text text-xs font-bold mb-4">
               <FileText className="w-3.5 h-3.5" />
               {content.heroTagline}
             </span>
@@ -529,7 +529,7 @@ export function HowToApplyGermanUniversityPage() {
                 <p className="text-xs text-text-muted mb-3">{content.ctaNote}</p>
                 <Link
                   to={`${base}/contact`}
-                  className="flex items-center gap-1.5 text-xs font-bold text-accent-primary hover:underline"
+                  className="flex items-center gap-1.5 text-xs font-bold text-accent-primary-text hover:underline"
                 >
                   {content.cta}
                   <ArrowRight className="w-3 h-3" />

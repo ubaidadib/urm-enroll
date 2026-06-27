@@ -47,6 +47,7 @@ const config: Config = {
           primary: "var(--color-accent-primary)",
           "primary-strong": "var(--color-accent-primary-strong)",
           "primary-hover": "var(--color-accent-primary-hover)",
+          "primary-text": "var(--color-accent-primary-text)",
           success: "var(--color-accent-success)",
           "success-strong": "var(--color-accent-success-strong)",
           tech: "var(--color-accent-tech)",

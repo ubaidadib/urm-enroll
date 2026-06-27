@@ -31,8 +31,8 @@ export function GermanyRelocationPage() {
             ]}
           />
           </div>
-          <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm text-xs font-bold uppercase tracking-widest text-accent-primary page-hero-badge-gap">
-            <Plane className="w-3.5 h-3.5 text-accent-primary" />
+          <span className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm text-xs font-bold uppercase tracking-widest text-accent-primary-text page-hero-badge-gap">
+            <Plane className="w-3.5 h-3.5 text-accent-primary-text" />
             {t<string>("germany.relocation.hero.badge")}
           </span>
           <h1 className="mt-4 sm:mt-5 lg:mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold tracking-tight leading-[1.08] text-text-primary">

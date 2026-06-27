@@ -27,7 +27,7 @@ export function ChancenkarteProcessPage() {
           />
           </div>
           <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm page-hero-badge-gap">
-            <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent-primary-text">
               {t<string>("chancenkarte.process.badge")}
             </span>
           </div>

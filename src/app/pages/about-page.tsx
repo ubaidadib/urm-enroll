@@ -86,7 +86,7 @@ export function AboutPage() {
                 {[
                   { value: "50+", label: t<string>("socialProof.stats.directNote"), icon: ShieldCheck, color: "text-accent-success" },
                   { value: "1,400+", label: t<string>("socialProof.stats.platformNote"), icon: Globe2, color: "text-accent-tech" },
-                  { value: "94%", label: t<string>("socialProof.stats.visa"), icon: TrendingUp, color: "text-accent-primary" },
+                  { value: "94%", label: t<string>("socialProof.stats.visa"), icon: TrendingUp, color: "text-accent-primary-text" },
                 ].map(({ value, label, icon: Icon, color }, i) => (
                   <div
                     key={i}

@@ -123,6 +123,9 @@
   --accent-primary: 212 175 55;
   --accent-primary-strong: 181 146 42;
   --accent-primary-hover: 238 196 96;
+  /* AA-compliant gold for TEXT on light backgrounds (#8c6a12 = 4.88:1 on
+     near-white). The bright --accent-primary stays for icons/borders/fills. */
+  --accent-primary-text: 140 106 18;
   --accent-tech: 79 107 138;
   --accent-tech-strong: 63 87 114;
   --accent-tech-hover: 145 177 210;
@@ -200,6 +203,9 @@
   --accent-primary: 238 196 96;
   --accent-primary-strong: 212 175 55;
   --accent-primary-hover: 245 220 148;
+  /* On dark surfaces the bright gold already exceeds AA, so the text token
+     matches --accent-primary here. */
+  --accent-primary-text: 238 196 96;
   --accent-tech: 145 177 210;
   --accent-tech-strong: 79 107 138;
   --accent-tech-hover: 182 207 227;
@@ -324,6 +330,7 @@
   --color-accent-primary: rgb(var(--accent-primary));
   --color-accent-primary-strong: rgb(var(--accent-primary-strong));
   --color-accent-primary-hover: rgb(var(--accent-primary-hover));
+  --color-accent-primary-text: rgb(var(--accent-primary-text));
   --color-accent-success: rgb(var(--success));
   --color-accent-success-strong: rgb(var(--success));
   --color-accent-tech: rgb(var(--accent-tech));

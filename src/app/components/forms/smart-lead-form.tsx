@@ -472,7 +472,7 @@ export function SmartLeadForm() {
           transition={{ duration: 0.5 }}
           className="text-center mb-10"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary text-xs font-bold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 text-accent-primary-text text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             {t<string>("leadForm.badge")}
           </div>
@@ -500,7 +500,7 @@ export function SmartLeadForm() {
                   .replace("{current}", String(step))
                   .replace("{total}", String(TOTAL_STEPS))}
               </span>
-              <span className="text-xs font-semibold text-accent-primary">
+              <span className="text-xs font-semibold text-accent-primary-text">
                 {Math.round((step / TOTAL_STEPS) * 100)}%
               </span>
             </div>
@@ -517,7 +517,7 @@ export function SmartLeadForm() {
                 <span
                   key={i}
                   className={`text-[10px] font-medium transition-colors duration-200 ${
-                    i + 1 <= step ? "text-accent-primary" : "text-text-secondary/40"
+                    i + 1 <= step ? "text-accent-primary-text" : "text-text-secondary/40"
                   } ${i > 0 && i < (stepLabels.length ?? 0) - 1 ? "hidden sm:inline" : ""}`}
                 >
                   {label}
@@ -614,7 +614,7 @@ export function SmartLeadForm() {
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
                         formData.userType === "student" ? "bg-accent-primary/10" : "bg-bg-secondary"
                       }`}>
-                        <GraduationCap className={`w-6 h-6 ${formData.userType === "student" ? "text-accent-primary" : "text-text-secondary"}`} />
+                        <GraduationCap className={`w-6 h-6 ${formData.userType === "student" ? "text-accent-primary-text" : "text-text-secondary"}`} />
                       </div>
                       <h4 className="text-base font-bold text-text-primary">{t<string>("leadForm.step2.student.title")}</h4>
                       <p className="mt-1 text-xs text-text-secondary">{t<string>("leadForm.step2.student.description")}</p>
@@ -624,7 +624,7 @@ export function SmartLeadForm() {
                           animate={{ scale: 1 }}
                           className={`absolute top-3 ${isRtl ? "left-3" : "right-3"}`}
                         >
-                          <CheckCircle2 className="w-5 h-5 text-accent-primary" />
+                          <CheckCircle2 className="w-5 h-5 text-accent-primary-text" />
                         </m.div>
                       )}
                     </button>
@@ -649,7 +649,7 @@ export function SmartLeadForm() {
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
                         formData.userType === "agent" ? "bg-accent-primary/10" : "bg-bg-secondary"
                       }`}>
-                        <Building2 className={`w-6 h-6 ${formData.userType === "agent" ? "text-accent-primary" : "text-text-secondary"}`} />
+                        <Building2 className={`w-6 h-6 ${formData.userType === "agent" ? "text-accent-primary-text" : "text-text-secondary"}`} />
                       </div>
                       <h4 className="text-base font-bold text-text-primary">{t<string>("leadForm.step2.agent.title")}</h4>
                       <p className="mt-1 text-xs text-text-secondary">{t<string>("leadForm.step2.agent.description")}</p>
@@ -659,7 +659,7 @@ export function SmartLeadForm() {
                           animate={{ scale: 1 }}
                           className={`absolute top-3 ${isRtl ? "left-3" : "right-3"}`}
                         >
-                          <CheckCircle2 className="w-5 h-5 text-accent-primary" />
+                          <CheckCircle2 className="w-5 h-5 text-accent-primary-text" />
                         </m.div>
                       )}
                     </button>
@@ -680,7 +680,7 @@ export function SmartLeadForm() {
                   className="flex-1 space-y-5"
                 >
                   <h3 className="text-lg font-bold text-text-primary">{t<string>("leadForm.step3.student.title")}</h3>
-                  <p className="text-sm text-accent-primary/80 font-medium">{t<string>("leadForm.motivation.step3")}</p>
+                  <p className="text-sm text-accent-primary-text/80 font-medium">{t<string>("leadForm.motivation.step3")}</p>
                   <FormSelect
                     name="destination"
                     label={t<string>("leadForm.step3.student.destination")}
@@ -736,7 +736,7 @@ export function SmartLeadForm() {
                   className="flex-1 space-y-5"
                 >
                   <h3 className="text-lg font-bold text-text-primary">{t<string>("leadForm.step3.agent.title")}</h3>
-                  <p className="text-sm text-accent-primary/80 font-medium">{t<string>("leadForm.motivation.step3")}</p>
+                  <p className="text-sm text-accent-primary-text/80 font-medium">{t<string>("leadForm.motivation.step3")}</p>
                   <FormInput
                     name="agencyName"
                     label={t<string>("leadForm.step3.agent.agencyName")}
@@ -790,7 +790,7 @@ export function SmartLeadForm() {
                   className="flex-1 space-y-5"
                 >
                   <h3 className="text-lg font-bold text-text-primary">{t<string>("leadForm.step4.title")}</h3>
-                  <p className="text-sm text-accent-primary/80 font-medium">{t<string>("leadForm.motivation.step4")}</p>
+                  <p className="text-sm text-accent-primary-text/80 font-medium">{t<string>("leadForm.motivation.step4")}</p>
 
                   {/* Variant B: readiness first, then timeline */}
                   {isFormB && (
@@ -807,7 +807,7 @@ export function SmartLeadForm() {
                             onClick={() => { setFormData((prev) => ({ ...prev, readiness: opt.value })); setError(""); }}
                             className={`px-4 py-3 rounded-xl border text-sm font-medium transition-all text-center ${
                               formData.readiness === opt.value
-                                ? "border-accent-primary bg-accent-primary/5 text-accent-primary shadow-sm"
+                                ? "border-accent-primary bg-accent-primary/5 text-accent-primary-text shadow-sm"
                                 : "border-border/30 text-text-secondary hover:border-border"
                             }`}
                           >
@@ -831,7 +831,7 @@ export function SmartLeadForm() {
                           onClick={() => { setFormData((prev) => ({ ...prev, timeline: opt.value })); setError(""); }}
                           className={`flex items-center gap-2 px-4 py-3 rounded-xl border text-sm font-medium transition-all text-start ${
                             formData.timeline === opt.value
-                              ? "border-accent-primary bg-accent-primary/5 text-accent-primary shadow-sm"
+                              ? "border-accent-primary bg-accent-primary/5 text-accent-primary-text shadow-sm"
                               : "border-border/30 text-text-secondary hover:border-border"
                           }`}
                         >
@@ -857,7 +857,7 @@ export function SmartLeadForm() {
                           onClick={() => { setFormData((prev) => ({ ...prev, readiness: opt.value })); setError(""); }}
                           className={`px-4 py-3 rounded-xl border text-sm font-medium transition-all text-center ${
                             formData.readiness === opt.value
-                              ? "border-accent-primary bg-accent-primary/5 text-accent-primary shadow-sm"
+                              ? "border-accent-primary bg-accent-primary/5 text-accent-primary-text shadow-sm"
                               : "border-border/30 text-text-secondary hover:border-border"
                           }`}
                         >
@@ -883,7 +883,7 @@ export function SmartLeadForm() {
                   className="flex-1 space-y-6"
                 >
                   <h3 className="text-lg font-bold text-text-primary">{t<string>("leadForm.step5.title")}</h3>
-                  <p className="text-sm text-accent-primary/80 font-medium">{t<string>("leadForm.motivation.step5")}</p>
+                  <p className="text-sm text-accent-primary-text/80 font-medium">{t<string>("leadForm.motivation.step5")}</p>
                   <p className="text-sm text-text-secondary">{t<string>("leadForm.step5.subtitle")}</p>
 
                   {/* Summary */}
@@ -898,11 +898,11 @@ export function SmartLeadForm() {
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                       {formData.userType === "student" ? (
-                        <GraduationCap className="w-4 h-4 text-accent-primary" />
+                        <GraduationCap className="w-4 h-4 text-accent-primary-text" />
                       ) : (
-                        <Building2 className="w-4 h-4 text-accent-primary" />
+                        <Building2 className="w-4 h-4 text-accent-primary-text" />
                       )}
-                      <span className="text-accent-primary font-medium">
+                      <span className="text-accent-primary-text font-medium">
                         {formData.userType === "student"
                           ? t<string>("leadForm.step2.student.title")
                           : t<string>("leadForm.step2.agent.title")}

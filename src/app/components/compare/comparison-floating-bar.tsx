@@ -37,7 +37,7 @@ export function ComparisonFloatingBar() {
             <div className="rounded-2xl border border-border bg-bg-surface/95 backdrop-blur-xl shadow-2xl px-4 py-3">
               <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
                 <div className="flex items-center gap-2 shrink-0">
-                  <GitCompareArrows className="w-5 h-5 text-accent-primary" />
+                  <GitCompareArrows className="w-5 h-5 text-accent-primary-text" />
                   <span className="font-semibold text-text-primary text-sm">
                     {t<string>("comparison.floatingBar.title").replace("{{count}}", String(items.length))}
                   </span>

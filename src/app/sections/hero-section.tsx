@@ -263,12 +263,12 @@ export function HeroSection() {
             aria-label={`${t<string>("icef.accredited")} ${t<string>("icef.member")}`}
             className="shrink-0 flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-lg border border-accent-primary/30 bg-accent-primary/6 transition-colors duration-200 hover:border-accent-primary/50"
           >
-            <Award className="w-4 h-4 text-accent-primary" aria-hidden="true" />
+            <Award className="w-4 h-4 text-accent-primary-text" aria-hidden="true" />
             <div className="leading-none">
               <p className="text-text-primary font-semibold text-xs">{t<string>("hero.icef_label")}</p>
               <p className="text-text-muted text-xs mt-0.5">#6507</p>
             </div>
-            <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary" aria-hidden="true" />
+            <CheckCircle2 className="w-3.5 h-3.5 text-accent-primary-text" aria-hidden="true" />
           </a>
 
           {/* Divider */}
@@ -463,7 +463,7 @@ export function HeroSection() {
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1, duration: 0.4 }}
-            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-accent-primary/30 bg-bg-secondary/90 text-accent-primary text-xs font-medium whitespace-nowrap"
+            className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full border border-accent-primary/30 bg-bg-secondary/90 text-accent-primary-text text-xs font-medium whitespace-nowrap"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[rgb(0,184,217)] animate-pulse" />
             {t<string>("hero.programsAcrossDestinations")}
@@ -490,7 +490,7 @@ export function HeroSection() {
                   i < STATS.length - 1 ? "md:border-r" : ""
                 }`}
               >
-                <span className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 3xl:text-5xl font-bold tabular-nums mb-1.5 text-accent-primary">
+                <span className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 3xl:text-5xl font-bold tabular-nums mb-1.5 text-accent-primary-text">
                   <CountUp
                     target={stat.value}
                     suffix={stat.suffix}

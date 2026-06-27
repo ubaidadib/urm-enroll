@@ -26,7 +26,7 @@ export function EmptyState({ icon: Icon, title, description, cta }: EmptyStatePr
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="glass-card-medium rounded-[1.8rem] px-6 py-16 text-center"
     >
-      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-accent-tech/20 to-accent-primary/20 border border-border/60 text-accent-primary">
+      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-linear-to-br from-accent-tech/20 to-accent-primary/20 border border-border/60 text-accent-primary-text">
         <Icon className="h-8 w-8" />
       </div>
 

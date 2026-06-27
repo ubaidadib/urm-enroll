@@ -25,7 +25,7 @@ export function TrustIndicators({ variant = "light" }: Props) {
         items.map((label) => (
           <span key={label} className="inline-flex items-center gap-2 text-sm">
             <ShieldCheck
-              className={`w-4 h-4 ${isDark ? "text-accent-primary" : "text-accent-success"}`}
+              className={`w-4 h-4 ${isDark ? "text-accent-primary-text" : "text-accent-success"}`}
             />
             {label}
           </span>

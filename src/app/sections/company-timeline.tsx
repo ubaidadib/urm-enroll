@@ -165,7 +165,7 @@ export function CompanyTimeline() {
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-50 hover:opacity-100 transition-all duration-500">
             {MEDIA_LOGOS.map((media, index) => (
               <div key={index} className="flex items-center gap-3 group cursor-default">
-                <media.icon className="w-8 h-8 text-text-muted group-hover:text-accent-primary transition-colors" />
+                <media.icon className="w-8 h-8 text-text-muted group-hover:text-accent-primary-text transition-colors" />
                 <span className="text-lg font-bold transition-colors text-text-disabled">
                   {media.name}
                 </span>

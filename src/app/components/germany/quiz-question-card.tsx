@@ -57,13 +57,13 @@ export function QuizQuestionCard({
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <span className="inline-flex items-center rounded-full border border-white/60 bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-text-primary dark:border-white/15 dark:bg-white/5 dark:text-accent-primary">
+        <span className="inline-flex items-center rounded-full border border-white/60 bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] text-text-primary dark:border-white/15 dark:bg-white/5 dark:text-accent-primary-text">
           Q{index}/{total}
         </span>
         <span
           className={`inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.15em] ${
             variant === "B"
-              ? "bg-accent-primary/10 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary"
+              ? "bg-accent-primary/10 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary-text"
               : "bg-black/6 text-text-primary dark:bg-white/10 dark:text-white"
           }`}
         >
@@ -140,7 +140,7 @@ export function QuizQuestionCard({
                       <span
                         className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${
                           selected
-                            ? "bg-accent-primary/20 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary"
+                            ? "bg-accent-primary/20 text-[#7a5b10] dark:bg-accent-primary/20 dark:text-accent-primary-text"
                             : "bg-black/5 text-text-secondary dark:bg-white/10"
                         }`}
                       >

@@ -265,7 +265,7 @@ export function GermanyWorkforceModule() {
                   }`}
                 >
                   <div className={`flex items-center gap-4 ${dir === 'rtl' ? 'flex-row-reverse text-right' : ''}`}>
-                    <div className={`p-3 rounded-xl transition-colors ${isActive ? "bg-accent-primary/20 text-accent-primary" : "bg-bg-secondary text-text-muted"}`}>
+                    <div className={`p-3 rounded-xl transition-colors ${isActive ? "bg-accent-primary/20 text-accent-primary-text" : "bg-bg-secondary text-text-muted"}`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div className="flex-1">
@@ -277,7 +277,7 @@ export function GermanyWorkforceModule() {
                       </div>
                     </div>
                     {isActive && (
-                      <ChevronRight className={`w-5 h-5 text-accent-primary ${dir === 'rtl' ? 'rotate-180' : ''}`} />
+                      <ChevronRight className={`w-5 h-5 text-accent-primary-text ${dir === 'rtl' ? 'rotate-180' : ''}`} />
                     )}
                   </div>
                 </button>

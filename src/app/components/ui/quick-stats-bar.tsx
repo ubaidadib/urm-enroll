@@ -27,7 +27,7 @@ export function QuickStatsBar({
             const Icon = stat.icon;
             return (
               <div key={`${stat.label}-${stat.value}`} className="flex min-h-14 items-center gap-3 rounded-lg border border-border bg-bg-primary px-3 py-2">
-                <Icon className="h-5 w-5 text-accent-primary" aria-hidden="true" />
+                <Icon className="h-5 w-5 text-accent-primary-text" aria-hidden="true" />
                 <div className="min-w-0">
                   <p className="truncate text-[11px] font-semibold uppercase tracking-wide text-text-muted">
                     {stat.label}

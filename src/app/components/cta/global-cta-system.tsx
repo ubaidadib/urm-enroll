@@ -202,7 +202,7 @@ function CTABanner({
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
         {/* Icon */}
         <div className="shrink-0 w-12 h-12 rounded-xl bg-accent-primary/10 flex items-center justify-center">
-          <Icon className="w-6 h-6 text-accent-primary" />
+          <Icon className="w-6 h-6 text-accent-primary-text" />
         </div>
 
         {/* Copy */}

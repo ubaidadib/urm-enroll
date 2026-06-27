@@ -32,15 +32,15 @@ export function GermanyCareersHero() {
           transition={{ duration: 0.4 }}
           className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-accent-primary/25 bg-accent-primary/6 shadow-sm"
         >
-          <Sparkles className="w-3.5 h-3.5 text-accent-primary" />
-          <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+          <Sparkles className="w-3.5 h-3.5 text-accent-primary-text" />
+          <span className="text-xs font-bold uppercase tracking-widest text-accent-primary-text">
             {t<string>("germany.hero.badge")}
           </span>
         </m.div>
 
         <div className="page-hero-grid mt-6 lg:mt-6">
           <div className="page-hero-main">
-            <p className="text-xs font-bold uppercase tracking-widest text-accent-primary mb-3">
+            <p className="text-xs font-bold uppercase tracking-widest text-accent-primary-text mb-3">
               {t<string>("germany.hero.eyebrow")}
             </p>
             <m.h1
@@ -50,7 +50,7 @@ export function GermanyCareersHero() {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.2rem] xl:text-[3.75rem] 3xl:text-[4.5rem] 4xl:text-[5.5rem] font-bold leading-[1.08] tracking-tight text-text-primary"
             >
               {t<string>("germany.hero.title")}{" "}
-              <span className="text-accent-primary">
+              <span className="text-accent-primary-text">
                 {t<string>("germany.hero.titleHighlight")}
               </span>
             </m.h1>
@@ -80,7 +80,7 @@ export function GermanyCareersHero() {
                 to={localizedPath("/contact")}
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-border/60 bg-bg-surface/80 text-text-primary hover:border-accent-primary/40 hover:bg-bg-surface shadow-sm transition-all duration-200 font-semibold"
               >
-                <Compass className="w-4 h-4 text-accent-primary" />
+                <Compass className="w-4 h-4 text-accent-primary-text" />
                 {t<string>("germany.hero.secondaryCta")}
               </Link>
             </m.div>
@@ -96,7 +96,7 @@ export function GermanyCareersHero() {
             <HeroStat label={t<string>("germany.hero.stat2Label")} value={t<string>("germany.hero.stat2Value")} index={1} />
             <HeroStat label={t<string>("germany.hero.stat3Label")} value={t<string>("germany.hero.stat3Value")} index={2} />
             <div className="p-4 rounded-2xl border border-accent-primary/20 bg-accent-primary/5 backdrop-blur-md shadow-sm flex items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-accent-primary shrink-0" />
+              <ShieldCheck className="w-5 h-5 text-accent-primary-text shrink-0" />
               <p className="text-xs leading-relaxed text-text-secondary">
                 {t<string>("germany.trustBar.title")} · BAMF-aligned · Anabin · GDPR
               </p>
@@ -121,7 +121,7 @@ function HeroStat({ label, value, index }: { label: string; value: string; index
       className="group p-4 rounded-2xl border border-border/50 bg-bg-surface/80 backdrop-blur-md shadow-sm hover:border-accent-primary/30 hover:shadow-md transition-all duration-200"
     >
       <p className="text-[10px] uppercase tracking-widest text-text-muted">{label}</p>
-      <p className="mt-1 text-2xl font-black text-accent-primary tabular-nums">{value}</p>
+      <p className="mt-1 text-2xl font-black text-accent-primary-text tabular-nums">{value}</p>
     </m.div>
   );
 }

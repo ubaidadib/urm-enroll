@@ -455,7 +455,7 @@ export function ProgramsPage() {
                 </div>
                 <div className="rounded-2xl p-4 flex items-center gap-3 bg-bg-surface/80 backdrop-blur-md border border-border/50 shadow-sm">
                   <div className="w-11 h-11 shrink-0 rounded-xl bg-accent-primary/10 border border-accent-primary/20 flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-accent-primary" />
+                    <Building2 className="w-5 h-5 text-accent-primary-text" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-lg font-black text-text-primary">{organizations.length}+</p>

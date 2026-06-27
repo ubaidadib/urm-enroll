@@ -19,10 +19,10 @@ export function SuccessStoryCard({
       transition={{ duration: 0.4, delay: index * 0.05 }}
       className="relative p-6 rounded-2xl border border-border bg-background-surface hover:shadow-[0_24px_60px_-30px_rgba(11,21,48,0.3)] transition-shadow"
     >
-      <Quote className="absolute -top-3 -left-2 w-7 h-7 text-accent-primary" />
+      <Quote className="absolute -top-3 -left-2 w-7 h-7 text-accent-primary-text" />
       <div className="flex items-center gap-1 mb-3">
         {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <Star key={i} className="w-3.5 h-3.5 text-accent-primary fill-accent-primary" />
+          <Star key={i} className="w-3.5 h-3.5 text-accent-primary-text fill-accent-primary" />
         ))}
       </div>
       <p className="text-sm md:text-base text-text-primary leading-relaxed italic">

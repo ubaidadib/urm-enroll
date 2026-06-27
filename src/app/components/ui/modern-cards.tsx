@@ -96,7 +96,7 @@ const DEGREE_BADGES = {
 
 const UNIVERSITY_TYPE_BADGES = {
   public: "bg-accent-tech/12 text-accent-tech border-accent-tech/35",
-  private: "bg-accent-primary/12 text-accent-primary border-accent-primary/35",
+  private: "bg-accent-primary/12 text-accent-primary-text border-accent-primary/35",
   international: "bg-accent-tech/12 text-accent-tech border-accent-tech/35",
 } as const;
 
@@ -343,7 +343,7 @@ export function ProgramCardModern({
               type="button"
               onClick={handleToggleFavorite}
               aria-label={t<string>("card.program.saveProgram")}
-              className={`shrink-0 rounded-full p-1.5 transition-colors ${saved ? "text-accent-primary dark:text-accent-primary" : "text-text-disabled hover:text-accent-primary"}`}
+              className={`shrink-0 rounded-full p-1.5 transition-colors ${saved ? "text-accent-primary-text dark:text-accent-primary-text" : "text-text-disabled hover:text-accent-primary-text"}`}
             >
               <Heart className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
             </button>
@@ -391,7 +391,7 @@ export function ProgramCardModern({
               {displayFees ? (
                 <>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-text-muted">{t<string>("common.approx")}</p>
-                  <p className="mt-0.5 truncate text-base font-bold text-accent-primary dark:text-accent-primary">{displayFees}</p>
+                  <p className="mt-0.5 truncate text-base font-bold text-accent-primary-text dark:text-accent-primary-text">{displayFees}</p>
                 </>
               ) : (
                 <>
@@ -511,7 +511,7 @@ export function ProgramCardModern({
           <button
             type="button"
             onClick={handleToggleFavorite}
-            className={`inline-flex items-center justify-center gap-2 rounded-xl border border-border px-3 py-2.5 text-sm font-semibold transition-colors ${saved ? "bg-accent-primary/15 text-accent-primary" : "text-text-primary hover:bg-background-hover"}`}
+            className={`inline-flex items-center justify-center gap-2 rounded-xl border border-border px-3 py-2.5 text-sm font-semibold transition-colors ${saved ? "bg-accent-primary/15 text-accent-primary-text" : "text-text-primary hover:bg-background-hover"}`}
           >
             <Heart className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />
             {t<string>("card.program.saveProgram")}
@@ -721,7 +721,7 @@ export function UniversityCardModern({
           <button
             type="button"
             onClick={handleFavorite}
-            className={`h-11 w-11 rounded-xl border border-border transition-colors flex items-center justify-center ${saved ? "bg-accent-primary/15 text-accent-primary" : "text-text-primary hover:bg-background-hover"}`}
+            className={`h-11 w-11 rounded-xl border border-border transition-colors flex items-center justify-center ${saved ? "bg-accent-primary/15 text-accent-primary-text" : "text-text-primary hover:bg-background-hover"}`}
             aria-label={t<string>("card.university.saveUniversity")}
           >
             <Heart className={`h-4 w-4 ${saved ? "fill-current" : ""}`} />

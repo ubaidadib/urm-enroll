@@ -134,8 +134,8 @@ export function FindYourProgram() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-primary/10 border border-accent-primary/20 mb-6">
-            <Search className="w-3.5 h-3.5 text-accent-primary" />
-            <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-accent-primary">
+            <Search className="w-3.5 h-3.5 text-accent-primary-text" />
+            <span className="text-[11px] font-bold tracking-[0.15em] uppercase text-accent-primary-text">
               {tx("findProgram.badge", "Find Your Study Program")}
             </span>
           </div>
@@ -166,7 +166,7 @@ export function FindYourProgram() {
               </div>
               <span
                 className={`text-xs font-medium hidden sm:inline transition-colors duration-300 ${
-                  currentStep >= step ? "text-accent-primary" : "text-text-muted"
+                  currentStep >= step ? "text-accent-primary-text" : "text-text-muted"
                 }`}
               >
                 {step === 1
@@ -195,7 +195,7 @@ export function FindYourProgram() {
           className="mb-8"
         >
           <p className="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-primary/15 text-accent-primary text-[10px] font-bold">
+            <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-primary/15 text-accent-primary-text text-[10px] font-bold">
               1
             </span>
             {tx("findProgram.step1", "What do you want to study?")}
@@ -223,7 +223,7 @@ export function FindYourProgram() {
                   >
                     <Icon className="w-6 h-6" style={{ color }} />
                   </div>
-                  <span className={isActive ? "text-accent-primary font-semibold" : "text-text-secondary"}>
+                  <span className={isActive ? "text-accent-primary-text font-semibold" : "text-text-secondary"}>
                     {tx(`findProgram.types.${type}`, type.charAt(0).toUpperCase() + type.slice(1))}
                   </span>
                 </button>
@@ -263,7 +263,7 @@ export function FindYourProgram() {
                         group inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium
                         transition-all duration-200 border
                         ${isActive
-                          ? "bg-accent-primary/10 border-accent-primary/40 text-accent-primary shadow-sm"
+                          ? "bg-accent-primary/10 border-accent-primary/40 text-accent-primary-text shadow-sm"
                           : "bg-surface-glass/5 border-border/30 text-text-secondary hover:border-border/60 hover:bg-surface-glass/10"
                         }
                       `}
@@ -289,7 +289,7 @@ export function FindYourProgram() {
               transition={{ duration: 0.3 }}
             >
               <p className="text-xs font-semibold text-text-muted uppercase tracking-widest mb-4 flex items-center gap-2">
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-primary/15 text-accent-primary text-[10px] font-bold">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-primary/15 text-accent-primary-text text-[10px] font-bold">
                   3
                 </span>
                 {tx("findProgram.step3", "Available Programs")}
@@ -324,7 +324,7 @@ export function FindYourProgram() {
                 </Link>
                 <Link
                   to="/contact"
-                  className="group inline-flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-text-secondary hover:text-accent-primary transition-colors"
+                  className="group inline-flex items-center gap-2 px-6 py-3.5 text-sm font-medium text-text-secondary hover:text-accent-primary-text transition-colors"
                 >
                   <span>{tx("findProgram.ctaApply", "Apply Now")}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

@@ -101,7 +101,7 @@ export function ScrollTriggeredCTA() {
             <div className="flex items-start sm:items-center gap-4">
               {/* Icon */}
               <div className="shrink-0 w-10 h-10 rounded-xl bg-accent-primary/10 flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-accent-primary" />
+                <Sparkles className="w-5 h-5 text-accent-primary-text" />
               </div>
 
               {/* Copy */}

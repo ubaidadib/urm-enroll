@@ -63,7 +63,7 @@ export function EnhancedSearch({
     : "text-text-primary placeholder:text-text-muted";
   const clearClass = isHero ? "text-white/70 hover:text-white" : "text-text-muted hover:text-text-primary";
   const submitClass = isHero
-    ? "bg-white text-accent-primary hover:bg-white/90"
+    ? "bg-white text-accent-primary-text hover:bg-white/90"
     : "bg-accent-primary text-white hover:opacity-90";
 
   return (

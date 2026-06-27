@@ -111,7 +111,7 @@ export function PageHero({
                 <span className="text-sm" aria-hidden="true">
                   {badge.icon}
                 </span>
-                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary">
+                <span className="text-xs font-bold uppercase tracking-widest text-accent-primary-text">
                   {badge.text}
                 </span>
               </m.div>
@@ -126,7 +126,7 @@ export function PageHero({
               {typeof headline === "string" ? (
                 <>
                   {headline}
-                  {headlineHighlight ? <span className="text-accent-primary"> {headlineHighlight}</span> : null}
+                  {headlineHighlight ? <span className="text-accent-primary-text"> {headlineHighlight}</span> : null}
                 </>
               ) : (
                 headline
@@ -181,7 +181,7 @@ export function PageHero({
                     }`}
                   >
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-accent-primary/8 border border-accent-primary/15 group-hover:bg-accent-primary/12 transition-colors duration-200">
-                      <stat.icon className="w-6 h-6 text-accent-primary" />
+                      <stat.icon className="w-6 h-6 text-accent-primary-text" />
                     </div>
                     <div>
                       <div className="text-2xl font-black text-text-primary tabular-nums">{stat.value}</div>

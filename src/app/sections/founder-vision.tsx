@@ -120,7 +120,7 @@ export function FounderVision() {
 
               {/* Location Tag */}
               <div className="absolute top-8 left-8 flex items-center gap-2 px-4 py-2 bg-white/90 dark:bg-black/50 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
-                <MapPin className="w-4 h-4 text-accent-primary" />
+                <MapPin className="w-4 h-4 text-accent-primary-text" />
                 <span className="text-xs font-bold text-text-primary uppercase tracking-wide">
                   {t<string>('founder.originLabel')} → {t<string>('founder.londonLabel')}
                 </span>
@@ -133,7 +133,7 @@ export function FounderVision() {
             
             {/* Bio Section */}
             <div className="space-y-6">
-              <Quote className="w-12 h-12 text-accent-primary/20 mb-4" />
+              <Quote className="w-12 h-12 text-accent-primary-text/20 mb-4" />
               {bio.map((paragraph, index) => (
                 <m.p
                   key={index}
@@ -200,7 +200,7 @@ export function FounderVision() {
                 href="https://www.linkedin.com/in/ubaidadib/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-text-primary font-bold hover:text-accent-primary transition-colors group"
+                className="inline-flex items-center gap-3 text-text-primary font-bold hover:text-accent-primary-text transition-colors group"
               >
                 <Linkedin className="w-5 h-5" />
                 <span>{t<string>('founder.linkedinCta')}</span>
