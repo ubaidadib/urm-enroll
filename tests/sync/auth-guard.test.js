@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { isSyncRequestAuthorized } from "../../api/internal/sync.js";
+import { isSyncRequestAuthorized } from "../../lib/api-auth.js";
 
 test("sync endpoint auth guard rejects invalid secret", () => {
   const request = { headers: { "x-enroll-sync-secret": "wrong" } };
