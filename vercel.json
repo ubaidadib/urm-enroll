@@ -70,6 +70,10 @@
     }
   ],
   "rewrites": [
+    { "source": "/api/lead", "destination": "/api/forms/lead" },
+    { "source": "/api/contact", "destination": "/api/forms/contact" },
+    { "source": "/api/partner", "destination": "/api/forms/partner" },
+    { "source": "/api/application", "destination": "/api/forms/application" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
