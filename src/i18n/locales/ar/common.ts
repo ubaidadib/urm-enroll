@@ -57,6 +57,7 @@ export const common = {
     pageNumber: "صفحة {{page}}",
   },
   theme: {
+    label: "المظهر",
     system: "النظام",
     light: "فاتح",
     dark: "داكن",

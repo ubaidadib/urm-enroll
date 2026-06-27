@@ -1,28 +1,13 @@
 import { useState } from "react";
-import { Monitor, Moon, Sun, Check } from "lucide-react";
+import { Monitor, Moon, Sun } from "lucide-react";
 import { AnimatePresence, m, useReducedMotion } from "motion/react";
 import { useTheme } from "./theme-provider";
 import { useLanguage } from "@/i18n/language-context";
 
 const themeOptions = [
-  {
-    value: "system",
-    labelKey: "common.theme.system",
-    icon: Monitor,
-    preview: ["bg-brand-navy-800", "bg-brand-steel-500", "bg-brand-gold-500"],
-  },
-  {
-    value: "light",
-    labelKey: "common.theme.light",
-    icon: Sun,
-    preview: ["bg-brand-navy-800", "bg-brand-teal-500", "bg-brand-gold-500"],
-  },
-  {
-    value: "dark",
-    labelKey: "common.theme.dark",
-    icon: Moon,
-    preview: ["bg-brand-navy-950", "bg-brand-teal-400", "bg-brand-gold-400"],
-  },
+  { value: "system", labelKey: "common.theme.system", icon: Monitor },
+  { value: "light", labelKey: "common.theme.light", icon: Sun },
+  { value: "dark", labelKey: "common.theme.dark", icon: Moon },
 ] as const;
 
 type ThemeToggleProps = {
@@ -35,7 +20,11 @@ export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
   const [isOpen, setIsOpen] = useState(false);
   const reduceMotion = useReducedMotion();
 
-  const activeOption = themeOptions.find((option) => option.value === theme) ?? themeOptions[0];
+  const activeIndex = Math.max(
+    0,
+    themeOptions.findIndex((option) => option.value === theme),
+  );
+  const activeOption = themeOptions[activeIndex] ?? themeOptions[0];
   const ActiveIcon = activeOption.icon;
   const sourceLabel =
     themeSource === "system"
@@ -59,7 +48,6 @@ export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
           iconOnly ? "w-10 justify-center" : "gap-2 px-3"
         }`}
       >
-        {/* Animated icon swap on theme change. */}
         <span className="relative grid h-4 w-4 place-items-center">
           <AnimatePresence initial={false} mode="wait">
             <m.span
@@ -88,69 +76,76 @@ export function ThemeToggle({ iconOnly = false }: ThemeToggleProps) {
             <m.div
               id="theme-menu"
               role="menu"
+              aria-label={t<string>("common.theme.system")}
               initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.97 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute right-0 top-full mt-3 w-48 rounded-3xl border border-border/70 glass-card-medium p-2.5 z-50"
+              className="absolute end-0 top-full mt-3 w-[15.5rem] rounded-3xl border border-border/70 glass-card-medium p-3 z-50"
             >
-              {themeOptions.map((option, index) => {
-                const Icon = option.icon;
-                const isActive = theme === option.value;
-                return (
-                  <m.button
-                    key={option.value}
-                    type="button"
-                    onClick={() => {
-                      setTheme(option.value);
-                      setIsOpen(false);
-                    }}
-                    role="menuitem"
-                    aria-current={isActive}
-                    initial={reduceMotion ? false : { opacity: 0, x: 8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.18, delay: reduceMotion ? 0 : 0.04 + index * 0.05 }}
-                    className={`w-full flex items-center gap-3 px-2.5 py-2 rounded-2xl transition-colors duration-200 ${
-                      isActive
-                        ? "bg-background-hover text-text-primary border border-accent-primary/45"
-                        : "text-text-secondary hover:text-text-primary hover:bg-background-hover border border-transparent"
-                    }`}
-                  >
-                    <span
-                      className={`flex items-center justify-center w-8 h-8 rounded-xl border transition-colors ${
+              <p className="px-1 pb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-text-muted">
+                {t<string>("common.theme.label") || "Appearance"}
+              </p>
+
+              {/* Premium animated segmented switch with a sliding indicator. */}
+              <div
+                role="radiogroup"
+                className="relative grid grid-cols-3 rounded-2xl border border-border/55 bg-background-surface/70 p-1"
+              >
+                {/* Sliding active indicator — animates the transform (x) rather
+                    than `left` so motion can interpolate it under LazyMotion. */}
+                <m.span
+                  aria-hidden="true"
+                  className="absolute top-1 bottom-1 left-1 rounded-xl bg-accent-primary/14 border border-accent-primary/45 shadow-[0_2px_12px_rgba(212,175,55,0.18)]"
+                  initial={false}
+                  animate={{ x: `${activeIndex * 100}%` }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : { type: "spring", stiffness: 420, damping: 34 }
+                  }
+                  style={{ width: "calc((100% - 0.5rem) / 3)" }}
+                />
+
+                {themeOptions.map((option) => {
+                  const Icon = option.icon;
+                  const isActive = theme === option.value;
+                  return (
+                    <button
+                      key={option.value}
+                      type="button"
+                      role="radio"
+                      aria-checked={isActive}
+                      onClick={() => {
+                        setTheme(option.value);
+                        setIsOpen(false);
+                      }}
+                      className={`relative z-10 flex flex-col items-center gap-1.5 rounded-xl px-2 py-3 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-tech/35 ${
                         isActive
-                          ? "bg-accent-primary/12 border-accent-primary/40 text-accent-primary"
-                          : "bg-background-surface border-border/50"
+                          ? "text-accent-primary"
+                          : "text-text-secondary hover:text-text-primary"
                       }`}
                     >
-                      <Icon className="w-4 h-4" />
-                    </span>
-                    <span className="flex-1 text-left text-xs font-semibold tracking-wide">
-                      {t<string>(option.labelKey)}
-                    </span>
-                    <span className="flex items-center gap-1" aria-hidden="true">
-                      {option.preview.map((swatch) => (
-                        <span
-                          key={swatch}
-                          className={`w-2.5 h-2.5 rounded-full border border-border/60 ${swatch}`}
-                        />
-                      ))}
-                    </span>
-                    <AnimatePresence initial={false}>
-                      {isActive && (
-                        <m.span
-                          initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0, opacity: 0 }}
-                          transition={{ duration: 0.18, ease: "easeOut" }}
-                        >
-                          <Check className="w-4 h-4 text-accent-primary" />
-                        </m.span>
-                      )}
-                    </AnimatePresence>
-                  </m.button>
-                );
-              })}
+                      <Icon className="w-[18px] h-[18px]" />
+                      <span className="text-[11px] font-semibold tracking-wide">
+                        {t<string>(option.labelKey)}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Live resolved-theme hint. */}
+              <p className="mt-2.5 px-1 text-[11px] text-text-muted">
+                <span className="inline-flex items-center gap-1.5">
+                  <span
+                    className={`inline-block w-2 h-2 rounded-full ${
+                      resolvedTheme === "dark" ? "bg-brand-navy-700" : "bg-brand-gold-400"
+                    }`}
+                  />
+                  {sourceLabel}
+                </span>
+              </p>
             </m.div>
           </>
         )}
