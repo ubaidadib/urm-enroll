@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/language-context";
 import { SeoManager } from "../seo/seo-manager";
 import { ContextualPageHeader } from "../components/ui/contextual-page-header";
+import { Section } from "../components/ui/section";
 import { Building2, GraduationCap, Globe2 } from "lucide-react";
 
 type ListingCopy = {
@@ -123,13 +124,12 @@ export function ResourcesPage() {
         ]}
       />
 
-      <div className="max-w-6xl mx-auto page-gutter py-12">
-
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
+      <Section>
+        <div className="grid md:grid-cols-3 gap-6">
           {copy.cards.map((card) => (
             <article
               key={card.slug}
-              className="group rounded-2xl border border-border/50 bg-bg-surface p-6 shadow-sm hover:border-accent-tech/30 hover:shadow-lg transition-all"
+              className="group surface-card rounded-2xl p-6"
             >
               <h2 className="text-xl font-bold text-text-primary tracking-tight">{card.title}</h2>
               <p className="mt-3 text-sm text-text-secondary leading-relaxed">{card.excerpt}</p>
@@ -143,7 +143,7 @@ export function ResourcesPage() {
             </article>
           ))}
         </div>
-      </div>
+      </Section>
     </main>
   );
 }
