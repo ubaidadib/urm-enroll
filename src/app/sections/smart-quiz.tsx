@@ -5,6 +5,7 @@ import { useLanguage } from '@/i18n/language-context';
 import { SEO_EVENTS, trackEvent } from '@/lib/analytics';
 import { secureSubmitLead } from '@/lib/secure-submit';
 import { TurnstileWidget } from '../components/ui/turnstile-widget';
+import { ConfettiBurst } from '../components/ui/confetti-burst';
 import { getPublicEnv } from '@/lib/env';
 import {
   QUIZ_BASE_SCORE, QUIZ_SCORE_MIN, QUIZ_SCORE_MAX,
@@ -36,6 +37,7 @@ export function SmartQuiz() {
   const [isCalculating, setIsCalculating] = useState(false);
   const [isInterimCalculating, setIsInterimCalculating] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [confettiKey, setConfettiKey] = useState(0);
   const [validationError, setValidationError] = useState('');
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [turnstileToken, setTurnstileToken] = useState('');
@@ -50,6 +52,7 @@ export function SmartQuiz() {
   useEffect(() => {
     if (showResult) {
       SEO_EVENTS.ENROLLMENT_COMPLETED();
+      setConfettiKey((k) => k + 1); // celebrate the match reveal
     }
   }, [showResult]);
 
@@ -188,6 +191,7 @@ export function SmartQuiz() {
 
   return (
     <section className="relative page-section-y px-[var(--content-gutter)] overflow-hidden bg-bg-primary transition-colors duration-500">
+      <ConfettiBurst trigger={confettiKey} />
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute top-0 right-0 w-150 h-150 bg-accent-tech/5 rounded-full blur-[120px]" />
