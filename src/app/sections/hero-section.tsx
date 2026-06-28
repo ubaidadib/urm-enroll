@@ -7,6 +7,7 @@ import { useExperiment } from "@/hooks/useExperiment";
 import { trackExperimentView, trackPersonalizationApplied } from "@/utils/tracking";
 import { usePersonalization } from "@/hooks/usePersonalization";
 import { useTheme } from "@/app/components/ui/theme-provider";
+import { CountUp } from "@/app/components/ui/count-up";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -62,33 +63,6 @@ const STATS: StatItem[] = [
 ];
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
-
-function CountUp({ target, suffix, inView, shouldReduceMotion }: {
-  target: number;
-  suffix: string;
-  inView: boolean;
-  shouldReduceMotion: boolean | null;
-}) {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    if (shouldReduceMotion) { setCount(target); return; }
-    const duration = 1400;
-    const startTime = performance.now();
-    let raf: number;
-    const tick = (now: number) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.round(target * eased));
-      if (progress < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, target, shouldReduceMotion]);
-
-  return <>{count}{suffix}</>;
-}
 
 function DestinationCardItem({ card, index, shouldReduceMotion }: {
   card: DestinationCard;
@@ -491,12 +465,7 @@ export function HeroSection() {
                 }`}
               >
                 <span className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl 3xl:text-5xl font-bold tabular-nums mb-1.5 text-accent-primary-text">
-                  <CountUp
-                    target={stat.value}
-                    suffix={stat.suffix}
-                    inView={statsInView}
-                    shouldReduceMotion={shouldReduceMotion}
-                  />
+                  <CountUp value={stat.value} suffix={stat.suffix} />
                 </span>
                 <span className="text-xs sm:text-sm 3xl:text-base font-medium text-text-disabled">
                   {t<string>(stat.labelKey)}

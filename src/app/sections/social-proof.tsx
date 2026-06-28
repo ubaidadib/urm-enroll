@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/i18n/language-context";
 import { useInstagramContent } from "@/hooks/useInstagramContent";
+import { CountUp } from "../components/ui/count-up";
 import { loadInstagramEmbedScript, processInstagramEmbeds } from "../utils/instagram-embed";
 import { SuccessStoryCard } from "./success-story-card";
 
@@ -44,7 +45,9 @@ export function SocialProof() {
   const stats = [
     {
       key: "visa" as const,
-      value: "98%",
+      value: 98,
+      suffix: "%",
+      decimals: 0,
       label: t<string>("socialProof.stats.visa"),
       note: t<string>("socialProof.stats.visaNote"),
       colorClass: "text-[var(--color-accent-primary)]",
@@ -52,7 +55,9 @@ export function SocialProof() {
     },
     {
       key: "direct" as const,
-      value: "50+",
+      value: 50,
+      suffix: "+",
+      decimals: 0,
       label: t<string>("socialProof.stats.direct"),
       note: t<string>("socialProof.stats.directNote"),
       colorClass: "text-[var(--color-accent-tech)]",
@@ -60,7 +65,9 @@ export function SocialProof() {
     },
     {
       key: "platform" as const,
-      value: "600+",
+      value: 600,
+      suffix: "+",
+      decimals: 0,
       label: t<string>("socialProof.stats.platform"),
       note: t<string>("socialProof.stats.platformNote"),
       colorClass: "text-[var(--color-accent-primary)]",
@@ -68,7 +75,9 @@ export function SocialProof() {
     },
     {
       key: "rating" as const,
-      value: "4.9",
+      value: 4.9,
+      suffix: "",
+      decimals: 1,
       label: t<string>("socialProof.stats.rating"),
       note: t<string>("socialProof.stats.ratingNote"),
       colorClass: "text-[var(--color-accent-tech)]",
@@ -225,7 +234,7 @@ export function SocialProof() {
                 </div>
                 <div className="min-w-0">
                   <div className={`text-2xl font-black ${stat.colorClass} leading-none`}>
-                    {stat.value}
+                    <CountUp value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
                   </div>
                   <div className="text-xs font-semibold text-[var(--color-text-secondary)] mt-0.5 leading-tight">
                     {stat.label}
