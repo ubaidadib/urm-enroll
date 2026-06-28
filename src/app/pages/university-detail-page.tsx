@@ -475,7 +475,7 @@ export function UniversityDetailPage() {
                   </div>
                 </div>
 
-                <button className="mt-8 px-6 py-3 rounded-lg bg-accent-primary text-white font-medium hover:shadow-lg transition-all flex items-center gap-2">
+                <button className="mt-8 px-6 py-3 rounded-lg bg-accent-primary text-ink font-medium hover:shadow-lg transition-all flex items-center gap-2">
                   <Download className="w-4 h-4" />
                   Download Brochure
                 </button>
@@ -573,7 +573,7 @@ export function UniversityDetailPage() {
                       )}
                     </div>
 
-                    <button className="mt-6 w-full px-6 py-3 rounded-lg bg-accent-primary text-white font-medium hover:shadow-lg transition-all">
+                    <button className="mt-6 w-full px-6 py-3 rounded-lg bg-accent-primary text-ink font-medium hover:shadow-lg transition-all">
                       Contact Admissions
                     </button>
                   </div>
@@ -652,7 +652,7 @@ export function UniversityDetailPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={() => navigate("/contact")}
-                  className="px-8 py-3 rounded-lg bg-accent-primary text-white font-medium hover:shadow-lg transition-all"
+                  className="px-8 py-3 rounded-lg bg-accent-primary text-ink font-medium hover:shadow-lg transition-all"
                 >
                   Contact Advisor
                 </button>

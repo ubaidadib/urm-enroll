@@ -336,7 +336,7 @@ export function CountryDetailPage() {
               {/* CTA */}
               <Link
                 to="/contact"
-                className="block w-full text-center px-6 py-4 rounded-2xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
+                className="block w-full text-center px-6 py-4 rounded-2xl bg-accent-primary text-ink font-black text-sm hover:opacity-90 transition-opacity"
               >
                 {tx("destinations.detail.startApplication", "Start Application")} →
               </Link>
@@ -396,7 +396,7 @@ export function CountryDetailPage() {
                 </p>
                 <Link
                   to="/universities"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-ink font-black text-sm hover:opacity-90 transition-opacity"
                 >
                   {tx("destinations.detail.browseAllUniversities", "Browse All Universities")} <ChevronRight className="w-4 h-4" />
                 </Link>
@@ -447,7 +447,7 @@ export function CountryDetailPage() {
                 </p>
                 <Link
                   to="/programs"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-primary text-ink font-black text-sm hover:opacity-90 transition-opacity"
                 >
                   {tx("destinations.detail.browseAllPrograms", "Browse All Programs")} <ChevronRight className="w-4 h-4" />
                 </Link>
@@ -512,7 +512,7 @@ export function CountryDetailPage() {
                 </div>
                 <Link
                   to="/contact"
-                  className="block w-full text-center px-6 py-4 rounded-2xl bg-accent-primary text-white font-black text-sm hover:opacity-90 transition-opacity"
+                  className="block w-full text-center px-6 py-4 rounded-2xl bg-accent-primary text-ink font-black text-sm hover:opacity-90 transition-opacity"
                 >
                   {tx("destinations.detail.getVisaSupport", "Get Visa Support")} →
                 </Link>

@@ -569,7 +569,7 @@ export function HowToApplyGermanUniversityPage() {
               </div>
               <Link
                 to={`${base}/contact`}
-                className="inline-flex items-center gap-2 rounded-xl bg-accent-primary text-white px-6 py-3 text-sm font-bold hover:opacity-90 transition-opacity whitespace-nowrap"
+                className="inline-flex items-center gap-2 rounded-xl bg-accent-primary text-ink px-6 py-3 text-sm font-bold hover:opacity-90 transition-opacity whitespace-nowrap"
               >
                 <CheckSquare className="w-4 h-4" />
                 {content.cta}

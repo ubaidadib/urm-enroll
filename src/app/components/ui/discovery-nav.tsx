@@ -62,7 +62,7 @@ export function DiscoveryNav({
             aria-current={active ? "page" : undefined}
             className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm font-semibold transition-all ${
               active
-                ? "border-accent-primary bg-accent-primary text-white shadow-lg shadow-accent-primary/20"
+                ? "border-accent-primary bg-accent-primary text-ink shadow-lg shadow-accent-primary/20"
                 : "border-border bg-background-surface text-text-secondary hover:border-accent-primary hover:text-text-primary"
             }`}
           >

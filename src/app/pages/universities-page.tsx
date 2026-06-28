@@ -760,7 +760,7 @@ export function UniversitiesPage() {
                           className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold capitalize
                             transition-all duration-200 whitespace-nowrap flex-shrink-0
                             ${active
-                              ? "bg-accent-primary text-white shadow-sm"
+                              ? "bg-accent-primary text-ink shadow-sm"
                               : "border border-border/50 bg-bg-surface text-text-secondary hover:border-accent-primary/50"
                             }`}
                         >
