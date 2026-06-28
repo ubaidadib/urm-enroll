@@ -8,6 +8,7 @@ import { trackExperimentView, trackPersonalizationApplied } from "@/utils/tracki
 import { usePersonalization } from "@/hooks/usePersonalization";
 import { useTheme } from "@/app/components/ui/theme-provider";
 import { CountUp } from "@/app/components/ui/count-up";
+import { Magnetic } from "@/app/components/ui/magnetic";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -339,17 +340,19 @@ export function HeroSection() {
             transition={{ delay: 0.55, duration: 0.45 }}
             className={`flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-4 sm:mb-5 lg:mb-5 ${isRtl ? "sm:flex-row-reverse" : ""}`}
           >
-            <Link
-              to="/universities"
-              aria-label={t<string>("hero.new_cta_primary")}
-              className="group inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
-            >
-              <span>{t<string>("hero.new_cta_primary")}</span>
-              <ArrowRight
-                className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200"
-                aria-hidden="true"
-              />
-            </Link>
+            <Magnetic className="w-full sm:w-auto">
+              <Link
+                to="/universities"
+                aria-label={t<string>("hero.new_cta_primary")}
+                className="group inline-flex w-full items-center justify-center gap-2 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-sm sm:text-base font-semibold transition-all duration-200 hover:scale-[1.03] hover:shadow-xl btn-gold-primary"
+              >
+                <span>{t<string>("hero.new_cta_primary")}</span>
+                <ArrowRight
+                  className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200"
+                  aria-hidden="true"
+                />
+              </Link>
+            </Magnetic>
 
             <Link
               to="/programs"
